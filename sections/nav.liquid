@@ -1,333 +1,372 @@
-{%- comment -%}
-  ============================================================
-  NAV / HEADER — cabeçalho do site
-  ============================================================
+{%- liquid
+  assign products_url = section.settings.products_url | default: routes.all_products_collection_url
+  assign vestuario_url = section.settings.vestuario_url | default: routes.all_products_collection_url
+  assign myshop_url = section.settings.myshop_url | default: routes.account_url
+  assign inspiration_url = section.settings.inspiration_url | default: routes.root_url
+  assign about_url = section.settings.about_url | default: routes.root_url
+  assign quote_url = section.settings.quote_url | default: routes.root_url
+  assign delivery_url = section.settings.delivery_url | default: routes.root_url
+  assign personalization_url = section.settings.personalization_url | default: routes.root_url
+  assign catalogs_url = section.settings.catalogs_url | default: routes.all_products_collection_url
+  assign category_handles = 'campanhas-sazonais,casa-e-bem-estar,copos-e-garrafas,escritorio-e-escrita,eventos-e-feiras,ideias-para-o-dia-a-dia,kits-de-boas-vindas,malas-e-viagens,presentes-para-equipas,tecnologia,vesturio-e-acessrios' | split: ','
+-%}
 
-  O QUE FAZ:
-  Monta o cabeçalho da loja: logo, navegação de múltiplos níveis
-  (menu com submenus e sub-submenus), busca, link de conta,
-  contador do carrinho e seletores de localização (país/moeda e
-  idioma). Inclui menu mobile com botão hambúrguer.
+<div class="m3d-benefits">
+  <div class="page-width m3d-benefits__inner">
+    <span>{{ section.settings.benefit_one | escape }}</span>
+    <span>{{ section.settings.benefit_two | escape }}</span>
+    <span>{{ section.settings.benefit_three | escape }}</span>
+  </div>
+</div>
 
-  ONDE É USADA:
-  No layout (layout/theme.liquid), como header fixo presente em
-  todas as páginas. É uma section de grupo/header do tema.
-
-  PRINCIPAIS PARTES:
-  - Logo: usa settings.logo (imagem) ou, se vazio, o nome da loja
-    (shop.name) como texto.
-  - header__nav: percorre section.settings.menu.links montando o
-    menu desktop com até 3 níveis (link > child > grandchild).
-  - header__actions: busca (details com painel), conta (só se
-    customer_accounts_enabled) e carrinho com contador
-    data-cart-count baseado em cart.item_count.
-  - Localização: renderiza o snippet 'localization-form' conforme
-    os settings enable_country_selector / enable_language_selector.
-  - header__mobile-nav: menu alternativo para telas <= 1000px,
-    aberto/fechado pelo <script> que alterna aria-expanded/hidden.
-
-  OBSERVAÇÕES:
-  - Ícones vêm do snippet 'icon' (search, account, cart, etc.).
-  - O menu é definido no setting menu (link_list, default
-    "main-menu"); submenus só aparecem se o link tiver filhos.
-  - Estilos e o JS do toggle mobile ficam inline neste arquivo.
-{%- endcomment -%}
-<header class="header page-width" data-section-id="{{ section.id }}">
-  <div class="header__inner">
-    <button
-      type="button"
-      class="header__menu-toggle tap-target"
-      aria-label="{{ 'sections.header.menu' | t }}"
-      aria-expanded="false"
-      aria-controls="MobileNav-{{ section.id }}"
-    >
-      <span class="header__burger"></span>
+<header class="m3d-header" data-section-id="{{ section.id }}">
+  <div class="page-width m3d-header__main">
+    <button class="m3d-header__toggle tap-target" type="button" aria-label="{{ 'sections.header.menu' | t }}" aria-expanded="false" aria-controls="M3dNav-{{ section.id }}" data-m3d-toggle>
+      <span></span><span></span><span></span>
     </button>
 
-    <a href="{{ routes.root_url }}" class="header__logo-link">
+    <a class="m3d-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
       {%- if settings.logo != blank -%}
-        {%- assign logo_alt = shop.name | escape -%}
-        {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-        {{
-          settings.logo
-          | image_url: width: 600
-          | image_tag:
-            class: 'header__logo-image',
-            widths: '150, 300, 450, 600',
-            width: settings.logo_width,
-            height: logo_height,
-            alt: logo_alt,
-            sizes: '(max-width: 1000px) 40vw, 200px'
-        }}
+        {{ settings.logo | image_url: width: 480 | image_tag: class: 'm3d-header__logo-configured', widths: '120, 240, 360, 480', width: 120, alt: shop.name }}
       {%- else -%}
-        <span class="header__logo-text">{{ shop.name }}</span>
+        <img src="{{ 'm3dsolutionslogo.png' | asset_url }}" width="3375" height="4219" alt="{{ shop.name | escape }}">
       {%- endif -%}
     </a>
 
-    <nav class="header__nav" role="navigation" aria-label="{{ 'sections.header.menu' | t }}">
-      <ul class="header__menu" role="list">
-        {%- for link in section.settings.menu.links -%}
-          <li class="header__menu-item {% if link.links != blank %}header__menu-item--has-dropdown{% endif %}">
-            <a href="{{ link.url }}" class="header__menu-link" {% if link.current %}aria-current="page"{% endif %}>
-              {{ link.title | escape }}
-            </a>
-            {%- if link.links != blank -%}
-              <ul class="header__submenu" role="list">
-                {%- for child in link.links -%}
-                  <li class="header__submenu-item {% if child.links != blank %}header__submenu-item--has-dropdown{% endif %}">
-                    <a href="{{ child.url }}" class="header__submenu-link">{{ child.title | escape }}</a>
-                    {%- if child.links != blank -%}
-                      <ul class="header__submenu header__submenu--nested" role="list">
-                        {%- for grandchild in child.links -%}
-                          <li><a href="{{ grandchild.url }}" class="header__submenu-link">{{ grandchild.title | escape }}</a></li>
-                        {%- endfor -%}
-                      </ul>
-                    {%- endif -%}
-                  </li>
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    </nav>
+    <form class="m3d-header__search" action="{{ routes.search_url }}" method="get" role="search" data-m3d-search-form>
+      <div class="m3d-header__search-field">
+        <label class="visually-hidden" for="M3dSearch-{{ section.id }}">{{ 'general.search.search' | t }}</label>
+        <input id="M3dSearch-{{ section.id }}" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ section.settings.search_placeholder | escape }}" data-m3d-search-input>
+        <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon', name: 'search' %}</button>
+      </div>
+      <button class="m3d-header__search-cancel" type="button" data-m3d-search-close>Cancelar</button>
+    </form>
 
-    <div class="header__actions">
-      <details class="header__search">
-        <summary class="header__action-button tap-target" aria-label="{{ 'general.search.search' | t }}">
-          {% render 'icon', name: 'search' %}
-        </summary>
-        <div class="header__search-panel">
-          <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
-            <input
-              type="search"
-              name="q"
-              value="{{ search.terms | escape }}"
-              placeholder="{{ 'general.search.placeholder' | t }}"
-              aria-label="{{ 'general.search.search' | t }}"
-              class="field__input"
-            >
-            <button type="submit" class="visually-hidden">{{ 'general.search.submit' | t }}</button>
-          </form>
-        </div>
-      </details>
-
-      {%- if shop.customer_accounts_enabled -%}
-        <a href="{{ routes.account_url }}" class="header__action-button tap-target" aria-label="{{ 'customer.account.title' | t }}">
-          {% render 'icon', name: 'account' %}
-        </a>
-      {%- endif -%}
-
-      <a href="{{ routes.cart_url }}" class="header__action-button header__cart tap-target" aria-label="{{ 'templates.cart.cart' | t }}">
+    <div class="m3d-header__actions">
+      <a class="m3d-header__account" href="{{ routes.account_url }}">{{ section.settings.account_label | escape }}</a>
+      <a class="m3d-header__cart tap-target" href="{{ routes.cart_url }}" aria-label="{{ 'templates.cart.cart' | t }}">
         {% render 'icon', name: 'cart' %}
-        <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+        <span data-cart-count>{{ cart.item_count }}</span>
       </a>
     </div>
   </div>
 
-  {%- if section.settings.enable_country_selector or section.settings.enable_language_selector -%}
-    <div class="header__localization">
-      {% render 'localization-form',
-        section_id: section.id,
-        show_country: section.settings.enable_country_selector,
-        show_language: section.settings.enable_language_selector
-      %}
+  <nav class="m3d-search-panel" aria-label="Pesquisa e destaques" aria-hidden="true" data-m3d-search-panel>
+    <div class="page-width m3d-search-panel__inner">
+      <div class="m3d-search-panel__links">
+        <p>Saiba mais sobre</p>
+        <ul role="list">
+          <li><a href="{{ delivery_url }}">Prazos de entrega <span aria-hidden="true">↗</span></a></li>
+          <li><a href="{{ personalization_url }}">Personalizações &amp; impressão <span aria-hidden="true">↗</span></a></li>
+          <li><a href="{{ catalogs_url }}">Catálogos <span aria-hidden="true">↗</span></a></li>
+          <li><a href="{{ myshop_url }}">MyShop <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </div>
+      <div class="m3d-search-panel__banners" aria-label="Destaques temporários">
+        <a class="m3d-search-panel__banner" href="{{ products_url }}">
+          <span class="m3d-search-panel__visual"><img src="{{ 'navbar-search-banner-1-m03214.png' | asset_url }}" width="753" height="938" alt="Mochila preta M03214"><small>Novidade</small></span>
+          <span class="m3d-search-panel__banner-link">Ir para produto <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="m3d-search-panel__banner" href="{{ products_url }}">
+          <span class="m3d-search-panel__visual"><img src="{{ 'navbar-search-banner-2-sg1036.png' | asset_url }}" width="753" height="938" alt="Camisola de Natal SG1036"><small>Ideia M3D</small></span>
+          <span class="m3d-search-panel__banner-link">Ir para produto <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="m3d-search-panel__banner" href="{{ products_url }}">
+          <span class="m3d-search-panel__visual"><img src="{{ 'navbar-search-banner-3-so4447.png' | asset_url }}" width="753" height="938" alt="Casaco azul SO4447"><small>Em destaque</small></span>
+          <span class="m3d-search-panel__banner-link">Ir para produto <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
     </div>
-  {%- endif -%}
+  </nav>
+
+  <div class="m3d-header__nav-shell">
+    <nav class="page-width m3d-header__nav" aria-label="{{ 'sections.header.menu' | t }}" data-m3d-slide-tabs>
+      <span class="m3d-header__cursor" aria-hidden="true" data-m3d-cursor></span>
+      <details class="m3d-header__collections">
+        <summary data-m3d-tab>{{ section.settings.collections_label | escape }} <span class="m3d-header__collections-arrow" aria-hidden="true">›</span></summary>
+        <div class="m3d-mega">
+          <div class="m3d-mega__category" data-m3d-mega-category>
+            <p>{{ section.settings.category_heading | escape }}</p>
+            <span class="m3d-mega__hover-line" aria-hidden="true" data-m3d-mega-hover-line>|</span>
+            <ul role="list">
+              {%- for category_handle in category_handles -%}
+                {%- assign category_page = pages[category_handle] -%}
+                {%- if category_page != blank -%}
+                  <li><a href="{{ category_page.url }}">{{ category_page.title | escape }}</a></li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+          <a class="m3d-mega__feature" href="{{ vestuario_url }}">
+            <div><span>Vestuário e têxteis</span><strong>A sua marca veste o verão.</strong><b>Explorar vestuário →</b></div>
+            <img src="{{ 'vestuario.png' | asset_url }}" width="4300" height="2400" alt="">
+          </a>
+        </div>
+      </details>
+      <a href="{{ products_url }}" data-m3d-tab>{{ section.settings.products_label | escape }}</a>
+      <a href="{{ vestuario_url }}" data-m3d-tab>{{ section.settings.vestuario_label | escape }}</a>
+      <a href="{{ myshop_url }}" data-m3d-tab>MyShop</a>
+      <a href="{{ inspiration_url }}" data-m3d-tab>{{ section.settings.inspiration_label | escape }}</a>
+      <a href="{{ about_url }}" data-m3d-tab>{{ section.settings.about_label | escape }}</a>
+      <a class="m3d-header__quote" href="{{ quote_url }}" data-m3d-tab>{{ section.settings.quote_label | escape }} →</a>
+    </nav>
+  </div>
+
+  <div class="m3d-mobile-nav" id="M3dNav-{{ section.id }}" hidden>
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <label class="visually-hidden" for="M3dMobileSearch-{{ section.id }}">{{ 'general.search.search' | t }}</label>
+      <input id="M3dMobileSearch-{{ section.id }}" type="search" name="q" placeholder="{{ section.settings.search_placeholder | escape }}">
+      <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon', name: 'search' %}</button>
+    </form>
+    <nav aria-label="{{ 'sections.header.menu' | t }}">
+      <a href="{{ products_url }}">{{ section.settings.products_label | escape }} →</a>
+      <a href="{{ vestuario_url }}">{{ section.settings.vestuario_label | escape }} →</a>
+      <a href="{{ myshop_url }}">MyShop →</a>
+      <a href="{{ inspiration_url }}">{{ section.settings.inspiration_label | escape }} →</a>
+      <a href="{{ about_url }}">{{ section.settings.about_label | escape }} →</a>
+    </nav>
+  </div>
 </header>
 
-<div class="header__mobile-nav" id="MobileNav-{{ section.id }}" hidden>
-  <ul class="header__mobile-menu" role="list">
-    {%- for link in section.settings.menu.links -%}
-      <li>
-        <a href="{{ link.url }}" class="header__mobile-link">{{ link.title | escape }}</a>
-        {%- if link.links != blank -%}
-          <ul role="list" class="header__mobile-submenu">
-            {%- for child in link.links -%}
-              <li><a href="{{ child.url }}" class="header__mobile-link header__mobile-link--child">{{ child.title | escape }}</a></li>
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
-      </li>
-    {%- endfor -%}
-  </ul>
-</div>
-
 <style>
-  .header__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 16px 0;
-  }
-  .header__logo-image { display: block; height: auto; }
-  .header__logo-text { font-family: var(--font-heading-family); font-size: var(--f4); }
-  .header__nav { flex: 1; }
-  .header__menu {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .header__menu-item { position: relative; }
-  .header__menu-link,
-  .header__submenu-link {
-    font-family: var(--font-heading-family);
-    font-size: var(--f2);
-    color: var(--color-text);
-    text-decoration: none;
-    padding: 8px 0;
-    display: inline-block;
-  }
-  .header__submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 200px;
-    margin: 0;
-    padding: 8px 0;
-    list-style: none;
-    background-color: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: var(--inputs-radius);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(6px);
-    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
-    z-index: 20;
-  }
-  .header__submenu--nested { top: 0; left: 100%; }
-  .header__menu-item--has-dropdown:hover > .header__submenu,
-  .header__menu-item--has-dropdown:focus-within > .header__submenu,
-  .header__submenu-item--has-dropdown:hover > .header__submenu,
-  .header__submenu-item--has-dropdown:focus-within > .header__submenu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  .header__submenu-item { position: relative; }
-  .header__submenu-link { padding: 6px 16px; width: 100%; }
-  .header__actions { display: flex; align-items: center; gap: 8px; }
-  .header__action-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    color: var(--color-text);
-    background: none;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .header__action-button svg { width: 22px; height: 22px; }
-  .header__cart-count {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 4px;
-    font-size: 11px;
-    line-height: 18px;
-    text-align: center;
-    color: var(--color-accent-text);
-    background-color: var(--color-accent);
-    border-radius: 9px;
-  }
-  .header__search { position: relative; }
-  .header__search summary { list-style: none; }
-  .header__search summary::-webkit-details-marker { display: none; }
-  .header__search-panel {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 320px;
-    max-width: 90vw;
-    padding: 12px;
-    background-color: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: var(--inputs-radius);
-    z-index: 20;
-  }
-  .header__menu-toggle { display: none; background: none; border: none; }
-  .header__burger,
-  .header__burger::before,
-  .header__burger::after {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background-color: var(--color-text);
-    transition: transform 0.2s ease;
-  }
-  .header__burger { position: relative; }
-  .header__burger::before { content: ''; position: absolute; top: -7px; }
-  .header__burger::after { content: ''; position: absolute; top: 7px; }
-  .header__mobile-nav {
-    padding: 16px 20px;
-    border-top: 1px solid var(--color-border);
-  }
-  .header__mobile-menu, .header__mobile-submenu { list-style: none; margin: 0; padding: 0; }
-  .header__mobile-link { display: block; padding: 12px 0; font-size: var(--f3); color: var(--color-text); text-decoration: none; }
-  .header__mobile-link--child { padding-left: 16px; font-size: var(--f2); opacity: 0.8; }
-  .header__localization { padding: 8px 0; }
-
-  @media screen and (max-width: 1000px) {
-    .header__nav { display: none; }
-    .header__menu-toggle { display: inline-flex; }
-    .header__inner { justify-content: space-between; }
-    .header__logo-link { margin: 0 auto; }
-  }
-  @media screen and (min-width: 1001px) {
-    .header__mobile-nav { display: none !important; }
-  }
+  .m3d-benefits{background:#000;color:#fff;font-size:11px}.m3d-benefits__inner{min-height:30px;display:flex;align-items:center;justify-content:center;gap:72px}.m3d-header{--m3d-overlay-top:0px;position:relative;z-index:30;background:#fff;color:#000}.m3d-header::after{content:"";position:fixed;z-index:1;left:0;right:0;top:var(--m3d-overlay-top);bottom:0;background:rgba(0,0,0,.28);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity 320ms ease,visibility 0s linear 320ms}.m3d-header[data-collections-open]::after,.m3d-header[data-search-open]::after{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}.m3d-header__main{position:relative;z-index:5;max-width:1288px;min-height:82px;display:grid;grid-template-columns:150px minmax(280px,1fr) auto;align-items:center;gap:48px}.m3d-header__logo{position:relative;display:block;width:120px;height:58px;overflow:hidden}.m3d-header__logo img{position:absolute;left:50%;top:50%;width:120px;height:auto;transform:translate(-50%,-50%);display:block}.m3d-header__logo .m3d-header__logo-configured{position:static;width:auto;max-width:120px;max-height:58px;transform:none}.m3d-header__search{position:absolute;right:244px;top:50%;width:260px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0;transform:translateY(-50%);transition:right 420ms cubic-bezier(.22,1,.36,1),width 420ms cubic-bezier(.22,1,.36,1)}.m3d-header__search-field{height:44px;display:grid;grid-template-columns:minmax(0,1fr) 44px;background:#f5f5f7;border:1px solid #d9d9d9;box-shadow:none}.m3d-header__search-field:focus-within{box-shadow:inset 0 -2px #000}.m3d-header__search input{width:100%;min-width:0;padding:0 16px;background:transparent}.m3d-header__search input:focus-visible{outline:none}.m3d-header__search button,.m3d-mobile-nav form button{display:grid;place-items:center;background:transparent}.m3d-header__search-cancel{max-width:0;min-height:44px;padding:0;overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;white-space:nowrap;transition:max-width 320ms ease,padding 320ms ease,opacity 180ms ease,visibility 0s linear 320ms}.m3d-header[data-search-open] .m3d-header__search{right:20px;width:calc(100% - 210px)}.m3d-header[data-search-open] .m3d-header__search-cancel{max-width:90px;padding:0 8px;opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}.m3d-header__search svg,.m3d-mobile-nav svg{width:20px;height:20px}.m3d-header__actions{grid-column:3;justify-self:end;display:flex;align-items:center;gap:18px;opacity:1;visibility:visible;transition:opacity 180ms ease,visibility 0s linear}.m3d-header[data-search-open] .m3d-header__actions{opacity:0;visibility:hidden;pointer-events:none;transition-delay:0s,180ms}.m3d-header__account{min-height:44px;display:flex;align-items:center;padding:0 22px;border:1px solid #000;color:#000;font-weight:700}.m3d-header__cart{position:relative;color:#000}.m3d-header__cart svg{width:22px;height:22px}.m3d-header__cart span{position:absolute;top:3px;right:-2px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;border-radius:20px;background:#4436bc;color:#fff;font-size:10px}.m3d-search-panel{position:absolute;z-index:4;left:0;right:0;top:82px;overflow:hidden;background:#fff;border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;box-shadow:0 24px 48px rgba(0,0,0,.14);opacity:0;visibility:hidden;pointer-events:none;clip-path:inset(0 0 100% 0);transform:translateY(-10px);transform-origin:top center;transition:clip-path 440ms cubic-bezier(.22,1,.36,1),transform 440ms cubic-bezier(.22,1,.36,1),opacity 220ms ease,visibility 0s linear 440ms}.m3d-header[data-search-open] .m3d-search-panel{opacity:1;visibility:visible;pointer-events:auto;clip-path:inset(0);transform:translateY(0);transition-delay:0s}.m3d-search-panel__inner{max-width:1288px;padding-top:32px;padding-bottom:36px;display:grid;grid-template-columns:minmax(180px,1fr) auto;align-items:start;gap:48px}.m3d-search-panel__links>p{margin:0 0 22px;color:#4436bc;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.09em}.m3d-search-panel__links ul{margin:0;padding:0;display:grid;gap:16px;list-style:none}.m3d-search-panel__links a{display:inline-flex;align-items:center;justify-content:space-between;gap:14px;min-height:30px;color:#000;font-size:13px;font-weight:700;text-transform:uppercase;transition:color 180ms ease}.m3d-search-panel__links a:hover,.m3d-search-panel__links a:focus-visible{color:#4436bc}.m3d-search-panel__links a span{font-size:17px;line-height:1}.m3d-search-panel__banners{display:flex;align-items:flex-start;gap:16px}.m3d-search-panel__banner{width:241px;display:flex;flex-direction:column;gap:12px;color:#000}.m3d-search-panel__visual{position:relative;width:241px;height:300px;display:block;overflow:hidden;background:#f3f3f3;transition:transform 220ms cubic-bezier(.22,1,.36,1),box-shadow 220ms ease}.m3d-search-panel__visual img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}.m3d-search-panel__visual small{position:absolute;z-index:1;left:16px;top:16px;padding:7px 10px;border-radius:999px;background:#fff;color:#000;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.m3d-search-panel__banner-link{display:flex;align-items:center;justify-content:space-between;min-height:26px;font-size:13px;font-weight:800;transition:color 180ms ease}.m3d-search-panel__banner-link span{transition:transform 180ms ease}.m3d-search-panel__banner:hover .m3d-search-panel__visual,.m3d-search-panel__banner:focus-visible .m3d-search-panel__visual{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.16)}.m3d-search-panel__banner:hover .m3d-search-panel__banner-link,.m3d-search-panel__banner:focus-visible .m3d-search-panel__banner-link{color:#4436bc}.m3d-search-panel__banner:hover .m3d-search-panel__banner-link span,.m3d-search-panel__banner:focus-visible .m3d-search-panel__banner-link span{transform:translateX(4px)}.m3d-header__nav-shell{position:relative;min-height:66px;display:flex;align-items:center;border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9}.m3d-header__nav{width:100%;max-width:1288px;min-height:46px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:2px;border:0;border-radius:0;font-size:14px}.m3d-header__nav>a,.m3d-header__collections>summary{position:relative;z-index:1;min-height:36px;padding:0 16px;display:flex;align-items:center;color:#fff;white-space:nowrap;mix-blend-mode:difference}.m3d-header__collections>summary{gap:7px;list-style:none;cursor:pointer}.m3d-header__collections>summary::-webkit-details-marker{display:none}.m3d-header__collections-arrow{display:inline-grid;place-items:center;width:14px;height:14px;font-size:20px;line-height:1;transform:rotate(0deg);transition:transform 420ms cubic-bezier(.22,1,.36,1)}.m3d-header__collections[open][data-expanded] .m3d-header__collections-arrow{transform:rotate(90deg)}.m3d-header__cursor{position:absolute;z-index:0;left:0;top:50%;width:0;height:36px;border-radius:999px;background:#000;opacity:0;pointer-events:none;transform:translate3d(0,-50%,0);transform-origin:center;will-change:transform,width;transition:opacity 180ms ease}.m3d-header__nav[data-m3d-ready] .m3d-header__cursor{opacity:1}.m3d-header__quote{font-weight:700}.m3d-mega{position:absolute;z-index:3;left:0;right:0;top:100%;padding:34px max(24px,calc((100vw - var(--page-width))/2 + 20px));display:grid;grid-template-columns:1fr 430px;gap:80px;background:#fff;border-top:1px solid #e7e7e7;box-shadow:0 24px 48px rgba(0,0,0,.16);opacity:0;visibility:hidden;pointer-events:none;clip-path:inset(0 0 100% 0);transform:translateY(-12px);transform-origin:top center;transition:clip-path 460ms cubic-bezier(.22,1,.36,1),transform 460ms cubic-bezier(.22,1,.36,1),opacity 260ms ease,visibility 0s linear 460ms}.m3d-header__collections[open][data-expanded] .m3d-mega{opacity:1;visibility:visible;pointer-events:auto;clip-path:inset(0);transform:translateY(0);transition-delay:0s}.m3d-mega__category{position:relative}.m3d-mega__category>p{margin-bottom:16px;color:#4436bc;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.m3d-mega__category ul{display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:12px 40px;margin:0;padding:0 0 0 14px;list-style:none}.m3d-mega__category li{min-width:0}.m3d-mega__category li a{min-height:28px;display:inline-flex;align-items:center;color:#000;transition:color 180ms ease}.m3d-mega__category li a:hover,.m3d-mega__category li a:focus-visible{color:#4436bc}.m3d-mega__hover-line{position:absolute;z-index:1;left:0;top:0;color:#4436bc;font-size:18px;font-weight:800;line-height:1;opacity:0;pointer-events:none;transform:translate3d(0,0,0);transition:transform 230ms cubic-bezier(.22,1,.36,1),opacity 160ms ease;will-change:transform,opacity}.m3d-mega__category[data-hovering] .m3d-mega__hover-line{opacity:1}.m3d-mega a{color:#000}.m3d-mega__feature{min-height:190px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:#f0edff}.m3d-mega__feature>div{padding:24px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px}.m3d-mega__feature strong{font-size:24px;line-height:1.05}.m3d-mega__feature b{padding:11px 14px;background:#4436bc;color:#fff;font-size:12px}.m3d-mega__feature img{width:100%;height:100%;object-fit:cover}.m3d-header__toggle,.m3d-mobile-nav{display:none}.m3d-header__toggle{flex-direction:column;gap:4px;background:transparent}.m3d-header__toggle span{width:20px;height:2px;background:#000}
+  @media(min-width:1001px) and (max-width:1100px){.m3d-search-panel__inner{gap:26px}.m3d-search-panel__banners{gap:10px}.m3d-search-panel__links a{font-size:12px}}
+  @media(max-width:1000px){.m3d-benefits__inner{min-height:26px}.m3d-benefits__inner span:not(:first-child){display:none}.m3d-header__main{min-height:72px;grid-template-columns:44px 1fr 44px;gap:8px;padding:0 12px}.m3d-header__toggle{display:inline-flex}.m3d-header__logo{justify-self:center;width:120px;height:56px}.m3d-header__search,.m3d-search-panel,.m3d-header__account,.m3d-header__nav-shell{display:none}.m3d-header__actions{justify-content:flex-end}.m3d-mobile-nav{display:block;padding:16px 20px 28px;border-top:1px solid #ededed}.m3d-mobile-nav[hidden]{display:none}.m3d-mobile-nav form{height:44px;display:grid;grid-template-columns:1fr 44px;background:#f5f5f7}.m3d-mobile-nav form input{min-width:0;padding:0 14px;background:transparent}.m3d-mobile-nav nav{margin-top:14px;display:grid}.m3d-mobile-nav nav a{min-height:48px;display:flex;align-items:center;border-bottom:1px solid #ededed;color:#000;font-weight:700}}
 </style>
 
 <script>
-  (function () {
-    var section = document.querySelector('.header[data-section-id="{{ section.id }}"]');
-    if (!section) return;
-    var toggle = section.querySelector('.header__menu-toggle');
-    var nav = document.getElementById('MobileNav-{{ section.id }}');
-    if (toggle && nav) {
-      toggle.addEventListener('click', function () {
-        var open = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!open));
-        nav.hidden = open;
+  document.querySelectorAll('[data-m3d-toggle]').forEach(function(toggle){if(toggle.dataset.bound==='true')return;toggle.dataset.bound='true';toggle.addEventListener('click',function(){var nav=document.getElementById(toggle.getAttribute('aria-controls'));if(!nav)return;var open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));nav.hidden=open;});});
+  document.querySelectorAll('[data-m3d-slide-tabs]').forEach(function(nav){
+    if(nav.dataset.slideTabsBound==='true')return;
+    nav.dataset.slideTabsBound='true';
+    var shell=nav.parentElement;
+    var header=nav.closest('.m3d-header');
+    var cursor=nav.querySelector('[data-m3d-cursor]');
+    var details=nav.querySelector('.m3d-header__collections');
+    var summary=details.querySelector('summary');
+    var tabs=Array.prototype.slice.call(nav.querySelectorAll('[data-m3d-tab]'));
+    var selected=0;
+    var closeTimer;
+    var navigationTimer;
+    var searchForm=header.querySelector('[data-m3d-search-form]');
+    var searchInput=header.querySelector('[data-m3d-search-input]');
+    var searchClose=header.querySelector('[data-m3d-search-close]');
+    var searchPanel=header.querySelector('[data-m3d-search-panel]');
+    var megaCategory=details.querySelector('[data-m3d-mega-category]');
+    var megaHoverLine=details.querySelector('[data-m3d-mega-hover-line]');
+    var megaCategoryLinks=Array.prototype.slice.call(megaCategory.querySelectorAll('li a'));
+    var megaHoverFrame;
+    var motion={x:0,width:0,startX:0,startWidth:0,targetX:0,targetWidth:0,startTime:0,duration:380,frame:0,ready:false};
+
+    try{
+      var storedSelected=Number(window.sessionStorage.getItem('m3d-selected-tab'));
+      if(Number.isInteger(storedSelected)&&storedSelected>=0&&storedSelected<tabs.length)selected=storedSelected;
+    }catch(error){}
+
+    function renderCursor(){
+      cursor.style.width=motion.width+'px';
+      cursor.style.transform='translate3d('+motion.x+'px,-50%,0)';
+    }
+
+    function animateCursor(timestamp){
+      if(!motion.startTime)motion.startTime=timestamp;
+      var progress=Math.min((timestamp-motion.startTime)/motion.duration,1);
+      var eased=1-Math.pow(1-progress,4);
+      motion.x=motion.startX+(motion.targetX-motion.startX)*eased;
+      motion.width=motion.startWidth+(motion.targetWidth-motion.startWidth)*eased;
+      renderCursor();
+      if(progress>=1){
+        motion.x=motion.targetX;
+        motion.width=motion.targetWidth;
+        motion.startTime=0;
+        motion.frame=0;
+        renderCursor();
+        return;
+      }
+      motion.frame=window.requestAnimationFrame(animateCursor);
+    }
+
+    function moveCursor(tab,immediate){
+      if(!tab||nav.offsetParent===null)return;
+      var tabRect=tab.getBoundingClientRect();
+      var shellRect=shell.getBoundingClientRect();
+      var nextX=tabRect.left-shellRect.left;
+      var distance=Math.abs(nextX-motion.x);
+      motion.targetX=nextX;
+      motion.targetWidth=tabRect.width;
+      if(!motion.ready||immediate){
+        if(motion.frame)window.cancelAnimationFrame(motion.frame);
+        motion.x=motion.targetX;
+        motion.width=motion.targetWidth;
+        motion.startX=motion.x;
+        motion.startWidth=motion.width;
+        motion.startTime=0;
+        motion.frame=0;
+        motion.ready=true;
+        renderCursor();
+        nav.setAttribute('data-m3d-ready','');
+        return;
+      }
+      if(motion.frame)window.cancelAnimationFrame(motion.frame);
+      motion.startX=motion.x;
+      motion.startWidth=motion.width;
+      motion.startTime=0;
+      motion.duration=Math.min(440,Math.max(300,300+distance*.12));
+      motion.frame=window.requestAnimationFrame(animateCursor);
+    }
+
+    function openCollections(){
+      closeSearch();
+      window.clearTimeout(closeTimer);
+      details.open=true;
+      selected=0;
+      moveCursor(summary,false);
+      header.style.setProperty('--m3d-overlay-top',Math.max(0,header.getBoundingClientRect().bottom)+'px');
+      window.requestAnimationFrame(function(){
+        details.setAttribute('data-expanded','');
+        header.setAttribute('data-collections-open','');
       });
     }
-  })();
+
+    function closeCollections(){
+      if(!details.open)return;
+      clearMegaHoverLine();
+      details.removeAttribute('data-expanded');
+      header.removeAttribute('data-collections-open');
+      closeTimer=window.setTimeout(function(){details.open=false;},470);
+    }
+
+    function moveMegaHoverLine(link){
+      window.cancelAnimationFrame(megaHoverFrame);
+      megaHoverFrame=window.requestAnimationFrame(function(){
+        if(!details.open)return;
+        var categoryRect=megaCategory.getBoundingClientRect();
+        var linkRect=link.getBoundingClientRect();
+        var x=linkRect.left-categoryRect.left-12;
+        var y=linkRect.top-categoryRect.top+(linkRect.height-megaHoverLine.offsetHeight)/2;
+        var nextTransform='translate3d('+x+'px,'+y+'px,0)';
+        if(!megaCategory.hasAttribute('data-hovering')){
+          megaHoverLine.style.transition='none';
+          megaHoverLine.style.transform=nextTransform;
+          megaHoverLine.offsetWidth;
+          megaHoverLine.style.removeProperty('transition');
+        }else{
+          megaHoverLine.style.transform=nextTransform;
+        }
+        megaCategory.setAttribute('data-hovering','');
+      });
+    }
+
+    function clearMegaHoverLine(){
+      window.cancelAnimationFrame(megaHoverFrame);
+      megaCategory.removeAttribute('data-hovering');
+    }
+
+    function openSearch(){
+      if(header.hasAttribute('data-search-open'))return;
+      if(details.open)closeCollections();
+      header.setAttribute('data-search-open','');
+      searchPanel.setAttribute('aria-hidden','false');
+      header.style.setProperty('--m3d-overlay-top',Math.max(0,searchPanel.getBoundingClientRect().bottom)+'px');
+    }
+
+    function closeSearch(){
+      if(!header.hasAttribute('data-search-open'))return;
+      header.removeAttribute('data-search-open');
+      searchPanel.setAttribute('aria-hidden','true');
+    }
+
+    searchInput.addEventListener('click',openSearch);
+    searchForm.addEventListener('submit',function(event){
+      if(!header.hasAttribute('data-search-open')&&!searchInput.value.trim()){
+        event.preventDefault();
+        openSearch();
+        searchInput.focus();
+      }
+    });
+    searchClose.addEventListener('click',function(){
+      closeSearch();
+      searchInput.blur();
+    });
+
+    megaCategoryLinks.forEach(function(link){
+      link.addEventListener('pointerenter',function(){moveMegaHoverLine(link);});
+      link.addEventListener('focus',function(){moveMegaHoverLine(link);});
+    });
+    megaCategory.addEventListener('pointerleave',clearMegaHoverLine);
+    megaCategory.addEventListener('focusout',function(event){
+      if(!megaCategory.contains(event.relatedTarget))clearMegaHoverLine();
+    });
+
+    summary.addEventListener('click',function(event){
+      event.preventDefault();
+      if(details.open&&details.hasAttribute('data-expanded'))closeCollections();else openCollections();
+    });
+
+    tabs.forEach(function(tab,index){
+      tab.addEventListener('click',function(event){
+        if(tab.tagName==='A'&&(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||tab.target==='_blank'))return;
+        selected=index;
+        try{window.sessionStorage.setItem('m3d-selected-tab',String(index));}catch(error){}
+        moveCursor(tab,false);
+        if(tab.tagName!=='A')return;
+        event.preventDefault();
+        window.clearTimeout(navigationTimer);
+        navigationTimer=window.setTimeout(function(){window.location.assign(tab.href);},520);
+      });
+    });
+
+    document.addEventListener('keydown',function(event){
+      if(event.key!=='Escape')return;
+      if(header.hasAttribute('data-search-open')){
+        closeSearch();
+        searchInput.blur();
+        return;
+      }
+      if(details.open){closeCollections();summary.focus();}
+    });
+    document.addEventListener('click',function(event){
+      if(details.open&&!header.contains(event.target))closeCollections();
+      if(header.hasAttribute('data-search-open')&&!header.contains(event.target))closeSearch();
+    });
+    header.addEventListener('click',function(event){
+      if(event.target!==header)return;
+      if(details.open)closeCollections();
+      if(header.hasAttribute('data-search-open'))closeSearch();
+    });
+
+    var observer=new ResizeObserver(function(){moveCursor(tabs[selected],true);});
+    observer.observe(nav);
+    if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){moveCursor(tabs[selected],true);});}else{moveCursor(tabs[selected],true);}
+  });
 </script>
 
 {% schema %}
 {
-  "name": "t:sections.header.name",
-  "class": "section-header",
+  "name": "Cabeçalho M3D",
   "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "default": "main-menu",
-      "label": "t:sections.header.settings.menu.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__localization.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_country_selector",
-      "default": true,
-      "label": "t:sections.header.settings.enable_country_selector.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_language_selector",
-      "default": true,
-      "label": "t:sections.header.settings.enable_language_selector.label"
-    }
+    { "type": "text", "id": "benefit_one", "label": "Benefício 1", "default": "Personalização à sua medida" },
+    { "type": "text", "id": "benefit_two", "label": "Benefício 2", "default": "Soluções para empresas" },
+    { "type": "text", "id": "benefit_three", "label": "Benefício 3", "default": "Produtos para cada ocasião" },
+    { "type": "text", "id": "search_placeholder", "label": "Pesquisa", "default": "O que procura para a sua marca?" },
+    { "type": "text", "id": "account_label", "label": "Conta", "default": "A minha conta" },
+    { "type": "link_list", "id": "menu", "label": "Menu de coleções", "default": "main-menu" },
+    { "type": "text", "id": "collections_label", "label": "Coleções", "default": "Coleções" },
+    { "type": "text", "id": "category_heading", "label": "Título das categorias", "default": "Por categoria" },
+    { "type": "text", "id": "products_label", "label": "Produtos", "default": "Produtos" },
+    { "type": "url", "id": "products_url", "label": "Link de produtos" },
+    { "type": "text", "id": "vestuario_label", "label": "Vestuário", "default": "Vestuário" },
+    { "type": "url", "id": "vestuario_url", "label": "Link de vestuário" },
+    { "type": "url", "id": "myshop_url", "label": "Link do MyShop" },
+    { "type": "text", "id": "inspiration_label", "label": "Inspiração", "default": "Inspiração" },
+    { "type": "url", "id": "inspiration_url", "label": "Link de inspiração" },
+    { "type": "text", "id": "about_label", "label": "Sobre", "default": "Sobre a M3D" },
+    { "type": "url", "id": "about_url", "label": "Link Sobre a M3D" },
+    { "type": "text", "id": "quote_label", "label": "Orçamento", "default": "Pedir orçamento" },
+    { "type": "url", "id": "quote_url", "label": "Link do orçamento" },
+    { "type": "url", "id": "delivery_url", "label": "Link de prazos de entrega" },
+    { "type": "url", "id": "personalization_url", "label": "Link de personalização e impressão" },
+    { "type": "url", "id": "catalogs_url", "label": "Link de catálogos" }
   ]
 }
 {% endschema %}

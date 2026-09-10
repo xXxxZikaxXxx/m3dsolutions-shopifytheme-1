@@ -1,0 +1,285 @@
+{%- liquid
+  assign featured_collection = section.settings.collection
+  assign product_limit = section.settings.products_to_show | plus: 0
+-%}
+
+<section class="m3d-home" data-section-id="{{ section.id }}">
+  <div class="m3d-home__shell page-width">
+    <div class="m3d-hero">
+      {%- if section.settings.hero_image != blank -%}
+        {{ section.settings.hero_image | image_url: width: 2400 | image_tag: class: 'm3d-hero__image', widths: '750, 1100, 1600, 2000, 2400', sizes: '(max-width: 749px) calc(100vw - 40px), 1248px', loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
+      {%- else -%}
+        <img class="m3d-hero__image" src="{{ 'bannerprincipal.png' | asset_url }}" width="1366" height="768" fetchpriority="high" alt="{{ section.settings.hero_alt | escape }}">
+      {%- endif -%}
+      <div class="m3d-hero__content">
+        <p class="m3d-eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
+        <h1>{{ section.settings.hero_heading | newline_to_br }}</h1>
+        <p>{{ section.settings.hero_text | escape }}</p>
+        <a class="m3d-button m3d-button--pink" href="{{ section.settings.hero_link }}">{{ section.settings.hero_button | escape }} <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="m3d-campaigns">
+      <article class="m3d-campaign m3d-campaign--purple">
+        {%- if section.settings.vestuario_image != blank -%}
+          {{ section.settings.vestuario_image | image_url: width: 1400 | image_tag: class: 'm3d-campaign__image', widths: '600, 900, 1200, 1400', sizes: '(max-width: 749px) calc(100vw - 40px), 50vw', loading: 'lazy', alt: section.settings.vestuario_alt }}
+        {%- else -%}
+          <img class="m3d-campaign__image" src="{{ 'vestuario.png' | asset_url }}" width="4300" height="2400" loading="lazy" alt="{{ section.settings.vestuario_alt | escape }}">
+        {%- endif -%}
+        <div class="m3d-campaign__content">
+          <p class="m3d-eyebrow">{{ section.settings.vestuario_eyebrow | escape }}</p>
+          <h2>{{ section.settings.vestuario_heading | newline_to_br }}</h2>
+          <a class="m3d-button m3d-button--light" href="{{ section.settings.vestuario_link }}">{{ section.settings.vestuario_button | escape }} <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="m3d-campaign m3d-campaign--dark">
+        {%- if section.settings.gestos_image != blank -%}
+          {{ section.settings.gestos_image | image_url: width: 1400 | image_tag: class: 'm3d-campaign__image', widths: '600, 900, 1200, 1400', sizes: '(max-width: 749px) calc(100vw - 40px), 50vw', loading: 'lazy', alt: section.settings.gestos_alt }}
+        {%- else -%}
+          <img class="m3d-campaign__image" src="{{ 'pequenosgestos.png' | asset_url }}" width="1366" height="768" loading="lazy" alt="{{ section.settings.gestos_alt | escape }}">
+        {%- endif -%}
+        <div class="m3d-campaign__content">
+          <p class="m3d-eyebrow m3d-eyebrow--pink">{{ section.settings.gestos_eyebrow | escape }}</p>
+          <h2>{{ section.settings.gestos_heading | newline_to_br }}</h2>
+          <a class="m3d-button m3d-button--light" href="{{ section.settings.gestos_link }}">{{ section.settings.gestos_button | escape }} <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+
+    <section class="m3d-products" aria-labelledby="M3dProducts-{{ section.id }}">
+      <div class="m3d-section-heading">
+        <h2 id="M3dProducts-{{ section.id }}">{{ section.settings.products_heading | escape }}</h2>
+        {%- if featured_collection != blank -%}
+          <a href="{{ featured_collection.url }}">{{ section.settings.products_link_label | escape }} →</a>
+        {%- endif -%}
+      </div>
+      <ul class="m3d-product-grid" role="list">
+        {%- if featured_collection != blank and featured_collection.products.size > 0 -%}
+          {%- for product in featured_collection.products limit: product_limit -%}
+            <li>{% render 'card-product', card_product: product %}</li>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for index in (1..4) -%}
+            <li class="m3d-product-placeholder">
+              <div>{{ 'product-' | append: index | placeholder_svg_tag }}</div>
+              <p>Produto personalizável</p>
+              <span>Ver opções disponíveis</span>
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </section>
+
+    <aside class="m3d-cta-band">
+      <div>
+        <p class="m3d-eyebrow">{{ section.settings.custom_eyebrow | escape }}</p>
+        <h2>{{ section.settings.custom_heading | newline_to_br }}</h2>
+      </div>
+      <p>{{ section.settings.custom_text | escape }}</p>
+      <a class="m3d-button m3d-button--light" href="{{ section.settings.custom_link }}">{{ section.settings.custom_button | escape }} <span aria-hidden="true">→</span></a>
+    </aside>
+
+    <article class="m3d-editorial">
+      <div class="m3d-editorial__content">
+        <p class="m3d-eyebrow m3d-eyebrow--purple">{{ section.settings.editorial_eyebrow | escape }}</p>
+        <h2>{{ section.settings.editorial_heading | newline_to_br }}</h2>
+        <p>{{ section.settings.editorial_text | escape }}</p>
+        <a class="m3d-button m3d-button--dark" href="{{ section.settings.editorial_link }}">{{ section.settings.editorial_button | escape }} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="m3d-editorial__media">
+        {%- if section.settings.editorial_image != blank -%}
+          {{ section.settings.editorial_image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', sizes: '(max-width: 749px) calc(100vw - 40px), 65vw', loading: 'lazy', alt: section.settings.editorial_alt }}
+        {%- else -%}
+          <img src="{{ 'negocioseescritorio.png' | asset_url }}" width="1366" height="768" loading="lazy" alt="{{ section.settings.editorial_alt | escape }}">
+        {%- endif -%}
+      </div>
+    </article>
+
+    <section class="m3d-categories" aria-labelledby="M3dCategories-{{ section.id }}">
+      <div class="m3d-section-heading">
+        <h2 id="M3dCategories-{{ section.id }}">{{ section.settings.categories_heading | escape }}</h2>
+        <a href="{{ section.settings.categories_link }}">{{ section.settings.categories_link_label | escape }} →</a>
+      </div>
+      <div class="m3d-category-track">
+        <a class="m3d-category-card" href="{{ section.settings.business_link }}">
+          {%- if section.settings.business_image != blank -%}
+            {{ section.settings.business_image | image_url: width: 800 | image_tag: widths: '360, 560, 800', sizes: '(max-width: 749px) 72vw, 20vw', loading: 'lazy', alt: section.settings.business_label }}
+          {%- else -%}
+            <img src="{{ 'negocioseescritorio.png' | asset_url }}" width="1366" height="768" loading="lazy" alt="{{ section.settings.business_label | escape }}">
+          {%- endif -%}
+          <span>{{ section.settings.business_label | escape }} →</span>
+        </a>
+        <a class="m3d-category-card m3d-category-card--technology" href="{{ section.settings.technology_link }}"><span>{{ section.settings.technology_label | escape }} →</span></a>
+        <a class="m3d-category-card m3d-category-card--gifts" href="{{ section.settings.gifts_link }}"><span>{{ section.settings.gifts_label | escape }} →</span></a>
+        <a class="m3d-category-card m3d-category-card--wear" href="{{ section.settings.wear_link }}"><span>{{ section.settings.wear_label | escape }} →</span></a>
+        <a class="m3d-category-card" href="{{ section.settings.bottles_link }}">
+          {%- if section.settings.bottles_image != blank -%}
+            {{ section.settings.bottles_image | image_url: width: 800 | image_tag: widths: '360, 560, 800', sizes: '(max-width: 749px) 72vw, 20vw', loading: 'lazy', alt: section.settings.bottles_label }}
+          {%- else -%}
+            <img src="{{ 'garrafasecopos.png' | asset_url }}" width="1366" height="768" loading="lazy" alt="{{ section.settings.bottles_label | escape }}">
+          {%- endif -%}
+          <span>{{ section.settings.bottles_label | escape }} →</span>
+        </a>
+      </div>
+    </section>
+
+    <aside class="m3d-contact-band">
+      <div>
+        <h2>{{ section.settings.contact_heading | escape }}</h2>
+        <p>{{ section.settings.contact_text | escape }}</p>
+      </div>
+      <a class="m3d-button m3d-button--pink" href="{{ section.settings.contact_link }}">{{ section.settings.contact_button | escape }} <span aria-hidden="true">→</span></a>
+    </aside>
+  </div>
+</section>
+
+{% stylesheet %}
+  .m3d-home { --m3d-pink:#e31c79; --m3d-purple:#4436bc; --m3d-blue:#00b3e7; padding:20px 0 0; color:#000; background:#fff; }
+  .m3d-home__shell { max-width:1288px; }
+  .m3d-hero { position:relative; min-height:0; aspect-ratio:16/9; overflow:hidden; background:#000; }
+  .m3d-hero__image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .m3d-hero__content { position:relative; z-index:1; width:42%; height:100%; padding:clamp(44px,8vw,140px) 48px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:22px; color:#fff; background:rgba(0,0,0,.72); }
+  .m3d-eyebrow { color:var(--m3d-blue); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .m3d-eyebrow--pink { color:var(--m3d-pink); }
+  .m3d-eyebrow--purple { color:var(--m3d-purple); }
+  .m3d-hero h1 { max-width:470px; font-size:clamp(36px,4.5vw,64px); line-height:.98; letter-spacing:-.045em; }
+  .m3d-hero__content > p:not(.m3d-eyebrow) { max-width:390px; font-size:17px; line-height:1.55; }
+  .m3d-button { min-height:46px; display:inline-flex; align-items:center; justify-content:center; gap:14px; padding:0 20px; color:#000; font-size:13px; font-weight:700; text-decoration:none; transition:transform .2s ease, opacity .2s ease; }
+  .m3d-button:hover { transform:translateY(-2px); }
+  .m3d-button--pink { background:var(--m3d-pink); color:#000; }
+  .m3d-button--light { background:#fff; color:#000; }
+  .m3d-button--dark { background:#000; color:#fff; }
+  .m3d-campaigns { margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .m3d-campaign { position:relative; min-height:300px; overflow:hidden; }
+  .m3d-campaign__image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .m3d-campaign__content { position:relative; z-index:1; width:52%; min-width:300px; height:100%; padding:38px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:18px; color:#fff; }
+  .m3d-campaign--purple .m3d-campaign__content { background:rgba(68,54,188,.8); }
+  .m3d-campaign--dark .m3d-campaign__content { background:rgba(0,0,0,.74); }
+  .m3d-campaign h2 { font-size:clamp(30px,3.2vw,46px); line-height:1; letter-spacing:-.035em; }
+  .m3d-products, .m3d-categories { padding:64px 0; }
+  .m3d-section-heading { margin-bottom:28px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; }
+  .m3d-section-heading h2 { font-size:clamp(30px,3.5vw,48px); letter-spacing:-.035em; }
+  .m3d-section-heading a { color:var(--m3d-purple); font-size:13px; font-weight:700; }
+  .m3d-product-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; list-style:none; margin:0; padding:0; }
+  .m3d-home .card-product__media { padding-bottom:100% !important; border-radius:0; background:#f5f5f7; }
+  .m3d-home .card-product__image { object-fit:contain; }
+  .m3d-product-placeholder div { aspect-ratio:1; display:grid; place-items:center; background:#f5f5f7; overflow:hidden; }
+  .m3d-product-placeholder svg { width:80%; height:80%; }
+  .m3d-product-placeholder p { margin-top:16px; font-weight:700; }
+  .m3d-product-placeholder span { display:block; margin-top:8px; color:#666; font-size:12px; }
+  .m3d-cta-band { padding:34px 40px; display:grid; grid-template-columns:1fr 1.5fr auto; align-items:center; gap:44px; background:var(--m3d-purple); color:#fff; }
+  .m3d-cta-band h2 { margin-top:10px; font-size:32px; line-height:1; }
+  .m3d-cta-band > p { line-height:1.55; }
+  .m3d-editorial { margin-top:64px; min-height:420px; display:grid; grid-template-columns:38% 62%; overflow:hidden; background:#f3efe8; }
+  .m3d-editorial__content { padding:52px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:18px; }
+  .m3d-editorial h2 { font-size:clamp(36px,4vw,58px); line-height:1; letter-spacing:-.04em; }
+  .m3d-editorial__content > p:not(.m3d-eyebrow) { max-width:380px; line-height:1.55; }
+  .m3d-editorial__media img { width:100%; height:100%; object-fit:cover; }
+  .m3d-category-track { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+  .m3d-category-card { position:relative; min-height:280px; overflow:hidden; display:flex; align-items:flex-end; background:linear-gradient(145deg,#4436bc,#00b3e7); color:#000; }
+  .m3d-category-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .m3d-category-card span { position:relative; z-index:1; margin:14px; padding:10px 14px; background:#fff; font-size:12px; font-weight:700; }
+  .m3d-category-card--technology { background:linear-gradient(145deg,#121212,#4436bc 62%,#e31c79); }
+  .m3d-category-card--gifts { background:linear-gradient(145deg,#f8d6e6,#e31c79); }
+  .m3d-category-card--wear { background:linear-gradient(145deg,#e8e4ff,#4436bc); }
+  .m3d-contact-band { margin-bottom:64px; padding:34px 40px; display:flex; align-items:center; justify-content:space-between; gap:36px; background:#f5f5f7; }
+  .m3d-contact-band h2 { font-size:26px; }
+  .m3d-contact-band p { margin-top:8px; color:#555; }
+  @media (max-width:749px) {
+    .m3d-home { padding-top:12px; }
+    .m3d-home__shell { padding:0 20px; }
+    .m3d-hero { aspect-ratio:auto; display:flex; flex-direction:column; }
+    .m3d-hero__image { position:relative; order:2; aspect-ratio:16/9; object-fit:cover; }
+    .m3d-hero__content { width:100%; height:auto; padding:30px 24px; gap:16px; background:#000; }
+    .m3d-hero h1 { font-size:38px; }
+    .m3d-hero__content > p:not(.m3d-eyebrow) { font-size:14px; }
+    .m3d-campaigns { grid-template-columns:1fr; gap:12px; margin-top:12px; }
+    .m3d-campaign { min-height:260px; }
+    .m3d-campaign__content { width:64%; min-width:0; padding:24px 20px; gap:14px; }
+    .m3d-campaign h2 { font-size:32px; }
+    .m3d-products, .m3d-categories { padding:44px 0; }
+    .m3d-section-heading { align-items:flex-start; margin-bottom:20px; }
+    .m3d-section-heading h2 { font-size:32px; }
+    .m3d-product-grid { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; }
+    .m3d-product-grid > li { flex:0 0 76%; scroll-snap-align:start; }
+    .m3d-cta-band { padding:28px 24px; grid-template-columns:1fr; gap:20px; }
+    .m3d-editorial { margin-top:44px; grid-template-columns:1fr; }
+    .m3d-editorial__content { padding:32px 24px; }
+    .m3d-editorial__media { min-height:230px; }
+    .m3d-category-track { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; }
+    .m3d-category-card { flex:0 0 72%; min-height:300px; scroll-snap-align:start; }
+    .m3d-contact-band { margin-bottom:44px; padding:28px 24px; align-items:flex-start; flex-direction:column; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Homepage M3D",
+  "settings": [
+    { "type": "header", "content": "Banner principal" },
+    { "type": "image_picker", "id": "hero_image", "label": "Imagem" },
+    { "type": "text", "id": "hero_alt", "label": "Texto alternativo", "default": "Guarda-sol personalizado junto ao mar" },
+    { "type": "text", "id": "hero_eyebrow", "label": "Antetítulo", "default": "Brindes que marcam presença" },
+    { "type": "textarea", "id": "hero_heading", "label": "Título", "default": "A sua marca.\nEm todos os momentos." },
+    { "type": "textarea", "id": "hero_text", "label": "Texto", "default": "Do verão ao dia a dia, criamos peças que levam a sua identidade mais longe." },
+    { "type": "text", "id": "hero_button", "label": "Botão", "default": "Descobrir soluções" },
+    { "type": "url", "id": "hero_link", "label": "Link" },
+    { "type": "header", "content": "Vestuário" },
+    { "type": "image_picker", "id": "vestuario_image", "label": "Imagem" },
+    { "type": "text", "id": "vestuario_alt", "label": "Texto alternativo", "default": "Têxteis personalizados na praia" },
+    { "type": "text", "id": "vestuario_eyebrow", "label": "Antetítulo", "default": "Vestuário e têxteis" },
+    { "type": "textarea", "id": "vestuario_heading", "label": "Título", "default": "A sua marca.\nVeste o verão." },
+    { "type": "text", "id": "vestuario_button", "label": "Botão", "default": "Explorar vestuário" },
+    { "type": "url", "id": "vestuario_link", "label": "Link" },
+    { "type": "header", "content": "Pequenos gestos" },
+    { "type": "image_picker", "id": "gestos_image", "label": "Imagem" },
+    { "type": "text", "id": "gestos_alt", "label": "Texto alternativo", "default": "Embalagens e brindes personalizados" },
+    { "type": "text", "id": "gestos_eyebrow", "label": "Antetítulo", "default": "Brindes com identidade" },
+    { "type": "textarea", "id": "gestos_heading", "label": "Título", "default": "Pequenos gestos.\nGrande impacto." },
+    { "type": "text", "id": "gestos_button", "label": "Botão", "default": "Explorar brindes" },
+    { "type": "url", "id": "gestos_link", "label": "Link" },
+    { "type": "header", "content": "Novidades" },
+    { "type": "text", "id": "products_heading", "label": "Título", "default": "Novidades para a sua marca" },
+    { "type": "collection", "id": "collection", "label": "Coleção" },
+    { "type": "range", "id": "products_to_show", "min": 2, "max": 8, "step": 1, "default": 4, "label": "Produtos apresentados" },
+    { "type": "text", "id": "products_link_label", "label": "Link", "default": "Ver novidades" },
+    { "type": "header", "content": "Personalização" },
+    { "type": "text", "id": "custom_eyebrow", "label": "Antetítulo", "default": "Personalização sem limites" },
+    { "type": "textarea", "id": "custom_heading", "label": "Título", "default": "Imagine.\nNós produzimos." },
+    { "type": "textarea", "id": "custom_text", "label": "Texto", "default": "Escolha o produto, envie a sua ideia e cuidamos da personalização e da produção." },
+    { "type": "text", "id": "custom_button", "label": "Botão", "default": "Começar o meu projeto" },
+    { "type": "url", "id": "custom_link", "label": "Link" },
+    { "type": "header", "content": "Destaque editorial" },
+    { "type": "image_picker", "id": "editorial_image", "label": "Imagem" },
+    { "type": "text", "id": "editorial_alt", "label": "Texto alternativo", "default": "Mochila e garrafa personalizadas num ambiente de trabalho" },
+    { "type": "text", "id": "editorial_eyebrow", "label": "Antetítulo", "default": "Uma seleção com propósito" },
+    { "type": "textarea", "id": "editorial_heading", "label": "Título", "default": "Boas ideias\nvão consigo." },
+    { "type": "textarea", "id": "editorial_text", "label": "Texto", "default": "Para o trabalho, para uma equipa ou para cada momento." },
+    { "type": "text", "id": "editorial_button", "label": "Botão", "default": "Descobrir a seleção" },
+    { "type": "url", "id": "editorial_link", "label": "Link" },
+    { "type": "header", "content": "Categorias" },
+    { "type": "text", "id": "categories_heading", "label": "Título", "default": "Encontre a sua próxima ideia" },
+    { "type": "text", "id": "categories_link_label", "label": "Link", "default": "Todas as categorias" },
+    { "type": "url", "id": "categories_link", "label": "URL das categorias" },
+    { "type": "image_picker", "id": "business_image", "label": "Imagem de negócios e escritório" },
+    { "type": "text", "id": "business_label", "label": "Negócios e escritório", "default": "Negócios e escritório" },
+    { "type": "url", "id": "business_link", "label": "Link de negócios e escritório" },
+    { "type": "text", "id": "technology_label", "label": "Tecnologia", "default": "Tecnologia e estilo de vida" },
+    { "type": "url", "id": "technology_link", "label": "Link de tecnologia" },
+    { "type": "text", "id": "gifts_label", "label": "Presentes", "default": "Presentes sazonais" },
+    { "type": "url", "id": "gifts_link", "label": "Link de presentes" },
+    { "type": "text", "id": "wear_label", "label": "Vestuário", "default": "Vestuário personalizado" },
+    { "type": "url", "id": "wear_link", "label": "Link de vestuário" },
+    { "type": "image_picker", "id": "bottles_image", "label": "Imagem de copos e garrafas" },
+    { "type": "text", "id": "bottles_label", "label": "Copos e garrafas", "default": "Copos e garrafas" },
+    { "type": "url", "id": "bottles_link", "label": "Link de copos e garrafas" },
+    { "type": "header", "content": "Contacto" },
+    { "type": "text", "id": "contact_heading", "label": "Título", "default": "Uma ideia em mente? Vamos dar-lhe forma." },
+    { "type": "textarea", "id": "contact_text", "label": "Texto", "default": "Conte-nos o que precisa. A M3D ajuda a encontrar a solução." },
+    { "type": "text", "id": "contact_button", "label": "Botão", "default": "Pedir orçamento" },
+    { "type": "url", "id": "contact_link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Homepage M3D" }]
+}
+{% endschema %}
