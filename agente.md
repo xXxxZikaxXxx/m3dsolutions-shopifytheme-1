@@ -116,6 +116,8 @@ Em 10/09/2026, os três banners da pesquisa foram novamente substituídos pelas 
 
 Preparação de publicação em 10/09/2026: a revisão pública exclui todos os screenshots de referência e os mantém somente nesta cópia local. `.gitignore` protege `referencias/imagens/Screenshot*.png` e `referencias/imagens/WhatsApp Image*.jpeg`, e `referencia.md` deixou de catalogar esses arquivos. O commit seguro contém o tema Liquid, a homepage, navegação, assets M3D e documentação sem dados administrativos ou de clientes.
 
+Publicação confirmada em 10/09/2026: o commit seguro `c8604eb` foi enviado para `master` em `xXxxZikaxXxx/m3dsolutions-shopifytheme-1`. A vitrine `https://uhqyjs-w5.myshopify.com/` recebeu a revisão pela integração GitHub e foi conferida após o acesso protegido: homepage, logo M3D, navegação e hero estão ativos. A Shopify CLI local continua indisponível por `uv_os_get_passwd returned ENOMEM`; nenhuma via alternativa de escrita direta na loja foi usada.
+
 Antes de publicar, validar ou substituir os cinco assets atuais, marcados como testes pelo usuário. Conectar textos, URLs, coleções e dados reais da Shopify.
 
 ## Cuidados para continuidade
