@@ -1,0 +1,120 @@
+{% doc %}
+  Renders the product's real media in an accessible gallery.
+  @param {product} product - The product to display.
+  @param {string} section_id - The section identifier.
+  @example
+  {% render 'm3d-product-gallery', product: product, section_id: section.id %}
+{% enddoc %}
+
+{{ 'm3d-product-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'm3d-product-gallery.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign gallery_id = 'M3dGallery-' | append: section_id | append: '-' | append: product.id
+  assign initial_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media
+  assign media_count = product.media.size
+  assign active_index = 0
+  for media in product.media
+    if media.id == initial_media.id
+      assign active_index = forloop.index0
+      break
+    endif
+  endfor
+  assign active_number = active_index | plus: 1
+-%}
+
+<m3d-product-gallery
+  class="m3d-product-gallery"
+  id="{{ gallery_id }}"
+  role="region"
+  aria-label="{{ 'products.product.media.gallery_viewer' | t | escape }}"
+  data-gallery-active="{{ active_index }}"
+  data-gallery-media-label="{{ 'products.product.media.media_available' | t: index: '[index]', count: media_count | escape }}"
+>
+  <div class="m3d-product-gallery__stage" data-gallery-stage>
+    {%- for media in product.media -%}
+      {%- liquid
+        assign media_alt = media.alt | default: product.title
+        assign media_loading = 'lazy'
+        assign media_priority = 'auto'
+        if forloop.index0 == active_index
+          assign media_loading = 'eager'
+          assign media_priority = 'high'
+        endif
+      -%}
+      <div
+        class="m3d-product-gallery__slide{% if forloop.index0 == active_index %} is-active{% endif %}"
+        id="{{ gallery_id }}-Media-{{ media.id }}"
+        data-gallery-slide
+        data-media-id="{{ media.id }}"
+        data-media-type="{{ media.media_type }}"
+        {% unless forloop.index0 == active_index %}hidden inert aria-hidden="true"{% endunless %}
+      >
+        {%- case media.media_type -%}
+          {%- when 'image' -%}
+            {{
+              media.preview_image
+              | image_url: width: 1600
+              | image_tag:
+                widths: '320, 480, 600, 800, 1000, 1200, 1600',
+                sizes: '(min-width: 1440px) 600px, (min-width: 1000px) 44vw, calc(100vw - 40px)',
+                loading: media_loading,
+                fetchpriority: media_priority,
+                class: 'm3d-product-gallery__image',
+                alt: media_alt
+            }}
+          {%- when 'video' -%}
+            {{ media | video_tag: controls: true, autoplay: false, preload: 'none', image_size: '1000x' }}
+          {%- when 'external_video' -%}
+            {{ media | external_video_tag: loading: 'lazy', title: media_alt }}
+          {%- when 'model' -%}
+            {{ media | model_viewer_tag: interaction-policy: 'allow-when-focused', reveal: 'interaction' }}
+          {%- else -%}
+            {{ media | media_tag }}
+        {%- endcase -%}
+      </div>
+    {%- else -%}
+      <div class="m3d-product-gallery__empty">
+        <p>{{ 'products.product.media.no_media' | t }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if media_count > 1 -%}
+    <div class="m3d-product-gallery__navigation" data-gallery-navigation hidden>
+      <div class="m3d-product-gallery__thumbnails" data-gallery-thumbnails>
+        {%- for media in product.media -%}
+          {%- liquid
+            assign load_label_key = 'products.product.media.load_image'
+            if media.media_type == 'model'
+              assign load_label_key = 'products.product.media.load_model'
+            elsif media.media_type == 'video' or media.media_type == 'external_video'
+              assign load_label_key = 'products.product.media.load_video'
+            endif
+            assign thumbnail_alt = 'products.product.media.thumbnail_alt' | t: index: forloop.index, product: product.title
+          -%}
+          <button
+            type="button"
+            class="m3d-product-gallery__thumbnail{% if forloop.index0 == active_index %} is-active{% endif %}"
+            data-gallery-thumbnail="{{ forloop.index0 }}"
+            aria-label="{{ load_label_key | t: index: forloop.index | escape }}"
+            aria-controls="{{ gallery_id }}-Media-{{ media.id }}"
+            aria-current="{% if forloop.index0 == active_index %}true{% else %}false{% endif %}"
+          >
+            {{ media.preview_image | image_url: width: 176 | image_tag: widths: '88, 176', sizes: '88px', loading: 'lazy', alt: thumbnail_alt }}
+          </button>
+        {%- endfor -%}
+      </div>
+      <div class="m3d-product-gallery__controls">
+        <span class="m3d-product-gallery__counter" aria-hidden="true"><span data-gallery-count>{{ active_number }}</span> / {{ media_count }}</span>
+        <button type="button" class="m3d-product-gallery__arrow" data-gallery-direction="-1" aria-label="{{ 'accessibility.previous_slide' | t | escape }}" aria-controls="{{ gallery_id }}">
+          <span aria-hidden="true">←</span>
+        </button>
+        <button type="button" class="m3d-product-gallery__arrow" data-gallery-direction="1" aria-label="{{ 'accessibility.next_slide' | t | escape }}" aria-controls="{{ gallery_id }}">
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+  <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-gallery-announcement></p>
+</m3d-product-gallery>

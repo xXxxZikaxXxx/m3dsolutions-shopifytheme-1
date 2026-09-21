@@ -1,12 +1,12 @@
 {
   "general": {
-    "meta": {
-      "tags": "Tagged \"{{ tags }}\"",
-      "page": "Page {{ page }}"
-    },
     "404": {
       "title": "Page not found",
       "subtext": "The page you are looking for does not exist."
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
     },
     "password_page": {
       "password_label": "Password",
@@ -29,9 +29,9 @@
       "page": "Page {{ number }}"
     },
     "breadcrumbs": {
-      "home": "Home"
+      "home": "Início"
     },
-    "continue_shopping": "Continue shopping",
+    "continue_shopping": "Explorar produtos",
     "newsletter_form": {
       "newsletter_email": "Email",
       "email_placeholder": "Email",
@@ -41,7 +41,7 @@
   },
   "accessibility": {
     "skip_to_text": "Skip to content",
-    "close": "Close",
+    "close": "Fechar",
     "unit_price_separator": "per",
     "vendor": "Vendor:",
     "error": "Error",
@@ -71,9 +71,9 @@
   "products": {
     "product": {
       "add_to_cart": "Add to cart",
-      "sold_out": "Sold out",
+      "sold_out": "Esgotado",
       "unavailable": "Unavailable",
-      "on_sale": "Sale",
+      "on_sale": "Promoção",
       "quantity": {
         "label": "Quantity",
         "input_label": "Quantity for {{ product }}",
@@ -109,41 +109,56 @@
         "image_available": "Image {{ index }} is now available in gallery view",
         "open_media": "Open media {{ index }} in modal",
         "play_model": "Play 3D Viewer",
-        "play_video": "Play video"
+        "play_video": "Play video",
+        "no_media": "Imagem do produto indisponível",
+        "thumbnail_alt": "Miniatura {{ index }} de {{ product }}",
+        "media_available": "Mídia {{ index }} de {{ count }} selecionada"
       },
       "choose_options": "Choose options",
-      "choose_product_options": "Choose options for {{ product_name }}"
+      "choose_product_options": "Choose options for {{ product_name }}",
+      "quick_actions": "Ações rápidas",
+      "save": "Guardar",
+      "myshop": "MyShop",
+      "add_to_shop": "Adicionar a uma loja",
+      "create_new_shop": "Criar nova loja"
     },
     "facets": {
       "sort_by_label": "Sort by:",
-      "filter_by_label": "Filter:",
+      "filter_by_label": "Filtros",
       "filter_button": "Filter",
       "clear": "Clear",
-      "clear_all": "Remove all",
-      "apply": "Apply",
+      "clear_all": "Remover tudo",
+      "apply": "Aplicar",
       "reset": "Reset",
       "from": "From",
       "to": "To",
       "product_count": "{{ product_count }} of {{ count }} products",
-      "product_count_simple": "{{ count }} products"
+      "product_count_simple": {
+        "one": "{{ count }} produto",
+        "other": "{{ count }} produtos"
+      }
     }
   },
   "templates": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "404"
+    },
     "search": {
-      "no_results": "No results found for \"{{ terms }}\". Check the spelling or use a different word or phrase.",
-      "results_with_count": "{{ count }} result for \"{{ terms }}\"",
-      "results_with_count_plural": "{{ count }} results for \"{{ terms }}\"",
-      "title": "Search results",
+      "no_results": "Nenhum produto encontrado para \"{{ terms }}\". Verifique a escrita ou tente outra pesquisa.",
+      "results_with_count": "{{ count }} resultado para \"{{ terms }}\"",
+      "results_with_count_plural": "{{ count }} resultados para \"{{ terms }}\"",
+      "title": "Resultados da pesquisa",
       "page": "Page",
       "products": "Products",
-      "search_for": "Search for \"{{ terms }}\"",
+      "search_for": "Resultados para \"{{ terms }}\"",
       "results_pages_with_count": {
         "one": "{{ count }} page",
         "other": "{{ count }} pages"
       }
     },
     "cart": {
-      "cart": "Cart"
+      "cart": "Carrinho"
     },
     "contact": {
       "form": {
@@ -155,16 +170,26 @@
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"
       }
-    },
-    "404": {
-      "title": "Page not found",
-      "subtext": "404"
     }
   },
   "sections": {
     "main_collection": {
-      "empty": "No products found",
-      "use_fewer_filters": "Use fewer filters or remove all"
+      "empty": "Nenhum produto encontrado",
+      "use_fewer_filters": "Use menos filtros ou remova todos",
+      "filters_and_sort": "Filtros e ordenar",
+      "sort_by": "Ordenar por",
+      "price_ascending": "Preço ascendente",
+      "price_descending": "Preço descendente",
+      "material": "Material",
+      "printing_technique": "Técnica de impressão",
+      "color": "Cor",
+      "stock": "Stock",
+      "labeling": "Etiquetagem",
+      "no_filter_values": "Opções disponíveis quando este filtro for configurado na Shopify."
+    },
+    "collection_banner": {
+      "breadcrumb_label": "Navegação estrutural",
+      "products": "Produtos"
     },
     "header": {
       "announcement": "Announcement",
@@ -175,28 +200,28 @@
       }
     },
     "cart": {
-      "title": "Your cart",
-      "caption": "Cart items",
-      "remove_title": "Remove {{ title }}",
-      "note": "Order special instructions",
-      "checkout": "Check out",
-      "empty": "Your cart is empty",
-      "cart_error": "There was an error while updating your cart. Please try again.",
-      "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping</a> calculated at checkout",
-      "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
-      "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
-      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
+      "title": "O seu carrinho",
+      "caption": "Artigos do carrinho",
+      "remove_title": "Remover {{ title }}",
+      "note": "Instruções especiais do pedido",
+      "checkout": "Finalizar compra",
+      "empty": "O seu carrinho está vazio",
+      "cart_error": "Não foi possível atualizar o carrinho. Tente novamente.",
+      "cart_quantity_error_html": "Só é possível adicionar {{ quantity }} unidades deste artigo.",
+      "taxes_and_shipping_policy_at_checkout_html": "Impostos e <a href=\"{{ link }}\">transporte</a> calculados no checkout",
+      "taxes_included_but_shipping_at_checkout": "Impostos incluídos e transporte calculado no checkout",
+      "taxes_included_and_shipping_policy_html": "Impostos incluídos. <a href=\"{{ link }}\">Transporte</a> calculado no checkout.",
+      "taxes_and_shipping_at_checkout": "Impostos e transporte calculados no checkout",
       "headings": {
-        "product": "Product",
-        "price": "Price",
+        "product": "Produto",
+        "price": "Preço",
         "total": "Total",
-        "quantity": "Quantity"
+        "quantity": "Quantidade"
       },
       "subtotal": "Subtotal",
-      "new_subtotal": "New subtotal",
-      "update": "Update",
-      "remove": "Remove"
+      "new_subtotal": "Novo subtotal",
+      "update": "Atualizar",
+      "remove": "Remover"
     },
     "footer": {
       "payment": "Payment methods",
@@ -269,5 +294,76 @@
   "onboarding": {
     "product_title": "Example product title",
     "collection_title": "Your collection's name"
+  },
+  "m3d_pdp": {
+    "price_on_request": "Preço sob consulta",
+    "stock_count": "Stock ({{ count }})",
+    "stock_on_request": "Stock a consultar",
+    "quantity_sizes": "Quantidade e tamanhos",
+    "select_quantities": "Selecionar tamanhos e quantidades",
+    "quantity": "Quantidade",
+    "check_stock": "Consulte o stock de cada opção antes de adicionar.",
+    "quantity_intro": "Escolha a quantidade de cada opção.",
+    "option": "Opção",
+    "on_request": "A consultar",
+    "decrease": "Diminuir quantidade de {{ variant }}",
+    "increase": "Aumentar quantidade de {{ variant }}",
+    "quantity_for": "Quantidade de {{ variant }}",
+    "confirm_quantities": "Confirmar quantidades",
+    "cancel": "Cancelar",
+    "personalization": "Personalização",
+    "choose_technique": "Escolha uma técnica disponível para este produto.",
+    "no_personalization": "Sem personalização",
+    "configure_options": "Configure as opções para preparar o seu pedido.",
+    "add_to_myshop": "Adicionar ao MyShop",
+    "personalize_product": "Personalizar o produto",
+    "width_mm": "Largura (mm)",
+    "height_mm": "Altura (mm)",
+    "upload_logo": "Carregar logótipo",
+    "confirm_personalization": "Confirmar personalização",
+    "all_about_product": "Tudo sobre este produto",
+    "description": "Descrição do produto",
+    "specifications": "Especificações e materiais",
+    "reference": "Referência",
+    "personalization_areas": "Personalização · posições e áreas disponíveis",
+    "documentation": "Documentação do produto",
+    "product_sheet": "Ver ficha do produto",
+    "myshop_preview": "Prévia do MyShop. As lojas e a criação ainda são ilustrativas.",
+    "quantity_selected": "{{ count }} artigos selecionados",
+    "choose_quantities": "Selecione pelo menos uma quantidade.",
+    "invalid_quantity": "Verifique as quantidades e a disponibilidade das opções selecionadas.",
+    "adding": "A adicionar…",
+    "added": "Adicionado ao carrinho",
+    "add_error": "Não foi possível concluir a adição. Verifique o seu carrinho antes de tentar novamente.",
+    "area_limit": "Área máxima: {{ width }} × {{ height }} mm.",
+    "invalid_dimensions": "Indique dimensões válidas dentro da área selecionada.",
+    "upload_multiple": "Para enviar o logótipo, selecione uma opção por adição ao carrinho.",
+    "zero_price_block": "Este produto tem preço sob consulta e ainda não pode ser comprado online."
+  },
+  "m3d_auth": {
+    "page_kicker": "A MINHA CONTA",
+    "page_title": "Bem-vindo à M3D",
+    "page_description": "Entre na sua conta para continuar de onde ficou.",
+    "form_title": "Entrar na minha conta",
+    "email_label": "E-mail",
+    "email_placeholder": "nome@empresa.pt",
+    "email_help": "Enviaremos um código de verificação para este e-mail.",
+    "continue_with_code": "Continuar com código",
+    "brand_kicker": "A SUA MARCA. OS SEUS PROJETOS.",
+    "brand_title": "Tudo começa com uma ideia.",
+    "brand_description": "Encontre produtos para a sua empresa e prepare o seu próximo projeto de personalização.",
+    "first_time_title": "Primeira vez na M3D?",
+    "first_time_description": "Use o seu e-mail para criar ou aceder à conta com um código de verificação.",
+    "start_with_email": "Começar com e-mail",
+    "cart_login_title": "Entrar para continuar",
+    "cart_login_link": "Já tem conta? Entrar",
+    "close": "Fechar e voltar ao carrinho",
+    "back_to_cart": "Voltar ao carrinho",
+    "email_code_description": "Entre com um código enviado para o seu e-mail. Após iniciar sessão, regressará ao carrinho.",
+    "email_code_submit": "Continuar com código"
+  },
+  "m3d_cart": {
+    "empty_kicker": "O SEU CARRINHO",
+    "empty_description": "Explore os nossos produtos e escolha os artigos para o seu próximo projeto."
   }
 }

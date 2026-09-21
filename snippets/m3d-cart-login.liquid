@@ -1,0 +1,36 @@
+{% doc %}
+  Centered cart sign-in dialog linking to Shopify's hosted email-code authentication.
+  Uses storefront_login_url to return customers to the cart after successful sign-in.
+  @param {string} id_prefix - Unique prefix shared with the cart sign-in trigger.
+{% enddoc %}
+{%- if shop.customer_accounts_enabled and customer == blank -%}
+  {{ 'm3d-auth.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'm3d-auth-page.js' | asset_url }}" defer="defer"></script>
+  {%- assign auth_dialog_id = id_prefix | append: '-dialog' -%}
+  <dialog id="{{ auth_dialog_id }}" class="m3d-motion-dialog m3d-auth__modal" data-m3d-dialog aria-labelledby="{{ id_prefix }}-title" aria-describedby="{{ id_prefix }}-description">
+    <div class="m3d-auth__modal-top">
+      <div class="m3d-auth__logo{% if settings.logo == blank %} m3d-auth__logo--asset{% endif %}">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 240 | image_tag: widths: '72, 144, 240', width: 72, alt: shop.name }}
+        {%- else -%}
+          <img src="{{ 'm3dsolutionslogo.png' | asset_url }}" width="3375" height="4219" alt="{{ shop.name | escape }}">
+        {%- endif -%}
+      </div>
+      <button type="button" class="m3d-auth__close" data-m3d-dialog-close aria-label="{{ 'm3d_auth.close' | t | escape }}">{% render 'icon', name: 'close' %}</button>
+    </div>
+    <form class="m3d-auth__panel" action="{{ routes.storefront_login_url }}" method="get" data-m3d-email-login data-login-url="{{ routes.storefront_login_url }}">
+      <h2 id="{{ id_prefix }}-title" class="m3d-auth__heading" tabindex="-1" data-m3d-dialog-focus>{{ 'm3d_auth.cart_login_title' | t }}</h2>
+      <p id="{{ id_prefix }}-description" class="m3d-auth__description">{{ 'm3d_auth.email_code_description' | t }}</p>
+      <label class="m3d-auth__field" for="{{ id_prefix }}-email">
+        <span>{{ 'm3d_auth.email_label' | t }}</span>
+        <input id="{{ id_prefix }}-email" type="email" name="login_hint" autocomplete="email" inputmode="email" placeholder="{{ 'm3d_auth.email_placeholder' | t | escape }}" required data-m3d-login-email>
+      </label>
+      <p class="m3d-auth__help">{{ 'm3d_auth.email_help' | t }}</p>
+      <button type="submit" class="button m3d-auth__button m3d-motion-button">{{ 'm3d_auth.continue_with_code' | t }}</button>
+    </form>
+    <div class="m3d-auth__modal-bottom">
+      <hr class="m3d-auth__divider">
+      <a href="{{ routes.cart_url }}" class="m3d-auth__link" data-m3d-dialog-close>{{ 'm3d_auth.back_to_cart' | t }}</a>
+    </div>
+  </dialog>
+{%- endif -%}
