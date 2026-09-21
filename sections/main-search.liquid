@@ -1,227 +1,346 @@
 {%- comment -%}
-  ============================================================
-  MAIN SEARCH — página de resultados de busca
-  ============================================================
-
-  O QUE FAZ:
-  Renderiza o formulário de busca e os resultados mistos da loja
-  (produtos, artigos de blog e páginas) com paginação. Usa GET,
-  funcionando sem JavaScript.
-
-  ONDE É USADA:
-  No template de busca (templates/search.json), como section
-  principal da página /search.
-
-  PRINCIPAIS PARTES:
-  - search__form: form GET para routes.search_url com o input de
-    busca (name="q") preenchido com search.terms.
-  - Bloco de resultados exibido só quando search.performed:
-    mostra estado vazio (no_results) ou a contagem de resultados.
-  - {% paginate search.results by 20 %}: percorre os itens e, via
-    case item.object_type, renderiza cada tipo — 'product' usa o
-    snippet 'card-product'; 'article' e 'page' montam um link com
-    título e trecho (excerpt/content). O else cobre outros tipos.
-  - Snippet 'pagination' ao final da lista.
-
-  OBSERVAÇÕES:
-  - Não tem settings no schema — comportamento fixo.
-  - Trechos de artigo/página usam strip_html + truncatewords: 25.
-  - Estilos inline no <style>, escopados por
-    #shopify-section-{{ section.id }}.
+  Product-only search results using the same information architecture as collection PLPs.
+  Exact full title or SKU searches redirect to the matching product page.
 {%- endcomment -%}
 
-<div class="search page-width" data-section-id="{{ section.id }}">
-  <div class="search__header">
-    <h1 class="search__title">{{ 'templates.search.title' | t }}</h1>
+{%- liquid
+  assign normalized_term = search.terms | strip | downcase
+  assign exact_product_url = blank
+  assign current_sort = search.sort_by | default: search.default_sort_by
+  assign active_filter_count = 0
+  assign material_label = 'sections.main_collection.material' | t
+  assign printing_label = 'sections.main_collection.printing_technique' | t
+  assign color_label = 'sections.main_collection.color' | t
+  assign stock_label = 'sections.main_collection.stock' | t
+  assign labeling_label = 'sections.main_collection.labeling' | t
 
-    <form action="{{ routes.search_url }}" method="get" role="search" class="search__form">
-      <label class="visually-hidden" for="SearchInput-{{ section.id }}">
-        {{ 'general.search.search' | t }}
-      </label>
-      <input
-        type="search"
-        name="q"
-        id="SearchInput-{{ section.id }}"
-        value="{{ search.terms | escape }}"
-        placeholder="{{ 'general.search.placeholder' | t }}"
-        spellcheck="false"
-        class="field__input search__input"
-      >
-      <button type="submit" class="button search__submit">
-        {{ 'general.search.submit' | t }}
-      </button>
-    </form>
+  if search.performed and normalized_term != blank
+    for result in search.results
+      if result.object_type == 'product'
+        assign normalized_title = result.title | strip | downcase
+        if normalized_title == normalized_term
+          assign exact_product_url = result.url
+          break
+        endif
+        for variant in result.variants
+          assign normalized_sku = variant.sku | strip | downcase
+          if normalized_sku != blank and normalized_sku == normalized_term
+            assign exact_product_url = result.url
+            break
+          endif
+        endfor
+        if exact_product_url != blank
+          break
+        endif
+      endif
+    endfor
+  endif
+
+  for filter in search.filters
+    assign active_filter_count = active_filter_count | plus: filter.active_values.size
+    if filter.type == 'price_range'
+      if filter.min_value.value != blank or filter.max_value.value != blank
+        assign active_filter_count = active_filter_count | plus: 1
+      endif
+    endif
+  endfor
+-%}
+
+{%- if exact_product_url != blank -%}
+  <script>window.location.replace({{ exact_product_url | json }});</script>
+{%- endif -%}
+
+<div class="search-plp page-width" data-search-plp="{{ section.id }}">
+  <nav class="search-plp__breadcrumb" aria-label="{{ 'sections.collection_banner.breadcrumb_label' | t }}">
+    <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{{ 'templates.search.title' | t }}</span>
+  </nav>
+
+  <div class="search-plp__header">
+    <h1>{{ 'templates.search.search_for' | t: terms: search.terms }}</h1>
   </div>
 
   {%- if search.performed -%}
-    {%- if search.results_count == 0 -%}
-      <p class="search__empty">
-        {{ 'templates.search.no_results' | t: terms: search.terms }}
-      </p>
-    {%- else -%}
-      <p class="search__count">
-        {%- if search.results_count == 1 -%}
-          {{ 'templates.search.results_with_count' | t: count: search.results_count, terms: search.terms }}
-        {%- else -%}
-          {{ 'templates.search.results_with_count_plural' | t: count: search.results_count, terms: search.terms }}
-        {%- endif -%}
-      </p>
+    {%- paginate search.results by 16 -%}
+      {%- if search.results_count == 0 -%}
+        <div class="collection__empty">
+          <p>{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
+        </div>
+      {%- else -%}
+        <div class="collection__mobile-toolbar">
+          <span class="collection__count">{{ 'products.facets.product_count_simple' | t: count: search.results_count }}</span>
+          <button type="button" class="collection__filter-trigger" aria-controls="SearchSidebar-{{ section.id }}" aria-expanded="false">
+            {{ 'sections.main_collection.filters_and_sort' | t }}
+            {%- if active_filter_count > 0 -%}<span>({{ active_filter_count }})</span>{%- endif -%}
+          </button>
+        </div>
 
-      {%- paginate search.results by 20 -%}
-        <ul class="search__results product-grid" role="list">
-          {%- for item in search.results -%}
-            <li class="search__result">
-              {%- case item.object_type -%}
-                {%- when 'product' -%}
-                  {% render 'card-product', card_product: item %}
+        <div class="collection__layout">
+          <aside class="collection__sidebar" id="SearchSidebar-{{ section.id }}" aria-label="{{ 'products.facets.filter_by_label' | t }}">
+            <div class="collection__sidebar-header">
+              <h2>{{ 'sections.main_collection.filters_and_sort' | t }}</h2>
+              <button type="button" class="collection__sidebar-close" aria-label="{{ 'accessibility.close' | t }}">×</button>
+            </div>
 
-                {%- when 'article' -%}
-                  <a href="{{ item.url }}" class="search__result-link">
-                    {%- if item.image -%}
-                      <div class="search__result-media">
-                        {{
-                          item.image
-                          | image_url: width: 720
-                          | image_tag:
-                            loading: 'lazy',
-                            widths: '180, 360, 540, 720',
-                            sizes: '(min-width: 1000px) 25vw, 50vw',
-                            class: 'search__result-image',
-                            alt: item.title | escape
-                        }}
-                      </div>
-                    {%- endif -%}
-                    <div class="search__result-info">
-                      <h3 class="search__result-title">{{ item.title | escape }}</h3>
-                      {%- if item.excerpt != blank -%}
-                        <p class="search__result-excerpt">{{ item.excerpt | strip_html | truncatewords: 25 }}</p>
-                      {%- endif -%}
-                    </div>
-                  </a>
+            <form method="get" action="{{ routes.search_url }}" class="collection__filters">
+              <input type="hidden" name="q" value="{{ search.terms | escape }}">
+              <input type="hidden" name="type" value="product">
+              <input type="hidden" name="options[prefix]" value="last">
 
-                {%- when 'page' -%}
-                  <a href="{{ item.url }}" class="search__result-link">
-                    <div class="search__result-info">
-                      <h3 class="search__result-title">{{ item.title | escape }}</h3>
-                      {%- if item.content != blank -%}
-                        <p class="search__result-excerpt">{{ item.content | strip_html | truncatewords: 25 }}</p>
-                      {%- endif -%}
-                    </div>
-                  </a>
+              <details class="collection__filter" open>
+                <summary class="collection__filter-summary">
+                  <span>{{ 'sections.main_collection.sort_by' | t }}</span>
+                  <svg class="collection__filter-chevron" aria-hidden="true" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+                </summary>
+                <div class="collection__filter-content">
+                  <ul class="collection__filter-values" role="list">
+                    <li class="collection__filter-value">
+                      <input class="collection__filter-radio" type="radio" name="sort_by" value="price-ascending" id="SearchSort-{{ section.id }}-ascending" {% if current_sort == 'price-ascending' %}checked{% endif %}>
+                      <label for="SearchSort-{{ section.id }}-ascending">{{ 'sections.main_collection.price_ascending' | t }}</label>
+                    </li>
+                    <li class="collection__filter-value">
+                      <input class="collection__filter-radio" type="radio" name="sort_by" value="price-descending" id="SearchSort-{{ section.id }}-descending" {% if current_sort == 'price-descending' %}checked{% endif %}>
+                      <label for="SearchSort-{{ section.id }}-descending">{{ 'sections.main_collection.price_descending' | t }}</label>
+                    </li>
+                  </ul>
+                </div>
+              </details>
 
-                {%- else -%}
-                  <a href="{{ item.url }}" class="search__result-link">
-                    <div class="search__result-info">
-                      <h3 class="search__result-title">{{ item.title | escape }}</h3>
-                    </div>
-                  </a>
-              {%- endcase -%}
-            </li>
-          {%- endfor -%}
-        </ul>
+              {% render 'collection-filter-group', filters: search.filters, group: 'material', label: material_label, section_id: section.id %}
+              {% render 'collection-filter-group', filters: search.filters, group: 'printing', label: printing_label, section_id: section.id %}
+              {% render 'collection-filter-group', filters: search.filters, group: 'color', label: color_label, section_id: section.id %}
+              {% render 'collection-filter-group', filters: search.filters, group: 'stock', label: stock_label, section_id: section.id %}
+              {% render 'collection-filter-group', filters: search.filters, group: 'labeling', label: labeling_label, section_id: section.id %}
 
-        {% render 'pagination', paginate: paginate %}
-      {%- endpaginate -%}
-    {%- endif -%}
+              <div class="collection__filter-actions">
+                <button type="submit" class="collection__filter-apply">{{ 'products.facets.apply' | t }}</button>
+                <a href="{{ routes.search_url }}?q={{ search.terms | url_encode }}&type=product&options%5Bprefix%5D=last" class="collection__filter-clear">{{ 'products.facets.clear_all' | t }}</a>
+              </div>
+            </form>
+          </aside>
+
+          <button type="button" class="collection__drawer-backdrop" tabindex="-1" aria-label="{{ 'accessibility.close' | t }}"></button>
+          <div class="collection__divider" aria-hidden="true"></div>
+
+          <div class="collection__products">
+            <p class="collection__desktop-count">{{ 'products.facets.product_count_simple' | t: count: search.results_count }}</p>
+            <ul class="collection__product-grid" role="list">
+              {%- for item in search.results -%}
+                {%- if item.object_type == 'product' -%}
+                  <li>{% render 'card-product', card_product: item, card_context: 'collection' %}</li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+            {% render 'pagination', paginate: paginate %}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
   {%- endif -%}
 </div>
 
 <style>
-  #shopify-section-{{ section.id }} .search {
-    margin-top: 24px;
-    margin-bottom: var(--spacing-sections, 40px);
+  #shopify-section-{{ section.id }} { background: #fff; }
+  #shopify-section-{{ section.id }} .search-plp { margin-top: 28px; margin-bottom: 64px; }
+  #shopify-section-{{ section.id }} .search-plp__breadcrumb { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; color: #666; font-size: 13px; }
+  #shopify-section-{{ section.id }} .search-plp__breadcrumb a { color: #4436bc; text-decoration: none; }
+  #shopify-section-{{ section.id }} .search-plp__header { margin-bottom: 32px; }
+  #shopify-section-{{ section.id }} .search-plp__header h1 { margin: 0; color: #000; font-size: clamp(28px, 3vw, 42px); line-height: 1.1; }
+  #shopify-section-{{ section.id }} .collection__layout { display: grid; grid-template-columns: 280px 1px minmax(0, 1fr); gap: 32px; align-items: stretch; }
+  #shopify-section-{{ section.id }} .collection__divider { width: 1px; min-height: 100%; background: #dedede; }
+  #shopify-section-{{ section.id }} .collection__sidebar { min-width: 0; background: #fff; }
+  #shopify-section-{{ section.id }} .collection__sidebar-header { display: none; }
+  #shopify-section-{{ section.id }} .collection__filter { border-bottom: 1px solid #dedede; }
+  #shopify-section-{{ section.id }} .collection__filter:first-of-type { border-top: 1px solid #dedede; }
+  #shopify-section-{{ section.id }} .collection__filter-summary { display: flex; min-height: 56px; align-items: center; justify-content: space-between; gap: 16px; padding: 0 4px; cursor: pointer; list-style: none; color: #000; font-size: 14px; font-weight: 650; }
+  #shopify-section-{{ section.id }} .collection__filter-summary::-webkit-details-marker { display: none; }
+  #shopify-section-{{ section.id }} .collection__filter-chevron { width: 16px; height: 16px; flex: 0 0 auto; transition: transform 220ms ease; }
+  #shopify-section-{{ section.id }} .collection__filter[open] .collection__filter-chevron { transform: rotate(180deg); }
+  #shopify-section-{{ section.id }} .collection__filter-content { padding: 0 4px 20px; }
+  #shopify-section-{{ section.id }} .collection__filter-values { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+  #shopify-section-{{ section.id }} .collection__filter-value { display: grid; grid-template-columns: 18px minmax(0, 1fr); align-items: start; gap: 10px; }
+  #shopify-section-{{ section.id }} .collection__filter-value label { display: flex; min-width: 0; justify-content: space-between; gap: 8px; cursor: pointer; color: #242424; font-size: 13px; line-height: 1.45; }
+  #shopify-section-{{ section.id }} .collection__filter-checkbox,
+  #shopify-section-{{ section.id }} .collection__filter-radio { width: 16px; height: 16px; margin: 1px 0 0; accent-color: #4436bc; }
+  #shopify-section-{{ section.id }} .collection__filter-count { color: #6b6b6b; font-variant-numeric: tabular-nums; }
+  #shopify-section-{{ section.id }} .collection__filter-empty { margin: 0; color: #747474; font-size: 12px; line-height: 1.5; }
+  #shopify-section-{{ section.id }} .collection__filter-actions { display: flex; align-items: center; gap: 16px; padding-top: 24px; }
+  #shopify-section-{{ section.id }} .collection__filter-apply { min-height: 42px; padding: 0 22px; border: 1px solid #000; border-radius: var(--buttons-radius, 10px); background: #000; color: #fff; font: inherit; cursor: pointer; transition: transform 180ms ease, opacity 180ms ease; }
+  #shopify-section-{{ section.id }} .collection__filter-apply:hover { transform: scale(1.03); opacity: .88; }
+  #shopify-section-{{ section.id }} .collection__filter-clear { color: #4436bc; font-size: 13px; text-underline-offset: 3px; }
+  #shopify-section-{{ section.id }} .collection__products { min-width: 0; }
+  #shopify-section-{{ section.id }} .collection__desktop-count { margin: 0 0 24px; color: #5f5f5f; font-size: 14px; }
+  #shopify-section-{{ section.id }} .collection__mobile-toolbar { display: none; }
+  #shopify-section-{{ section.id }} .collection__product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
+  #shopify-section-{{ section.id }} .collection-card { position: relative; min-width: 0; }
+  #shopify-section-{{ section.id }} .collection-card__media-wrap { position: relative; overflow: visible; background: #f5f5f5; }
+  #shopify-section-{{ section.id }} .collection-card__media-link { display: block; overflow: hidden; color: inherit; }
+  #shopify-section-{{ section.id }} .collection-card__media { position: relative; overflow: hidden; }
+  #shopify-section-{{ section.id }} .collection-card__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 420ms cubic-bezier(.22,.61,.36,1); }
+  @media (hover: hover) { #shopify-section-{{ section.id }} .collection-card__media-link:hover .collection-card__image { transform: scale(1.055); } }
+  #shopify-section-{{ section.id }} .collection-card__actions { position: absolute; z-index: 3; top: 12px; left: 12px; display: grid; gap: 8px; }
+  #shopify-section-{{ section.id }} .collection-card__icon-button { display: grid; width: 36px; height: 36px; place-items: center; padding: 0; border: 1px solid rgba(0,0,0,.14); border-radius: 50%; background: rgba(255,255,255,.94); color: #000; cursor: pointer; transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms cubic-bezier(.22,.61,.36,1); }
+  #shopify-section-{{ section.id }} .collection-card__icon-button:hover,
+  #shopify-section-{{ section.id }} .collection-card__icon-button:focus-visible { border-color: #4436bc; color: #4436bc; transform: scale(1.08); }
+  #shopify-section-{{ section.id }} .collection-card__heart-icon { fill: transparent; stroke: currentColor; stroke-width: 1.5; transform-origin: center; transition: transform 200ms linear, fill 180ms ease, stroke 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__save:hover .collection-card__heart-icon { transform: scale(1.18); }
+  #shopify-section-{{ section.id }} .collection-card__save[aria-pressed="true"] { border-color: #e31c79; color: #e31c79; }
+  #shopify-section-{{ section.id }} .collection-card__save[aria-pressed="true"] .collection-card__heart-icon { fill: #e31c79; stroke: #e31c79; animation: collection-heart-pop 240ms cubic-bezier(.22,.61,.36,1); }
+  #shopify-section-{{ section.id }} .collection-card__badge { position: absolute; z-index: 2; top: 12px; right: 12px; padding: 7px 10px; background: #e31c79; color: #fff; font-size: 11px; font-weight: 700; line-height: 1; letter-spacing: .03em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .collection-card__badge--sold-out { background: #000; }
+  #shopify-section-{{ section.id }} .collection-card__info { padding-top: 16px; }
+  #shopify-section-{{ section.id }} .collection-card__vendor,
+  #shopify-section-{{ section.id }} .collection-card__sku { display: block; margin-bottom: 6px; color: #6b6b6b; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .collection-card__title { margin: 0 0 8px; font-size: 15px; line-height: 1.4; font-weight: 600; }
+  #shopify-section-{{ section.id }} .collection-card__title a { color: #000; text-decoration: none; }
+  #shopify-section-{{ section.id }} .collection-card__title a:hover { color: #4436bc; }
+  #shopify-section-{{ section.id }} .collection-card__dialog { position: fixed; inset: 0; width: min(400px, calc(100vw - 32px)); max-height: min(640px, calc(100dvh - 32px)); margin: auto; padding: 0; overflow: hidden auto; border: 1px solid #e6e6e6; border-radius: 16px; background: #fff; color: #000; box-shadow: 0 24px 80px rgba(0,0,0,.22); opacity: 0; transform: translateY(12px) scale(.97); transition: opacity 220ms ease, transform 220ms cubic-bezier(.22,.61,.36,1), display 220ms allow-discrete, overlay 220ms allow-discrete; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open] { opacity: 1; transform: translateY(0) scale(1); }
+  #shopify-section-{{ section.id }} .collection-card__dialog::backdrop { background: rgba(0,0,0,.48); backdrop-filter: blur(6px); opacity: 0; transition: opacity 220ms ease, display 220ms allow-discrete, overlay 220ms allow-discrete; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open]::backdrop { opacity: 1; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-header { position: relative; display: flex; min-height: 72px; align-items: center; justify-content: center; padding: 20px 56px; border-bottom: 1px solid #ededed; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-title { margin: 0; font-size: 18px; line-height: 1.2; text-align: center; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-close { position: absolute; top: 18px; right: 18px; display: grid; width: 36px; height: 36px; place-items: center; padding: 0; border: 0; border-radius: 10px; background: transparent; font-size: 24px; cursor: pointer; transition: background 180ms ease, transform 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-close:hover { background: #f3f3f3; transform: scale(1.05); }
+  #shopify-section-{{ section.id }} .collection-card__dialog-body { padding: 10px; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list { display: grid; gap: 4px; margin: 0; padding: 0; border: 0; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list label { display: grid; grid-template-columns: 32px minmax(0, 1fr) 20px; align-items: center; gap: 12px; min-height: 56px; padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; opacity: 0; transform: translateY(12px); transition: background 180ms ease, color 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open] .collection-card__shop-list label { animation: collection-shop-item-in 300ms cubic-bezier(.22,.61,.36,1) forwards; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open] .collection-card__shop-list label:nth-of-type(2) { animation-delay: 55ms; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open] .collection-card__shop-list label:nth-of-type(3) { animation-delay: 110ms; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list label:hover { background: #f5f3ff; color: #4436bc; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list input { position: absolute; opacity: 0; pointer-events: none; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list label:has(input:checked) { background: #f0edff; color: #4436bc; }
+  #shopify-section-{{ section.id }} .collection-card__shop-mark { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 9px; background: #f1f1f1; color: #000; font-size: 12px; font-weight: 800; }
+  #shopify-section-{{ section.id }} .collection-card__shop-arrow { opacity: 0; transform: translateX(-5px); transition: opacity 180ms ease, transform 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list label:hover .collection-card__shop-arrow,
+  #shopify-section-{{ section.id }} .collection-card__shop-list label:has(input:checked) .collection-card__shop-arrow { opacity: 1; transform: translateX(0); }
+  #shopify-section-{{ section.id }} .collection-card__dialog-footer { padding: 16px 20px; border-top: 1px solid #ededed; background: #f7f7f7; text-align: center; }
+  #shopify-section-{{ section.id }} .collection-card__create-shop { min-height: 40px; padding: 0 16px; border: 1px solid #d6d6d6; border-radius: 10px; background: #fff; color: #4436bc; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__create-shop:hover { transform: scale(1.03); border-color: #4436bc; box-shadow: 0 5px 14px rgba(68,54,188,.12); }
+  @starting-style { #shopify-section-{{ section.id }} .collection-card__dialog[open] { opacity: 0; transform: translateY(12px) scale(.97); } #shopify-section-{{ section.id }} .collection-card__dialog[open]::backdrop { opacity: 0; } }
+  @keyframes collection-heart-pop { 0% { transform: scale(1); } 50% { transform: scale(1.35); } 100% { transform: scale(1); } }
+  @keyframes collection-shop-item-in { to { opacity: 1; transform: translateY(0); } }
+  #shopify-section-{{ section.id }} .collection__empty { padding: 72px 0; text-align: center; }
+  #shopify-section-{{ section.id }} .pagination { margin-top: 48px; }
+  #shopify-section-{{ section.id }} .pagination__list { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  #shopify-section-{{ section.id }} .pagination__item { display: inline-flex; min-width: 40px; min-height: 40px; align-items: center; justify-content: center; padding: 0 12px; border: 1px solid #dedede; border-radius: 999px; background: #fff; color: #000; font-size: 13px; font-weight: 600; line-height: 1; text-decoration: none; transition: transform 180ms cubic-bezier(.22,.61,.36,1), background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease; }
+  #shopify-section-{{ section.id }} a.pagination__item:hover { transform: scale(1.06); border-color: #000; background: #000; color: #fff; box-shadow: 0 5px 14px rgba(0,0,0,.12); }
+  #shopify-section-{{ section.id }} a.pagination__item:active { transform: scale(.98); }
+  #shopify-section-{{ section.id }} a.pagination__item:focus-visible { outline: 2px solid #4436bc; outline-offset: 2px; }
+  #shopify-section-{{ section.id }} .pagination__item--current { border-color: #000; background: #000; color: #fff; }
+  #shopify-section-{{ section.id }} .pagination__item--prev,
+  #shopify-section-{{ section.id }} .pagination__item--next { width: 44px; height: 44px; padding: 0; font-size: 18px; }
+  #shopify-section-{{ section.id }} .pagination__item--gap { min-width: 24px; padding: 0; border-color: transparent; background: transparent; }
+  #shopify-section-{{ section.id }} .collection__drawer-backdrop { display: none; }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .search-plp { margin-bottom: 48px; }
+    #shopify-section-{{ section.id }} .collection__layout { display: block; }
+    #shopify-section-{{ section.id }} .collection__divider,
+    #shopify-section-{{ section.id }} .collection__desktop-count { display: none; }
+    #shopify-section-{{ section.id }} .collection__mobile-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+    #shopify-section-{{ section.id }} .collection__count { color: #5f5f5f; font-size: 13px; }
+    #shopify-section-{{ section.id }} .collection__filter-trigger { min-height: 42px; padding: 0 16px; border: 1px solid #000; border-radius: var(--buttons-radius, 10px); background: #fff; color: #000; font: inherit; font-size: 13px; cursor: pointer; }
+    #shopify-section-{{ section.id }} .collection__sidebar { position: fixed; z-index: 52; inset: 0 auto 0 0; width: min(360px, 90vw); height: 100dvh; padding: 20px 24px 32px; overflow-y: auto; transform: translateX(-102%); visibility: hidden; transition: transform 320ms cubic-bezier(.22,.61,.36,1), visibility 0s linear 320ms; }
+    #shopify-section-{{ section.id }} .collection__sidebar.is-open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
+    #shopify-section-{{ section.id }} .collection__sidebar-header { display: flex; min-height: 52px; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    #shopify-section-{{ section.id }} .collection__sidebar-header h2 { margin: 0; font-size: 20px; }
+    #shopify-section-{{ section.id }} .collection__sidebar-close { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 10px; background: transparent; color: #000; font-size: 28px; cursor: pointer; }
+    #shopify-section-{{ section.id }} .collection__drawer-backdrop { position: fixed; z-index: 51; inset: 0; display: block; border: 0; opacity: 0; visibility: hidden; background: rgba(0,0,0,.38); backdrop-filter: blur(3px); transition: opacity 240ms ease, visibility 0s linear 240ms; }
+    #shopify-section-{{ section.id }} .collection__drawer-backdrop.is-open { opacity: 1; visibility: visible; transition-delay: 0s; }
+    #shopify-section-{{ section.id }} .collection__product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
   }
-  #shopify-section-{{ section.id }} .search__header {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto 32px;
+
+  @media screen and (max-width: 520px) {
+    #shopify-section-{{ section.id }} .search-plp__header h1 { font-size: 28px; }
+    #shopify-section-{{ section.id }} .collection-card__actions { top: 8px; left: 8px; }
+    #shopify-section-{{ section.id }} .collection-card__badge { top: 8px; right: 8px; padding: 6px 8px; font-size: 9px; }
   }
-  #shopify-section-{{ section.id }} .search__title {
-    font-size: var(--f6);
-    margin: 0 0 16px;
-  }
-  #shopify-section-{{ section.id }} .search__form {
-    display: flex;
-    gap: 8px;
-  }
-  #shopify-section-{{ section.id }} .search__input {
-    flex: 1;
-  }
-  #shopify-section-{{ section.id }} .search__count,
-  #shopify-section-{{ section.id }} .search__empty {
-    font-size: var(--f3);
-    margin-bottom: 24px;
-  }
-  #shopify-section-{{ section.id }} .search__result-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-  #shopify-section-{{ section.id }} .search__result-media {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: var(--media-radius, 8px);
-    background-color: var(--color-background-contrast, #f2f3f8);
-  }
-  #shopify-section-{{ section.id }} .search__result-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  #shopify-section-{{ section.id }} .search__result-info {
-    padding: 12px 4px;
-  }
-  #shopify-section-{{ section.id }} .search__result-title {
-    font-size: var(--f2);
-    font-weight: normal;
-    margin: 0 0 6px;
-  }
-  #shopify-section-{{ section.id }} .search__result-excerpt {
-    font-size: var(--f1);
-    opacity: 0.7;
-    margin: 0;
-  }
-  #shopify-section-{{ section.id }} .pagination {
-    margin-top: 40px;
-  }
-  #shopify-section-{{ section.id }} .pagination__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  #shopify-section-{{ section.id }} .pagination__item {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    min-height: 40px;
-    padding: 0 8px;
-    font-size: var(--f2);
-    color: var(--color-text, #000);
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: var(--inputs-radius, 4px);
-  }
-  #shopify-section-{{ section.id }} a.pagination__item:hover {
-    border-color: var(--color-border, #c2c2c2);
-  }
-  #shopify-section-{{ section.id }} .pagination__item--current {
-    border-color: var(--color-accent, #000);
-    font-weight: bold;
-  }
-  @media screen and (max-width: 1000px) {
-    #shopify-section-{{ section.id }} .search__form {
-      flex-direction: column;
-    }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .collection-card__image,
+    #shopify-section-{{ section.id }} .collection__sidebar,
+    #shopify-section-{{ section.id }} .collection__drawer-backdrop,
+    #shopify-section-{{ section.id }} .collection__filter-chevron,
+    #shopify-section-{{ section.id }} .collection-card__dialog,
+    #shopify-section-{{ section.id }} .collection-card__heart-icon,
+    #shopify-section-{{ section.id }} .collection-card__shop-list label,
+    #shopify-section-{{ section.id }} .pagination__item { transition: none; }
+    #shopify-section-{{ section.id }} .collection-card__dialog[open] .collection-card__shop-list label,
+    #shopify-section-{{ section.id }} .collection-card__save[aria-pressed="true"] .collection-card__heart-icon { animation: none; opacity: 1; transform: none; }
   }
 </style>
+
+<script>
+  (() => {
+    const root = document.querySelector('[data-search-plp="{{ section.id }}"]');
+    if (!root || root.dataset.enhanced === 'true') return;
+    root.dataset.enhanced = 'true';
+
+    const currentUrl = new URL(window.location.href);
+    {%- if exact_product_url == blank -%}
+    if (currentUrl.searchParams.get('type') !== 'product') {
+      currentUrl.searchParams.set('type', 'product');
+      currentUrl.searchParams.set('options[prefix]', 'last');
+      window.location.replace(currentUrl.toString());
+      return;
+    }
+    {%- endif -%}
+
+    const sidebar = root.querySelector('.collection__sidebar');
+    const trigger = root.querySelector('.collection__filter-trigger');
+    const closeButton = root.querySelector('.collection__sidebar-close');
+    const backdrop = root.querySelector('.collection__drawer-backdrop');
+    let lastTrigger = null;
+
+    const setDrawer = (open) => {
+      if (!sidebar || !trigger || !backdrop) return;
+      sidebar.classList.toggle('is-open', open);
+      backdrop.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', String(open));
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        lastTrigger = document.activeElement;
+        requestAnimationFrame(() => closeButton?.focus());
+      } else if (lastTrigger) {
+        lastTrigger.focus();
+      }
+    };
+
+    trigger?.addEventListener('click', () => setDrawer(true));
+    closeButton?.addEventListener('click', () => setDrawer(false));
+    backdrop?.addEventListener('click', () => setDrawer(false));
+
+    root.addEventListener('click', (event) => {
+      const saveButton = event.target.closest('[data-card-save]');
+      if (saveButton) {
+        const card = saveButton.closest('.collection-card');
+        const nextPressed = saveButton.getAttribute('aria-pressed') !== 'true';
+        card?.querySelectorAll('[data-card-save]').forEach((button) => button.setAttribute('aria-pressed', String(nextPressed)));
+        return;
+      }
+
+      const myShopButton = event.target.closest('[data-open-myshop]');
+      if (myShopButton) {
+        document.getElementById(myShopButton.dataset.openMyshop)?.showModal();
+        return;
+      }
+
+      const dialogClose = event.target.closest('[data-close-dialog]');
+      if (dialogClose) dialogClose.closest('dialog')?.close();
+    });
+
+    root.querySelectorAll('.collection-card__dialog').forEach((dialog) => {
+      dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && sidebar?.classList.contains('is-open')) setDrawer(false);
+    });
+  })();
+</script>
 
 {% schema %}
 {

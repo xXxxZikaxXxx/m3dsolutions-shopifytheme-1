@@ -1,0 +1,136 @@
+{% doc %}
+  Renders one approved collection filter group from Shopify storefront filters.
+
+  @param {object} filters - Collection filters exposed by Shopify.
+  @param {string} group - Approved group identifier.
+  @param {string} label - Customer-facing group label.
+  @param {string} section_id - Section identifier used for unique input IDs.
+{% enddoc %}
+
+{%- liquid
+  assign matching_filter = blank
+  assign approved_printing_values = 'transfer serigráfico|transfer refletivo|transfer digital|serigrafia|bordado|baixo-relevo|transfer por sublimação' | split: '|'
+
+  for candidate_filter in filters
+    assign normalized_label = candidate_filter.label | downcase
+    assign is_match = false
+
+    case group
+      when 'material'
+        if normalized_label contains 'material'
+          assign is_match = true
+        endif
+      when 'printing'
+        if normalized_label contains 'técnica' or normalized_label contains 'tecnica' or normalized_label contains 'printing' or normalized_label contains 'impressão' or normalized_label contains 'impressao'
+          assign is_match = true
+        endif
+      when 'color'
+        if normalized_label == 'cor' or normalized_label == 'color' or normalized_label == 'colour'
+          assign is_match = true
+        endif
+      when 'stock'
+        if normalized_label contains 'stock' or normalized_label contains 'estoque' or normalized_label contains 'disponibilidade' or normalized_label contains 'availability'
+          assign is_match = true
+        endif
+      when 'labeling'
+        if normalized_label contains 'etiqueta' or normalized_label contains 'tag' or normalized_label contains 'label'
+          assign is_match = true
+        endif
+    endcase
+
+    if is_match
+      assign matching_filter = candidate_filter
+      break
+    endif
+  endfor
+-%}
+
+<details class="collection__filter" data-filter-group="{{ group }}">
+  <summary class="collection__filter-summary">
+    <span>{{ label }}</span>
+    <svg class="collection__filter-chevron" aria-hidden="true" viewBox="0 0 16 16">
+      <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </svg>
+  </summary>
+
+  <div class="collection__filter-content">
+    {%- if matching_filter != blank -%}
+      {%- case matching_filter.type -%}
+        {%- when 'list' -%}
+          <ul class="collection__filter-values" role="list">
+            {%- for value in matching_filter.values -%}
+              {%- liquid
+                assign show_value = true
+                if group == 'printing'
+                  assign normalized_value = value.label | downcase | strip
+                  unless approved_printing_values contains normalized_value
+                    assign show_value = false
+                  endunless
+                endif
+              -%}
+              {%- if show_value -%}
+                {%- capture input_id -%}Filter-{{ section_id }}-{{ group }}-{{ forloop.index }}{%- endcapture -%}
+                <li class="collection__filter-value">
+                  <input
+                    class="collection__filter-checkbox"
+                    type="checkbox"
+                    name="{{ value.param_name }}"
+                    value="{{ value.value }}"
+                    id="{{ input_id }}"
+                    {% if value.active %}checked{% endif %}
+                    {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                  >
+                  <label for="{{ input_id }}">
+                    <span>{{ value.label | escape }}</span>
+                    <span class="collection__filter-count">{{ value.count }}</span>
+                  </label>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+
+        {%- when 'boolean' -%}
+          <ul class="collection__filter-values" role="list">
+            {%- if matching_filter.true_value != blank -%}
+              {%- assign value = matching_filter.true_value -%}
+              <li class="collection__filter-value">
+                <input
+                  class="collection__filter-checkbox"
+                  type="checkbox"
+                  name="{{ value.param_name }}"
+                  value="{{ value.value }}"
+                  id="Filter-{{ section_id }}-{{ group }}-true"
+                  {% if value.active %}checked{% endif %}
+                  {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                >
+                <label for="Filter-{{ section_id }}-{{ group }}-true">
+                  <span>{{ value.label | escape }}</span>
+                  <span class="collection__filter-count">{{ value.count }}</span>
+                </label>
+              </li>
+            {%- endif -%}
+            {%- if matching_filter.false_value != blank -%}
+              {%- assign value = matching_filter.false_value -%}
+              <li class="collection__filter-value">
+                <input
+                  class="collection__filter-checkbox"
+                  type="checkbox"
+                  name="{{ value.param_name }}"
+                  value="{{ value.value }}"
+                  id="Filter-{{ section_id }}-{{ group }}-false"
+                  {% if value.active %}checked{% endif %}
+                  {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                >
+                <label for="Filter-{{ section_id }}-{{ group }}-false">
+                  <span>{{ value.label | escape }}</span>
+                  <span class="collection__filter-count">{{ value.count }}</span>
+                </label>
+              </li>
+            {%- endif -%}
+          </ul>
+      {%- endcase -%}
+    {%- else -%}
+      <p class="collection__filter-empty">{{ 'sections.main_collection.no_filter_values' | t }}</p>
+    {%- endif -%}
+  </div>
+</details>

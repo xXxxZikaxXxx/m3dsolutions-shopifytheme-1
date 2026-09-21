@@ -1,30 +1,46 @@
+{% # theme-check-disable ExcessiveSettingsCount %}
 {%- liquid
   assign featured_collection = section.settings.collection
   assign product_limit = section.settings.products_to_show | plus: 0
 -%}
 
 <section class="m3d-home" data-section-id="{{ section.id }}">
+  <script src="{{ 'm3d-home-carousel.js' | asset_url }}" defer="defer"></script>
   <div class="m3d-home__shell page-width">
-    <div class="m3d-hero">
-      {%- if section.settings.hero_image != blank -%}
-        {{ section.settings.hero_image | image_url: width: 2400 | image_tag: class: 'm3d-hero__image', widths: '750, 1100, 1600, 2000, 2400', sizes: '(max-width: 749px) calc(100vw - 40px), 1248px', loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
-      {%- else -%}
-        <img class="m3d-hero__image" src="{{ 'bannerprincipal.png' | asset_url }}" width="1366" height="768" fetchpriority="high" alt="{{ section.settings.hero_alt | escape }}">
-      {%- endif -%}
-      <div class="m3d-hero__content">
-        <p class="m3d-eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
-        <h1>{{ section.settings.hero_heading | newline_to_br }}</h1>
-        <p>{{ section.settings.hero_text | escape }}</p>
-        <a class="m3d-button m3d-button--pink" href="{{ section.settings.hero_link }}">{{ section.settings.hero_button | escape }} <span aria-hidden="true">→</span></a>
+    <div class="m3d-hero" data-m3d-hero-carousel data-interval="6500" aria-roledescription="carousel" aria-label="Destaques M3D">
+      <div class="m3d-hero__track">
+        <article class="m3d-hero__slide m3d-hero__slide--content is-active" id="M3dHeroSlide-{{ section.id }}-1" data-m3d-hero-slide aria-label="1 de 2" aria-hidden="false">
+          {%- if section.settings.hero_image != blank -%}
+            {{ section.settings.hero_image | image_url: width: 2400 | image_tag: class: 'm3d-hero__image', widths: '750, 1100, 1600, 2000, 2400', sizes: '(max-width: 749px) calc(100vw - 40px), 1248px', loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
+          {%- else -%}
+            <img class="m3d-hero__image" src="{{ 'bannerprincipal.png' | asset_url }}" width="1366" height="768" fetchpriority="high" alt="{{ section.settings.hero_alt | escape }}">
+          {%- endif -%}
+          <div class="m3d-hero__content">
+            <p class="m3d-eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
+            <h1>{{ section.settings.hero_heading | newline_to_br }}</h1>
+            <p>{{ section.settings.hero_text | escape }}</p>
+            <a class="m3d-button m3d-button--pink" href="{{ section.settings.hero_link }}">{{ section.settings.hero_button | escape }} <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="m3d-hero__slide m3d-hero__slide--image-only" id="M3dHeroSlide-{{ section.id }}-2" data-m3d-hero-slide aria-label="2 de 2" aria-hidden="true">
+          {%- if section.settings.hero_secondary_image != blank -%}
+            {{ section.settings.hero_secondary_image | image_url: width: 2400 | image_tag: class: 'm3d-hero__image', widths: '750, 1100, 1600, 2000, 2400', sizes: '(max-width: 749px) calc(100vw - 40px), 1248px', loading: 'eager', alt: section.settings.hero_secondary_alt }}
+          {%- else -%}
+            <img class="m3d-hero__image" src="{{ 'banner-natal.webp' | asset_url }}" width="2496" height="1404" loading="eager" alt="{{ section.settings.hero_secondary_alt | escape }}">
+          {%- endif -%}
+        </article>
+      </div>
+      <div class="m3d-hero__pagination" role="group" aria-label="Selecionar banner">
+        <button type="button" data-m3d-hero-dot data-slide-index="0" aria-label="Mostrar banner 1" aria-controls="M3dHeroSlide-{{ section.id }}-1" aria-current="true"><span aria-hidden="true"></span></button>
+        <button type="button" data-m3d-hero-dot data-slide-index="1" aria-label="Mostrar banner 2" aria-controls="M3dHeroSlide-{{ section.id }}-2" aria-current="false"><span aria-hidden="true"></span></button>
       </div>
     </div>
-
     <div class="m3d-campaigns">
       <article class="m3d-campaign m3d-campaign--purple">
         {%- if section.settings.vestuario_image != blank -%}
           {{ section.settings.vestuario_image | image_url: width: 1400 | image_tag: class: 'm3d-campaign__image', widths: '600, 900, 1200, 1400', sizes: '(max-width: 749px) calc(100vw - 40px), 50vw', loading: 'lazy', alt: section.settings.vestuario_alt }}
         {%- else -%}
-          <img class="m3d-campaign__image" src="{{ 'vestuario.png' | asset_url }}" width="4300" height="2400" loading="lazy" alt="{{ section.settings.vestuario_alt | escape }}">
+          <img class="m3d-campaign__image" src="{{ 'vestuario-inverno.png' | asset_url }}" width="1919" height="938" loading="lazy" alt="{{ section.settings.vestuario_alt | escape }}">
         {%- endif -%}
         <div class="m3d-campaign__content">
           <p class="m3d-eyebrow">{{ section.settings.vestuario_eyebrow | escape }}</p>
@@ -110,9 +126,18 @@
           {%- endif -%}
           <span>{{ section.settings.business_label | escape }} →</span>
         </a>
-        <a class="m3d-category-card m3d-category-card--technology" href="{{ section.settings.technology_link }}"><span>{{ section.settings.technology_label | escape }} →</span></a>
-        <a class="m3d-category-card m3d-category-card--gifts" href="{{ section.settings.gifts_link }}"><span>{{ section.settings.gifts_label | escape }} →</span></a>
-        <a class="m3d-category-card m3d-category-card--wear" href="{{ section.settings.wear_link }}"><span>{{ section.settings.wear_label | escape }} →</span></a>
+        <a class="m3d-category-card m3d-category-card--technology" href="{{ section.settings.technology_link }}">
+          <img src="{{ 'tecnologia.png' | asset_url }}" width="1376" height="768" loading="lazy" alt="{{ section.settings.technology_label | escape }}">
+          <span>{{ section.settings.technology_label | escape }} →</span>
+        </a>
+        <a class="m3d-category-card m3d-category-card--gifts" href="{{ section.settings.gifts_link }}">
+          <img src="{{ 'presentes-sazonais.png' | asset_url }}" width="1376" height="768" loading="lazy" alt="{{ section.settings.gifts_label | escape }}">
+          <span>{{ section.settings.gifts_label | escape }} →</span>
+        </a>
+        <a class="m3d-category-card m3d-category-card--wear" href="{{ section.settings.wear_link }}">
+          <img src="{{ 'vestuario-card.png' | asset_url }}" width="1376" height="768" loading="lazy" alt="{{ section.settings.wear_label | escape }}">
+          <span>{{ section.settings.wear_label | escape }} →</span>
+        </a>
         <a class="m3d-category-card" href="{{ section.settings.bottles_link }}">
           {%- if section.settings.bottles_image != blank -%}
             {{ section.settings.bottles_image | image_url: width: 800 | image_tag: widths: '360, 560, 800', sizes: '(max-width: 749px) 72vw, 20vw', loading: 'lazy', alt: section.settings.bottles_label }}
@@ -138,8 +163,21 @@
   .m3d-home { --m3d-pink:#e31c79; --m3d-purple:#4436bc; --m3d-blue:#00b3e7; padding:20px 0 0; color:#000; background:#fff; }
   .m3d-home__shell { max-width:1288px; }
   .m3d-hero { position:relative; min-height:0; aspect-ratio:16/9; overflow:hidden; background:#000; }
+  .m3d-hero__track { position:relative; width:100%; height:100%; display:grid; }
+  .m3d-hero__slide { position:relative; grid-area:1/1; min-width:0; height:100%; overflow:hidden; opacity:0; visibility:hidden; pointer-events:none; transform:translate3d(24px,0,0); transition:opacity 520ms cubic-bezier(.22,.61,.36,1),transform 520ms cubic-bezier(.22,.61,.36,1),visibility 0s linear 520ms; will-change:opacity,transform; }
+  .m3d-hero__slide[data-slide-direction="previous"] { transform:translate3d(-24px,0,0); }
+  .m3d-hero__slide.is-entering,.m3d-hero__slide.is-leaving-next,.m3d-hero__slide.is-leaving-previous { visibility:visible; }
+  .m3d-hero__slide.is-active { z-index:1; opacity:1; visibility:visible; pointer-events:auto; transform:translate3d(0,0,0); transition-delay:0s; }
+  .m3d-hero__slide.is-leaving-next { z-index:0; opacity:1; transform:translate3d(0,0,0); transition:none; }
+  .m3d-hero__slide.is-leaving-previous { z-index:0; opacity:1; transform:translate3d(0,0,0); transition:none; }
   .m3d-hero__image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .m3d-hero__content { position:relative; z-index:1; width:42%; height:100%; padding:clamp(44px,8vw,140px) 48px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:22px; color:#fff; background:rgba(0,0,0,.72); }
+  .m3d-hero__pagination { position:absolute; z-index:4; left:50%; bottom:18px; display:flex; align-items:center; gap:2px; transform:translateX(-50%); }
+  .m3d-hero__pagination button { width:36px; height:36px; display:grid; place-items:center; border:0; border-radius:50%; background:transparent; cursor:pointer; }
+  .m3d-hero__pagination button span { width:10px; height:10px; display:block; border:1px solid rgba(255,255,255,.92); border-radius:50%; background:rgba(0,0,0,.34); box-shadow:0 1px 4px rgba(0,0,0,.24); transition:background-color 180ms ease,transform 180ms cubic-bezier(.22,.61,.36,1); }
+  .m3d-hero__pagination button[aria-current="true"] span { background:#fff; transform:scale(1.25); }
+  .m3d-hero__pagination button:hover span,.m3d-hero__pagination button:focus-visible span { background:#fff; }
+  .m3d-hero__pagination button:focus-visible { outline:2px solid #fff; outline-offset:-3px; }
   .m3d-eyebrow { color:var(--m3d-blue); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
   .m3d-eyebrow--pink { color:var(--m3d-pink); }
   .m3d-eyebrow--purple { color:var(--m3d-purple); }
@@ -178,7 +216,10 @@
   .m3d-editorial__media img { width:100%; height:100%; object-fit:cover; }
   .m3d-category-track { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
   .m3d-category-card { position:relative; min-height:280px; overflow:hidden; display:flex; align-items:flex-end; background:linear-gradient(145deg,#4436bc,#00b3e7); color:#000; }
-  .m3d-category-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .m3d-category-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 360ms ease-out; }
+  @media (hover:hover) and (pointer:fine) {
+    .m3d-category-card:hover img { transform:scale(1.055); }
+  }
   .m3d-category-card span { position:relative; z-index:1; margin:14px; padding:10px 14px; background:#fff; font-size:12px; font-weight:700; }
   .m3d-category-card--technology { background:linear-gradient(145deg,#121212,#4436bc 62%,#e31c79); }
   .m3d-category-card--gifts { background:linear-gradient(145deg,#f8d6e6,#e31c79); }
@@ -189,9 +230,15 @@
   @media (max-width:749px) {
     .m3d-home { padding-top:12px; }
     .m3d-home__shell { padding:0 20px; }
-    .m3d-hero { aspect-ratio:auto; display:flex; flex-direction:column; }
+    .m3d-hero { aspect-ratio:auto; }
+    .m3d-hero__track { height:auto; }
+    .m3d-hero__slide { height:auto; min-height:0; }
+    .m3d-hero__slide--content { display:flex; flex-direction:column; background:#000; }
     .m3d-hero__image { position:relative; order:2; aspect-ratio:16/9; object-fit:cover; }
+    .m3d-hero__slide--image-only { display:flex; align-items:center; background:#c90012; }
+    .m3d-hero__slide--image-only .m3d-hero__image { width:100%; height:auto; aspect-ratio:16/9; object-fit:contain; }
     .m3d-hero__content { width:100%; height:auto; padding:30px 24px; gap:16px; background:#000; }
+    .m3d-hero__pagination { bottom:10px; }
     .m3d-hero h1 { font-size:38px; }
     .m3d-hero__content > p:not(.m3d-eyebrow) { font-size:14px; }
     .m3d-campaigns { grid-template-columns:1fr; gap:12px; margin-top:12px; }
@@ -211,6 +258,10 @@
     .m3d-category-card { flex:0 0 72%; min-height:300px; scroll-snap-align:start; }
     .m3d-contact-band { margin-bottom:44px; padding:28px 24px; align-items:flex-start; flex-direction:column; }
   }
+  @media (prefers-reduced-motion:reduce) {
+    .m3d-hero__slide,.m3d-hero__pagination button span { transition-duration:.01ms; }
+    .m3d-category-card img { transition-duration:.01ms; }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -225,11 +276,13 @@
     { "type": "textarea", "id": "hero_text", "label": "Texto", "default": "Do verão ao dia a dia, criamos peças que levam a sua identidade mais longe." },
     { "type": "text", "id": "hero_button", "label": "Botão", "default": "Descobrir soluções" },
     { "type": "url", "id": "hero_link", "label": "Link" },
+    { "type": "image_picker", "id": "hero_secondary_image", "label": "Segundo banner" },
+    { "type": "text", "id": "hero_secondary_alt", "label": "Texto alternativo do segundo banner", "default": "Campanha de Natal M3D com produtos selecionados em desconto" },
     { "type": "header", "content": "Vestuário" },
     { "type": "image_picker", "id": "vestuario_image", "label": "Imagem" },
-    { "type": "text", "id": "vestuario_alt", "label": "Texto alternativo", "default": "Têxteis personalizados na praia" },
+    { "type": "text", "id": "vestuario_alt", "label": "Texto alternativo", "default": "Vestuário de inverno personalizável" },
     { "type": "text", "id": "vestuario_eyebrow", "label": "Antetítulo", "default": "Vestuário e têxteis" },
-    { "type": "textarea", "id": "vestuario_heading", "label": "Título", "default": "A sua marca.\nVeste o verão." },
+    { "type": "textarea", "id": "vestuario_heading", "label": "Título", "default": "A sua marca.\nVeste o Inverno." },
     { "type": "text", "id": "vestuario_button", "label": "Botão", "default": "Explorar vestuário" },
     { "type": "url", "id": "vestuario_link", "label": "Link" },
     { "type": "header", "content": "Pequenos gestos" },

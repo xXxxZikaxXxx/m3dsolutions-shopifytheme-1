@@ -1,0 +1,64 @@
+{% comment %}
+  Storefront sign-in gateway for Shopify's new customer accounts.
+  The theme captures only the email address and forwards it to Shopify's hosted
+  verification-code flow with login_hint. Shopify owns authentication and code delivery.
+{% endcomment %}
+{{ 'm3d-motion.css' | asset_url | stylesheet_tag }}
+{{ 'm3d-auth.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'm3d-motion.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'm3d-auth-page.js' | asset_url }}" defer="defer"></script>
+
+<section class="m3d-login page-width" aria-labelledby="M3dLoginTitle-{{ section.id }}">
+  <header class="m3d-login__intro">
+    <p class="m3d-login__kicker">{{ 'm3d_auth.page_kicker' | t }}</p>
+    <h1 id="M3dLoginTitle-{{ section.id }}">{{ 'm3d_auth.page_title' | t }}</h1>
+    <p>{{ 'm3d_auth.page_description' | t }}</p>
+  </header>
+
+  {%- if customer -%}
+    <div class="m3d-login__signed-in">
+      <p>{{ customer.email | escape }}</p>
+      <a href="{{ routes.account_url }}" class="m3d-motion-button">{{ section.settings.account_button_label | escape }}</a>
+    </div>
+  {%- else -%}
+    <div class="m3d-login__grid">
+      <div class="m3d-login__form-column">
+        <form class="m3d-login__form" action="{{ routes.storefront_login_url }}" method="get" data-m3d-email-login data-login-url="{{ routes.storefront_login_url }}">
+          <h2>{{ 'm3d_auth.form_title' | t }}</h2>
+          <label class="m3d-login__field" for="M3dLoginEmail-{{ section.id }}">
+            <span>{{ 'm3d_auth.email_label' | t }}</span>
+            <input id="M3dLoginEmail-{{ section.id }}" type="email" name="login_hint" autocomplete="email" inputmode="email" placeholder="{{ 'm3d_auth.email_placeholder' | t | escape }}" required data-m3d-login-email>
+          </label>
+          <p class="m3d-login__help">{{ 'm3d_auth.email_help' | t }}</p>
+          <button type="submit" class="m3d-motion-button m3d-login__submit">{{ 'm3d_auth.continue_with_code' | t }}</button>
+        </form>
+      </div>
+
+      <span class="m3d-login__divider" aria-hidden="true"></span>
+
+      <aside class="m3d-login__welcome" aria-labelledby="M3dFirstTimeTitle-{{ section.id }}">
+        <p class="m3d-login__kicker">{{ 'm3d_auth.brand_kicker' | t }}</p>
+        <h2>{{ 'm3d_auth.brand_title' | t }}</h2>
+        <p class="m3d-login__brand-description">{{ 'm3d_auth.brand_description' | t }}</p>
+        <hr>
+        <h3 id="M3dFirstTimeTitle-{{ section.id }}">{{ 'm3d_auth.first_time_title' | t }}</h3>
+        <p>{{ 'm3d_auth.first_time_description' | t }}</p>
+        <button type="button" class="m3d-motion-button m3d-motion-button--secondary" data-m3d-login-focus>{{ 'm3d_auth.start_with_email' | t }}</button>
+      </aside>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Acesso M3D",
+  "settings": [
+    {
+      "type": "text",
+      "id": "account_button_label",
+      "label": "Botão para cliente autenticado",
+      "default": "Aceder à minha conta"
+    }
+  ]
+}
+{% endschema %}

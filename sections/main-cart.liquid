@@ -44,12 +44,32 @@
 
   /* Empty state */
   .cart--empty {
+    width: min(720px, 100%);
+    margin: 0 auto;
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
     text-align: center;
-    padding: 60px 0;
+    border-radius: 16px;
+    background: #f7f7f8;
+  }
+  .cart__empty-heading {
+    margin: 0;
+    color: #000;
+    font-size: 28px;
+    line-height: 1.35;
   }
   .cart__empty-text {
-    font-size: var(--f4);
-    margin-bottom: 24px;
+    max-width: 520px;
+    margin: 0 0 8px;
+    color: #606060;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .cart__empty-action {
+    min-width: 220px;
   }
 
   /* Layout */
@@ -211,19 +231,24 @@
     .cart-item__media { width: 84px; padding-right: 14px !important; }
     .cart-items thead { display: none; }
   }
+  @media screen and (max-width: 749px) {
+    .cart--empty { padding: 40px 24px; }
+    .cart__empty-heading { font-size: 24px; }
+    .cart__empty-action { width: 100%; min-width: 0; }
+  }
 </style>
 
 <div class="cart page-width section-main-cart" id="main-cart-{{ section.id }}">
-  <h1 class="cart__title">{{ 'sections.cart.title' | t }}</h1>
-
   {%- if cart.item_count == 0 -%}
     <div class="cart--empty">
-      <p class="cart__empty-text">{{ 'sections.cart.empty' | t }}</p>
-      <a href="{{ routes.all_products_collection_url }}" class="button">
+      <h1 class="cart__empty-heading">{{ 'sections.cart.empty' | t }}</h1>
+      <p class="cart__empty-text">{{ 'm3d_cart.empty_description' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="button m3d-motion-button cart__empty-action">
         {{ 'general.continue_shopping' | t }}
       </a>
     </div>
   {%- else -%}
+    <h1 class="cart__title">{{ 'sections.cart.title' | t }}</h1>
     {%- form 'cart', cart, class: 'cart__form' -%}
       <div class="cart__contents">
         <div class="cart__items">
@@ -405,9 +430,14 @@
             {{ 'sections.cart.update' | t }}
           </button>
 
-          <button type="submit" name="checkout" class="button cart__checkout">
+          <button type="submit" name="checkout" class="button cart__checkout m3d-motion-button">
             {{ 'sections.cart.checkout' | t }}
           </button>
+
+          {%- if shop.customer_accounts_enabled and customer == blank -%}
+            {%- assign cart_login_prefix = 'M3DCartLogin-' | append: section.id -%}
+            <a href="{{ routes.storefront_login_url }}" class="m3d-auth__link cart__login" data-m3d-dialog-open="{{ cart_login_prefix }}-dialog">{{ 'm3d_auth.cart_login_link' | t }}</a>
+          {%- endif -%}
 
           {%- if additional_checkout_buttons -%}
             <div class="cart__additional-checkout">
@@ -419,6 +449,9 @@
     {%- endform -%}
   {%- endif -%}
 </div>
+
+{%- assign cart_login_prefix = 'M3DCartLogin-' | append: section.id -%}
+{% render 'm3d-cart-login', id_prefix: cart_login_prefix %}
 
 <script>
   (function () {

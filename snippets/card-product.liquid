@@ -1,25 +1,10 @@
-{%- comment -%}
-  ============================================================
-  card-product — card de produto reutilizável
-  ============================================================
+{% doc %}
+  Renders a reusable product card.
 
-  O QUE FAZ:
-  Renderiza o card de um produto: imagem (com troca de imagem no hover se
-  ativado nas settings), badge de promoção/esgotado, vendor opcional,
-  título e preço (via snippet 'price').
+  @param {product} card_product - Product to render.
+  @param {string} [card_context] - Use 'collection' for the collection listing interface.
+{% enddoc %}
 
-  COMO USAR:
-  {% render 'card-product', card_product: product %}
-  Dentro de um loop de coleção, por exemplo.
-
-  PARÂMETROS:
-  - card_product: objeto product a ser exibido no card.
-
-  OBSERVAÇÕES:
-  O aspect ratio da imagem vem de settings.card_image_ratio
-  ('portrait', 'square' ou 'adapt'). A segunda imagem no hover depende de
-  settings.card_show_second_image; o vendor depende de settings.card_show_vendor.
-{%- endcomment -%}
 {%- liquid
   assign ratio = 1
   case settings.card_image_ratio
@@ -33,49 +18,117 @@
       endif
   endcase
 -%}
-<div class="card-product">
-  <a href="{{ card_product.url }}" class="card-product__link">
-    <div class="card-product__media" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
-      {%- if card_product.featured_media -%}
-        {{
-          card_product.featured_media
-          | image_url: width: 720
-          | image_tag:
-            loading: 'lazy',
-            class: 'card-product__image card-product__image--primary',
-            widths: '180, 360, 540, 720',
-            sizes: '(min-width: 1000px) 25vw, 50vw',
-            alt: card_product.featured_media.alt | default: card_product.title | escape
-        }}
-        {%- if settings.card_show_second_image and card_product.media[1] -%}
+
+{%- if card_context == 'collection' -%}
+  {%- assign dialog_id = 'MyShopDialog-' | append: card_product.id -%}
+  <article class="collection-card">
+    <div class="collection-card__media-wrap">
+      <a href="{{ card_product.url }}" class="collection-card__media-link" aria-label="{{ card_product.title | escape }}">
+        <div class="collection-card__media" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
+          {%- if card_product.featured_media -%}
+            {{
+              card_product.featured_media
+              | image_url: width: 900
+              | image_tag:
+                loading: 'lazy',
+                class: 'collection-card__image',
+                widths: '240, 360, 540, 720, 900',
+                sizes: '(min-width: 990px) 28vw, 50vw',
+                alt: card_product.featured_media.alt | default: card_product.title | escape
+            }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'collection-card__image placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </a>
+
+      <div class="collection-card__actions">
+        <button type="button" class="collection-card__icon-button collection-card__add" data-open-myshop="{{ dialog_id }}" aria-label="{{ 'products.product.add_to_shop' | t }}" aria-controls="{{ dialog_id }}" aria-haspopup="dialog">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
+        </button>
+        <button type="button" class="collection-card__icon-button collection-card__save" data-card-save aria-label="{{ 'products.product.save' | t }}" aria-pressed="false">
+          <svg class="collection-card__heart-icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3 9.24 3 10.91 3.81 12 5.08 13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5 22 12.27 18.6 15.36 13.45 20.03Z"/></svg>
+        </button>
+      </div>
+
+      {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
+        <span class="collection-card__badge">{{ 'products.product.on_sale' | t }}</span>
+      {%- elsif card_product.available == false -%}
+        <span class="collection-card__badge collection-card__badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
+      {%- endif -%}
+    </div>
+
+    <div class="collection-card__info">
+      {%- if card_product.selected_or_first_available_variant.sku != blank -%}
+        <span class="collection-card__sku">{{ card_product.selected_or_first_available_variant.sku | escape }}</span>
+      {%- elsif settings.card_show_vendor and card_product.vendor != blank -%}
+        <span class="collection-card__vendor">{{ card_product.vendor | escape }}</span>
+      {%- endif -%}
+      <h3 class="collection-card__title"><a href="{{ card_product.url }}">{{ card_product.title | escape }}</a></h3>
+      {% render 'price', product: card_product, use_variant: false, show_compare: true, price_class: 'price--card' %}
+    </div>
+
+    <dialog class="collection-card__dialog" id="{{ dialog_id }}" aria-labelledby="{{ dialog_id }}-title">
+      <div class="collection-card__dialog-inner">
+        <div class="collection-card__dialog-header">
+          <h2 class="collection-card__dialog-title" id="{{ dialog_id }}-title">{{ 'products.product.add_to_shop' | t }}</h2>
+          <button type="button" class="collection-card__dialog-close" data-close-dialog aria-label="{{ 'accessibility.close' | t }}">×</button>
+        </div>
+        <div class="collection-card__dialog-body">
+          <fieldset class="collection-card__shop-list">
+            <legend class="visually-hidden">{{ 'products.product.add_to_shop' | t }}</legend>
+            <label><input type="radio" name="shop-{{ card_product.id }}" value="google-summer-event"><span class="collection-card__shop-mark" aria-hidden="true">G</span><span>Google Summer Event</span><span class="collection-card__shop-arrow" aria-hidden="true">→</span></label>
+            <label><input type="radio" name="shop-{{ card_product.id }}" value="employee-welcome-kit"><span class="collection-card__shop-mark" aria-hidden="true">E</span><span>Employee Welcome Kit</span><span class="collection-card__shop-arrow" aria-hidden="true">→</span></label>
+            <label><input type="radio" name="shop-{{ card_product.id }}" value="client-gifts-2027"><span class="collection-card__shop-mark" aria-hidden="true">C</span><span>Client Gifts 2027</span><span class="collection-card__shop-arrow" aria-hidden="true">→</span></label>
+          </fieldset>
+        </div>
+        <div class="collection-card__dialog-footer">
+          <button type="button" class="collection-card__create-shop">+ {{ 'products.product.create_new_shop' | t }}</button>
+        </div>
+      </div>
+    </dialog>
+  </article>
+{%- else -%}
+  <div class="card-product">
+    <a href="{{ card_product.url }}" class="card-product__link">
+      <div class="card-product__media" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
+        {%- if card_product.featured_media -%}
           {{
-            card_product.media[1]
+            card_product.featured_media
             | image_url: width: 720
             | image_tag:
               loading: 'lazy',
-              class: 'card-product__image card-product__image--secondary',
+              class: 'card-product__image card-product__image--primary',
               widths: '180, 360, 540, 720',
               sizes: '(min-width: 1000px) 25vw, 50vw',
-              alt: card_product.media[1].alt | default: card_product.title | escape
+              alt: card_product.featured_media.alt | default: card_product.title | escape
           }}
+          {%- if settings.card_show_second_image and card_product.media[1] -%}
+            {{
+              card_product.media[1]
+              | image_url: width: 720
+              | image_tag:
+                loading: 'lazy',
+                class: 'card-product__image card-product__image--secondary',
+                widths: '180, 360, 540, 720',
+                sizes: '(min-width: 1000px) 25vw, 50vw',
+                alt: card_product.media[1].alt | default: card_product.title | escape
+            }}
+          {%- endif -%}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'card-product__image placeholder-svg' }}
         {%- endif -%}
-      {%- else -%}
-        {{ 'product-1' | placeholder_svg_tag: 'card-product__image placeholder-svg' }}
-      {%- endif -%}
-
-      {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
-        <span class="card-product__badge">{{ 'products.product.on_sale' | t }}</span>
-      {%- elsif card_product.available == false -%}
-        <span class="card-product__badge card-product__badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
-      {%- endif -%}
-    </div>
-
-    <div class="card-product__info">
-      {%- if settings.card_show_vendor and card_product.vendor != blank -%}
-        <span class="card-product__vendor">{{ card_product.vendor }}</span>
-      {%- endif -%}
-      <h3 class="card-product__title">{{ card_product.title | escape }}</h3>
-      {% render 'price', product: card_product, use_variant: false, show_compare: true, price_class: 'price--card' %}
-    </div>
-  </a>
-</div>
+        {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
+          <span class="card-product__badge">{{ 'products.product.on_sale' | t }}</span>
+        {%- elsif card_product.available == false -%}
+          <span class="card-product__badge card-product__badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
+        {%- endif -%}
+      </div>
+      <div class="card-product__info">
+        {%- if settings.card_show_vendor and card_product.vendor != blank -%}<span class="card-product__vendor">{{ card_product.vendor }}</span>{%- endif -%}
+        <h3 class="card-product__title">{{ card_product.title | escape }}</h3>
+        {% render 'price', product: card_product, use_variant: false, show_compare: true, price_class: 'price--card' %}
+      </div>
+    </a>
+  </div>
+{%- endif -%}

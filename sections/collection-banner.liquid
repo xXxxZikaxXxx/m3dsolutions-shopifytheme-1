@@ -1,32 +1,16 @@
 {%- comment -%}
-  ============================================================
-  COLLECTION BANNER — cabeçalho da página de coleção
-  ============================================================
-
-  O QUE FAZ:
-  Exibe o topo da página de coleção: título da coleção e,
-  opcionalmente, a imagem e a descrição da coleção.
-
-  ONDE É USADA:
-  No template de coleção (templates/collection.json), geralmente
-  acima da section main-collection.
-
-  PRINCIPAIS PARTES:
-  - Imagem (collection-banner__media): renderizada só se o setting
-    show_image estiver ligado e a coleção tiver imagem.
-  - Título (h1) com collection.title.
-  - Descrição (rte): renderizada só se show_description estiver
-    ligado e collection.description existir.
-
-  OBSERVAÇÕES:
-  - Usa os dados da coleção atual (objeto collection); não tem
-    campos de texto próprios no schema, apenas os toggles de
-    imagem e descrição.
-  - Estilos inline no <style>, escopados por
-    #shopify-section-{{ section.id }}.
+  Collection breadcrumb, title, optional image and description.
 {%- endcomment -%}
 
 <div class="collection-banner page-width" data-section-id="{{ section.id }}">
+  <nav class="collection-banner__breadcrumb" aria-label="{{ 'sections.collection_banner.breadcrumb_label' | t }}">
+    <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ routes.all_products_collection_url }}">{{ 'sections.collection_banner.products' | t }}</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{{ collection.title | escape }}</span>
+  </nav>
+
   {%- if section.settings.show_image and collection.image -%}
     <div class="collection-banner__media">
       {{
@@ -51,36 +35,19 @@
 </div>
 
 <style>
-  #shopify-section-{{ section.id }} .collection-banner {
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-  #shopify-section-{{ section.id }} .collection-banner__media {
-    width: 100%;
-    margin-bottom: 20px;
-    overflow: hidden;
-    border-radius: var(--media-radius, 8px);
-    background-color: var(--color-background-contrast, #f2f3f8);
-  }
-  #shopify-section-{{ section.id }} .collection-banner__image {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  #shopify-section-{{ section.id }} .collection-banner__text {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-  #shopify-section-{{ section.id }} .collection-banner__title {
-    font-size: var(--f7);
-    margin: 0;
-  }
-  #shopify-section-{{ section.id }} .collection-banner__description {
-    margin-top: 12px;
-    font-size: var(--f2);
-    color: var(--color-text, #000);
-    opacity: 0.8;
+  #shopify-section-{{ section.id }} { background: #fff; }
+  #shopify-section-{{ section.id }} .collection-banner { padding-top: 30px; padding-bottom: 34px; }
+  #shopify-section-{{ section.id }} .collection-banner__breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 34px; color: #666; font-size: 12px; line-height: 1.5; }
+  #shopify-section-{{ section.id }} .collection-banner__breadcrumb a { color: #4436bc; text-decoration: none; }
+  #shopify-section-{{ section.id }} .collection-banner__breadcrumb a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  #shopify-section-{{ section.id }} .collection-banner__media { width: 100%; margin-bottom: 28px; overflow: hidden; background: #f4f4f4; }
+  #shopify-section-{{ section.id }} .collection-banner__image { display: block; width: 100%; height: auto; }
+  #shopify-section-{{ section.id }} .collection-banner__text { max-width: 760px; }
+  #shopify-section-{{ section.id }} .collection-banner__title { margin: 0; color: #000; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -.025em; }
+  #shopify-section-{{ section.id }} .collection-banner__description { margin-top: 14px; color: #5c5c5c; font-size: 15px; line-height: 1.65; }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .collection-banner { padding-top: 22px; padding-bottom: 28px; }
+    #shopify-section-{{ section.id }} .collection-banner__breadcrumb { margin-bottom: 24px; }
   }
 </style>
 
@@ -90,18 +57,8 @@
   "tag": "section",
   "class": "section-collection-banner",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "default": true,
-      "label": "t:sections.collection_banner.settings.show_description.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_image",
-      "default": false,
-      "label": "t:sections.collection_banner.settings.show_image.label"
-    }
+    { "type": "checkbox", "id": "show_description", "default": true, "label": "t:sections.collection_banner.settings.show_description.label" },
+    { "type": "checkbox", "id": "show_image", "default": false, "label": "t:sections.collection_banner.settings.show_image.label" }
   ]
 }
 {% endschema %}

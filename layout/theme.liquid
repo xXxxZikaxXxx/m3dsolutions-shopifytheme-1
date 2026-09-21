@@ -54,6 +54,10 @@
 
     {{ 'index.css' | asset_url | stylesheet_tag }}
     {% render 'css-variables' %}
+    {%- if request.page_type == 'product' or request.page_type == 'cart' -%}
+      {{ 'm3d-motion.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'm3d-motion.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
     <script src="{{ 'carrinho.js' | asset_url }}" defer="defer"></script>

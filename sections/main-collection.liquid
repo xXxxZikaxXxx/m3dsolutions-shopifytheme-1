@@ -1,358 +1,293 @@
 {%- comment -%}
-  ============================================================
-  MAIN COLLECTION — grade de produtos de uma coleção
-  ============================================================
-
-  O QUE FAZ:
-  Mostra a grade de produtos de uma coleção com ordenação,
-  filtros facetados e paginação nativos do Shopify. Tudo funciona
-  sem JavaScript, pois usa formulários GET.
-
-  ONDE É USADA:
-  No template de coleção (templates/collection.json), como section
-  principal que lista os produtos da coleção atual.
-
-  PRINCIPAIS PARTES:
-  - {% paginate %}: pagina collection.products conforme o setting
-    products_per_page.
-  - Toolbar de filtros (form GET): percorre collection.filters e
-    monta cada tipo (list/boolean com checkboxes e price_range com
-    inputs de mín/máx). Preserva o sort ativo via input hidden.
-  - Toolbar de ordenação (form GET): select com
-    collection.sort_options que faz submit no onchange; preserva
-    os filtros ativos via inputs hidden. Tem fallback <noscript>.
-  - Estado vazio (collection__empty) quando não há produtos.
-  - Grade: product-grid renderizando o snippet 'card-product'
-    para cada produto, seguida do snippet 'pagination'.
-
-  OBSERVAÇÕES:
-  - As colunas do desktop vêm do setting columns_desktop, aplicado
-    via variável CSS inline --grid-columns.
-  - Filtros e ordenação podem ser desligados pelos settings
-    enable_filtering e enable_sorting.
-  - Estilos ficam inline no <style>, escopados por
-    #shopify-section-{{ section.id }}.
+  Shared collection listing with native Shopify filters and sorting.
 {%- endcomment -%}
 
+{%- liquid
+  assign current_sort = collection.sort_by | default: collection.default_sort_by
+  assign active_filter_count = 0
+  assign material_label = 'sections.main_collection.material' | t
+  assign printing_label = 'sections.main_collection.printing_technique' | t
+  assign color_label = 'sections.main_collection.color' | t
+  assign stock_label = 'sections.main_collection.stock' | t
+  assign labeling_label = 'sections.main_collection.labeling' | t
+  for filter in collection.filters
+    assign active_filter_count = active_filter_count | plus: filter.active_values.size
+    if filter.type == 'price_range'
+      if filter.min_value.value != blank or filter.max_value.value != blank
+        assign active_filter_count = active_filter_count | plus: 1
+      endif
+    endif
+  endfor
+-%}
+
 {%- paginate collection.products by section.settings.products_per_page -%}
-  <div
-    class="collection page-width"
-    data-section-id="{{ section.id }}"
-    style="--grid-columns: {{ section.settings.columns_desktop }};"
-  >
-    {%- if section.settings.enable_sorting or section.settings.enable_filtering -%}
-      <div class="collection__toolbar">
-        {%- if section.settings.enable_filtering and collection.filters.size > 0 -%}
-          <form method="get" class="collection__filters" id="CollectionFilters-{{ section.id }}">
-            {%- comment -%} Preserve current sort when filtering {%- endcomment -%}
-            {%- if collection.sort_by != blank -%}
-              <input type="hidden" name="sort_by" value="{{ collection.sort_by }}">
-            {%- endif -%}
+  <div class="collection page-width" data-collection-section="{{ section.id }}">
+    <div class="collection__mobile-toolbar">
+      <span class="collection__count">{{ 'products.facets.product_count_simple' | t: count: collection.products_count }}</span>
+      <button type="button" class="collection__filter-trigger" aria-controls="CollectionSidebar-{{ section.id }}" aria-expanded="false">
+        {{ 'sections.main_collection.filters_and_sort' | t }}
+        {%- if active_filter_count > 0 -%}<span>({{ active_filter_count }})</span>{%- endif -%}
+      </button>
+    </div>
 
-            {%- for filter in collection.filters -%}
-              <details class="collection__filter">
-                <summary class="collection__filter-summary">{{ filter.label | escape }}</summary>
-                <div class="collection__filter-content">
-                  {%- case filter.type -%}
-                    {%- when 'list', 'boolean' -%}
-                      <ul class="collection__filter-values" role="list">
-                        {%- for value in filter.values -%}
-                          <li class="collection__filter-value">
-                            <label>
-                              <input
-                                type="checkbox"
-                                name="{{ value.param_name }}"
-                                value="{{ value.value }}"
-                                {% if value.active %}checked{% endif %}
-                                {% if value.count == 0 and value.active == false %}disabled{% endif %}
-                              >
-                              <span>{{ value.label | escape }}</span>
-                              <span class="collection__filter-count">({{ value.count }})</span>
-                            </label>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-
-                    {%- when 'price_range' -%}
-                      <div class="collection__filter-price">
-                        <div class="collection__filter-price-field">
-                          <label
-                            class="field__label"
-                            for="Filter-{{ filter.label | escape }}-min-{{ section.id }}"
-                          >
-                            {{ 'products.facets.from' | t }}
-                          </label>
-                          <input
-                            class="field__input"
-                            type="number"
-                            name="{{ filter.min_value.param_name }}"
-                            id="Filter-{{ filter.label | escape }}-min-{{ section.id }}"
-                            min="0"
-                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                            {% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                            placeholder="0"
-                          >
-                        </div>
-                        <div class="collection__filter-price-field">
-                          <label
-                            class="field__label"
-                            for="Filter-{{ filter.label | escape }}-max-{{ section.id }}"
-                          >
-                            {{ 'products.facets.to' | t }}
-                          </label>
-                          <input
-                            class="field__input"
-                            type="number"
-                            name="{{ filter.max_value.param_name }}"
-                            id="Filter-{{ filter.label | escape }}-max-{{ section.id }}"
-                            min="0"
-                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                            {% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                            placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                          >
-                        </div>
-                      </div>
-                  {%- endcase -%}
-                </div>
-              </details>
-            {%- endfor -%}
-
-            <div class="collection__filter-actions">
-              <button type="submit" class="button">{{ 'products.facets.apply' | t }}</button>
-              <a href="{{ collection.url }}" class="button button--secondary">
-                {{ 'products.facets.clear_all' | t }}
-              </a>
-            </div>
-          </form>
-        {%- endif -%}
-
-        <div class="collection__toolbar-bar">
-          <span class="collection__count">
-            {{- 'products.facets.product_count_simple' | t: count: collection.products_count -}}
-          </span>
-
-          {%- if section.settings.enable_sorting -%}
-            <form method="get" class="collection__sort">
-              {%- comment -%} Preserve active filters when sorting {%- endcomment -%}
-              {%- for filter in collection.filters -%}
-                {%- for value in filter.values -%}
-                  {%- if value.active -%}
-                    <input type="hidden" name="{{ value.param_name }}" value="{{ value.value }}">
-                  {%- endif -%}
-                {%- endfor -%}
-                {%- if filter.type == 'price_range' -%}
-                  {%- if filter.min_value.value -%}
-                    <input
-                      type="hidden"
-                      name="{{ filter.min_value.param_name }}"
-                      value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
-                    >
-                  {%- endif -%}
-                  {%- if filter.max_value.value -%}
-                    <input
-                      type="hidden"
-                      name="{{ filter.max_value.param_name }}"
-                      value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
-                    >
-                  {%- endif -%}
-                {%- endif -%}
-              {%- endfor -%}
-
-              <label class="field__label collection__sort-label" for="SortBy-{{ section.id }}">
-                {{ 'products.facets.sort_by_label' | t }}
-              </label>
-              <select
-                name="sort_by"
-                id="SortBy-{{ section.id }}"
-                class="select__select"
-                onchange="this.form.submit()"
-              >
-                {%- for option in collection.sort_options -%}
-                  <option
-                    value="{{ option.value }}"
-                    {% if option.value == collection.sort_by %}selected{% endif %}
-                  >
-                    {{ option.name }}
-                  </option>
-                {%- endfor -%}
-              </select>
-              <noscript>
-                <button type="submit" class="button button--secondary">
-                  {{ 'products.facets.apply' | t }}
-                </button>
-              </noscript>
-            </form>
-          {%- endif -%}
+    <div class="collection__layout">
+      <aside class="collection__sidebar" id="CollectionSidebar-{{ section.id }}" aria-label="{{ 'products.facets.filter_by_label' | t }}">
+        <div class="collection__sidebar-header">
+          <h2>{{ 'sections.main_collection.filters_and_sort' | t }}</h2>
+          <button type="button" class="collection__sidebar-close" aria-label="{{ 'accessibility.close' | t }}">×</button>
         </div>
-      </div>
-    {%- endif -%}
 
-    {%- if collection.products.size == 0 -%}
-      <div class="collection__empty">
-        <p>{{ 'sections.main_collection.empty' | t }}</p>
-        <a href="{{ routes.all_products_collection_url }}" class="button button--secondary">
-          {{ 'sections.main_collection.use_fewer_filters' | t }}
-        </a>
-      </div>
-    {%- else -%}
-      <ul class="product-grid" role="list">
-        {%- for product in collection.products -%}
-          <li class="product-grid__item">
-            {% render 'card-product', card_product: product %}
-          </li>
-        {%- endfor -%}
-      </ul>
+        <form method="get" class="collection__filters" id="CollectionFilters-{{ section.id }}">
+          {%- if section.settings.enable_sorting -%}
+            <details class="collection__filter" open>
+              <summary class="collection__filter-summary">
+                <span>{{ 'sections.main_collection.sort_by' | t }}</span>
+                <svg class="collection__filter-chevron" aria-hidden="true" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+              </summary>
+              <div class="collection__filter-content">
+                <ul class="collection__filter-values" role="list">
+                  <li class="collection__filter-value">
+                    <input class="collection__filter-radio" type="radio" name="sort_by" value="price-ascending" id="Sort-{{ section.id }}-ascending" {% if current_sort == 'price-ascending' %}checked{% endif %}>
+                    <label for="Sort-{{ section.id }}-ascending">{{ 'sections.main_collection.price_ascending' | t }}</label>
+                  </li>
+                  <li class="collection__filter-value">
+                    <input class="collection__filter-radio" type="radio" name="sort_by" value="price-descending" id="Sort-{{ section.id }}-descending" {% if current_sort == 'price-descending' %}checked{% endif %}>
+                    <label for="Sort-{{ section.id }}-descending">{{ 'sections.main_collection.price_descending' | t }}</label>
+                  </li>
+                </ul>
+              </div>
+            </details>
+          {%- endif -%}
 
-      {% render 'pagination', paginate: paginate %}
-    {%- endif -%}
+          {%- if section.settings.enable_filtering -%}
+            {% render 'collection-filter-group', filters: collection.filters, group: 'material', label: material_label, section_id: section.id %}
+            {% render 'collection-filter-group', filters: collection.filters, group: 'printing', label: printing_label, section_id: section.id %}
+            {% render 'collection-filter-group', filters: collection.filters, group: 'color', label: color_label, section_id: section.id %}
+            {% render 'collection-filter-group', filters: collection.filters, group: 'stock', label: stock_label, section_id: section.id %}
+            {% render 'collection-filter-group', filters: collection.filters, group: 'labeling', label: labeling_label, section_id: section.id %}
+          {%- endif -%}
+
+          <div class="collection__filter-actions">
+            <button type="submit" class="collection__filter-apply">{{ 'products.facets.apply' | t }}</button>
+            <a href="{{ collection.url }}" class="collection__filter-clear">{{ 'products.facets.clear_all' | t }}</a>
+          </div>
+        </form>
+      </aside>
+
+      <button type="button" class="collection__drawer-backdrop" tabindex="-1" aria-label="{{ 'accessibility.close' | t }}"></button>
+      <div class="collection__divider" aria-hidden="true"></div>
+
+      <div class="collection__products">
+        <div class="collection__desktop-count">{{ 'products.facets.product_count_simple' | t: count: collection.products_count }}</div>
+        {%- if collection.products.size == 0 -%}
+          <div class="collection__empty">
+            <p>{{ 'sections.main_collection.empty' | t }}</p>
+            <a href="{{ routes.all_products_collection_url }}" class="button button--secondary">{{ 'sections.main_collection.use_fewer_filters' | t }}</a>
+          </div>
+        {%- else -%}
+          <ul class="product-grid collection__product-grid" role="list">
+            {%- for product in collection.products -%}
+              <li class="product-grid__item">{% render 'card-product', card_product: product, card_context: 'collection' %}</li>
+            {%- endfor -%}
+          </ul>
+          {% render 'pagination', paginate: paginate %}
+        {%- endif -%}
+      </div>
+    </div>
   </div>
 {%- endpaginate -%}
 
 <style>
-  #shopify-section-{{ section.id }} .collection {
-    margin-bottom: var(--spacing-sections, 40px);
+  #shopify-section-{{ section.id }} { background: #fff; }
+  #shopify-section-{{ section.id }} .collection { margin-bottom: 64px; }
+  #shopify-section-{{ section.id }} .collection__layout { display: grid; grid-template-columns: 280px 1px minmax(0, 1fr); gap: 32px; align-items: stretch; }
+  #shopify-section-{{ section.id }} .collection__divider { width: 1px; min-height: 100%; background: #dedede; }
+  #shopify-section-{{ section.id }} .collection__sidebar { min-width: 0; background: #fff; }
+  #shopify-section-{{ section.id }} .collection__sidebar-header { display: none; }
+  #shopify-section-{{ section.id }} .collection__filter { border-bottom: 1px solid #dedede; }
+  #shopify-section-{{ section.id }} .collection__filter:first-child { border-top: 1px solid #dedede; }
+  #shopify-section-{{ section.id }} .collection__filter-summary { display: flex; min-height: 56px; align-items: center; justify-content: space-between; gap: 16px; padding: 0 4px; cursor: pointer; list-style: none; font-size: 14px; font-weight: 650; color: #000; }
+  #shopify-section-{{ section.id }} .collection__filter-summary::-webkit-details-marker { display: none; }
+  #shopify-section-{{ section.id }} .collection__filter-chevron { width: 16px; height: 16px; flex: 0 0 auto; transition: transform 220ms ease; }
+  #shopify-section-{{ section.id }} .collection__filter[open] .collection__filter-chevron { transform: rotate(180deg); }
+  #shopify-section-{{ section.id }} .collection__filter-content { padding: 0 4px 20px; }
+  #shopify-section-{{ section.id }} .collection__filter-values { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+  #shopify-section-{{ section.id }} .collection__filter-value { display: grid; grid-template-columns: 18px minmax(0, 1fr); align-items: start; gap: 10px; }
+  #shopify-section-{{ section.id }} .collection__filter-value label { display: flex; min-width: 0; justify-content: space-between; gap: 8px; cursor: pointer; font-size: 13px; line-height: 1.45; color: #242424; }
+  #shopify-section-{{ section.id }} .collection__filter-checkbox,
+  #shopify-section-{{ section.id }} .collection__filter-radio { width: 16px; height: 16px; margin: 1px 0 0; accent-color: #4436bc; }
+  #shopify-section-{{ section.id }} .collection__filter-count { color: #6b6b6b; font-variant-numeric: tabular-nums; }
+  #shopify-section-{{ section.id }} .collection__filter-empty { margin: 0; color: #747474; font-size: 12px; line-height: 1.5; }
+  #shopify-section-{{ section.id }} .collection__filter-actions { display: flex; align-items: center; gap: 16px; padding-top: 24px; }
+  #shopify-section-{{ section.id }} .collection__filter-apply { min-height: 42px; padding: 0 22px; border: 1px solid #000; border-radius: var(--buttons-radius, 10px); background: #000; color: #fff; font: inherit; cursor: pointer; transition: transform 180ms ease, opacity 180ms ease; }
+  #shopify-section-{{ section.id }} .collection__filter-apply:hover { transform: scale(1.03); opacity: .88; }
+  #shopify-section-{{ section.id }} .collection__filter-clear { color: #4436bc; font-size: 13px; text-underline-offset: 3px; }
+  #shopify-section-{{ section.id }} .collection__products { min-width: 0; }
+  #shopify-section-{{ section.id }} .collection__desktop-count { margin: 0 0 24px; color: #5f5f5f; font-size: 14px; }
+  #shopify-section-{{ section.id }} .collection__mobile-toolbar { display: none; }
+  #shopify-section-{{ section.id }} .collection__product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
+  #shopify-section-{{ section.id }} .collection-card { position: relative; min-width: 0; }
+  #shopify-section-{{ section.id }} .collection-card__media-wrap { position: relative; overflow: visible; background: #f5f5f5; }
+  #shopify-section-{{ section.id }} .collection-card__media-link { display: block; overflow: hidden; color: inherit; }
+  #shopify-section-{{ section.id }} .collection-card__media { position: relative; overflow: hidden; }
+  #shopify-section-{{ section.id }} .collection-card__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 420ms cubic-bezier(.22,.61,.36,1); }
+  @media (hover: hover) { #shopify-section-{{ section.id }} .collection-card__media-link:hover .collection-card__image { transform: scale(1.055); } }
+  #shopify-section-{{ section.id }} .collection-card__actions { position: absolute; z-index: 3; top: 12px; left: 12px; display: grid; gap: 8px; }
+  #shopify-section-{{ section.id }} .collection-card__icon-button { display: grid; width: 36px; height: 36px; place-items: center; padding: 0; border: 1px solid rgba(0,0,0,.14); border-radius: 50%; background: rgba(255,255,255,.94); color: #000; cursor: pointer; transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms cubic-bezier(.22,.61,.36,1); }
+  #shopify-section-{{ section.id }} .collection-card__icon-button:hover,
+  #shopify-section-{{ section.id }} .collection-card__icon-button:focus-visible { border-color: #4436bc; color: #4436bc; transform: scale(1.08); }
+  #shopify-section-{{ section.id }} .collection-card__heart-icon { fill: transparent; stroke: currentColor; stroke-width: 1.5; transform-origin: center; transition: transform 200ms linear, fill 180ms ease, stroke 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__save:hover .collection-card__heart-icon { transform: scale(1.18); }
+  #shopify-section-{{ section.id }} .collection-card__save[aria-pressed="true"] { border-color: #e31c79; color: #e31c79; }
+  #shopify-section-{{ section.id }} .collection-card__save[aria-pressed="true"] .collection-card__heart-icon { fill: #e31c79; stroke: #e31c79; animation: collection-heart-pop 240ms cubic-bezier(.22,.61,.36,1); }
+  #shopify-section-{{ section.id }} .collection-card__badge { position: absolute; z-index: 2; top: 12px; right: 12px; padding: 7px 10px; background: #e31c79; color: #fff; font-size: 11px; font-weight: 700; line-height: 1; letter-spacing: .03em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .collection-card__badge--sold-out { background: #000; }
+  #shopify-section-{{ section.id }} .collection-card__info { padding-top: 16px; }
+  #shopify-section-{{ section.id }} .collection-card__vendor,
+  #shopify-section-{{ section.id }} .collection-card__sku { display: block; margin-bottom: 6px; color: #6b6b6b; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+  #shopify-section-{{ section.id }} .collection-card__title { margin: 0 0 8px; font-size: 15px; line-height: 1.4; font-weight: 600; }
+  #shopify-section-{{ section.id }} .collection-card__title a { color: #000; text-decoration: none; }
+  #shopify-section-{{ section.id }} .collection-card__title a:hover { color: #4436bc; }
+  #shopify-section-{{ section.id }} .collection-card__dialog { position: fixed; inset: 0; width: min(400px, calc(100vw - 32px)); max-height: min(640px, calc(100dvh - 32px)); margin: auto; padding: 0; overflow: hidden auto; border: 1px solid #e6e6e6; border-radius: 16px; background: #fff; color: #000; box-shadow: 0 24px 80px rgba(0,0,0,.22); opacity: 0; transform: translateY(12px) scale(.97); transition: opacity 220ms ease, transform 220ms cubic-bezier(.22,.61,.36,1), display 220ms allow-discrete, overlay 220ms allow-discrete; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open] { opacity: 1; transform: translateY(0) scale(1); }
+  #shopify-section-{{ section.id }} .collection-card__dialog::backdrop { background: rgba(0,0,0,.48); backdrop-filter: blur(6px); opacity: 0; transition: opacity 220ms ease, display 220ms allow-discrete, overlay 220ms allow-discrete; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open]::backdrop { opacity: 1; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-inner { padding: 0; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-header { position: relative; display: flex; min-height: 72px; align-items: center; justify-content: center; padding: 20px 56px; border-bottom: 1px solid #ededed; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-title { margin: 0; font-size: 18px; line-height: 1.2; text-align: center; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-close { position: absolute; top: 18px; right: 18px; display: grid; width: 36px; height: 36px; place-items: center; padding: 0; border: 0; border-radius: 10px; background: transparent; font-size: 24px; cursor: pointer; transition: background 180ms ease, transform 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__dialog-close:hover { background: #f3f3f3; transform: scale(1.05); }
+  #shopify-section-{{ section.id }} .collection-card__dialog-body { padding: 10px; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list { display: grid; gap: 4px; margin: 0; padding: 0; border: 0; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list label { display: grid; grid-template-columns: 32px minmax(0, 1fr) 20px; align-items: center; gap: 12px; min-height: 56px; padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; opacity: 0; transform: translateY(12px); transition: background 180ms ease, color 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open] .collection-card__shop-list label { animation: collection-shop-item-in 300ms cubic-bezier(.22,.61,.36,1) forwards; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open] .collection-card__shop-list label:nth-of-type(2) { animation-delay: 55ms; }
+  #shopify-section-{{ section.id }} .collection-card__dialog[open] .collection-card__shop-list label:nth-of-type(3) { animation-delay: 110ms; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list label:hover { background: #f5f3ff; color: #4436bc; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list input { position: absolute; opacity: 0; pointer-events: none; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list label:has(input:checked) { background: #f0edff; color: #4436bc; }
+  #shopify-section-{{ section.id }} .collection-card__shop-mark { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 9px; background: #f1f1f1; color: #000; font-size: 12px; font-weight: 800; }
+  #shopify-section-{{ section.id }} .collection-card__shop-arrow { opacity: 0; transform: translateX(-5px); transition: opacity 180ms ease, transform 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__shop-list label:hover .collection-card__shop-arrow,
+  #shopify-section-{{ section.id }} .collection-card__shop-list label:has(input:checked) .collection-card__shop-arrow { opacity: 1; transform: translateX(0); }
+  #shopify-section-{{ section.id }} .collection-card__dialog-footer { padding: 16px 20px; border-top: 1px solid #ededed; background: #f7f7f7; text-align: center; }
+  #shopify-section-{{ section.id }} .collection-card__create-shop { min-height: 40px; padding: 0 16px; border: 1px solid #d6d6d6; border-radius: 10px; background: #fff; color: #4436bc; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+  #shopify-section-{{ section.id }} .collection-card__create-shop:hover { transform: scale(1.03); border-color: #4436bc; box-shadow: 0 5px 14px rgba(68,54,188,.12); }
+  @starting-style { #shopify-section-{{ section.id }} .collection-card__dialog[open] { opacity: 0; transform: translateY(12px) scale(.97); } #shopify-section-{{ section.id }} .collection-card__dialog[open]::backdrop { opacity: 0; } }
+  @keyframes collection-heart-pop { 0% { transform: scale(1); } 50% { transform: scale(1.35); } 100% { transform: scale(1); } }
+  @keyframes collection-shop-item-in { to { opacity: 1; transform: translateY(0); } }
+  #shopify-section-{{ section.id }} .collection__empty { padding: 72px 0; text-align: center; }
+  #shopify-section-{{ section.id }} .collection__empty .button { margin-top: 20px; }
+  #shopify-section-{{ section.id }} .pagination { margin-top: 48px; }
+  #shopify-section-{{ section.id }} .pagination__list { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  #shopify-section-{{ section.id }} .pagination__item { display: inline-flex; min-width: 40px; min-height: 40px; align-items: center; justify-content: center; padding: 0 12px; border: 1px solid #dedede; border-radius: 999px; background: #fff; color: #000; font-size: 13px; font-weight: 600; line-height: 1; text-decoration: none; transition: transform 180ms cubic-bezier(.22,.61,.36,1), background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease; }
+  #shopify-section-{{ section.id }} a.pagination__item:hover { transform: scale(1.06); border-color: #000; background: #000; color: #fff; box-shadow: 0 5px 14px rgba(0,0,0,.12); }
+  #shopify-section-{{ section.id }} a.pagination__item:active { transform: scale(.98); }
+  #shopify-section-{{ section.id }} a.pagination__item:focus-visible { outline: 2px solid #4436bc; outline-offset: 2px; }
+  #shopify-section-{{ section.id }} .pagination__item--current { border-color: #000; background: #000; color: #fff; }
+  #shopify-section-{{ section.id }} .pagination__item--prev,
+  #shopify-section-{{ section.id }} .pagination__item--next { width: 44px; height: 44px; padding: 0; font-size: 18px; }
+  #shopify-section-{{ section.id }} .pagination__item--gap { min-width: 24px; padding: 0; border-color: transparent; background: transparent; }
+  #shopify-section-{{ section.id }} .collection__drawer-backdrop { display: none; }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .collection { margin-bottom: 48px; }
+    #shopify-section-{{ section.id }} .collection__layout { display: block; }
+    #shopify-section-{{ section.id }} .collection__divider,
+    #shopify-section-{{ section.id }} .collection__desktop-count { display: none; }
+    #shopify-section-{{ section.id }} .collection__mobile-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+    #shopify-section-{{ section.id }} .collection__count { color: #5f5f5f; font-size: 13px; }
+    #shopify-section-{{ section.id }} .collection__filter-trigger { min-height: 42px; padding: 0 16px; border: 1px solid #000; border-radius: var(--buttons-radius, 10px); background: #fff; color: #000; font: inherit; font-size: 13px; cursor: pointer; }
+    #shopify-section-{{ section.id }} .collection__sidebar { position: fixed; z-index: 52; inset: 0 auto 0 0; width: min(360px, 90vw); height: 100dvh; padding: 20px 24px 32px; overflow-y: auto; transform: translateX(-102%); visibility: hidden; transition: transform 320ms cubic-bezier(.22,.61,.36,1), visibility 0s linear 320ms; }
+    #shopify-section-{{ section.id }} .collection__sidebar.is-open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
+    #shopify-section-{{ section.id }} .collection__sidebar-header { display: flex; min-height: 52px; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    #shopify-section-{{ section.id }} .collection__sidebar-header h2 { margin: 0; font-size: 20px; }
+    #shopify-section-{{ section.id }} .collection__sidebar-close { width: 40px; height: 40px; padding: 0; border: 0; background: transparent; color: #000; font-size: 28px; cursor: pointer; }
+    #shopify-section-{{ section.id }} .collection__drawer-backdrop { position: fixed; z-index: 51; inset: 0; display: block; border: 0; opacity: 0; visibility: hidden; background: rgba(0,0,0,.38); backdrop-filter: blur(3px); transition: opacity 240ms ease, visibility 0s linear 240ms; }
+    #shopify-section-{{ section.id }} .collection__drawer-backdrop.is-open { opacity: 1; visibility: visible; transition-delay: 0s; }
+    #shopify-section-{{ section.id }} .collection__product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
   }
-  #shopify-section-{{ section.id }} .collection__toolbar {
-    margin-bottom: 24px;
+
+  @media screen and (max-width: 520px) {
+    #shopify-section-{{ section.id }} .collection-card__actions { top: 8px; left: 8px; }
+    #shopify-section-{{ section.id }} .collection-card__badge { top: 8px; right: 8px; padding: 6px 8px; font-size: 9px; }
   }
-  #shopify-section-{{ section.id }} .collection__filters {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 12px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--color-border, #c2c2c2);
-  }
-  #shopify-section-{{ section.id }} .collection__filter {
-    position: relative;
-  }
-  #shopify-section-{{ section.id }} .collection__filter-summary {
-    cursor: pointer;
-    padding: 8px 12px;
-    font-size: var(--f2);
-    border: 1px solid var(--color-border, #c2c2c2);
-    border-radius: var(--inputs-radius, 4px);
-    list-style: none;
-    user-select: none;
-  }
-  #shopify-section-{{ section.id }} .collection__filter-summary::-webkit-details-marker {
-    display: none;
-  }
-  #shopify-section-{{ section.id }} .collection__filter-content {
-    margin-top: 8px;
-    padding: 12px;
-    border: 1px solid var(--color-border, #c2c2c2);
-    border-radius: var(--inputs-radius, 4px);
-    background-color: var(--color-background, #fff);
-  }
-  #shopify-section-{{ section.id }} .collection__filter-values {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 260px;
-    overflow-y: auto;
-  }
-  #shopify-section-{{ section.id }} .collection__filter-value label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 0;
-    font-size: var(--f2);
-    cursor: pointer;
-  }
-  #shopify-section-{{ section.id }} .collection__filter-count {
-    opacity: 0.6;
-    font-size: var(--f1);
-  }
-  #shopify-section-{{ section.id }} .collection__filter-price {
-    display: flex;
-    gap: 12px;
-  }
-  #shopify-section-{{ section.id }} .collection__filter-price-field {
-    flex: 1;
-  }
-  #shopify-section-{{ section.id }} .collection__filter-actions {
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-  }
-  #shopify-section-{{ section.id }} .collection__toolbar-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-  #shopify-section-{{ section.id }} .collection__count {
-    font-size: var(--f2);
-    opacity: 0.8;
-  }
-  #shopify-section-{{ section.id }} .collection__sort {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  #shopify-section-{{ section.id }} .collection__sort-label {
-    margin-bottom: 0;
-    white-space: nowrap;
-  }
-  #shopify-section-{{ section.id }} .collection__sort .select__select {
-    width: auto;
-    min-width: 200px;
-  }
-  #shopify-section-{{ section.id }} .collection__empty {
-    text-align: center;
-    padding: 60px 0;
-    font-size: var(--f3);
-  }
-  #shopify-section-{{ section.id }} .collection__empty .button {
-    margin-top: 20px;
-  }
-  #shopify-section-{{ section.id }} .pagination {
-    margin-top: 40px;
-  }
-  #shopify-section-{{ section.id }} .pagination__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  #shopify-section-{{ section.id }} .pagination__item {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    min-height: 40px;
-    padding: 0 8px;
-    font-size: var(--f2);
-    color: var(--color-text, #000);
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: var(--inputs-radius, 4px);
-  }
-  #shopify-section-{{ section.id }} a.pagination__item:hover {
-    border-color: var(--color-border, #c2c2c2);
-  }
-  #shopify-section-{{ section.id }} .pagination__item--current {
-    border-color: var(--color-accent, #000);
-    font-weight: bold;
-  }
-  @media screen and (max-width: 1000px) {
-    #shopify-section-{{ section.id }} .collection__toolbar-bar {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    #shopify-section-{{ section.id }} .collection__sort .select__select {
-      min-width: 0;
-      flex: 1;
-    }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .collection-card__image,
+    #shopify-section-{{ section.id }} .collection__sidebar,
+    #shopify-section-{{ section.id }} .collection__drawer-backdrop,
+    #shopify-section-{{ section.id }} .collection__filter-chevron,
+    #shopify-section-{{ section.id }} .collection-card__dialog,
+    #shopify-section-{{ section.id }} .collection-card__heart-icon,
+    #shopify-section-{{ section.id }} .collection-card__shop-list label,
+    #shopify-section-{{ section.id }} .pagination__item { transition: none; }
+    #shopify-section-{{ section.id }} .collection-card__dialog[open] .collection-card__shop-list label,
+    #shopify-section-{{ section.id }} .collection-card__save[aria-pressed="true"] .collection-card__heart-icon { animation: none; opacity: 1; transform: none; }
   }
 </style>
+
+<script>
+  (() => {
+    const section = document.querySelector('[data-collection-section="{{ section.id }}"]');
+    if (!section || section.dataset.enhanced === 'true') return;
+    section.dataset.enhanced = 'true';
+
+    const sidebar = section.querySelector('.collection__sidebar');
+    const trigger = section.querySelector('.collection__filter-trigger');
+    const closeButton = section.querySelector('.collection__sidebar-close');
+    const backdrop = section.querySelector('.collection__drawer-backdrop');
+    let lastTrigger = null;
+
+    const setDrawer = (open) => {
+      if (!sidebar || !trigger || !backdrop) return;
+      sidebar.classList.toggle('is-open', open);
+      backdrop.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', String(open));
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        lastTrigger = document.activeElement;
+        requestAnimationFrame(() => closeButton?.focus());
+      } else if (lastTrigger) {
+        lastTrigger.focus();
+      }
+    };
+
+    trigger?.addEventListener('click', () => setDrawer(true));
+    closeButton?.addEventListener('click', () => setDrawer(false));
+    backdrop?.addEventListener('click', () => setDrawer(false));
+
+    section.addEventListener('click', (event) => {
+      const saveButton = event.target.closest('[data-card-save]');
+      if (saveButton) {
+        const card = saveButton.closest('.collection-card');
+        const nextPressed = saveButton.getAttribute('aria-pressed') !== 'true';
+        card?.querySelectorAll('[data-card-save]').forEach((button) => button.setAttribute('aria-pressed', String(nextPressed)));
+        return;
+      }
+
+      const myShopButton = event.target.closest('[data-open-myshop]');
+      if (myShopButton) {
+        document.getElementById(myShopButton.dataset.openMyshop)?.showModal();
+        return;
+      }
+
+      const dialogClose = event.target.closest('[data-close-dialog]');
+      if (dialogClose) {
+        dialogClose.closest('dialog')?.close();
+        return;
+      }
+    });
+
+    section.querySelectorAll('.collection-card__dialog').forEach((dialog) => {
+      dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && sidebar?.classList.contains('is-open')) setDrawer(false);
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -360,36 +295,9 @@
   "tag": "section",
   "class": "section-main-collection",
   "settings": [
-    {
-      "type": "range",
-      "id": "products_per_page",
-      "min": 8,
-      "max": 24,
-      "step": 4,
-      "default": 16,
-      "label": "t:sections.main_collection.settings.products_per_page.label"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 2,
-      "max": 5,
-      "step": 1,
-      "default": 4,
-      "label": "t:sections.main_collection.settings.columns_desktop.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sorting",
-      "default": true,
-      "label": "t:sections.main_collection.settings.enable_sorting.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_filtering",
-      "default": true,
-      "label": "t:sections.main_collection.settings.enable_filtering.label"
-    }
+    { "type": "range", "id": "products_per_page", "min": 8, "max": 24, "step": 4, "default": 16, "label": "t:sections.main_collection.settings.products_per_page.label" },
+    { "type": "checkbox", "id": "enable_sorting", "default": true, "label": "t:sections.main_collection.settings.enable_sorting.label" },
+    { "type": "checkbox", "id": "enable_filtering", "default": true, "label": "t:sections.main_collection.settings.enable_filtering.label" }
   ]
 }
 {% endschema %}

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "logo_width": 120,
@@ -15,7 +24,7 @@
     "body_scale": 100,
     "page_width": 1240,
     "spacing_sections": 64,
-    "buttons_radius": 0,
+    "buttons_radius": 10,
     "inputs_radius": 0,
     "media_radius": 0,
     "card_image_ratio": "portrait",
@@ -44,7 +53,7 @@
       "body_scale": 100,
       "page_width": 1240,
       "spacing_sections": 64,
-      "buttons_radius": 0,
+      "buttons_radius": 10,
       "inputs_radius": 0,
       "media_radius": 0,
       "card_image_ratio": "portrait",
