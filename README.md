@@ -183,13 +183,6 @@ shopify theme push --store SUA-LOJA.myshopify.com --unpublished
 
 ---
 
-## Licença
-
-Uso livre pela [Team Lecdt](https://lecdt.com) e por quem clonar esta base.
-Adapte à vontade para os seus projetos.
-
----
-
 <sub>
 Palavras-chave: shopify theme, tema shopify, shopify liquid, online store 2.0,
 starter theme, boilerplate, scaffold, ecommerce, e-commerce, loja virtual,
