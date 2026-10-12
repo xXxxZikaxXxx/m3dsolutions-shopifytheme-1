@@ -31,7 +31,7 @@
             class="pagination__item pagination__item--prev"
             aria-label="{{ 'general.pagination.previous' | t }}"
           >
-            <span aria-hidden="true">&larr;</span>
+            {% render 'icon', name: 'm3d-arrow-left' %}
           </a>
         </li>
       {%- endif -%}
@@ -69,7 +69,7 @@
             class="pagination__item pagination__item--next"
             aria-label="{{ 'general.pagination.next' | t }}"
           >
-            <span aria-hidden="true">&rarr;</span>
+            {% render 'icon', name: 'm3d-arrow' %}
           </a>
         </li>
       {%- endif -%}

@@ -1,42 +1,71 @@
-{%- comment -%}
-  ============================================================
-  icon — biblioteca de ícones SVG inline
-  ============================================================
+{% doc %}
+  Renders decorative M3D icons from the approved design/icones sources.
+  Social icons preserve their official monochrome geometry.
+  Accessible action names belong on the surrounding button or link.
 
-  O QUE FAZ:
-  Renderiza um ícone SVG inline pelo nome, com width/height explícitos
-  (bom para acessibilidade e performance). Usa currentColor, então herda
-  a cor do texto do elemento pai.
+  @param {string} name - M3D icon name (m3d-*) or instagram/facebook/linkedin.
+  @param {number} [size] - Optional size: 16, 18, 20 (default), or 24 px.
+  @param {string} [class] - Optional additional CSS classes.
 
-  COMO USAR:
-  {% render 'icon', name: 'cart' %}
-
-  PARÂMETROS:
-  - name: nome do ícone. Disponíveis:
-    search, account, cart, close, chevron, trash,
-    instagram, facebook, linkedin.
-
-  OBSERVAÇÕES:
-  Nome inexistente não renderiza nada (case sem when correspondente).
-  Para adicionar um ícone novo, crie mais um bloco {%- when 'nome' -%}.
-{%- endcomment -%}
-{%- case name -%}
-  {%- when 'search' -%}
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-  {%- when 'account' -%}
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M5 20c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-  {%- when 'cart' -%}
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M6 6h15l-1.5 9h-12L6 6Zm0 0-.5-3H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg>
-  {%- when 'close' -%}
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-  {%- when 'chevron' -%}
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  {%- when 'trash' -%}
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M3 5h14M8 5V3h4v2m-6 0 1 12h6l1-12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  {%- when 'instagram' -%}
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg>
-  {%- when 'facebook' -%}
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M14 8h2V5h-2c-2 0-3 1.5-3 3.5V11H9v3h2v6h3v-6h2l.5-3H14V8.5c0-.3.2-.5.5-.5Z" fill="currentColor"/></svg>
-  {%- when 'linkedin' -%}
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M7 10v6M7 7v.01M11 16v-3.5a1.5 1.5 0 0 1 3 0V16m-3-3.5V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-{%- endcase -%}
+  @example
+  {% render 'icon', name: 'm3d-cart', size: 24 %}
+{% enddoc %}
+{%- liquid
+  assign icon_size = 20
+  if size == 16 or size == '16'
+    assign icon_size = 16
+  elsif size == 18 or size == '18'
+    assign icon_size = 18
+  elsif size == 24 or size == '24'
+    assign icon_size = 24
+  endif
+-%}
+{%- capture icon_geometry -%}
+  {%- case name -%}
+    {%- when 'm3d-account' -%}
+      <circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="8.5" r="3.5"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M5 19.5c1.2-3.2 3.9-5 7-5s5.8 1.8 7 5"/>
+    {%- when 'm3d-alert' -%}
+      <circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" r="8.5"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 7.8v5"/><circle fill="currentColor" cx="12" cy="16.3" r="1"/>
+    {%- when 'm3d-arrow-left' -%}
+      <g transform="matrix(-1 0 0 1 24 0)"><path fill="currentColor" d="M3.2 13.4c4.9-1.3 9.7-1.7 14.4-1.2l.1 1.3c-4.6-.3-9.3.1-14.1 1.1z"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M13.8 7.6 19 12.1l-5.2 4.5"/></g>
+    {%- when 'm3d-arrow' -%}
+      <path fill="currentColor" d="M3.2 13.4c4.9-1.3 9.7-1.7 14.4-1.2l.1 1.3c-4.6-.3-9.3.1-14.1 1.1z"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M13.8 7.6 19 12.1l-5.2 4.5"/>
+    {%- when 'm3d-bookmark' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1z"/><path fill="currentColor" d="M9.1 8.3c2-.5 3.9-.6 5.9-.3l-.1 1.1c-1.9-.2-3.7-.1-5.6.3z"/>
+    {%- when 'm3d-cart' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M5.5 8.5h13l-1 10.9c-.1.9-.8 1.6-1.7 1.6H8.2c-.9 0-1.6-.7-1.7-1.6z"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M9 10.5V7a3 3 0 0 1 6 0v3.5"/><path fill="currentColor" d="M9.3 14.6c1.9-.4 3.7-.5 5.6-.3l-.1 1.1c-1.8-.2-3.6-.1-5.3.3z"/>
+    {%- when 'm3d-check' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M5.5 12.5l4 4 9-9.5"/>
+    {%- when 'm3d-chevron' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M6.5 9.5 12 15l5.5-5.5"/>
+    {%- when 'm3d-close' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>
+    {%- when 'm3d-external' -%}
+      <path fill="currentColor" d="M5.2 19.6c3.2-4.1 6.6-7.5 10.3-10.4l.9.9c-3.5 3-6.8 6.4-10 10.4z"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M10 5.5h8.5V14"/>
+    {%- when 'm3d-filter' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4.5 7h9M17.5 7h2M4.5 12h3M11.5 12h8M4.5 17h7M15.5 17h4"/><circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="15.5" cy="7" r="1.6"/><circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="9.5" cy="12" r="1.6"/><circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="13.5" cy="17" r="1.6"/>
+    {%- when 'm3d-minus' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M5.5 12h13"/>
+    {%- when 'm3d-plus' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 5.5v13M5.5 12h13"/>
+    {%- when 'm3d-quote' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M7 3.5h7l4 4V19a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19V5a1.5 1.5 0 0 1 1-1.5z"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M14 3.5V7a.5.5 0 0 0 .5.5H18"/><path fill="currentColor" d="M8.7 12.2c2.1-.4 4.3-.5 6.6-.3l-.1 1.1c-2.2-.2-4.3-.1-6.4.3z"/><path fill="currentColor" d="M8.7 15.7c1.4-.3 2.9-.4 4.4-.3l-.1 1.1c-1.4-.1-2.8 0-4.2.3z"/>
+    {%- when 'm3d-search' -%}
+      <circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="10.5" cy="10.5" r="6"/><path fill="currentColor" d="M14.7 15.8l1.1-1.1 4.5 4.4c.4.4.4 1 0 1.3-.4.4-.9.4-1.3 0z"/>
+    {%- when 'm3d-share' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M8.5 10H7a1.5 1.5 0 0 0-1.5 1.5v7A1.5 1.5 0 0 0 7 20h10a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 17 10h-1.5"/><path fill="currentColor" d="M11.3 15.6 11.6 5h.8l.3 10.6c0 .4-.3.7-.7.7s-.7-.3-.7-.7z"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M8.6 7.4 12 4l3.4 3.4"/>
+    {%- when 'm3d-trash' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4.5 7h15M9.5 7V5.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V7M6.5 7l.8 11.6A1.5 1.5 0 0 0 8.8 20h6.4a1.5 1.5 0 0 0 1.5-1.4L17.5 7"/>
+    {%- when 'm3d-upload' -%}
+      <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4.5 15v3A2 2 0 0 0 6.5 20h11a2 2 0 0 0 2-2v-3"/><path fill="currentColor" d="M11.3 15.1 11.6 5h.8l.3 10.1c0 .4-.3.7-.7.7s-.7-.3-.7-.7z"/><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M8.6 7.4 12 4l3.4 3.4"/>
+    {%- when 'instagram' -%}
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="7" r="1" fill="currentColor"/>
+    {%- when 'facebook' -%}
+      <path d="M14 8h2V5h-2c-2 0-3 1.5-3 3.5V11H9v3h2v6h3v-6h2l.5-3H14V8.5c0-.3.2-.5.5-.5Z" fill="currentColor"/>
+    {%- when 'linkedin' -%}
+      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M7 10v6M7 7v.01M11 16v-3.5a1.5 1.5 0 0 1 3 0V16m-3-3.5V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  {%- endcase -%}
+{%- endcapture -%}
+{%- if icon_geometry != blank -%}
+  <svg class="m3d-icon m3d-icon--{{ icon_size }} m3d-icon--{{ name | escape }}{% if class != blank %} {{ class | escape }}{% endif %}" width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">{{ icon_geometry }}</svg>
+{%- endif -%}

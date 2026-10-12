@@ -2,8 +2,54 @@
   "sections": {
     "m3d_home": {
       "type": "m3d-home",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "bottles": {
+          "type": "category",
+          "settings": {
+            "collection": "drinkware",
+            "title": "Copos e garrafas"
+          }
+        },
+        "bags": {
+          "type": "category",
+          "settings": {
+            "collection": "bags",
+            "title": "Sacos e mochilas"
+          }
+        },
+        "wear": {
+          "type": "category",
+          "settings": {
+            "collection": "t-shirts",
+            "title": "Vestuário"
+          }
+        },
+        "notebooks": {
+          "type": "category",
+          "settings": {
+            "collection": "notebooks",
+            "title": "Cadernos"
+          }
+        },
+        "travel": {
+          "type": "category",
+          "settings": {
+            "collection": "travel-essentials",
+            "title": "Viagem"
+          }
+        }
+      },
+      "block_order": [
+        "bottles",
+        "bags",
+        "wear",
+        "notebooks",
+        "travel"
+      ]
     }
   },
-  "order": ["m3d_home"]
+  "order": [
+    "m3d_home"
+  ]
 }

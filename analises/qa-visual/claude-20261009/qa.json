@@ -1,0 +1,1109 @@
+[
+  {
+    "name": "cart-empty",
+    "path": "/cart",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/cart",
+    "title": "Your Shopping Cart – M3D Solutions",
+    "h1": [
+      "O seu carrinho está vazio"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "O seu carrinho está vazio Explore o catálogo e escolha os artigos que procura. Explorar produtos",
+    "jsErrors": []
+  },
+  {
+    "name": "account-login",
+    "path": "/account/login",
+    "viewport": 1440,
+    "status": 404,
+    "finalUrl": "/75287035974/account?locale=en&region_country=BR&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1aHF5anMtdzUubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzkyMTcwNDc5LCJuYmYiOjE3OTE1NjU2Nzl9.JCJknDEVXPo1ilwVgBxMiV_Fnn0j5fmzbue6c-xF6ik",
+    "title": "404 Not Found – M3D Solutions",
+    "h1": [
+      "Page not found"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [
+      "Search",
+      "Search"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "404 Page not found The page you are looking for does not exist. Search Search Explorar produtos",
+    "jsErrors": []
+  },
+  {
+    "name": "account-register",
+    "path": "/account/register",
+    "viewport": 1440,
+    "error": "Error: Page.goto: net::ERR_ABORTED at http://127.0.0.1:9292/account/register\nCall log:\n  - navigating to \"http://127.0.0.1:9292/account/register\", waiting until \"domcontentloaded\"\n",
+    "jsErrors": []
+  },
+  {
+    "name": "account",
+    "path": "/account",
+    "viewport": 1440,
+    "status": 502,
+    "finalUrl": "/75287035974/account?locale=en&region_country=BR&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1aHF5anMtdzUubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzkyMTcwNDg0LCJuYmYiOjE3OTE1NjU2ODR9.lCFZYdy-tNe36r0rS5L9Ezfl8Iv35m1CGBuYJXcYLLk",
+    "title": "Failed to render storefront with status 502 (Bad Gateway).",
+    "h1": [],
+    "overflow": 0,
+    "fonts": {
+      "body": "Inter",
+      "h1": null,
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 0,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Failed to render storefront with status 502 (Bad Gateway). Response body object should not be disturbed or locked TypeError: at extractBody (node:internal/deps/undici/undici:5574:17) at new Response (node:internal/deps/undici/undici:9135:41) at Ht (file:///C:/Users/Administrator/AppData/Roaming/npm/node_modules/@shopify/cli/dist/chunk-NTVEJYKI.js:69:4095) at Q (file:///C:/Users/Administrator/AppData/Roaming/npm/node_modules/@shopify/cli/dist/chunk-NTVEJYKI.js:69:3616) at file:///C:/Users/Administrator/AppData/Roaming/npm/node_modules/@shopify/cli/dist/chunk-NTVEJYKI.js:70:339 at process.proces",
+    "jsErrors": []
+  },
+  {
+    "name": "pages-login",
+    "path": "/pages/login",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/pages/login",
+    "title": "Login – M3D Solutions",
+    "h1": [
+      "Bem-vindo à M3D"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "A MINHA CONTA Bem-vindo à M3D Entre na sua conta para continuar de onde ficou. Entrar na minha conta E-mail Enviaremos um código de verificação para este e-mail. Continuar com código A SUA MARCA. OS SEUS PROJETOS. Tudo começa com uma ideia. Encontre produtos para a sua empresa e prepare o seu próximo projeto de personalização. Primeira vez na M3D? Use o seu e-mail para criar ou aceder à conta com um código de verificação. Começar com e-mail",
+    "jsErrors": []
+  },
+  {
+    "name": "search-empty",
+    "path": "/search",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/search?type=product&options%5Bprefix%5D=last",
+    "title": "Search – M3D Solutions",
+    "h1": [
+      "Resultados para \"\""
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Resultados da pesquisa Resultados para \"\"",
+    "jsErrors": []
+  },
+  {
+    "name": "search-results",
+    "path": "/search?q=saco",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/search?q=saco&type=product&options%5Bprefix%5D=last",
+    "title": "Search: 23 results found for \"saco\" – M3D Solutions",
+    "h1": [
+      "Resultados para \"saco\""
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Resultados da pesquisa Resultados para \"saco\" Ordenar por Preço ascendente Preço descendente Material Técnica de impressão Cor Stock Etiquetagem Aplicar Remover tudo 23 produtos MyShop M3D-SN002-VMBRPR SACO NATALÍCIO BONECO DE NEVE COM CORDÃO Preço €1,80 MyShop 3S-0145 Amazon Sob consulta MyShop 3S-0160 Jeep Sob consulta MyShop 3S-0153 Jaguar Sob consulta MyShop 3S-0161 Carlsberg Sob consulta MyShop 3S-0156 JCB Sob consulta MyShop 3S-0148 Pepsi Sob consulta MyShop 3S-0154 I-Phone Sob consulta MyShop 3S-0147 Bear & Bull Sob consulta MyShop 3S-0151 Hummer Sob consulta MyShop 3S-0149 Aud",
+    "jsErrors": []
+  },
+  {
+    "name": "search-none",
+    "path": "/search?q=zzqxv",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/search?q=zzqxv&type=product&options%5Bprefix%5D=last",
+    "title": "Search: 22 results found for \"zzqxv\" – M3D Solutions",
+    "h1": [
+      "Resultados para \"zzqxv\""
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Resultados da pesquisa Resultados para \"zzqxv\" Ordenar por Preço ascendente Preço descendente Material Técnica de impressão Cor Stock Etiquetagem Aplicar Remover tudo 22 produtos MyShop 3S-0160 Jeep Sob consulta MyShop 3S-0148 Pepsi Sob consulta MyShop 3S-0161 Carlsberg Sob consulta MyShop 3S-0154 I-Phone Sob consulta MyShop 3S-0153 Jaguar Sob consulta MyShop 3S-0145 Amazon Sob consulta MyShop 3S-0149 Audi Sob consulta MyShop 3S-0156 JCB Sob consulta MyShop 3S-0147 Bear & Bull Sob consulta MyShop 3S-0155 Swiss Air Sob consulta MyShop 3S-0158 Royal Enfield Sob consulta MyShop 3S-0152 B",
+    "jsErrors": []
+  },
+  {
+    "name": "pages-contact",
+    "path": "/pages/contact",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/pages/contact",
+    "title": "Contato – M3D Solutions",
+    "h1": [
+      "Contact"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Contact Nome E-mail Telefone Mensagem Enviar mensagem",
+    "jsErrors": []
+  },
+  {
+    "name": "pages-kits",
+    "path": "/pages/kits-de-boas-vindas",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/pages/kits-de-boas-vindas",
+    "title": "Kits de boas-vindas – M3D Solutions",
+    "h1": [
+      "Kits de boas-vindas"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Kits de boas-vindas",
+    "jsErrors": []
+  },
+  {
+    "name": "pages-tecnologia",
+    "path": "/pages/tecnologia",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/pages/tecnologia",
+    "title": "Tecnologia – M3D Solutions",
+    "h1": [
+      "Tecnologia"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Tecnologia",
+    "jsErrors": []
+  },
+  {
+    "name": "policy-privacy",
+    "path": "/policies/privacy-policy",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/policies/privacy-policy",
+    "title": "Privacy policy – M3D Solutions",
+    "h1": [
+      "Privacy policy"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Privacy policy Last updated: September 7, 2026 M3D Solutions operates this store and website, including all related information, content, features, tools, products and services, in order to provide you, the customer, with a curated shopping experience (the \"Services\"). M3D Solutions is powered by Shopify, which enables us to provide the Services to you. This Privacy Policy describes how we collect, use, and disclose your personal information when you visit, use, or make a purchase or other transaction using the Services or otherwise communicate with us. If there is a conflict between our Terms",
+    "jsErrors": []
+  },
+  {
+    "name": "collections-all",
+    "path": "/collections/all",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/collections/all",
+    "title": "Products – M3D Solutions",
+    "h1": [
+      "Products"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / Products Products Ordenar por Preço ascendente Preço descendente Material Técnica de impressão Cor Stock Etiquetagem Aplicar Remover tudo 23 produtos MyShop 3S-0145 Amazon Sob consulta MyShop 3S-0149 Audi Sob consulta MyShop 3S-0152 Bacardi Sob consulta MyShop 3S-0147 Bear & Bull Sob consulta MyShop 3S-0159 Bridgestone Sob consulta MyShop 3S-0146 Budweiser Sob consulta MyShop 3S-0161 Carlsberg Sob consulta MyShop 3S-0151 Hummer Sob consulta MyShop 3S-0154 I-Phone Sob consulta MyShop 3S-0153 Jaguar Sob consulta MyShop 3S-0156 JCB Sob consulta MyShop 3S-0160 Jeep Sob consulta",
+    "jsErrors": []
+  },
+  {
+    "name": "404",
+    "path": "/pagina-inexistente",
+    "viewport": 1440,
+    "status": 404,
+    "finalUrl": "/pagina-inexistente",
+    "title": "404 Not Found – M3D Solutions",
+    "h1": [
+      "Page not found"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [
+      "Search",
+      "Search"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "404 Page not found The page you are looking for does not exist. Search Search Explorar produtos",
+    "jsErrors": []
+  },
+  {
+    "name": "pdp-saco",
+    "path": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO – M3D Solutions",
+    "h1": [
+      "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / SACO NATALÍCIO BONECO DE NEVE COM CORDÃO 2 / 2 ← → M3D Solutions SACO NATALÍCIO BONECO DE NEVE COM CORDÃO M3D-SN002-VMBRPR Preço €1,80 Stock (20) Cor · Beige Beige Red Quantidade Combinar quantidades de várias opções + Quantidade Consulte o stock de cada opção antes de adicionar. Personalização Sem personalização Configure as opções para preparar o seu pedido. Adicionar ao carrinho Adicionar ao MyShop Pedir orçamento Partilhar Tudo sobre este produto Especificações e materiais ⌄",
+    "jsErrors": []
+  },
+  {
+    "name": "pdp-saco",
+    "path": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "viewport": 1024,
+    "status": 200,
+    "finalUrl": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO – M3D Solutions",
+    "h1": [
+      "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / SACO NATALÍCIO BONECO DE NEVE COM CORDÃO 2 / 2 ← → M3D Solutions SACO NATALÍCIO BONECO DE NEVE COM CORDÃO M3D-SN002-VMBRPR Preço €1,80 Stock (20) Cor · Beige Beige Red Quantidade Combinar quantidades de várias opções + Quantidade Consulte o stock de cada opção antes de adicionar. Personalização Sem personalização Configure as opções para preparar o seu pedido. Adicionar ao carrinho Adicionar ao MyShop Pedir orçamento Partilhar Tudo sobre este produto Especificações e materiais ⌄",
+    "jsErrors": []
+  },
+  {
+    "name": "pdp-saco-added",
+    "path": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO – M3D Solutions",
+    "h1": [
+      "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / SACO NATALÍCIO BONECO DE NEVE COM CORDÃO 2 / 2 ← → M3D Solutions SACO NATALÍCIO BONECO DE NEVE COM CORDÃO M3D-SN002-VMBRPR Preço €1,80 Stock (20) Cor · Beige Beige Red Quantidade Combinar quantidades de várias opções + Quantidade Consulte o stock de cada opção antes de adicionar. Personalização Sem personalização Configure as opções para preparar o seu pedido. Adicionar ao carrinho Adicionar ao MyShop Pedir orçamento Adicionado ao carrinho Partilhar Tudo sobre este produto Especificações e materiais ⌄",
+    "jsErrors": []
+  },
+  {
+    "name": "cart-filled",
+    "path": "/cart",
+    "viewport": 1440,
+    "status": 200,
+    "finalUrl": "/cart",
+    "title": "Your Shopping Cart – M3D Solutions",
+    "h1": [
+      "O seu carrinho"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "ui-sans-serif"
+    },
+    "liquidError": false,
+    "english": [
+      "Subtotal"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 2,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "O seu carrinho Artigos do carrinho Produto Quantidade Total SACO NATALÍCIO BONECO DE NEVE COM CORDÃO Cor: Beige Quantidade de SACO NATALÍCIO BONECO DE NEVE COM CORDÃO − + Remover Preço unitário: €1,80 Instruções especiais do pedido Subtotal €1,80 Impostos incluídos e transporte calculado no checkout Atualizar Finalizar compraJá tem conta? Entrar",
+    "jsErrors": []
+  },
+  {
+    "name": "cart-empty",
+    "path": "/cart",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/cart",
+    "title": "Your Shopping Cart – M3D Solutions",
+    "h1": [
+      "O seu carrinho está vazio"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "O seu carrinho está vazio Explore o catálogo e escolha os artigos que procura. Explorar produtos",
+    "jsErrors": []
+  },
+  {
+    "name": "account-login",
+    "path": "/account/login",
+    "viewport": 390,
+    "status": 404,
+    "finalUrl": "/75287035974/account?locale=en&region_country=BR&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1aHF5anMtdzUubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzkyMTcwNTQxLCJuYmYiOjE3OTE1NjU3NDF9.97scaBmlch1EyrL50X20lYGmLEh50XWzgn0-paTTR8I",
+    "title": "404 Not Found – M3D Solutions",
+    "h1": [
+      "Page not found"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [
+      "Search",
+      "Search"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "404 Page not found The page you are looking for does not exist. Search Search Explorar produtos",
+    "jsErrors": []
+  },
+  {
+    "name": "account-register",
+    "path": "/account/register",
+    "viewport": 390,
+    "status": 404,
+    "finalUrl": "/75287035974/account?locale=en&region_country=BR&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1aHF5anMtdzUubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzkyMTcwNTQ0LCJuYmYiOjE3OTE1NjU3NDR9.wmafXaNbFh2uBv3yA_bJmm9rXZQbTp4OgWagdi274VM",
+    "title": "404 Not Found – M3D Solutions",
+    "h1": [
+      "Page not found"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [
+      "Search",
+      "Search"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "404 Page not found The page you are looking for does not exist. Search Search Explorar produtos",
+    "jsErrors": []
+  },
+  {
+    "name": "account",
+    "path": "/account",
+    "viewport": 390,
+    "status": 404,
+    "finalUrl": "/75287035974/account?locale=en&region_country=BR&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1aHF5anMtdzUubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzkyMTcwNTQ5LCJuYmYiOjE3OTE1NjU3NDl9.thX2AF2Rjy_-J2Et4j-rN8do7bwKXsAUMKQ_GGGSeBo",
+    "title": "404 Not Found – M3D Solutions",
+    "h1": [
+      "Page not found"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [
+      "Search",
+      "Search"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "404 Page not found The page you are looking for does not exist. Search Search Explorar produtos",
+    "jsErrors": []
+  },
+  {
+    "name": "pages-login",
+    "path": "/pages/login",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/pages/login",
+    "title": "Login – M3D Solutions",
+    "h1": [
+      "Bem-vindo à M3D"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "A MINHA CONTA Bem-vindo à M3D Entre na sua conta para continuar de onde ficou. Entrar na minha conta E-mail Enviaremos um código de verificação para este e-mail. Continuar com código Primeira vez na M3D? Use o seu e-mail para criar ou aceder à conta com um código de verificação. Começar com e-mail",
+    "jsErrors": []
+  },
+  {
+    "name": "search-empty",
+    "path": "/search",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/search?type=product&options%5Bprefix%5D=last",
+    "title": "Search – M3D Solutions",
+    "h1": [
+      "Resultados para \"\""
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Resultados da pesquisa Resultados para \"\"",
+    "jsErrors": []
+  },
+  {
+    "name": "search-results",
+    "path": "/search?q=saco",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/search?q=saco&type=product&options%5Bprefix%5D=last",
+    "title": "Search: 23 results found for \"saco\" – M3D Solutions",
+    "h1": [
+      "Resultados para \"saco\""
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Resultados da pesquisa Resultados para \"saco\" 23 produtos Filtros e ordenar MyShop M3D-SN002-VMBRPR SACO NATALÍCIO BONECO DE NEVE COM CORDÃO Preço €1,80 MyShop 3S-0145 Amazon Sob consulta MyShop 3S-0160 Jeep Sob consulta MyShop 3S-0153 Jaguar Sob consulta MyShop 3S-0161 Carlsberg Sob consulta MyShop 3S-0156 JCB Sob consulta MyShop 3S-0148 Pepsi Sob consulta MyShop 3S-0154 I-Phone Sob consulta MyShop 3S-0147 Bear & Bull Sob consulta MyShop 3S-0151 Hummer Sob consulta MyShop 3S-0149 Audi Sob consulta MyShop 3S-0158 Royal Enfield Sob consulta MyShop 3S-0150 M&S Sob consulta MyShop 3S-015",
+    "jsErrors": []
+  },
+  {
+    "name": "search-none",
+    "path": "/search?q=zzqxv",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/search?q=zzqxv&type=product&options%5Bprefix%5D=last",
+    "title": "Search: 22 results found for \"zzqxv\" – M3D Solutions",
+    "h1": [
+      "Resultados para \"zzqxv\""
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Resultados da pesquisa Resultados para \"zzqxv\" 22 produtos Filtros e ordenar MyShop 3S-0160 Jeep Sob consulta MyShop 3S-0148 Pepsi Sob consulta MyShop 3S-0161 Carlsberg Sob consulta MyShop 3S-0154 I-Phone Sob consulta MyShop 3S-0153 Jaguar Sob consulta MyShop 3S-0145 Amazon Sob consulta MyShop 3S-0149 Audi Sob consulta MyShop 3S-0156 JCB Sob consulta MyShop 3S-0147 Bear & Bull Sob consulta MyShop 3S-0155 Swiss Air Sob consulta MyShop 3S-0158 Royal Enfield Sob consulta MyShop 3S-0152 Bacardi Sob consulta MyShop 3S-0151 Hummer Sob consulta MyShop 3S-0159 Bridgestone Sob consulta MyShop ",
+    "jsErrors": []
+  },
+  {
+    "name": "pages-contact",
+    "path": "/pages/contact",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/pages/contact",
+    "title": "Contato – M3D Solutions",
+    "h1": [
+      "Contact"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [
+      "Nome",
+      "E-mail",
+      "Telefone",
+      "Mensagem"
+    ],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Contact Nome E-mail Telefone Mensagem Enviar mensagem",
+    "jsErrors": []
+  },
+  {
+    "name": "pages-kits",
+    "path": "/pages/kits-de-boas-vindas",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/pages/kits-de-boas-vindas",
+    "title": "Kits de boas-vindas – M3D Solutions",
+    "h1": [
+      "Kits de boas-vindas"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Kits de boas-vindas",
+    "jsErrors": []
+  },
+  {
+    "name": "pages-tecnologia",
+    "path": "/pages/tecnologia",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/pages/tecnologia",
+    "title": "Tecnologia – M3D Solutions",
+    "h1": [
+      "Tecnologia"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Tecnologia",
+    "jsErrors": []
+  },
+  {
+    "name": "policy-privacy",
+    "path": "/policies/privacy-policy",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/policies/privacy-policy",
+    "title": "Privacy policy – M3D Solutions",
+    "h1": [
+      "Privacy policy"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": null,
+      "input": null
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Privacy policy Last updated: September 7, 2026 M3D Solutions operates this store and website, including all related information, content, features, tools, products and services, in order to provide you, the customer, with a curated shopping experience (the \"Services\"). M3D Solutions is powered by Shopify, which enables us to provide the Services to you. This Privacy Policy describes how we collect, use, and disclose your personal information when you visit, use, or make a purchase or other transaction using the Services or otherwise communicate with us. If there is a conflict between our Terms",
+    "jsErrors": []
+  },
+  {
+    "name": "collections-all",
+    "path": "/collections/all",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/collections/all",
+    "title": "Products – M3D Solutions",
+    "h1": [
+      "Products"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / Products Products 23 produtos Filtros e ordenar MyShop 3S-0145 Amazon Sob consulta MyShop 3S-0149 Audi Sob consulta MyShop 3S-0152 Bacardi Sob consulta MyShop 3S-0147 Bear & Bull Sob consulta MyShop 3S-0159 Bridgestone Sob consulta MyShop 3S-0146 Budweiser Sob consulta MyShop 3S-0161 Carlsberg Sob consulta MyShop 3S-0151 Hummer Sob consulta MyShop 3S-0154 I-Phone Sob consulta MyShop 3S-0153 Jaguar Sob consulta MyShop 3S-0156 JCB Sob consulta MyShop 3S-0160 Jeep Sob consulta MyShop 3S-0150 M&S Sob consulta MyShop 3S-0157 Marshal Sob consulta MyShop M3D-SFY004-BRVMVDD MOUDURA",
+    "jsErrors": []
+  },
+  {
+    "name": "404",
+    "path": "/pagina-inexistente",
+    "viewport": 390,
+    "status": 404,
+    "finalUrl": "/pagina-inexistente",
+    "title": "404 Not Found – M3D Solutions",
+    "h1": [
+      "Page not found"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [
+      "Search",
+      "Search"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "404 Page not found The page you are looking for does not exist. Search Search Explorar produtos",
+    "jsErrors": []
+  },
+  {
+    "name": "pdp-saco",
+    "path": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO – M3D Solutions",
+    "h1": [
+      "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / SACO NATALÍCIO BONECO DE NEVE COM CORDÃO 2 / 2 ← → M3D Solutions SACO NATALÍCIO BONECO DE NEVE COM CORDÃO M3D-SN002-VMBRPR Preço €1,80 Stock (20) Cor · Beige Beige Red Quantidade Combinar quantidades de várias opções + Quantidade Consulte o stock de cada opção antes de adicionar. Personalização Sem personalização Configure as opções para preparar o seu pedido. Adicionar ao carrinho Adicionar ao MyShop Pedir orçamento Partilhar Tudo sobre este produto Especificações e materiais ⌄",
+    "jsErrors": []
+  },
+  {
+    "name": "pdp-saco-added",
+    "path": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO – M3D Solutions",
+    "h1": [
+      "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / SACO NATALÍCIO BONECO DE NEVE COM CORDÃO 2 / 2 ← → M3D Solutions SACO NATALÍCIO BONECO DE NEVE COM CORDÃO M3D-SN002-VMBRPR Preço €1,80 Stock (20) Cor · Beige Beige Red Quantidade Combinar quantidades de várias opções + Quantidade Consulte o stock de cada opção antes de adicionar. Personalização Sem personalização Configure as opções para preparar o seu pedido. Adicionar ao carrinho Adicionar ao MyShop Pedir orçamento Adicionado ao carrinho Partilhar Tudo sobre este produto Especificações e materiais ⌄",
+    "jsErrors": []
+  },
+  {
+    "name": "cart-filled",
+    "path": "/cart",
+    "viewport": 390,
+    "status": 200,
+    "finalUrl": "/cart",
+    "title": "Your Shopping Cart – M3D Solutions",
+    "h1": [
+      "O seu carrinho"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "ui-sans-serif"
+    },
+    "liquidError": false,
+    "english": [
+      "Subtotal"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 2,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "O seu carrinho Artigos do carrinho SACO NATALÍCIO BONECO DE NEVE COM CORDÃO Cor: Beige Quantidade de SACO NATALÍCIO BONECO DE NEVE COM CORDÃO − + Remover Preço unitário: €1,80 Instruções especiais do pedido Subtotal €1,80 Impostos incluídos e transporte calculado no checkout Atualizar Finalizar compraJá tem conta? Entrar",
+    "jsErrors": []
+  },
+  {
+    "name": "pdp-saco",
+    "path": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "viewport": 360,
+    "status": 200,
+    "finalUrl": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO – M3D Solutions",
+    "h1": [
+      "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / SACO NATALÍCIO BONECO DE NEVE COM CORDÃO 2 / 2 ← → M3D Solutions SACO NATALÍCIO BONECO DE NEVE COM CORDÃO M3D-SN002-VMBRPR Preço €1,80 Stock (20) Cor · Beige Beige Red Quantidade Combinar quantidades de várias opções + Quantidade Consulte o stock de cada opção antes de adicionar. Personalização Sem personalização Configure as opções para preparar o seu pedido. Adicionar ao carrinho Adicionar ao MyShop Pedir orçamento Partilhar Tudo sobre este produto Especificações e materiais ⌄",
+    "jsErrors": []
+  },
+  {
+    "name": "pdp-saco-added",
+    "path": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "viewport": 360,
+    "status": 200,
+    "finalUrl": "/products/saco-natalicio-boneco-de-neve-com-cordao",
+    "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO – M3D Solutions",
+    "h1": [
+      "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "Raleway"
+    },
+    "liquidError": false,
+    "english": [],
+    "brokenImages": 0,
+    "unnamedButtons": 1,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "Início / Produtos / SACO NATALÍCIO BONECO DE NEVE COM CORDÃO 2 / 2 ← → M3D Solutions SACO NATALÍCIO BONECO DE NEVE COM CORDÃO M3D-SN002-VMBRPR Preço €1,80 Stock (20) Cor · Beige Beige Red Quantidade Combinar quantidades de várias opções + Quantidade Consulte o stock de cada opção antes de adicionar. Personalização Sem personalização Configure as opções para preparar o seu pedido. Adicionar ao carrinho Adicionar ao MyShop Pedir orçamento Adicionado ao carrinho Partilhar Tudo sobre este produto Especificações e materiais ⌄",
+    "jsErrors": []
+  },
+  {
+    "name": "cart-filled",
+    "path": "/cart",
+    "viewport": 360,
+    "status": 200,
+    "finalUrl": "/cart",
+    "title": "Your Shopping Cart – M3D Solutions",
+    "h1": [
+      "O seu carrinho"
+    ],
+    "overflow": 0,
+    "fonts": {
+      "body": "Raleway",
+      "h1": "Raleway",
+      "button": "Raleway",
+      "input": "ui-sans-serif"
+    },
+    "liquidError": false,
+    "english": [
+      "Subtotal"
+    ],
+    "brokenImages": 0,
+    "unnamedButtons": 2,
+    "unlabelled": [],
+    "smallControls": [],
+    "smallText": [],
+    "dynamicCheckout": false,
+    "zeroPrice": false,
+    "text": "O seu carrinho Artigos do carrinho SACO NATALÍCIO BONECO DE NEVE COM CORDÃO Cor: Beige Quantidade de SACO NATALÍCIO BONECO DE NEVE COM CORDÃO − + Remover Preço unitário: €1,80 Instruções especiais do pedido Subtotal €1,80 Impostos incluídos e transporte calculado no checkout Atualizar Finalizar compraJá tem conta? Entrar",
+    "jsErrors": []
+  }
+]

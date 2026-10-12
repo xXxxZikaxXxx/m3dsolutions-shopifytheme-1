@@ -16,7 +16,7 @@
           <img src="{{ 'm3dsolutionslogo.png' | asset_url }}" width="3375" height="4219" alt="{{ shop.name | escape }}">
         {%- endif -%}
       </div>
-      <button type="button" class="m3d-auth__close" data-m3d-dialog-close aria-label="{{ 'm3d_auth.close' | t | escape }}">{% render 'icon', name: 'close' %}</button>
+      <button type="button" class="m3d-auth__close" data-m3d-dialog-close aria-label="{{ 'm3d_auth.close' | t | escape }}">{% render 'icon', name: 'm3d-close' %}</button>
     </div>
     <form class="m3d-auth__panel" action="{{ routes.storefront_login_url }}" method="get" data-m3d-email-login data-login-url="{{ routes.storefront_login_url }}">
       <h2 id="{{ id_prefix }}-title" class="m3d-auth__heading" tabindex="-1" data-m3d-dialog-focus>{{ 'm3d_auth.cart_login_title' | t }}</h2>

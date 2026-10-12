@@ -1,0 +1,86 @@
+[
+  {
+    "label": "home",
+    "width": 1440,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "search",
+    "width": 1440,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "search-empty",
+    "width": 1440,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "collection",
+    "width": 1440,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "pdp",
+    "width": 1440,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "cart",
+    "width": 1440,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "quote",
+    "width": 1440,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "home",
+    "width": 390,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "search",
+    "width": 390,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "search-empty",
+    "width": 390,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "collection",
+    "width": 390,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "pdp",
+    "width": 390,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "cart",
+    "width": 390,
+    "status": 200,
+    "overflow": 0
+  },
+  {
+    "label": "quote",
+    "width": 390,
+    "status": 200,
+    "overflow": 0
+  }
+]

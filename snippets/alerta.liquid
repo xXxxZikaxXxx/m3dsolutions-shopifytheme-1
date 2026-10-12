@@ -25,9 +25,9 @@
 {%- endcomment -%}
 <div id="alerta" class="alerta-global">
   <div class="conteudo">
-    <div class="icone"></div>
+    <div class="icone" aria-hidden="true">{% render 'icon', name: 'm3d-check', size: 24, class: 'alerta-global__success-icon' %}{% render 'icon', name: 'm3d-alert', size: 24, class: 'alerta-global__error-icon' %}</div>
     <div class="mensagem"></div>
-    <button class="fechar" onclick="fecharAlerta()">&times;</button>
+    <button class="fechar" type="button" aria-label="{{ 'accessibility.close' | t }}" onclick="fecharAlerta()">{% render 'icon', name: 'm3d-close' %}</button>
   </div>
 </div>
 
@@ -95,33 +95,9 @@
     z-index: 2;
   }
 
-  .alerta-global.positivo .icone::before {
-    content: '✓';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    font-family: var(--bold);
-    font-size: var(--f2);
-    font-weight: bold;
-  }
-
-  .alerta-global.negativo .icone::before {
-    content: '⚠';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    font-family: var(--bold);
-    font-size: var(--f2);
-    font-weight: bold;
-  }
+  .alerta-global .icone .m3d-icon { display: none; }
+  .alerta-global.positivo .alerta-global__success-icon,
+  .alerta-global.negativo .alerta-global__error-icon { display: block; }
 
   .alerta-global .mensagem {
     flex: 1;
@@ -133,8 +109,10 @@
   }
 
   .alerta-global .fechar {
-    width: 30px;
-    height: 30px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
     background: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 50%;

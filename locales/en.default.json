@@ -1,8 +1,8 @@
 {
   "general": {
     "404": {
-      "title": "Page not found",
-      "subtext": "The page you are looking for does not exist."
+      "title": "Página não encontrada",
+      "subtext": "Não encontrámos esta página. Pesquise um produto ou explore o catálogo."
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
@@ -14,19 +14,20 @@
       "submit": "Enter"
     },
     "search": {
-      "search": "Search",
-      "placeholder": "Search",
-      "submit": "Search",
-      "results_with_count": "{{ count }} result for \"{{ terms }}\"",
-      "results_with_count_plural": "{{ count }} results for \"{{ terms }}\"",
-      "no_results": "No results found for \"{{ terms }}\". Check the spelling or use a different word or phrase.",
-      "reset": "Clear search term"
+      "search": "Pesquisar",
+      "placeholder": "Pesquisar produtos",
+      "submit": "Pesquisar",
+      "results_with_count": "{{ count }} resultado para «{{ terms }}»",
+      "results_with_count_plural": "{{ count }} resultados para «{{ terms }}»",
+      "no_results": "Não encontrámos resultados para «{{ terms }}». Verifique a escrita ou experimente outro termo.",
+      "reset": "Limpar pesquisa",
+      "product_placeholder": "Pesquisar produtos"
     },
     "pagination": {
-      "label": "Pagination",
-      "previous": "Previous page",
-      "next": "Next page",
-      "page": "Page {{ number }}"
+      "label": "Paginação",
+      "previous": "Página anterior",
+      "next": "Página seguinte",
+      "page": "Página {{ number }}"
     },
     "breadcrumbs": {
       "home": "Início"
@@ -37,6 +38,13 @@
       "email_placeholder": "Email",
       "confirmation": "Thanks for subscribing.",
       "button_label": "Subscribe"
+    },
+    "share": {
+      "share": "Partilhar",
+      "share_url": "Ligação",
+      "copy_to_clipboard": "Copiar ligação",
+      "success_message": "Ligação copiada.",
+      "error_message": "Não foi possível copiar o link. Copie o endereço da página."
     }
   },
   "accessibility": {
@@ -51,8 +59,8 @@
       "external": "Opens external website."
     },
     "loading": "Loading...",
-    "next_slide": "Slide right",
-    "previous_slide": "Slide left",
+    "next_slide": "Imagem seguinte",
+    "previous_slide": "Imagem anterior",
     "of": "of",
     "star_reviews_info": "{{ rating_value }} out of {{ rating_max }} stars",
     "total_reviews": "{{ count }} total reviews"
@@ -70,26 +78,29 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Add to cart",
+      "add_to_cart": "Adicionar ao carrinho",
       "sold_out": "Esgotado",
-      "unavailable": "Unavailable",
+      "unavailable": "Indisponível",
       "on_sale": "Promoção",
       "quantity": {
-        "label": "Quantity",
-        "input_label": "Quantity for {{ product }}",
-        "increase": "Increase quantity for {{ product }}",
-        "decrease": "Decrease quantity for {{ product }}"
+        "label": "Quantidade",
+        "input_label": "Quantidade de {{ product }}",
+        "increase": "Aumentar quantidade de {{ product }}",
+        "decrease": "Diminuir quantidade de {{ product }}"
       },
       "price": {
-        "from_price_html": "From {{ price }}",
-        "regular_price": "Regular price",
-        "sale_price": "Sale price",
-        "unit_price": "Unit price"
+        "from_price_html": "desde {{ price }}",
+        "regular_price": "Preço",
+        "sale_price": "Preço promocional",
+        "unit_price": "Unit price",
+        "mixed_on_request": "Opções com preço e sob consulta",
+        "per_unit": "/un.",
+        "per_unit_label": "por unidade"
       },
       "vendor": "Vendor",
       "view_full_details": "View full details",
       "description": "Description",
-      "share": "Share",
+      "share": "Partilhar",
       "include_taxes": "Tax included.",
       "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
       "pickup_availability": {
@@ -102,25 +113,28 @@
         "refresh": "Refresh"
       },
       "media": {
-        "gallery_viewer": "Gallery Viewer",
-        "load_image": "Load image {{ index }} in gallery view",
-        "load_model": "Load 3D Model {{ index }} in gallery view",
-        "load_video": "Play video {{ index }} in gallery view",
+        "gallery_viewer": "Galeria de produtos",
+        "load_image": "Mostrar imagem {{ index }} na galeria",
+        "load_model": "Mostrar modelo 3D {{ index }} na galeria",
+        "load_video": "Mostrar vídeo {{ index }} na galeria",
         "image_available": "Image {{ index }} is now available in gallery view",
         "open_media": "Open media {{ index }} in modal",
         "play_model": "Play 3D Viewer",
         "play_video": "Play video",
         "no_media": "Imagem do produto indisponível",
         "thumbnail_alt": "Miniatura {{ index }} de {{ product }}",
-        "media_available": "Mídia {{ index }} de {{ count }} selecionada"
+        "media_available": "Imagem {{ index }} de {{ count }}"
       },
-      "choose_options": "Choose options",
+      "choose_options": "Escolher opções",
       "choose_product_options": "Choose options for {{ product_name }}",
       "quick_actions": "Ações rápidas",
       "save": "Guardar",
       "myshop": "MyShop",
       "add_to_shop": "Adicionar a uma loja",
-      "create_new_shop": "Criar nova loja"
+      "create_new_shop": "Criar nova loja",
+      "preview_myshop": "Abrir prévia do MyShop",
+      "personalize": "Personalizar",
+      "personalize_product": "Personalizar {{ product }}"
     },
     "facets": {
       "sort_by_label": "Sort by:",
@@ -149,26 +163,30 @@
       "results_with_count": "{{ count }} resultado para \"{{ terms }}\"",
       "results_with_count_plural": "{{ count }} resultados para \"{{ terms }}\"",
       "title": "Resultados da pesquisa",
-      "page": "Page",
-      "products": "Products",
+      "page": "Página",
+      "products": "Produtos",
       "search_for": "Resultados para \"{{ terms }}\"",
       "results_pages_with_count": {
-        "one": "{{ count }} page",
-        "other": "{{ count }} pages"
-      }
+        "one": "{{ count }} página",
+        "other": "{{ count }} páginas"
+      },
+      "start_help": "Use a pesquisa no topo da página",
+      "suggestions": "Sugestões de pesquisa",
+      "explore_collections": "Explorar coleções",
+      "search_products": "Pesquisar produtos"
     },
     "cart": {
       "cart": "Carrinho"
     },
     "contact": {
       "form": {
-        "name": "Name",
-        "email": "Email",
-        "phone": "Phone number",
-        "comment": "Comment",
-        "send": "Send",
-        "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
-        "error_heading": "Please adjust the following:"
+        "name": "Nome",
+        "email": "E-mail",
+        "phone": "Telefone",
+        "comment": "Mensagem",
+        "send": "Enviar mensagem",
+        "post_success": "Mensagem enviada através do formulário de contacto.",
+        "error_heading": "Verifique os campos indicados:"
       }
     }
   },
@@ -185,7 +203,11 @@
       "color": "Cor",
       "stock": "Stock",
       "labeling": "Etiquetagem",
-      "no_filter_values": "Opções disponíveis quando este filtro for configurado na Shopify."
+      "no_filter_values": "Opções disponíveis quando este filtro for configurado na Shopify.",
+      "in_stock": "Em stock",
+      "out_of_stock": "Sem stock",
+      "sort_compact": "Ordenar",
+      "relevance": "Relevância"
     },
     "collection_banner": {
       "breadcrumb_label": "Navegação estrutural",
@@ -225,7 +247,7 @@
     },
     "footer": {
       "payment": "Payment methods",
-      "rights": "All rights reserved.",
+      "rights": "Todos os direitos reservados.",
       "base_by_html": "Base by <a href=\"{{ link }}\" target=\"_blank\" rel=\"noopener\">Team Lecdt</a>"
     },
     "collection_list": {
@@ -234,6 +256,9 @@
     "featured_collection": {
       "view_all": "View all",
       "view_all_label": "View all products in the {{ collection_name }} collection"
+    },
+    "related_products": {
+      "heading": "Também pode gostar"
     }
   },
   "customer": {
@@ -296,11 +321,11 @@
     "collection_title": "Your collection's name"
   },
   "m3d_pdp": {
-    "price_on_request": "Preço sob consulta",
-    "stock_count": "Stock ({{ count }})",
+    "price_on_request": "Sob consulta",
+    "stock_count": "{{ count }} em stock",
     "stock_on_request": "Stock a consultar",
-    "quantity_sizes": "Quantidade e tamanhos",
-    "select_quantities": "Selecionar tamanhos e quantidades",
+    "quantity_sizes": "Combinar variantes",
+    "select_quantities": "Combinar quantidades de várias opções",
     "quantity": "Quantidade",
     "check_stock": "Consulte o stock de cada opção antes de adicionar.",
     "quantity_intro": "Escolha a quantidade de cada opção.",
@@ -335,10 +360,19 @@
     "adding": "A adicionar…",
     "added": "Adicionado ao carrinho",
     "add_error": "Não foi possível concluir a adição. Verifique o seu carrinho antes de tentar novamente.",
-    "area_limit": "Área máxima: {{ width }} × {{ height }} mm.",
+    "area_limit": "Área máx. {{ width }} × {{ height }} mm",
     "invalid_dimensions": "Indique dimensões válidas dentro da área selecionada.",
     "upload_multiple": "Para enviar o logótipo, selecione uma opção por adição ao carrinho.",
-    "zero_price_block": "Este produto tem preço sob consulta e ainda não pode ser comprado online."
+    "zero_price_block": "Indique as quantidades para incluir no pedido de orçamento.",
+    "request_quote": "Pedir orçamento",
+    "quote_personalization_hint": "Personalização disponível por orçamento",
+    "quote_context_hint": "A quantidade e a personalização seguem com o pedido de orçamento.",
+    "view_cart": "Ver carrinho",
+    "width_max": "Largura (máx. {{ max }} mm)",
+    "height_max": "Altura (máx. {{ max }} mm)",
+    "more_personalization": "Precisa de mais cores ou posições?",
+    "available_by_quote": "Disponível por orçamento",
+    "gallery_quote_hint": "Use “Pedir orçamento” por baixo das imagens."
   },
   "m3d_auth": {
     "page_kicker": "A MINHA CONTA",
@@ -363,7 +397,94 @@
     "email_code_submit": "Continuar com código"
   },
   "m3d_cart": {
-    "empty_kicker": "O SEU CARRINHO",
-    "empty_description": "Explore os nossos produtos e escolha os artigos para o seu próximo projeto."
+    "quote_required": "O carrinho contém artigos sob consulta. Peça um orçamento antes de continuar.",
+    "quote_action": "Pedir orçamento",
+    "partial_total": "O total apresentado inclui apenas os artigos com preço.",
+    "price_on_request": "Sob consulta",
+    "unit_price": "Preço unitário",
+    "line_total": "Total do artigo",
+    "add_error": "Não foi possível confirmar a adição. Confira o carrinho antes de tentar novamente.",
+    "empty_description": "Explore o catálogo e escolha os artigos que procura.",
+    "view_logo": "Ver logótipo",
+    "uploaded_logo": "Logótipo enviado"
+  },
+  "m3d_quote": {
+    "heading": "Pedir orçamento",
+    "intro": "Diga-nos o que quer personalizar e preparamos uma proposta.",
+    "description": "Para si ou para a sua empresa. Pode indicar um produto do catálogo ou descrever uma ideia.",
+    "next_heading": "O que acontece a seguir",
+    "next_description": "A equipa M3D lê o pedido e responde para o e-mail indicado com a proposta ou com as perguntas que faltarem.",
+    "no_purchase": "Enviar este pedido não cria uma encomenda nem um pagamento.",
+    "browse": "Ver todos os produtos",
+    "success_heading": "Pedido enviado",
+    "success_description": "O pedido foi enviado através do formulário de contacto.",
+    "error_heading": "Não foi possível enviar o pedido",
+    "error_description": "Corrija os campos abaixo e envie novamente.",
+    "client_error": "Verifique este campo antes de enviar.",
+    "required_hint": "Os campos com * são obrigatórios.",
+    "request_heading": "O seu pedido",
+    "context_hint": "Preenchemos estes campos com o produto que estava a ver. Pode alterá-los.",
+    "product": "Produto (opcional)",
+    "view_product": "Ver o produto",
+    "variant": "Cor, tamanho ou modelo (opcional)",
+    "quantity": "Quantidade (opcional)",
+    "quantity_error": "Indique uma quantidade inteira entre 1 e 999999.",
+    "lines": "Várias opções ou quantidades",
+    "lines_hint": "Uma linha por opção, por exemplo: Azul, M, 20 unidades.",
+    "personalization": "Personalização",
+    "personalization_hint": "Indique o nome, a frase ou o logótipo que procura e onde pretende aplicá-lo.",
+    "message": "Mensagem",
+    "message_hint": "Conte-nos para que é, a data em que precisa e qualquer outro detalhe útil.",
+    "field_error": "Preencha este campo.",
+    "contact_heading": "Os seus contactos",
+    "name": "Nome",
+    "email": "E-mail",
+    "company": "Empresa (opcional)",
+    "privacy_hint": "Os seus dados de contacto acompanham este pedido.",
+    "privacy": "Política de privacidade",
+    "noscript": "Sem JavaScript, os campos não são preenchidos com o produto. Indique-o na mensagem.",
+    "send": "Enviar pedido",
+    "context_limited": "Alguns detalhes foram abreviados. Confira e complete o pedido antes de enviar.",
+    "logo_followup": "Pode enviar o logótipo em resposta ao nosso e-mail."
+  },
+  "m3d_navigation": {
+    "unavailable": "Em preparação"
+  },
+  "m3d_footer": {
+    "explore": "Explorar",
+    "help": "Ajuda",
+    "contact": "Contactos",
+    "privacy": "Privacidade",
+    "refunds": "Devoluções",
+    "shipping": "Entregas",
+    "terms": "Termos e condições"
+  },
+  "m3d_home": {
+    "explore_products": "Explorar produtos",
+    "business": "Encomendas para empresas",
+    "categories_heading": "O que procura?",
+    "all_categories": "Todas as categorias",
+    "see_all": "Ver todos os produtos",
+    "process_heading": "Da ideia ao pedido",
+    "step_product": "Escolha uma peça",
+    "step_product_text": "Explore o catálogo e veja as opções disponíveis em cada produto.",
+    "step_idea": "Diga-nos a sua ideia",
+    "step_idea_text": "Indique um nome, uma frase ou o logótipo que pretende aplicar.",
+    "step_request": "Peça uma proposta",
+    "step_request_text": "Reúna os artigos e as quantidades num pedido de orçamento.",
+    "wear_heading": "Para vestir todos os dias",
+    "explore_wear": "Explorar vestuário",
+    "bags_heading": "Ideias que vão consigo",
+    "explore_bags": "Explorar sacos e mochilas",
+    "business_text": "Produtos para a sua equipa, para um evento ou para oferecer. Conte-nos a ideia e as quantidades que procura."
+  },
+  "m3d_content": {
+    "search_label": "Pesquisar produtos",
+    "search_placeholder": "Pesquisar produtos…",
+    "search_submit": "Pesquisar",
+    "explore_products": "Explorar produtos",
+    "empty_intro": "Explore o catálogo ou conte-nos o que procura para pedir um orçamento.",
+    "quote_action": "Pedir orçamento",
+    "view_collection": "Ver coleção"
   }
 }

@@ -1,27 +1,15 @@
-{%- comment -%}
-  ============================================================
-  price — exibe preço com opção de preço promocional
-  ============================================================
+{% doc %}
+  Renders a Shopify product or variant price and the M3D consultation state.
+  Zero is a consultation marker, not a free offer. A mixed product range uses
+  an explicit options label instead of advertising a starting price of zero.
+  Do not pass discounted cart line prices: cart totals remain Shopify values.
 
-  O QUE FAZ:
-  Renderiza o preço de um produto ou variante, tratando promoção
-  (compare_at_price riscado + badge "promoção") e o caso de preço variável
-  ("a partir de X").
-
-  COMO USAR:
-  {% render 'price', product: card_product, use_variant: false, show_compare: true, price_class: 'price--card' %}
-
-  PARÂMETROS:
-  - product: objeto product OU variant.
-  - use_variant (bool): se true, usa selected_or_first_available_variant;
-    se passar uma variante direta, mande false.
-  - show_compare (bool): se true, mostra o preço riscado quando em promoção.
-  - price_class: classe CSS extra aplicada no wrapper .price.
-
-  OBSERVAÇÕES:
-  Produtos expõem compare_at_price_max e price_varies; variantes expõem
-  compare_at_price direto. O snippet cobre os dois casos.
-{%- endcomment -%}
+  @param {object} product - Product or variant to render.
+  @param {boolean} [use_variant] - Use the product's selected or first available variant.
+  @param {boolean} [show_compare] - Show a valid comparison price for a fixed positive price.
+  @param {boolean} [display_card] - Show per-unit catalogue prices and the pilot best tier on cards only.
+  @param {string} [price_class] - Additional class on the existing price wrapper.
+{% enddoc %}
 {%- liquid
   if use_variant
     assign target = product.selected_or_first_available_variant
@@ -29,37 +17,67 @@
     assign target = product
   endif
 
-  # product.compare_at_price_max exists on products; variants expose compare_at_price
-  assign compare_at = target.compare_at_price
-  if compare_at == nil and product.compare_at_price_max
-    assign compare_at = product.compare_at_price_max
-  endif
-
-  assign money_price = target.price | money
-  assign on_sale = false
-  if compare_at and compare_at > target.price
-    assign on_sale = true
+  assign price_state = 'priced'
+  if target.price == 0
+    assign price_state = 'on-request'
+    if use_variant != true and product.price_max > 0
+      assign price_state = 'mixed'
+    endif
   endif
 
   assign price_varies = false
-  if product.price_varies and use_variant == false and product.price_min
+  if use_variant != true and product.price_varies and product.price_min > 0
     assign price_varies = true
   endif
+
+  assign compare_at = target.compare_at_price
+  if use_variant != true and compare_at == nil and product.compare_at_price_max
+    assign compare_at = product.compare_at_price_max
+  endif
+
+  assign display_price = target.price
+  assign pilot_tier = false
+  if display_card and use_variant != true and price_state == 'priced'
+    assign display_price = product.price_min
+    if product.tags contains 'midocean-piloto'
+      comment
+        The six pilot carts round the unit discount down. Ceil matches their
+        confirmed 2000-unit final_price; round understates three pilot prices.
+      endcomment
+      assign display_price = display_price | times: 0.84375 | ceil
+      assign price_varies = true
+      assign pilot_tier = true
+    endif
+  endif
+  assign money_price = display_price | money
+  assign on_sale = false
+  if price_state == 'priced' and price_varies == false and show_compare and pilot_tier == false
+    if compare_at and compare_at > target.price
+      unless use_variant != true and product.compare_at_price_varies
+        assign on_sale = true
+      endunless
+    endif
+  endif
 -%}
-<div class="price {% if on_sale %}price--on-sale{% endif %} {{ price_class }}">
-  {%- if price_varies -%}
+<div class="price {% if on_sale %}price--on-sale{% endif %}{% if price_state != 'priced' %} price--on-request{% endif %} {{ price_class }}" data-price-state="{{ price_state }}">
+  {%- if price_state == 'mixed' -%}
+    <span class="price__regular price__on-request">{{ 'products.product.price.mixed_on_request' | t }}</span>
+  {%- elsif price_state == 'on-request' -%}
+    <span class="price__regular price__on-request">{{ 'm3d_pdp.price_on_request' | t }}</span>
+  {%- elsif price_varies -%}
     <span class="price__regular">
-      {{ 'products.product.price.from_price_html' | t: price: product.price_min | money }}
+      {{ 'products.product.price.from_price_html' | t: price: money_price }}{% if display_card %} <span class="price__per-unit" aria-hidden="true">{{ 'products.product.price.per_unit' | t }}</span><span class="visually-hidden"> {{ 'products.product.price.per_unit_label' | t }}</span>{% endif %}
     </span>
   {%- else -%}
-    {%- if on_sale and show_compare -%}
+    {%- if on_sale -%}
       <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
-      <s class="price__compare">{{ compare_at | money }}</s>
+      <s class="price__compare" aria-hidden="true">{{ compare_at | money }}</s>
       <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
-      <span class="price__sale">{{ money_price }}</span>
+      <span class="price__sale">{{ money_price }}{% if display_card %} <span class="price__per-unit" aria-hidden="true">{{ 'products.product.price.per_unit' | t }}</span><span class="visually-hidden"> {{ 'products.product.price.per_unit_label' | t }}</span>{% endif %}</span>
       <span class="price__badge">{{ 'products.product.on_sale' | t }}</span>
     {%- else -%}
-      <span class="price__regular">{{ money_price }}</span>
+      <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+      <span class="price__regular">{{ money_price }}{% if display_card %} <span class="price__per-unit" aria-hidden="true">{{ 'products.product.price.per_unit' | t }}</span><span class="visually-hidden"> {{ 'products.product.price.per_unit_label' | t }}</span>{% endif %}</span>
     {%- endif -%}
   {%- endif -%}
 </div>

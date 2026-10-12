@@ -2,3 +2,10 @@
 .shopify
 referencias/imagens/Screenshot*.png
 referencias/imagens/WhatsApp Image*.jpeg
+
+# Dependências locais da skill Shopify do Codex
+.agents/skills/shopify/node_modules
+
+# Ficheiros locais desta máquina
+debug.log
+.claude/settings.local.json

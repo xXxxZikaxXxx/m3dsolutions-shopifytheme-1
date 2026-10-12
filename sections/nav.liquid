@@ -1,18 +1,38 @@
 {%- liquid
+  assign search_placeholder = section.settings.search_placeholder
+  if search_placeholder == blank or search_placeholder == 'O que procura para personalizar?'
+    assign search_placeholder = 'general.search.product_placeholder' | t
+  endif
   assign products_url = section.settings.products_url | default: routes.all_products_collection_url
-  assign vestuario_url = section.settings.vestuario_url | default: routes.all_products_collection_url
+  assign vestuario_url = section.settings.vestuario_url
+  if vestuario_url == blank or vestuario_url == routes.root_url
+    assign vestuario_page = pages['vesturio-e-acessrios']
+    assign vestuario_url = vestuario_page.url
+  endif
   assign myshop_url = section.settings.myshop_url | default: routes.account_url
-  assign inspiration_url = section.settings.inspiration_url | default: routes.root_url
-  assign about_url = section.settings.about_url | default: routes.root_url
-  assign quote_url = section.settings.quote_url | default: routes.root_url
+  assign inspiration_url = section.settings.inspiration_url
+  if inspiration_url == blank or inspiration_url == routes.root_url
+    assign inspiration_page = pages['inspiracao']
+    assign inspiration_url = inspiration_page.url
+  endif
+  assign about_url = section.settings.about_url
+  if about_url == blank or about_url == routes.root_url
+    assign about_page = pages['sobre-a-m3d']
+    assign about_url = about_page.url
+  endif
+  assign quote_page = pages['pedir-orcamento']
+  assign quote_url = blank
+  if quote_page != blank
+    assign quote_url = quote_page.url | append: '?view=m3d-quote'
+  endif
   assign login_page = pages['login']
   assign account_link = routes.account_url
   if customer == blank and login_page != blank
     assign account_link = login_page.url
   endif
-  assign delivery_url = section.settings.delivery_url | default: routes.root_url
-  assign personalization_url = section.settings.personalization_url | default: routes.root_url
-  assign catalogs_url = section.settings.catalogs_url | default: routes.all_products_collection_url
+  assign delivery_url = section.settings.delivery_url
+  assign personalization_url = section.settings.personalization_url
+  assign catalogs_url = section.settings.catalogs_url
   assign category_handles = 'campanhas-sazonais,casa-e-bem-estar,copos-e-garrafas,escritorio-e-escrita,eventos-e-feiras,ideias-para-o-dia-a-dia,kits-de-boas-vindas,malas-e-viagens,presentes-para-equipas,tecnologia,vesturio-e-acessrios' | split: ','
 -%}
 
@@ -34,7 +54,7 @@
       {%- if settings.logo != blank -%}
         {{ settings.logo | image_url: width: 480 | image_tag: class: 'm3d-header__logo-configured', widths: '120, 240, 360, 480', width: 120, alt: shop.name }}
       {%- else -%}
-        <img src="{{ 'm3dsolutionslogo.png' | asset_url }}" width="3375" height="4219" alt="{{ shop.name | escape }}">
+        <img src="{{ 'logo-m3d-horizontal-positivo.svg' | asset_url }}" width="145" height="33" alt="{{ shop.name | escape }}">
       {%- endif -%}
     </a>
 
@@ -43,8 +63,8 @@
       <input type="hidden" name="options[prefix]" value="last">
       <div class="m3d-header__search-field">
         <label class="visually-hidden" for="M3dSearch-{{ section.id }}">{{ 'general.search.search' | t }}</label>
-        <input id="M3dSearch-{{ section.id }}" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ section.settings.search_placeholder | escape }}" data-m3d-search-input>
-        <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon', name: 'search' %}</button>
+        <input id="M3dSearch-{{ section.id }}" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ search_placeholder | escape }}" data-m3d-search-input>
+        <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon', name: 'm3d-search', size: 24 %}</button>
       </div>
       <button class="m3d-header__search-cancel" type="button" data-m3d-search-close>Cancelar</button>
     </form>
@@ -52,7 +72,7 @@
     <div class="m3d-header__actions">
       <a class="m3d-header__account" href="{{ account_link }}">{{ section.settings.account_label | escape }}</a>
       <a class="m3d-header__cart tap-target" href="{{ routes.cart_url }}" aria-label="{{ 'templates.cart.cart' | t }}" data-m3d-cart-link>
-        {% render 'icon', name: 'cart' %}
+        {% render 'icon', name: 'm3d-cart', size: 24 %}
         <span data-cart-count>{{ cart.item_count }}</span>
       </a>
     </div>
@@ -63,24 +83,24 @@
       <div class="m3d-search-panel__links">
         <p>Saiba mais sobre</p>
         <ul role="list">
-          <li><a href="{{ delivery_url }}">Prazos de entrega <span aria-hidden="true">↗</span></a></li>
-          <li><a href="{{ personalization_url }}">Personalizações &amp; impressão <span aria-hidden="true">↗</span></a></li>
-          <li><a href="{{ catalogs_url }}">Catálogos <span aria-hidden="true">↗</span></a></li>
-          <li><a href="{{ myshop_url }}">MyShop <span aria-hidden="true">↗</span></a></li>
+          {%- if delivery_url != blank and delivery_url != routes.root_url -%}<li><a href="{{ delivery_url }}">Prazos de entrega</a></li>{%- endif -%}
+          {%- if personalization_url != blank and personalization_url != routes.root_url -%}<li><a href="{{ personalization_url }}">Personalizações &amp; impressão</a></li>{%- endif -%}
+          {%- if catalogs_url != blank and catalogs_url != routes.root_url -%}<li><a href="{{ catalogs_url }}">Catálogos</a></li>{%- endif -%}
+          <li><a href="{{ myshop_url }}">MyShop {% render 'icon', name: 'm3d-external', size: 16 %}</a></li>
         </ul>
       </div>
       <div class="m3d-search-panel__banners" aria-label="Destaques temporários">
         <a class="m3d-search-panel__banner" href="{{ products_url }}">
-          <span class="m3d-search-panel__visual"><img src="{{ 'navbar-search-banner-1-m03214.png' | asset_url }}" width="753" height="938" alt="Mochila preta M03214"><small>Novidade</small></span>
-          <span class="m3d-search-panel__banner-link">Ir para produto <span aria-hidden="true">→</span></span>
+          <span class="m3d-search-panel__visual"><img src="{{ 'navbar-search-banner-1-m03214.png' | asset_url }}" width="753" height="938" alt="Mochila preta M03214"></span>
+          <span class="m3d-search-panel__banner-link">Ver produtos</span>
         </a>
         <a class="m3d-search-panel__banner" href="{{ products_url }}">
           <span class="m3d-search-panel__visual"><img src="{{ 'navbar-search-banner-2-sg1036.png' | asset_url }}" width="753" height="938" alt="Camisola de Natal SG1036"><small>Ideia M3D</small></span>
-          <span class="m3d-search-panel__banner-link">Ir para produto <span aria-hidden="true">→</span></span>
+          <span class="m3d-search-panel__banner-link">Ver produtos</span>
         </a>
         <a class="m3d-search-panel__banner" href="{{ products_url }}">
           <span class="m3d-search-panel__visual"><img src="{{ 'navbar-search-banner-3-so4447.png' | asset_url }}" width="753" height="938" alt="Casaco azul SO4447"><small>Em destaque</small></span>
-          <span class="m3d-search-panel__banner-link">Ir para produto <span aria-hidden="true">→</span></span>
+          <span class="m3d-search-panel__banner-link">Ver produtos</span>
         </a>
       </div>
     </div>
@@ -90,7 +110,7 @@
     <nav class="page-width m3d-header__nav" aria-label="{{ 'sections.header.menu' | t }}" data-m3d-slide-tabs>
       <span class="m3d-header__cursor" aria-hidden="true" data-m3d-cursor></span>
       <details class="m3d-header__collections">
-        <summary data-m3d-tab>{{ section.settings.collections_label | escape }} <span class="m3d-header__collections-arrow" aria-hidden="true">›</span></summary>
+        <summary data-m3d-tab>{{ section.settings.collections_label | escape }} <span class="m3d-header__collections-arrow" aria-hidden="true">{% render 'icon', name: 'm3d-chevron', size: 16 %}</span></summary>
         <div class="m3d-mega">
           <div class="m3d-mega__category" data-m3d-mega-category>
             <p>{{ section.settings.category_heading | escape }}</p>
@@ -104,43 +124,86 @@
               {%- endfor -%}
             </ul>
           </div>
+          {%- if vestuario_url != blank -%}
           <a class="m3d-mega__feature" href="{{ vestuario_url }}">
-            <div><span>Vestuário e têxteis</span><strong>A sua marca veste o verão.</strong><b>Explorar vestuário →</b></div>
+            <div><span>Vestuário e têxteis</span><strong>A sua marca veste o verão.</strong><b>Explorar vestuário</b></div>
             <img src="{{ 'vestuario.png' | asset_url }}" width="4300" height="2400" alt="">
           </a>
+          {%- endif -%}
         </div>
       </details>
       <a href="{{ products_url }}" data-m3d-tab>{{ section.settings.products_label | escape }}</a>
-      <a href="{{ vestuario_url }}" data-m3d-tab>{{ section.settings.vestuario_label | escape }}</a>
+      {%- if vestuario_url != blank -%}<a href="{{ vestuario_url }}" data-m3d-tab>{{ section.settings.vestuario_label | escape }}</a>{%- else -%}<button class="m3d-header__unavailable" type="button" data-m3d-tab disabled aria-disabled="true" title="{{ 'm3d_navigation.unavailable' | t }}">{{ section.settings.vestuario_label | escape }}</button>{%- endif -%}
       <a href="{{ myshop_url }}" data-m3d-tab>MyShop</a>
-      <a href="{{ inspiration_url }}" data-m3d-tab>{{ section.settings.inspiration_label | escape }}</a>
-      <a href="{{ about_url }}" data-m3d-tab>{{ section.settings.about_label | escape }}</a>
-      <a class="m3d-header__quote" href="{{ quote_url }}" data-m3d-tab>{{ section.settings.quote_label | escape }} →</a>
+      {%- if inspiration_url != blank -%}<a href="{{ inspiration_url }}" data-m3d-tab>{{ section.settings.inspiration_label | escape }}</a>{%- else -%}<button class="m3d-header__unavailable" type="button" data-m3d-tab disabled aria-disabled="true" title="{{ 'm3d_navigation.unavailable' | t }}">{{ section.settings.inspiration_label | escape }}</button>{%- endif -%}
+      {%- if about_url != blank -%}<a href="{{ about_url }}" data-m3d-tab>{{ section.settings.about_label | escape }}</a>{%- else -%}<button class="m3d-header__unavailable" type="button" data-m3d-tab disabled aria-disabled="true" title="{{ 'm3d_navigation.unavailable' | t }}">{{ section.settings.about_label | escape }}</button>{%- endif -%}
+      {%- if quote_url != blank -%}<a class="m3d-header__quote" href="{{ quote_url }}" data-m3d-tab>{{ section.settings.quote_label | escape }}</a>{%- else -%}<button class="m3d-header__unavailable" type="button" data-m3d-tab disabled aria-disabled="true" title="{{ 'm3d_navigation.unavailable' | t }}">{{ section.settings.quote_label | escape }}</button>{%- endif -%}
     </nav>
   </div>
 
   <div class="m3d-mobile-nav" id="M3dNav-{{ section.id }}" hidden>
-    <form action="{{ routes.search_url }}" method="get" role="search">
-      <input type="hidden" name="type" value="product">
-      <input type="hidden" name="options[prefix]" value="last">
-      <label class="visually-hidden" for="M3dMobileSearch-{{ section.id }}">{{ 'general.search.search' | t }}</label>
-      <input id="M3dMobileSearch-{{ section.id }}" type="search" name="q" placeholder="{{ section.settings.search_placeholder | escape }}">
-      <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon', name: 'search' %}</button>
-    </form>
     <nav aria-label="{{ 'sections.header.menu' | t }}">
-      <a href="{{ products_url }}">{{ section.settings.products_label | escape }} →</a>
-      <a href="{{ vestuario_url }}">{{ section.settings.vestuario_label | escape }} →</a>
-      <a href="{{ myshop_url }}">MyShop →</a>
-      <a href="{{ inspiration_url }}">{{ section.settings.inspiration_label | escape }} →</a>
-      <a href="{{ about_url }}">{{ section.settings.about_label | escape }} →</a>
+      <details class="m3d-mobile-nav__collections">
+        <summary>{{ section.settings.collections_label | escape }}</summary>
+        <ul role="list">
+          {%- for category_handle in category_handles -%}
+            {%- assign category_page = pages[category_handle] -%}
+            {%- if category_page != blank -%}<li><a href="{{ category_page.url }}">{{ category_page.title | escape }}</a></li>{%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </details>
+      <a href="{{ products_url }}">{{ section.settings.products_label | escape }}</a>
+      {%- if vestuario_url != blank -%}<a href="{{ vestuario_url }}">{{ section.settings.vestuario_label | escape }}</a>{%- else -%}<span aria-disabled="true" title="{{ 'm3d_navigation.unavailable' | t }}">{{ section.settings.vestuario_label | escape }}</span>{%- endif -%}
+      <a href="{{ myshop_url }}">MyShop</a>
+      {%- if inspiration_url != blank -%}<a href="{{ inspiration_url }}">{{ section.settings.inspiration_label | escape }}</a>{%- else -%}<span aria-disabled="true" title="{{ 'm3d_navigation.unavailable' | t }}">{{ section.settings.inspiration_label | escape }}</span>{%- endif -%}
+      {%- if about_url != blank -%}<a href="{{ about_url }}">{{ section.settings.about_label | escape }}</a>{%- else -%}<span aria-disabled="true" title="{{ 'm3d_navigation.unavailable' | t }}">{{ section.settings.about_label | escape }}</span>{%- endif -%}
+      {%- if quote_url != blank -%}<a href="{{ quote_url }}">{{ section.settings.quote_label | escape }}</a>{%- else -%}<span aria-disabled="true" title="{{ 'm3d_navigation.unavailable' | t }}">{{ section.settings.quote_label | escape }}</span>{%- endif -%}
     </nav>
   </div>
 </header>
 
 <style>
-  .m3d-benefits{background:#000;color:#fff;font-size:11px}.m3d-benefits__inner{min-height:30px;display:flex;align-items:center;justify-content:center;gap:72px}.m3d-header{--m3d-overlay-top:0px;position:relative;z-index:30;background:#fff;color:#000}.m3d-header::after{content:"";position:fixed;z-index:1;left:0;right:0;top:var(--m3d-overlay-top);bottom:0;background:rgba(0,0,0,.28);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity 320ms ease,visibility 0s linear 320ms}.m3d-header[data-collections-open]::after,.m3d-header[data-search-open]::after{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}.m3d-header__main{position:relative;z-index:5;max-width:1288px;min-height:82px;display:grid;grid-template-columns:150px minmax(280px,1fr) auto;align-items:center;gap:48px}.m3d-header__logo{position:relative;display:block;width:120px;height:58px;overflow:hidden}.m3d-header__logo img{position:absolute;left:50%;top:50%;width:120px;height:auto;transform:translate(-50%,-50%);display:block}.m3d-header__logo .m3d-header__logo-configured{position:static;width:auto;max-width:120px;max-height:58px;transform:none}.m3d-header__search{position:absolute;right:244px;top:50%;width:260px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0;transform:translateY(-50%);transition:right 420ms cubic-bezier(.22,1,.36,1),width 420ms cubic-bezier(.22,1,.36,1)}.m3d-header__search-field{height:44px;display:grid;grid-template-columns:minmax(0,1fr) 44px;background:#f5f5f7;border:1px solid #d9d9d9;box-shadow:none}.m3d-header__search-field:focus-within{box-shadow:inset 0 -2px #000}.m3d-header__search input{width:100%;min-width:0;padding:0 16px;background:transparent}.m3d-header__search input:focus-visible{outline:none}.m3d-header__search button,.m3d-mobile-nav form button{display:grid;place-items:center;background:transparent}.m3d-header__search-cancel{max-width:0;min-height:44px;padding:0;overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;white-space:nowrap;transition:max-width 320ms ease,padding 320ms ease,opacity 180ms ease,visibility 0s linear 320ms}.m3d-header[data-search-open] .m3d-header__search{right:20px;width:calc(100% - 210px)}.m3d-header[data-search-open] .m3d-header__search-cancel{max-width:90px;padding:0 8px;opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}.m3d-header__search svg,.m3d-mobile-nav svg{width:20px;height:20px}.m3d-header__actions{grid-column:3;justify-self:end;display:flex;align-items:center;gap:18px;opacity:1;visibility:visible;transition:opacity 180ms ease,visibility 0s linear}.m3d-header[data-search-open] .m3d-header__actions{opacity:0;visibility:hidden;pointer-events:none;transition-delay:0s,180ms}.m3d-header__account{min-height:44px;display:flex;align-items:center;padding:0 22px;border:1px solid #000;border-radius:10px;color:#000;font-weight:700;transition:color 180ms ease,border-color 180ms ease,background-color 180ms ease,transform 120ms ease}.m3d-header__account:hover,.m3d-header__account:focus-visible{border-color:#4436bc;background:#f0edff;color:#4436bc}.m3d-header__account:active{transform:scale(.98)}.m3d-header__cart{position:relative;width:44px;height:44px;display:inline-grid;place-items:center;border-radius:10px;color:#000;transition:color 180ms ease,background-color 180ms ease,transform 120ms ease}.m3d-header__cart:hover,.m3d-header__cart:focus-visible{background:#f0edff;color:#4436bc}.m3d-header__cart:active{transform:scale(.98)}.m3d-header__cart svg{width:22px;height:22px}.m3d-header__cart span{position:absolute;top:3px;right:-2px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;border-radius:20px;background:#4436bc;color:#fff;font-size:10px}.m3d-search-panel{position:absolute;z-index:4;left:0;right:0;top:82px;overflow:hidden;background:#fff;border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;box-shadow:0 24px 48px rgba(0,0,0,.14);opacity:0;visibility:hidden;pointer-events:none;clip-path:inset(0 0 100% 0);transform:translateY(-10px);transform-origin:top center;transition:clip-path 440ms cubic-bezier(.22,1,.36,1),transform 440ms cubic-bezier(.22,1,.36,1),opacity 220ms ease,visibility 0s linear 440ms}.m3d-header[data-search-open] .m3d-search-panel{opacity:1;visibility:visible;pointer-events:auto;clip-path:inset(0);transform:translateY(0);transition-delay:0s}.m3d-search-panel__inner{max-width:1288px;padding-top:32px;padding-bottom:36px;display:grid;grid-template-columns:minmax(180px,1fr) auto;align-items:start;gap:48px}.m3d-search-panel__links>p{margin:0 0 22px;color:#4436bc;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.09em}.m3d-search-panel__links ul{margin:0;padding:0;display:grid;gap:16px;list-style:none}.m3d-search-panel__links a{display:inline-flex;align-items:center;justify-content:space-between;gap:14px;min-height:30px;color:#000;font-size:13px;font-weight:700;text-transform:uppercase;transition:color 180ms ease}.m3d-search-panel__links a:hover,.m3d-search-panel__links a:focus-visible{color:#4436bc}.m3d-search-panel__links a span{font-size:17px;line-height:1}.m3d-search-panel__banners{display:flex;align-items:flex-start;gap:16px}.m3d-search-panel__banner{width:241px;display:flex;flex-direction:column;gap:12px;color:#000}.m3d-search-panel__visual{position:relative;width:241px;height:300px;display:block;overflow:hidden;background:#f3f3f3;transition:transform 220ms cubic-bezier(.22,1,.36,1),box-shadow 220ms ease}.m3d-search-panel__visual img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}.m3d-search-panel__visual small{position:absolute;z-index:1;left:16px;top:16px;padding:7px 10px;border-radius:999px;background:#fff;color:#000;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.m3d-search-panel__banner-link{display:flex;align-items:center;justify-content:space-between;min-height:26px;font-size:13px;font-weight:800;transition:color 180ms ease}.m3d-search-panel__banner-link span{transition:transform 180ms ease}.m3d-search-panel__banner:hover .m3d-search-panel__visual,.m3d-search-panel__banner:focus-visible .m3d-search-panel__visual{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.16)}.m3d-search-panel__banner:hover .m3d-search-panel__banner-link,.m3d-search-panel__banner:focus-visible .m3d-search-panel__banner-link{color:#4436bc}.m3d-search-panel__banner:hover .m3d-search-panel__banner-link span,.m3d-search-panel__banner:focus-visible .m3d-search-panel__banner-link span{transform:translateX(4px)}.m3d-header__nav-shell{position:relative;min-height:66px;display:flex;align-items:center;border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9}.m3d-header__nav{width:100%;max-width:1288px;min-height:46px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:2px;border:0;border-radius:0;font-size:14px}.m3d-header__nav>a,.m3d-header__collections>summary{position:relative;z-index:1;min-height:36px;padding:0 16px;display:flex;align-items:center;color:#fff;white-space:nowrap;mix-blend-mode:difference}.m3d-header__collections>summary{gap:7px;list-style:none;cursor:pointer}.m3d-header__collections>summary::-webkit-details-marker{display:none}.m3d-header__collections-arrow{display:inline-grid;place-items:center;width:14px;height:14px;font-size:20px;line-height:1;transform:rotate(0deg);transition:transform 420ms cubic-bezier(.22,1,.36,1)}.m3d-header__collections[open][data-expanded] .m3d-header__collections-arrow{transform:rotate(90deg)}.m3d-header__cursor{position:absolute;z-index:0;left:0;top:50%;width:0;height:36px;border-radius:999px;background:#000;opacity:0;pointer-events:none;transform:translate3d(0,-50%,0);transform-origin:center;will-change:transform,width;transition:opacity 180ms ease}.m3d-header__nav[data-m3d-ready] .m3d-header__cursor{opacity:1}.m3d-header__quote{font-weight:700}.m3d-mega{position:absolute;z-index:3;left:0;right:0;top:100%;padding:34px max(24px,calc((100vw - var(--page-width))/2 + 20px));display:grid;grid-template-columns:1fr 430px;gap:80px;background:#fff;border-top:1px solid #e7e7e7;box-shadow:0 24px 48px rgba(0,0,0,.16);opacity:0;visibility:hidden;pointer-events:none;clip-path:inset(0 0 100% 0);transform:translateY(-12px);transform-origin:top center;transition:clip-path 460ms cubic-bezier(.22,1,.36,1),transform 460ms cubic-bezier(.22,1,.36,1),opacity 260ms ease,visibility 0s linear 460ms}.m3d-header__collections[open][data-expanded] .m3d-mega{opacity:1;visibility:visible;pointer-events:auto;clip-path:inset(0);transform:translateY(0);transition-delay:0s}.m3d-mega__category{position:relative}.m3d-mega__category>p{margin-bottom:16px;color:#4436bc;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.m3d-mega__category ul{display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:12px 40px;margin:0;padding:0 0 0 14px;list-style:none}.m3d-mega__category li{min-width:0}.m3d-mega__category li a{min-height:28px;display:inline-flex;align-items:center;color:#000;transition:color 180ms ease}.m3d-mega__category li a:hover,.m3d-mega__category li a:focus-visible{color:#4436bc}.m3d-mega__hover-line{position:absolute;z-index:1;left:0;top:0;color:#4436bc;font-size:18px;font-weight:800;line-height:1;opacity:0;pointer-events:none;transform:translate3d(0,0,0);transition:transform 230ms cubic-bezier(.22,1,.36,1),opacity 160ms ease;will-change:transform,opacity}.m3d-mega__category[data-hovering] .m3d-mega__hover-line{opacity:1}.m3d-mega a{color:#000}.m3d-mega__feature{min-height:190px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:#f0edff}.m3d-mega__feature>div{padding:24px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px}.m3d-mega__feature strong{font-size:24px;line-height:1.05}.m3d-mega__feature b{padding:11px 14px;background:#4436bc;color:#fff;font-size:12px}.m3d-mega__feature img{width:100%;height:100%;object-fit:cover}.m3d-header__toggle,.m3d-mobile-nav{display:none}.m3d-header__toggle{flex-direction:column;gap:4px;background:transparent}.m3d-header__toggle span{width:20px;height:2px;background:#000}
+  .m3d-benefits{background:var(--m3d-black);color:var(--m3d-white);font-size:var(--m3d-text-xs)}.m3d-benefits__inner{min-height:30px;display:flex;align-items:center;justify-content:center;gap:72px}.m3d-header{--m3d-overlay-top:0px;position:relative;z-index:30;background:var(--m3d-white);color:var(--m3d-black)}.m3d-header::after{content:"";position:fixed;z-index:1;left:0;right:0;top:var(--m3d-overlay-top);bottom:0;background:var(--m3d-overlay);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity 320ms ease,visibility 0s linear 320ms}.m3d-header[data-collections-open]::after,.m3d-header[data-search-open]::after{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}.m3d-header__main{position:relative;z-index:5;max-width:1288px;min-height:82px;display:grid;grid-template-columns:150px minmax(280px,1fr) auto;align-items:center;gap:48px}.m3d-header__logo{position:relative;display:block;width:120px;height:58px;overflow:hidden}.m3d-header__logo img{position:absolute;left:50%;top:50%;width:120px;height:auto;transform:translate(-50%,-50%);display:block}.m3d-header__logo .m3d-header__logo-configured{position:static;width:auto;max-width:120px;max-height:58px;transform:none}.m3d-header__search{position:absolute;right:244px;top:50%;width:260px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0;transform:translateY(-50%);transition:right 420ms cubic-bezier(.22,1,.36,1),width 420ms cubic-bezier(.22,1,.36,1)}.m3d-header__search-field{height:44px;display:grid;grid-template-columns:minmax(0,1fr) 44px;background:var(--m3d-color-surface-alt);border:1px solid var(--m3d-color-border);box-shadow:none}.m3d-header__search-field:focus-within{box-shadow:inset 0 -2px var(--m3d-black)}.m3d-header__search input{width:100%;min-width:0;padding:0 16px;background:transparent}.m3d-header__search input:focus-visible{outline:none}.m3d-header__search button,.m3d-mobile-nav form button{display:grid;place-items:center;background:transparent}.m3d-header__search-cancel{max-width:0;min-height:44px;padding:0;overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;white-space:nowrap;transition:max-width 320ms ease,padding 320ms ease,opacity 180ms ease,visibility 0s linear 320ms}.m3d-header[data-search-open] .m3d-header__search{right:20px;width:calc(100% - 210px)}.m3d-header[data-search-open] .m3d-header__search-cancel{max-width:90px;padding:0 8px;opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}.m3d-header__search .m3d-icon{--m3d-icon-size:24px}.m3d-header__actions{grid-column:3;justify-self:end;display:flex;align-items:center;gap:18px;opacity:1;visibility:visible;transition:opacity 180ms ease,visibility 0s linear}.m3d-header[data-search-open] .m3d-header__actions{opacity:0;visibility:hidden;pointer-events:none;transition-delay:0s,180ms}.m3d-header__account{min-height:44px;display:flex;align-items:center;padding:0 22px;border:1px solid var(--m3d-black);border-radius:10px;color:var(--m3d-black);font-weight:var(--m3d-weight-bold);transition:color 180ms ease,border-color 180ms ease,background-color 180ms ease,transform 120ms ease}.m3d-header__account:hover,.m3d-header__account:focus-visible{border-color:var(--m3d-color-link);background:var(--m3d-purple-50);color:var(--m3d-color-link)}.m3d-header__account:active{transform:scale(.98)}.m3d-header__cart{position:relative;width:44px;height:44px;display:inline-grid;place-items:center;border-radius:10px;color:var(--m3d-black);transition:color 180ms ease,background-color 180ms ease,transform 120ms ease}.m3d-header__cart:hover,.m3d-header__cart:focus-visible{background:var(--m3d-purple-50);color:var(--m3d-color-link)}.m3d-header__cart:active{transform:scale(.98)}.m3d-header__cart .m3d-icon{--m3d-icon-size:24px}.m3d-header__cart span{position:absolute;top:3px;right:-2px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;border-radius:20px;background:var(--m3d-color-link);color:var(--m3d-white);font-size:var(--m3d-text-xs)}.m3d-search-panel{position:absolute;z-index:4;left:0;right:0;top:82px;overflow:hidden;background:var(--m3d-white);border-top:1px solid var(--m3d-color-border);border-bottom:1px solid var(--m3d-color-border);box-shadow:var(--m3d-shadow-float);opacity:0;visibility:hidden;pointer-events:none;clip-path:inset(0 0 100% 0);transform:translateY(-10px);transform-origin:top center;transition:clip-path 440ms cubic-bezier(.22,1,.36,1),transform 440ms cubic-bezier(.22,1,.36,1),opacity 220ms ease,visibility 0s linear 440ms}.m3d-header[data-search-open] .m3d-search-panel{opacity:1;visibility:visible;pointer-events:auto;clip-path:inset(0);transform:translateY(0);transition-delay:0s}.m3d-search-panel__inner{max-width:1288px;padding-top:32px;padding-bottom:36px;display:grid;grid-template-columns:minmax(180px,1fr) auto;align-items:start;gap:48px}.m3d-search-panel__links>p{margin:0 0 22px;color:var(--m3d-color-link);font-size:var(--m3d-text-xs);font-weight:var(--m3d-weight-bold);text-transform:none;letter-spacing:normal}.m3d-search-panel__links ul{margin:0;padding:0;display:grid;gap:16px;list-style:none}.m3d-search-panel__links a{display:inline-flex;align-items:center;justify-content:space-between;gap:14px;min-height:30px;color:var(--m3d-black);font-size:13px;font-weight:var(--m3d-weight-bold);text-transform:none;transition:color 180ms ease}.m3d-search-panel__links a:hover,.m3d-search-panel__links a:focus-visible{color:var(--m3d-color-link)}.m3d-search-panel__links a span{font-size:17px;line-height:1}.m3d-search-panel__banners{display:flex;align-items:flex-start;gap:16px}.m3d-search-panel__banner{width:241px;display:flex;flex-direction:column;gap:12px;color:var(--m3d-black)}.m3d-search-panel__visual{position:relative;width:241px;height:300px;display:block;overflow:hidden;background:var(--m3d-color-surface-alt);transition:transform 220ms cubic-bezier(.22,1,.36,1),box-shadow 220ms ease}.m3d-search-panel__visual img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}.m3d-search-panel__visual small{position:absolute;z-index:1;left:16px;top:16px;padding:7px 10px;border-radius:999px;background:var(--m3d-white);color:var(--m3d-black);font-size:var(--m3d-text-xs);font-weight:var(--m3d-weight-bold);text-transform:none;letter-spacing:normal}.m3d-search-panel__banner-link{display:flex;align-items:center;justify-content:space-between;min-height:26px;font-size:13px;font-weight:var(--m3d-weight-bold);transition:color 180ms ease}.m3d-search-panel__banner-link span{transition:transform 180ms ease}.m3d-search-panel__banner:hover .m3d-search-panel__visual,.m3d-search-panel__banner:focus-visible .m3d-search-panel__visual{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.16)}.m3d-search-panel__banner:hover .m3d-search-panel__banner-link,.m3d-search-panel__banner:focus-visible .m3d-search-panel__banner-link{color:var(--m3d-color-link)}.m3d-search-panel__banner:hover .m3d-search-panel__banner-link span,.m3d-search-panel__banner:focus-visible .m3d-search-panel__banner-link span{transform:translateX(4px)}.m3d-header__nav-shell{position:relative;min-height:66px;display:flex;align-items:center;border-top:1px solid var(--m3d-color-border);border-bottom:1px solid var(--m3d-color-border)}.m3d-header__nav{width:100%;max-width:1288px;min-height:46px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:2px;border:0;border-radius:0;font-size:14px}.m3d-header__nav>a,.m3d-header__collections>summary{position:relative;z-index:1;min-height:36px;padding:0 16px;display:flex;align-items:center;color:var(--m3d-white);white-space:nowrap;mix-blend-mode:difference}.m3d-header__collections>summary{gap:7px;list-style:none;cursor:pointer}.m3d-header__collections>summary::-webkit-details-marker{display:none}.m3d-header__collections-arrow{display:inline-grid;place-items:center;width:16px;height:16px;line-height:1;transform:rotate(-90deg);transition:transform 420ms cubic-bezier(.22,1,.36,1)}.m3d-header__collections[open][data-expanded] .m3d-header__collections-arrow{transform:rotate(0deg)}.m3d-header__cursor{position:absolute;z-index:0;left:0;top:50%;width:0;height:36px;border-radius:999px;background:var(--m3d-black);opacity:0;pointer-events:none;transform:translate3d(0,-50%,0);transform-origin:center;will-change:transform,width;transition:opacity 180ms ease}.m3d-header__nav[data-m3d-ready] .m3d-header__cursor{opacity:1}.m3d-header__quote{font-weight:var(--m3d-weight-bold)}.m3d-mega{position:absolute;z-index:3;left:0;right:0;top:100%;padding:34px max(24px,calc((100vw - var(--page-width))/2 + 20px));display:grid;grid-template-columns:1fr 430px;gap:80px;background:var(--m3d-white);border-top:1px solid var(--m3d-color-border);box-shadow:var(--m3d-shadow-float);opacity:0;visibility:hidden;pointer-events:none;clip-path:inset(0 0 100% 0);transform:translateY(-12px);transform-origin:top center;transition:clip-path 460ms cubic-bezier(.22,1,.36,1),transform 460ms cubic-bezier(.22,1,.36,1),opacity 260ms ease,visibility 0s linear 460ms}.m3d-header__collections[open][data-expanded] .m3d-mega{opacity:1;visibility:visible;pointer-events:auto;clip-path:inset(0);transform:translateY(0);transition-delay:0s}.m3d-mega__category{position:relative}.m3d-mega__category>p{margin-bottom:16px;color:var(--m3d-color-link);font-size:var(--m3d-text-xs);font-weight:var(--m3d-weight-bold);text-transform:none;letter-spacing:normal}.m3d-mega__category ul{display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:12px 40px;margin:0;padding:0 0 0 14px;list-style:none}.m3d-mega__category li{min-width:0}.m3d-mega__category li a{min-height:28px;display:inline-flex;align-items:center;color:var(--m3d-black);transition:color 180ms ease}.m3d-mega__category li a:hover,.m3d-mega__category li a:focus-visible{color:var(--m3d-color-link)}.m3d-mega__hover-line{position:absolute;z-index:1;left:0;top:0;color:var(--m3d-color-link);font-size:18px;font-weight:var(--m3d-weight-bold);line-height:1;opacity:0;pointer-events:none;transform:translate3d(0,0,0);transition:transform 230ms cubic-bezier(.22,1,.36,1),opacity 160ms ease;will-change:transform,opacity}.m3d-mega__category[data-hovering] .m3d-mega__hover-line{opacity:1}.m3d-mega a{color:var(--m3d-black)}.m3d-mega__feature{min-height:190px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:var(--m3d-purple-50)}.m3d-mega__feature>div{padding:24px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px}.m3d-mega__feature strong{font-size:24px;line-height:1.05}.m3d-mega__feature b{padding:11px 14px;background:var(--m3d-color-link);color:var(--m3d-white);font-size:12px}.m3d-mega__feature img{width:100%;height:100%;object-fit:cover}.m3d-header__toggle,.m3d-mobile-nav{display:none}.m3d-header__toggle{flex-direction:column;gap:4px;background:transparent}.m3d-header__toggle span{width:20px;height:2px;background:var(--m3d-black)}
   @media(min-width:1001px) and (max-width:1100px){.m3d-search-panel__inner{gap:26px}.m3d-search-panel__banners{gap:10px}.m3d-search-panel__links a{font-size:12px}}
-  @media(max-width:1000px){.m3d-benefits__inner{min-height:26px}.m3d-benefits__inner span:not(:first-child){display:none}.m3d-header__main{min-height:72px;grid-template-columns:44px 1fr 44px;gap:8px;padding:0 12px}.m3d-header__toggle{display:inline-flex}.m3d-header__logo{justify-self:center;width:120px;height:56px}.m3d-header__search,.m3d-search-panel,.m3d-header__account,.m3d-header__nav-shell{display:none}.m3d-header__actions{justify-content:flex-end}.m3d-mobile-nav{display:block;padding:16px 20px 28px;border-top:1px solid #ededed}.m3d-mobile-nav[hidden]{display:none}.m3d-mobile-nav form{height:44px;display:grid;grid-template-columns:1fr 44px;background:#f5f5f7}.m3d-mobile-nav form input{min-width:0;padding:0 14px;background:transparent}.m3d-mobile-nav nav{margin-top:14px;display:grid}.m3d-mobile-nav nav a{min-height:48px;display:flex;align-items:center;border-bottom:1px solid #ededed;color:#000;font-weight:700}}
+  @media(max-width:1000px){.m3d-benefits__inner{min-height:26px}.m3d-benefits__inner span:not(:first-child){display:none}.m3d-header__main{min-height:72px;grid-template-columns:44px 1fr 44px;gap:8px;padding:0 12px}.m3d-header__toggle{display:inline-flex}.m3d-header__logo{justify-self:center;width:120px;height:56px}.m3d-header__search,.m3d-search-panel,.m3d-header__account,.m3d-header__nav-shell{display:none}.m3d-header__actions{justify-content:flex-end}.m3d-mobile-nav{display:block;padding:16px 20px 28px;border-top:1px solid var(--m3d-color-border)}.m3d-mobile-nav[hidden]{display:none}.m3d-mobile-nav form{height:44px;display:grid;grid-template-columns:1fr 44px;background:var(--m3d-color-surface-alt)}.m3d-mobile-nav form input{min-width:0;padding:0 14px;background:transparent}.m3d-mobile-nav nav{margin-top:14px;display:grid}.m3d-mobile-nav nav a{min-height:48px;display:flex;align-items:center;border-bottom:1px solid var(--m3d-color-border);color:var(--m3d-black);font-weight:var(--m3d-weight-bold)}}
+
+  .m3d-header__main{min-height:104px;grid-template-columns:210px minmax(280px,1fr) auto;gap:var(--m3d-space-5)}
+  .m3d-header__logo{display:flex;align-items:center;width:max-content;height:auto;padding:calc(var(--m3d-logo-h-height) * var(--m3d-logo-h-clearspace-ratio));overflow:visible}
+  .m3d-header__logo img,.m3d-header__logo .m3d-header__logo-configured{position:static;inset:auto;display:block;width:auto;height:var(--m3d-logo-h-height);max-width:none;max-height:none;transform:none}
+  .m3d-search-panel{top:104px}
+  .m3d-header[data-search-open] .m3d-header__search{width:calc(100% - 270px)}
+  .m3d-header__search-field{border-color:var(--m3d-color-border-control);border-radius:var(--m3d-radius-control)}
+  .m3d-header__search input{border:0;font:inherit;font-size:var(--m3d-text-md)}
+  .m3d-header__search-field:focus-within{box-shadow:inset 0 -2px var(--m3d-focus-color)}
+  .m3d-header__search button{min-width:44px;min-height:44px}
+  .m3d-header__search .m3d-header__search-cancel{min-width:0}
+  .m3d-header__account,.m3d-header__cart{border-radius:var(--m3d-radius-control)}
+  .m3d-header__cart span{min-width:20px;height:20px;font-size:var(--m3d-text-xs);font-variant-numeric:var(--m3d-numeric)}
+  .m3d-header__nav>a,.m3d-header__collections>summary,.m3d-header__unavailable{min-height:44px;padding-inline:12px}
+  .m3d-header__unavailable{position:relative;z-index:1;display:flex;align-items:center;border:0;background:transparent;color:var(--m3d-white);font:inherit;white-space:nowrap;mix-blend-mode:difference;cursor:default}
+  .m3d-header__cursor{height:44px}
+  .m3d-search-panel__links a,.m3d-search-panel__banner-link,.m3d-mega__category li a{min-height:44px}
+  .m3d-search-panel__banner:hover .m3d-search-panel__visual,.m3d-search-panel__banner:focus-visible .m3d-search-panel__visual{box-shadow:none}
+  .m3d-mega__feature b{border-radius:var(--m3d-radius-control)}
+  .m3d-header :focus-visible{outline:var(--m3d-focus-width) solid var(--m3d-focus-color);outline-offset:var(--m3d-focus-offset)}
+  @media(max-width:1000px){
+    .m3d-header__main{grid-template-columns:44px minmax(0,1fr) 44px;gap:var(--m3d-space-2);padding:var(--m3d-space-2) var(--m3d-space-4) var(--m3d-space-4)}
+    .m3d-header__logo{height:auto;width:max-content;padding:calc(var(--m3d-logo-h-height-mobile) * var(--m3d-logo-h-clearspace-ratio))}
+    .m3d-header__logo img,.m3d-header__logo .m3d-header__logo-configured{height:var(--m3d-logo-h-height-mobile);max-width:100%}
+    .m3d-header__toggle{min-width:44px;min-height:44px;align-items:center;justify-content:center}
+    .m3d-header__search{position:static;display:grid;grid-column:1 / -1;grid-row:2;width:100%;transform:none}
+    .m3d-header[data-search-open] .m3d-header__search{width:100%}
+    .m3d-header__search-field{height:48px}
+    .m3d-header__search-cancel{display:none}
+    .m3d-header[data-search-open] .m3d-header__actions{opacity:1;visibility:visible;pointer-events:auto}
+    .m3d-mobile-nav{max-height:70dvh;overflow-y:auto;padding:var(--m3d-space-4)}
+    .m3d-mobile-nav nav{margin:0}
+    .m3d-mobile-nav nav>a,.m3d-mobile-nav nav>span,.m3d-mobile-nav__collections>summary{display:flex;align-items:center;min-height:48px;border-bottom:1px solid var(--m3d-color-border);font-weight:var(--m3d-weight-bold);color:var(--m3d-color-text)}
+    .m3d-mobile-nav nav>span{color:var(--m3d-color-text-muted)}
+    .m3d-mobile-nav__collections>summary{cursor:pointer}
+    .m3d-mobile-nav__collections ul{margin:0;padding:var(--m3d-space-2) var(--m3d-space-4);list-style:none}
+    .m3d-mobile-nav__collections ul a{font-weight:var(--m3d-weight-regular)}
+  }
 </style>
 
 <script>
@@ -272,6 +335,7 @@
     }
 
     function openSearch(){
+      if(window.matchMedia('(max-width:1000px)').matches)return;
       if(header.hasAttribute('data-search-open'))return;
       if(details.open)closeCollections();
       header.setAttribute('data-search-open','');
@@ -287,7 +351,7 @@
 
     searchInput.addEventListener('click',openSearch);
     searchForm.addEventListener('submit',function(event){
-      if(!header.hasAttribute('data-search-open')&&!searchInput.value.trim()){
+      if(!window.matchMedia('(max-width:1000px)').matches&&!header.hasAttribute('data-search-open')&&!searchInput.value.trim()){
         event.preventDefault();
         openSearch();
         searchInput.focus();
@@ -357,7 +421,7 @@
     { "type": "text", "id": "benefit_one", "label": "Benefício 1", "default": "Personalização à sua medida" },
     { "type": "text", "id": "benefit_two", "label": "Benefício 2", "default": "Soluções para empresas" },
     { "type": "text", "id": "benefit_three", "label": "Benefício 3", "default": "Produtos para cada ocasião" },
-    { "type": "text", "id": "search_placeholder", "label": "Pesquisa", "default": "O que procura para a sua marca?" },
+    { "type": "text", "id": "search_placeholder", "label": "Pesquisa", "default": "Pesquisar produtos" },
     { "type": "text", "id": "account_label", "label": "Conta", "default": "A minha conta" },
     { "type": "link_list", "id": "menu", "label": "Menu de coleções", "default": "main-menu" },
     { "type": "text", "id": "collections_label", "label": "Coleções", "default": "Coleções" },
@@ -379,3 +443,7 @@
   ]
 }
 {% endschema %}
+
+<style>
+@media(max-width:1000px){.m3d-header__search{grid-template-columns:minmax(0,1fr)}.m3d-header__search .m3d-header__search-cancel{display:none}.m3d-header__search-field{width:100%}}
+</style>

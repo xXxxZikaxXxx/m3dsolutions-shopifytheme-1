@@ -32,3 +32,9 @@ Usar exclusivamente a identidade confirmada: #000000, #FFFFFF, #E31C79, #4436BC 
 ## Estado dos novos assets
 
 Os cinco arquivos são temporários para validação visual, conforme informado pelo usuário. Eles já foram aplicados no Figma e no tema em desktop e mobile. O logotipo é oficial e deve substituir qualquer assinatura tipográfica provisória. A composição usa a paleta M3D para painéis, textos e chamadas, sem alterar as cores originais das fotografias.
+
+## Manual oficial de identidade visual — 08/10/2026
+
+Manual fornecido pelo utilizador: `LO_M3D_Institucional_ManualdeMarca_251023 (1).pdf`, original em `C:/Users/Administrator/Desktop/logos/`. Cópia integral preservada em `referencias/marca/` para revisão pelos dois líderes. PDF de 18 páginas, com texto extraído e páginas de identidade e aplicações inspecionadas visualmente.
+
+Regras: paleta existente confirmada (p. 10); tipografia Raleway (p. 12); gradiente rosa → roxo → azul (p. 11); variantes e restrições do logotipo (p. 5–7); redução e proteção conforme os desenhos (p. 8–9); pincelada e elementos fluidos (p. 13–17). O valor 45 px da p. 8 corresponde à dimensão assinalada no desenho, não deve ser interpretado automaticamente como largura mínima. A nova etapa segue o manual, incluindo a revisão da Inter registrada no design anterior. Ver `codexclaude.md` para o plano e limites de autorização.

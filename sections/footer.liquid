@@ -33,8 +33,51 @@
     (settings.social_*_link), não do schema desta section.
   - Ícones de redes vêm do snippet 'icon'.
 {%- endcomment -%}
+{%- liquid
+  assign footer_brand_configured = false
+  for block in section.blocks
+    if block.type == 'brand'
+      assign footer_brand_configured = true
+      break
+    endif
+  endfor
+  assign footer_quote_page = pages['pedir-orcamento']
+  assign footer_about_page = pages['sobre-a-m3d']
+  assign footer_contact_page = pages['contact']
+  if footer_contact_page == blank
+    assign footer_contact_page = pages['contato']
+  endif
+-%}
 <footer class="footer" data-section-id="{{ section.id }}">
   <div class="footer__top page-width">
+    {%- unless footer_brand_configured -%}
+      <div class="footer__block footer__block--brand">
+        <a class="footer__brand-logo" href="{{ routes.root_url }}"><img class="footer__logo" src="{{ 'logo-m3d-horizontal-negativo.svg' | asset_url }}" width="145" height="33" alt="{{ shop.name | escape }}" loading="lazy"></a>
+        <img class="footer__slogan" src="{{ 'slogan-make-it-real-negativo.svg' | asset_url }}" width="296" height="30" alt="Make it real." loading="lazy">
+      </div>
+    {%- endunless -%}
+    <nav class="footer__block" aria-label="{{ 'm3d_footer.explore' | t }}">
+      <h2 class="footer__heading">{{ 'm3d_footer.explore' | t }}</h2>
+      <ul class="footer__menu" role="list">
+        <li><a class="footer__link" href="{{ routes.all_products_collection_url }}">{{ 'sections.collection_banner.products' | t }}</a></li>
+        {%- if footer_quote_page != blank -%}<li><a class="footer__link" href="{{ footer_quote_page.url }}?view=m3d-quote">{{ footer_quote_page.title | escape }}</a></li>{%- endif -%}
+        {%- if footer_about_page != blank -%}<li><a class="footer__link" href="{{ footer_about_page.url }}">{{ footer_about_page.title | escape }}</a></li>{%- endif -%}
+      </ul>
+    </nav>
+    {%- capture footer_help_links -%}
+      {%- if footer_contact_page != blank -%}<li><a class="footer__link" href="{{ footer_contact_page.url }}">{{ 'm3d_footer.contact' | t }}</a></li>{%- endif -%}
+      {%- if shop.shipping_policy.body != blank -%}<li><a class="footer__link" href="{{ shop.shipping_policy.url }}">{{ 'm3d_footer.shipping' | t }}</a></li>{%- endif -%}
+      {%- if shop.refund_policy.body != blank -%}<li><a class="footer__link" href="{{ shop.refund_policy.url }}">{{ 'm3d_footer.refunds' | t }}</a></li>{%- endif -%}
+      {%- if shop.privacy_policy.body != blank -%}<li><a class="footer__link" href="{{ shop.privacy_policy.url }}">{{ 'm3d_footer.privacy' | t }}</a></li>{%- endif -%}
+      {%- if shop.terms_of_service.body != blank -%}<li><a class="footer__link" href="{{ shop.terms_of_service.url }}">{{ 'm3d_footer.terms' | t }}</a></li>{%- endif -%}
+    {%- endcapture -%}
+    {%- if footer_help_links != blank -%}
+      <nav class="footer__block" aria-label="{{ 'm3d_footer.help' | t }}">
+        <h2 class="footer__heading">{{ 'm3d_footer.help' | t }}</h2>
+        <ul class="footer__menu" role="list">{{ footer_help_links }}</ul>
+      </nav>
+    {%- endif -%}
+
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when 'brand' -%}
@@ -51,8 +94,9 @@
                   alt: shop.name | escape
               }}
             {%- else -%}
-              <p class="footer__brand-name">{{ shop.name }}</p>
+              <a class="footer__brand-logo" href="{{ routes.root_url }}"><img class="footer__logo" src="{{ 'logo-m3d-horizontal-negativo.svg' | asset_url }}" width="145" height="33" alt="{{ shop.name | escape }}" loading="lazy"></a>
             {%- endif -%}
+            <img class="footer__slogan" src="{{ 'slogan-make-it-real-negativo.svg' | asset_url }}" width="296" height="30" alt="Make it real." loading="lazy">
             {%- if block.settings.text != blank -%}
               <div class="footer__text rte">{{ block.settings.text }}</div>
             {%- endif -%}
@@ -66,7 +110,7 @@
             {%- if block.settings.menu != blank -%}
               <ul class="footer__menu" role="list">
                 {%- for link in block.settings.menu.links -%}
-                  <li><a href="{{ link.url }}" class="footer__link">{{ link.title | escape }}</a></li>
+                  {%- if link.url != blank and link.url != routes.root_url and link.url != '#' -%}<li><a href="{{ link.url }}" class="footer__link">{{ link.title | escape }}</a></li>{%- endif -%}
                 {%- endfor -%}
               </ul>
             {%- endif -%}
@@ -127,9 +171,7 @@
       {%- endif -%}
       <p class="footer__copyright">
         &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'sections.footer.rights' | t }}
-        <span class="footer__credit">
-          {{ 'sections.footer.base_by_html' | t: link: 'https://lecdt.com' }}
-        </span>
+
       </p>
     </div>
   </div>
@@ -137,8 +179,8 @@
 
 <style>
   .footer {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--m3d-color-surface-inverse);
+    color: var(--m3d-color-text-inverse);
     margin-top: var(--spacing-sections);
   }
   .footer__top {
@@ -149,12 +191,12 @@
     padding-bottom: 48px;
   }
   .footer__logo { display: block; height: auto; margin-bottom: 16px; }
-  .footer__brand-name { font-family: var(--font-heading-family); font-size: var(--f4); margin-bottom: 12px; }
-  .footer__heading { font-size: var(--f2); margin-bottom: 16px; }
+  .footer__brand-name { font-family: var(--font-heading-family); font-size: var(--m3d-text-xl); margin-bottom: 12px; }
+  .footer__heading { font-size: var(--m3d-text-lg); margin-bottom: 16px; }
   .footer__menu { list-style: none; margin: 0; padding: 0; }
-  .footer__link { display: inline-block; padding: 6px 0; color: inherit; text-decoration: none; font-size: var(--f1); }
+  .footer__link { display: inline-block; padding: 6px 0; color: inherit; text-decoration: none; font-size: var(--m3d-text-sm); }
   .footer__link:hover { text-decoration: underline; }
-  .footer__text { font-size: var(--f1); line-height: 1.6; }
+  .footer__text { font-size: var(--m3d-text-sm); line-height: 1.6; }
   .footer__bottom {
     display: flex;
     align-items: center;
@@ -163,7 +205,7 @@
     gap: 16px;
     padding-top: 24px;
     padding-bottom: 24px;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--m3d-gray-600);
   }
   .footer__bottom-left,
   .footer__bottom-right { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
@@ -171,13 +213,26 @@
   .footer__payment-icon { width: 38px; height: 24px; }
   .footer__social { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
   .footer__social a { color: inherit; display: inline-flex; }
-  .footer__copyright { font-size: var(--f0); }
+  .footer__copyright { font-size: var(--m3d-text-xs); }
   .footer__credit a { color: inherit; text-decoration: underline; }
-  .footer__credit a:hover { color: var(--color-accent); }
+  .footer__credit a:hover { color: var(--m3d-color-text-inverse); }
 
   @media screen and (max-width: 1000px) {
     .footer__bottom { flex-direction: column; align-items: flex-start; }
   }
+
+  .footer{font-family:var(--m3d-font-family);font-weight:var(--m3d-weight-regular)}
+  .footer__top{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--m3d-space-7);padding-block:var(--m3d-space-8)}
+  .footer__block{min-width:0;overflow-wrap:anywhere}
+  .footer__brand-logo{display:inline-flex;padding:calc(var(--m3d-logo-h-height) * var(--m3d-logo-h-clearspace-ratio));margin-bottom:var(--m3d-space-4)}
+  .footer__logo{display:block;width:auto;height:var(--m3d-logo-h-height);max-width:100%;margin:0}
+  .footer__slogan{display:block;width:220px;max-width:100%;height:auto;margin:0 0 var(--m3d-space-5)}
+  .footer__heading{font-weight:var(--m3d-weight-bold)}
+  .footer__link{display:inline-flex;align-items:center;min-height:44px;padding-block:var(--m3d-space-2)}
+  .footer__social a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}
+  .footer :focus-visible{outline:var(--m3d-focus-width) solid var(--m3d-focus-color-inverse);outline-offset:var(--m3d-focus-offset)}
+  .footer .localization-form__select{color:var(--m3d-color-text-inverse);background:var(--m3d-color-surface-inverse)}
+  @media(max-width:600px){.footer__top{gap:var(--m3d-space-6);padding-block:var(--m3d-space-7)}.footer__brand-logo{padding:calc(var(--m3d-logo-h-height-mobile) * var(--m3d-logo-h-clearspace-ratio))}.footer__logo{height:var(--m3d-logo-h-height-mobile)}}
 </style>
 
 {% schema %}

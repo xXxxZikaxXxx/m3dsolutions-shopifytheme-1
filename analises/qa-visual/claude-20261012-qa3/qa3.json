@@ -1,0 +1,5642 @@
+{
+ "pages": [
+  {
+   "name": "search-empty",
+   "path": "/search",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [],
+   "cardCount": 0,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-saco",
+   "path": "/search?q=saco",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": {
+    "h": 40,
+    "text": "Relevância",
+    "options": [
+     "Relevância",
+     "Preço ascendente",
+     "Preço descendente"
+    ]
+   },
+   "filterGroups": [
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO",
+     "price": "Preço €1,80 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar SACO NATALÍCIO BONECO DE NEVE COM COR",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Amazon",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Amazon",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Jeep",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Jeep",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Jaguar",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Jaguar",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "JCB",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar JCB",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Carlsberg",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Carlsberg",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 16,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-polo",
+   "path": "/search?q=polo",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": {
+    "h": 40,
+    "text": "Relevância",
+    "options": [
+     "Relevância",
+     "Preço ascendente",
+     "Preço descendente"
+    ]
+   },
+   "filterGroups": [
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "I-Phone",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar I-Phone",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bacardi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bacardi",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Carlsberg",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Carlsberg",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Marshal",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Marshal",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Swiss Air",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Swiss Air",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bear & Bull",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bear &amp; Bull",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 16,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-tshirts",
+   "path": "/collections/t-shirts",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Ordenar por",
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-bags",
+   "path": "/collections/bags",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Ordenar por",
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-drinkware",
+   "path": "/collections/drinkware",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Ordenar por",
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "Copo térmico de parede dupla 700 ml",
+     "price": "desde €13,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Copo térmico de parede dupla 700 ml",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Garrafa de vidro 500 ml com bolsa",
+     "price": "desde €3,56 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Garrafa de vidro 500 ml com bolsa",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "home",
+   "path": "/",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Amazon",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Amazon"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Audi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Audi"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bacardi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bacardi"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bear & Bull",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bear &amp; Bull"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 4,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-empty",
+   "path": "/search",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [],
+   "cardCount": 0,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-saco",
+   "path": "/search?q=saco",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": {
+    "h": 40,
+    "text": "Relevância",
+    "options": [
+     "Relevância",
+     "Preço ascendente",
+     "Preço descendente"
+    ]
+   },
+   "filterGroups": [
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO",
+     "price": "Preço €1,80 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar SACO NATALÍCIO BONECO DE NEVE COM COR",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Amazon",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Amazon",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Jeep",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Jeep",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Jaguar",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Jaguar",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "JCB",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar JCB",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Carlsberg",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Carlsberg",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 16,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-polo",
+   "path": "/search?q=polo",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": {
+    "h": 40,
+    "text": "Relevância",
+    "options": [
+     "Relevância",
+     "Preço ascendente",
+     "Preço descendente"
+    ]
+   },
+   "filterGroups": [
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "I-Phone",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar I-Phone",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bacardi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bacardi",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Carlsberg",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Carlsberg",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Marshal",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Marshal",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Swiss Air",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Swiss Air",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bear & Bull",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bear &amp; Bull",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 16,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-tshirts",
+   "path": "/collections/t-shirts",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Ordenar por",
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-bags",
+   "path": "/collections/bags",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Ordenar por",
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-drinkware",
+   "path": "/collections/drinkware",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Ordenar por",
+    "Stock"
+   ],
+   "cards": [
+    {
+     "title": "Copo térmico de parede dupla 700 ml",
+     "price": "desde €13,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Copo térmico de parede dupla 700 ml",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Garrafa de vidro 500 ml com bolsa",
+     "price": "desde €3,56 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Garrafa de vidro 500 ml com bolsa",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "home",
+   "path": "/",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Amazon",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Amazon"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Audi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Audi"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bacardi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bacardi"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bear & Bull",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bear &amp; Bull"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 4,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-empty",
+   "path": "/search",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [],
+   "cardCount": 0,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-saco",
+   "path": "/search?q=saco",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": {
+    "h": 44,
+    "text": "Relevância",
+    "options": [
+     "Relevância",
+     "Preço ascendente",
+     "Preço descendente"
+    ]
+   },
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO",
+     "price": "Preço €1,80 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar SACO NATALÍCIO BONECO DE NEVE COM COR",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Amazon",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Amazon",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Jeep",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Jeep",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Jaguar",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Jaguar",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "JCB",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar JCB",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Carlsberg",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Carlsberg",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 16,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-polo",
+   "path": "/search?q=polo",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": {
+    "h": 44,
+    "text": "Relevância",
+    "options": [
+     "Relevância",
+     "Preço ascendente",
+     "Preço descendente"
+    ]
+   },
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "I-Phone",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar I-Phone",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bacardi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bacardi",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Carlsberg",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Carlsberg",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Marshal",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Marshal",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Swiss Air",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Swiss Air",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bear & Bull",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bear &amp; Bull",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 16,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-tshirts",
+   "path": "/collections/t-shirts",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-bags",
+   "path": "/collections/bags",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-drinkware",
+   "path": "/collections/drinkware",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Copo térmico de parede dupla 700 ml",
+     "price": "desde €13,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Copo térmico de parede dupla 700 ml",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Garrafa de vidro 500 ml com bolsa",
+     "price": "desde €3,56 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Garrafa de vidro 500 ml com bolsa",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "home",
+   "path": "/",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Amazon",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Amazon"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Audi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Audi"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bacardi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bacardi"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bear & Bull",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bear &amp; Bull"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 4,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-empty",
+   "path": "/search",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [],
+   "cardCount": 0,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-saco",
+   "path": "/search?q=saco",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": {
+    "h": 44,
+    "text": "Relevância",
+    "options": [
+     "Relevância",
+     "Preço ascendente",
+     "Preço descendente"
+    ]
+   },
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO",
+     "price": "Preço €1,80 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar SACO NATALÍCIO BONECO DE NEVE COM COR",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Amazon",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Amazon",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Jeep",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Jeep",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Jaguar",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Jaguar",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "JCB",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar JCB",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Carlsberg",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Carlsberg",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 16,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "search-polo",
+   "path": "/search?q=polo",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": {
+    "h": 44,
+    "text": "Relevância",
+    "options": [
+     "Relevância",
+     "Preço ascendente",
+     "Preço descendente"
+    ]
+   },
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "I-Phone",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar I-Phone",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bacardi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bacardi",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Carlsberg",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Carlsberg",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Marshal",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Marshal",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Swiss Air",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Swiss Air",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bear & Bull",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bear &amp; Bull",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 16,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-tshirts",
+   "path": "/collections/t-shirts",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-bags",
+   "path": "/collections/bags",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "col-drinkware",
+   "path": "/collections/drinkware",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Copo térmico de parede dupla 700 ml",
+     "price": "desde €13,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Copo térmico de parede dupla 700 ml",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Garrafa de vidro 500 ml com bolsa",
+     "price": "desde €3,56 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Garrafa de vidro 500 ml com bolsa",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 2,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  },
+  {
+   "name": "home",
+   "path": "/",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [],
+   "cards": [
+    {
+     "title": "Amazon",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Amazon"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Audi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Audi"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bacardi",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bacardi"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    },
+    {
+     "title": "Bear & Bull",
+     "price": "Sob consulta",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Bear &amp; Bull"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 4,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "jsErrors": []
+  }
+ ],
+ "pdp": [
+  {
+   "name": "pdp-m3d-sc001",
+   "path": "/products/m3d-sc001",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Saco+de+feltro+RPET+38%C3%9742+cm&product_url=%2Fproducts%2Fm3d-sc001&variant=Preto&variant_id=50598409896006&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Saco de feltro RPET com pegas longas. Espessura do feltro: 1 mm. Material: RPET Dimensões: 38X42CM Especificações"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-sc002",
+   "path": "/products/m3d-sc002",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul",
+      "bg": "rgb(31, 95, 191)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza",
+      "bg": "rgb(140, 140, 140)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Amarelo",
+      "bg": "rgb(255, 209, 0)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Laranja",
+      "bg": "rgb(255, 122, 0)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Turquesa",
+      "bg": "rgb(0, 163, 173)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Fúcsia",
+      "bg": "rgb(214, 38, 123)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Lima",
+      "bg": "rgb(155, 203, 59)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Escuro",
+      "bg": "rgb(31, 77, 43)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Chocolate",
+      "bg": "rgb(78, 50, 39)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Terra",
+      "bg": "rgb(154, 91, 60)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Corda",
+      "bg": "rgb(205, 187, 154)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Violeta",
+      "bg": "rgb(107, 63, 160)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Rosa Bebé",
+      "bg": "rgb(244, 182, 199)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Petróleo",
+      "bg": "rgb(31, 94, 110)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Bebé",
+      "bg": "rgb(167, 200, 232)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Menta",
+      "bg": "rgb(159, 220, 194)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Ochre",
+      "bg": "rgb(201, 146, 46)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Saco+de+algod%C3%A3o+180+g%2Fm%C2%B2+38%C3%9742+cm&product_url=%2Fproducts%2Fm3d-sc002&variant=Preto&variant_id=50598410256454&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Saco de algodão com alças longas. 180 gr/m². Material: Algodão Dimensões: 38X42CM Especificações e materiais Pers"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-gr001",
+   "path": "/products/m3d-gr001",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Cinza Pedra",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Copo térmico de parede dupla 700 ml",
+     "price": "desde €13,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Copo térmico de parede dupla 700 ml",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Cinza Pedra",
+    "swatches": [
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": true,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Garrafa+de+vidro+500+ml+com+bolsa&product_url=%2Fproducts%2Fm3d-gr001&variant=Cinza+Pedra&variant_id=50598411403334&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Garrafa de vidro com tampa de bambu com alça de PU e bolsa de de feltro RPET. Capacidade: 500 ml. O bambu é um mat"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-cp001",
+   "path": "/products/m3d-cp001",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Garrafa de vidro 500 ml com bolsa",
+     "price": "desde €3,56 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Garrafa de vidro 500 ml com bolsa",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Copo+t%C3%A9rmico+de+parede+dupla+700+ml&product_url=%2Fproducts%2Fm3d-cp001&variant=Preto&variant_id=50598411599942&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Copo de parede dupla em aço inoxidável revestido em pó com tampa em PP (tampa de palha 2 em 1) e com alça de trans"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-ts001",
+   "path": "/products/m3d-ts001",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Apple Green",
+    "Tamanho · XS",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Apple Green",
+    "swatches": [
+     {
+      "name": "Apple Green",
+      "bg": "rgb(141, 198, 63)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Aqua",
+      "bg": "rgb(0, 165, 200)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Roxo Escuro",
+      "bg": "rgb(59, 31, 92)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Garrafa",
+      "bg": "rgb(15, 77, 51)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Neon Coral",
+      "bg": "rgb(255, 95, 90)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Amarelo Fluo",
+      "bg": "rgb(232, 255, 42)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Fluo",
+      "bg": "rgb(92, 255, 59)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Laranja Neon",
+      "bg": "rgb(255, 106, 19)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Rosa Néon 2",
+      "bg": "rgb(255, 62, 165)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Petróleo",
+      "bg": "rgb(15, 92, 115)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Puro",
+      "bg": "rgb(185, 185, 185)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=T-shirt+desportiva+de+senhora+140+g&product_url=%2Fproducts%2Fm3d-ts001&variant=Apple+Green+%2F+XS&variant_id=50598412091462&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto SOL'S SPORTY T-Shirt SENHORA 140g / m². O seu material respirável, o seu corte com mangas raglan e as suas costura"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-pl001",
+   "path": "/products/m3d-pl001",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Aqua",
+    "Tamanho · XS",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Aqua",
+    "swatches": [
+     {
+      "name": "Aqua",
+      "bg": "rgb(0, 165, 200)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Army",
+      "bg": "rgb(75, 83, 32)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Pool Blue",
+      "bg": "rgb(46, 163, 221)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Puro",
+      "bg": "rgb(185, 185, 185)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Ribbon Pink",
+      "bg": "rgb(242, 123, 169)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Polo+unissexo&product_url=%2Fproducts%2Fm3d-pl001&variant=Aqua+%2F+XS&variant_id=50598415663174&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Pólo desportivo, 100% poliéster reciclado, mangas curtas, corte cosido, carcela reforçada com 3 botões tom sobre t"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-sc001",
+   "path": "/products/m3d-sc001",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Saco+de+feltro+RPET+38%C3%9742+cm&product_url=%2Fproducts%2Fm3d-sc001&variant=Preto&variant_id=50598409896006&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Saco de feltro RPET com pegas longas. Espessura do feltro: 1 mm. Material: RPET Dimensões: 38X42CM Especificações"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-sc002",
+   "path": "/products/m3d-sc002",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul",
+      "bg": "rgb(31, 95, 191)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza",
+      "bg": "rgb(140, 140, 140)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Amarelo",
+      "bg": "rgb(255, 209, 0)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Laranja",
+      "bg": "rgb(255, 122, 0)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Turquesa",
+      "bg": "rgb(0, 163, 173)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Fúcsia",
+      "bg": "rgb(214, 38, 123)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Lima",
+      "bg": "rgb(155, 203, 59)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Escuro",
+      "bg": "rgb(31, 77, 43)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Chocolate",
+      "bg": "rgb(78, 50, 39)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Terra",
+      "bg": "rgb(154, 91, 60)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Corda",
+      "bg": "rgb(205, 187, 154)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Violeta",
+      "bg": "rgb(107, 63, 160)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Rosa Bebé",
+      "bg": "rgb(244, 182, 199)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Petróleo",
+      "bg": "rgb(31, 94, 110)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Bebé",
+      "bg": "rgb(167, 200, 232)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Menta",
+      "bg": "rgb(159, 220, 194)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Ochre",
+      "bg": "rgb(201, 146, 46)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Saco+de+algod%C3%A3o+180+g%2Fm%C2%B2+38%C3%9742+cm&product_url=%2Fproducts%2Fm3d-sc002&variant=Preto&variant_id=50598410256454&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Saco de algodão com alças longas. 180 gr/m². Material: Algodão Dimensões: 38X42CM Especificações e materiais Pers"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-gr001",
+   "path": "/products/m3d-gr001",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Cinza Pedra",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Copo térmico de parede dupla 700 ml",
+     "price": "desde €13,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Copo térmico de parede dupla 700 ml",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Cinza Pedra",
+    "swatches": [
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": true,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Garrafa+de+vidro+500+ml+com+bolsa&product_url=%2Fproducts%2Fm3d-gr001&variant=Cinza+Pedra&variant_id=50598411403334&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Garrafa de vidro com tampa de bambu com alça de PU e bolsa de de feltro RPET. Capacidade: 500 ml. O bambu é um mat"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-cp001",
+   "path": "/products/m3d-cp001",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Garrafa de vidro 500 ml com bolsa",
+     "price": "desde €3,56 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Garrafa de vidro 500 ml com bolsa",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Copo+t%C3%A9rmico+de+parede+dupla+700+ml&product_url=%2Fproducts%2Fm3d-cp001&variant=Preto&variant_id=50598411599942&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Copo de parede dupla em aço inoxidável revestido em pó com tampa em PP (tampa de palha 2 em 1) e com alça de trans"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-ts001",
+   "path": "/products/m3d-ts001",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Apple Green",
+    "Tamanho · XS",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Apple Green",
+    "swatches": [
+     {
+      "name": "Apple Green",
+      "bg": "rgb(141, 198, 63)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Aqua",
+      "bg": "rgb(0, 165, 200)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Roxo Escuro",
+      "bg": "rgb(59, 31, 92)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Garrafa",
+      "bg": "rgb(15, 77, 51)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Neon Coral",
+      "bg": "rgb(255, 95, 90)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Amarelo Fluo",
+      "bg": "rgb(232, 255, 42)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Fluo",
+      "bg": "rgb(92, 255, 59)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Laranja Neon",
+      "bg": "rgb(255, 106, 19)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Rosa Néon 2",
+      "bg": "rgb(255, 62, 165)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Petróleo",
+      "bg": "rgb(15, 92, 115)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Puro",
+      "bg": "rgb(185, 185, 185)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=T-shirt+desportiva+de+senhora+140+g&product_url=%2Fproducts%2Fm3d-ts001&variant=Apple+Green+%2F+XS&variant_id=50598412091462&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto SOL'S SPORTY T-Shirt SENHORA 140g / m². O seu material respirável, o seu corte com mangas raglan e as suas costura"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-pl001",
+   "path": "/products/m3d-pl001",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Aqua",
+    "Tamanho · XS",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Aqua",
+    "swatches": [
+     {
+      "name": "Aqua",
+      "bg": "rgb(0, 165, 200)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Army",
+      "bg": "rgb(75, 83, 32)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Pool Blue",
+      "bg": "rgb(46, 163, 221)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Puro",
+      "bg": "rgb(185, 185, 185)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Ribbon Pink",
+      "bg": "rgb(242, 123, 169)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Polo+unissexo&product_url=%2Fproducts%2Fm3d-pl001&variant=Aqua+%2F+XS&variant_id=50598415663174&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": false,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Pólo desportivo, 100% poliéster reciclado, mangas curtas, corte cosido, carcela reforçada com 3 botões tom sobre t"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-sc001",
+   "path": "/products/m3d-sc001",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Saco+de+feltro+RPET+38%C3%9742+cm&product_url=%2Fproducts%2Fm3d-sc001&variant=Preto&variant_id=50598409896006&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Saco de feltro RPET com pegas longas. Espessura do feltro: 1 mm. Material: RPET Dimensões: 38X42CM Especificações"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-sc002",
+   "path": "/products/m3d-sc002",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul",
+      "bg": "rgb(31, 95, 191)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza",
+      "bg": "rgb(140, 140, 140)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Amarelo",
+      "bg": "rgb(255, 209, 0)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Laranja",
+      "bg": "rgb(255, 122, 0)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Turquesa",
+      "bg": "rgb(0, 163, 173)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Fúcsia",
+      "bg": "rgb(214, 38, 123)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Lima",
+      "bg": "rgb(155, 203, 59)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Escuro",
+      "bg": "rgb(31, 77, 43)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Chocolate",
+      "bg": "rgb(78, 50, 39)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Terra",
+      "bg": "rgb(154, 91, 60)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Corda",
+      "bg": "rgb(205, 187, 154)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Violeta",
+      "bg": "rgb(107, 63, 160)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Rosa Bebé",
+      "bg": "rgb(244, 182, 199)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Petróleo",
+      "bg": "rgb(31, 94, 110)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Bebé",
+      "bg": "rgb(167, 200, 232)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Menta",
+      "bg": "rgb(159, 220, 194)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Ochre",
+      "bg": "rgb(201, 146, 46)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Saco+de+algod%C3%A3o+180+g%2Fm%C2%B2+38%C3%9742+cm&product_url=%2Fproducts%2Fm3d-sc002&variant=Preto&variant_id=50598410256454&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Saco de algodão com alças longas. 180 gr/m². Material: Algodão Dimensões: 38X42CM Especificações e materiais Pers"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-gr001",
+   "path": "/products/m3d-gr001",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Cinza Pedra",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Copo térmico de parede dupla 700 ml",
+     "price": "desde €13,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Copo térmico de parede dupla 700 ml",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Cinza Pedra",
+    "swatches": [
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": true,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Garrafa+de+vidro+500+ml+com+bolsa&product_url=%2Fproducts%2Fm3d-gr001&variant=Cinza+Pedra&variant_id=50598411403334&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Garrafa de vidro com tampa de bambu com alça de PU e bolsa de de feltro RPET. Capacidade: 500 ml. O bambu é um mat"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-cp001",
+   "path": "/products/m3d-cp001",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Garrafa de vidro 500 ml com bolsa",
+     "price": "desde €3,56 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Garrafa de vidro 500 ml com bolsa",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Copo+t%C3%A9rmico+de+parede+dupla+700+ml&product_url=%2Fproducts%2Fm3d-cp001&variant=Preto&variant_id=50598411599942&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Copo de parede dupla em aço inoxidável revestido em pó com tampa em PP (tampa de palha 2 em 1) e com alça de trans"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-ts001",
+   "path": "/products/m3d-ts001",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Apple Green",
+    "Tamanho · XS",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Apple Green",
+    "swatches": [
+     {
+      "name": "Apple Green",
+      "bg": "rgb(141, 198, 63)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Aqua",
+      "bg": "rgb(0, 165, 200)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Roxo Escuro",
+      "bg": "rgb(59, 31, 92)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Garrafa",
+      "bg": "rgb(15, 77, 51)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Neon Coral",
+      "bg": "rgb(255, 95, 90)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Amarelo Fluo",
+      "bg": "rgb(232, 255, 42)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Fluo",
+      "bg": "rgb(92, 255, 59)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Laranja Neon",
+      "bg": "rgb(255, 106, 19)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Rosa Néon 2",
+      "bg": "rgb(255, 62, 165)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Petróleo",
+      "bg": "rgb(15, 92, 115)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Puro",
+      "bg": "rgb(185, 185, 185)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=T-shirt+desportiva+de+senhora+140+g&product_url=%2Fproducts%2Fm3d-ts001&variant=Apple+Green+%2F+XS&variant_id=50598412091462&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto SOL'S SPORTY T-Shirt SENHORA 140g / m². O seu material respirável, o seu corte com mangas raglan e as suas costura"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-pl001",
+   "path": "/products/m3d-pl001",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Aqua",
+    "Tamanho · XS",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Aqua",
+    "swatches": [
+     {
+      "name": "Aqua",
+      "bg": "rgb(0, 165, 200)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Army",
+      "bg": "rgb(75, 83, 32)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Pool Blue",
+      "bg": "rgb(46, 163, 221)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Puro",
+      "bg": "rgb(185, 185, 185)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Ribbon Pink",
+      "bg": "rgb(242, 123, 169)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Polo+unissexo&product_url=%2Fproducts%2Fm3d-pl001&variant=Aqua+%2F+XS&variant_id=50598415663174&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Pólo desportivo, 100% poliéster reciclado, mangas curtas, corte cosido, carcela reforçada com 3 botões tom sobre t"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-sc001",
+   "path": "/products/m3d-sc001",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Saco de algodão 180 g/m² 38×42 cm",
+     "price": "desde €0,97 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de algodão 180 g/m² 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Saco+de+feltro+RPET+38%C3%9742+cm&product_url=%2Fproducts%2Fm3d-sc001&variant=Preto&variant_id=50598409896006&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Saco de feltro RPET com pegas longas. Espessura do feltro: 1 mm. Material: RPET Dimensões: 38X42CM Especificações"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-sc002",
+   "path": "/products/m3d-sc002",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Saco de feltro RPET 38×42 cm",
+     "price": "desde €1,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Saco de feltro RPET 38×42 cm",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul",
+      "bg": "rgb(31, 95, 191)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza",
+      "bg": "rgb(140, 140, 140)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Amarelo",
+      "bg": "rgb(255, 209, 0)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Laranja",
+      "bg": "rgb(255, 122, 0)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Turquesa",
+      "bg": "rgb(0, 163, 173)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Fúcsia",
+      "bg": "rgb(214, 38, 123)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Lima",
+      "bg": "rgb(155, 203, 59)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Escuro",
+      "bg": "rgb(31, 77, 43)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Chocolate",
+      "bg": "rgb(78, 50, 39)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Terra",
+      "bg": "rgb(154, 91, 60)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Corda",
+      "bg": "rgb(205, 187, 154)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Violeta",
+      "bg": "rgb(107, 63, 160)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Rosa Bebé",
+      "bg": "rgb(244, 182, 199)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Petróleo",
+      "bg": "rgb(31, 94, 110)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Bebé",
+      "bg": "rgb(167, 200, 232)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Menta",
+      "bg": "rgb(159, 220, 194)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Ochre",
+      "bg": "rgb(201, 146, 46)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Saco+de+algod%C3%A3o+180+g%2Fm%C2%B2+38%C3%9742+cm&product_url=%2Fproducts%2Fm3d-sc002&variant=Preto&variant_id=50598410256454&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Saco de algodão com alças longas. 180 gr/m². Material: Algodão Dimensões: 38X42CM Especificações e materiais Pers"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-gr001",
+   "path": "/products/m3d-gr001",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Cinza Pedra",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Copo térmico de parede dupla 700 ml",
+     "price": "desde €13,35 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Copo térmico de parede dupla 700 ml",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Cinza Pedra",
+    "swatches": [
+     {
+      "name": "Cinza Pedra",
+      "bg": "rgb(142, 138, 132)",
+      "checked": true,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Garrafa+de+vidro+500+ml+com+bolsa&product_url=%2Fproducts%2Fm3d-gr001&variant=Cinza+Pedra&variant_id=50598411403334&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Garrafa de vidro com tampa de bambu com alça de PU e bolsa de de feltro RPET. Capacidade: 500 ml. O bambu é um mat"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-cp001",
+   "path": "/products/m3d-cp001",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Preto",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Garrafa de vidro 500 ml com bolsa",
+     "price": "desde €3,56 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Garrafa de vidro 500 ml com bolsa",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Preto",
+    "swatches": [
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": true,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Copo+t%C3%A9rmico+de+parede+dupla+700+ml&product_url=%2Fproducts%2Fm3d-cp001&variant=Preto&variant_id=50598411599942&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Copo de parede dupla em aço inoxidável revestido em pó com tampa em PP (tampa de palha 2 em 1) e com alça de trans"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-ts001",
+   "path": "/products/m3d-ts001",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Apple Green",
+    "Tamanho · XS",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "Polo unissexo",
+     "price": "desde €4,27 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar Polo unissexo",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Apple Green",
+    "swatches": [
+     {
+      "name": "Apple Green",
+      "bg": "rgb(141, 198, 63)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Aqua",
+      "bg": "rgb(0, 165, 200)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Roxo Escuro",
+      "bg": "rgb(59, 31, 92)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Garrafa",
+      "bg": "rgb(15, 77, 51)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Neon Coral",
+      "bg": "rgb(255, 95, 90)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Amarelo Fluo",
+      "bg": "rgb(232, 255, 42)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Verde Fluo",
+      "bg": "rgb(92, 255, 59)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Laranja Neon",
+      "bg": "rgb(255, 106, 19)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Rosa Néon 2",
+      "bg": "rgb(255, 62, 165)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Petróleo",
+      "bg": "rgb(15, 92, 115)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Puro",
+      "bg": "rgb(185, 185, 185)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=T-shirt+desportiva+de+senhora+140+g&product_url=%2Fproducts%2Fm3d-ts001&variant=Apple+Green+%2F+XS&variant_id=50598412091462&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto SOL'S SPORTY T-Shirt SENHORA 140g / m². O seu material respirável, o seu corte com mangas raglan e as suas costura"
+   },
+   "jsErrors": []
+  },
+  {
+   "name": "pdp-m3d-pl001",
+   "path": "/products/m3d-pl001",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquidError": false,
+   "english": [],
+   "searchInputs": 1,
+   "searchInputsInMain": 0,
+   "sortSelect": null,
+   "filterGroups": [
+    "Cor · Aqua",
+    "Tamanho · XS",
+    "Descrição do produto",
+    "Especificações e materiais",
+    "Personalização · posições e áreas dispon"
+   ],
+   "cards": [
+    {
+     "title": "T-shirt desportiva de senhora 140 g",
+     "price": "desde €2,76 /un. por unidade",
+     "sku": false,
+     "tabStops": [
+      "Personalizar T-shirt desportiva de senhora 140 g",
+      "Abrir prévia do MyShop"
+     ],
+     "nested": 0,
+     "personalize": {
+      "text": "Personalizar",
+      "iconClass": "m3d-icon m3d-icon--18 m3d-icon--m3d-arrow",
+      "iconW": 18,
+      "bg": "rgb(68, 54, 188)",
+      "h": 40
+     }
+    }
+   ],
+   "cardCount": 1,
+   "iconsNoAria": 0,
+   "unnamedControls": [],
+   "textArrows": 0,
+   "pdp": {
+    "legend": "Cor · Aqua",
+    "swatches": [
+     {
+      "name": "Aqua",
+      "bg": "rgb(0, 165, 200)",
+      "checked": true,
+      "disabled": "false"
+     },
+     {
+      "name": "Army",
+      "bg": "rgb(75, 83, 32)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Preto",
+      "bg": "rgb(26, 26, 26)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "French Marinho",
+      "bg": "rgb(27, 42, 71)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Pool Blue",
+      "bg": "rgb(46, 163, 221)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Cinza Puro",
+      "bg": "rgb(185, 185, 185)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Vermelho",
+      "bg": "rgb(200, 16, 46)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Ribbon Pink",
+      "bg": "rgb(242, 123, 169)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Azul Royal",
+      "bg": "rgb(29, 79, 163)",
+      "checked": false,
+      "disabled": "false"
+     },
+     {
+      "name": "Branco",
+      "bg": "rgb(255, 255, 255)",
+      "checked": false,
+      "disabled": "false"
+     }
+    ],
+    "colourPills": 0,
+    "quoteCount": 1,
+    "quoteHref": "/pages/pedir-orcamento?view=m3d-quote&product=Polo+unissexo&product_url=%2Fproducts%2Fm3d-pl001&variant=Aqua+%2F+XS&variant_id=50598415663174&quantity=1",
+    "actions": [
+     {
+      "label": "Pedir orçamento",
+      "w": 203,
+      "h": 48,
+      "bg": "rgba(68, 54, 188, 0.1)"
+     },
+     {
+      "label": "Adicionar ao MyShop",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     },
+     {
+      "label": "Partilhar",
+      "w": 44,
+      "h": 44,
+      "bg": "rgb(245, 245, 247)"
+     }
+    ],
+    "actionsBelowGallery": true,
+    "actionsAboveTitle": true,
+    "filledLikeButtons": [],
+    "recommendations": {
+     "heading": "Também pode gostar",
+     "cards": 1,
+     "cols": 1
+    },
+    "description": "Tudo sobre este produto Descrição do produto Pólo desportivo, 100% poliéster reciclado, mangas curtas, corte cosido, carcela reforçada com 3 botões tom sobre t"
+   },
+   "jsErrors": []
+  }
+ ],
+ "keyboard": [
+  {
+   "before": {
+    "legend": "Cor · Aqua",
+    "url": "",
+    "quote": "/pages/pedir-orcamento?view=m3d-quote&product=Polo+unissexo&product_url=%2Fproducts%2Fm3d-pl001&variant=Aqua+%2F+XS&variant_id=50598415663174&quantity=1"
+   },
+   "after": {
+    "legend": "Cor · Army",
+    "focused": "Army",
+    "checked": true,
+    "url": "",
+    "quote": "/pages/pedir-orcamento?view=m3d-quote&product=Polo+unissexo&product_url=%2Fproducts%2Fm3d-pl001&variant=Army+%2F+XS&variant_id=50598415859782&quantity=1"
+   },
+   "ariaSnapshot": "- group \"Cor · Army\":\n  - text: Cor · Army\n  - radio \"Aqua\"\n  - text: Aqua\n  - radio \"Army\" [checked]\n  - text: Army\n  - radio \"Preto\"\n  - text: Preto\n  - radio \"French Marinho\"\n  - text: French Marinho\n  - radio \"Pool Blue\"\n  - text: Pool Blue\n  - radio \"Cinza Puro\"\n  - text: Cinza Puro\n  - radio \"Vermelho\"\n  - text: Vermelho\n  - radio \"Ribbon Pink\"\n  - text: Ribbon Pink\n  - radio \"Azul Royal\"\n  - text: Azul Royal\n  - radio \"Branco\"\n  - text: Branco"
+  },
+  {
+   "actionsTabOrder": [
+    "Pedir orçamento | ring=true",
+    "Adicionar ao MyShop | ring=true",
+    "Partilhar | ring=true"
+   ]
+  },
+  {
+   "myshop": {
+    "open": true,
+    "focus": "Adicionar a uma loja",
+    "returnFocus": "m3d-product-gallery__icon-button m3d-pdp__myshop"
+   }
+  }
+ ],
+ "nav": {
+  "start": null
+ },
+ "nojs_sort": {
+  "applyVisible": true,
+  "url": "/search?q=saco&type=product&options%5Bprefix%5D=last&sort_by=price-ascending"
+ }
+}

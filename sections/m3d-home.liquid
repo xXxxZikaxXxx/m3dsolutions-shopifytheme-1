@@ -1,338 +1,110 @@
-{% # theme-check-disable ExcessiveSettingsCount %}
 {%- liquid
   assign featured_collection = section.settings.collection
-  assign product_limit = section.settings.products_to_show | plus: 0
+  if featured_collection == blank
+    assign featured_collection = collections['all']
+  endif
+  assign hero_product = section.settings.hero_product | default: featured_collection.products.first
+  assign quote_page = pages['pedir-orcamento']
+  assign quote_url = quote_page.url | append: '?view=m3d-quote'
+  assign wear_collection = collections['t-shirts']
+  assign bags_collection = collections['bags']
+  assign valid_categories = 0
+  for block in section.blocks
+    if block.settings.collection != blank and block.settings.collection.products_count > 0
+      assign valid_categories = valid_categories | plus: 1
+    endif
+  endfor
 -%}
-
+{{ 'm3d-home.css' | asset_url | stylesheet_tag }}
 <section class="m3d-home" data-section-id="{{ section.id }}">
-  <script src="{{ 'm3d-home-carousel.js' | asset_url }}" defer="defer"></script>
-  <div class="m3d-home__shell page-width">
-    <div class="m3d-hero" data-m3d-hero-carousel data-interval="6500" aria-roledescription="carousel" aria-label="Destaques M3D">
-      <div class="m3d-hero__track">
-        <article class="m3d-hero__slide m3d-hero__slide--content is-active" id="M3dHeroSlide-{{ section.id }}-1" data-m3d-hero-slide aria-label="1 de 2" aria-hidden="false">
-          {%- if section.settings.hero_image != blank -%}
-            {{ section.settings.hero_image | image_url: width: 2400 | image_tag: class: 'm3d-hero__image', widths: '750, 1100, 1600, 2000, 2400', sizes: '(max-width: 749px) calc(100vw - 40px), 1248px', loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
-          {%- else -%}
-            <img class="m3d-hero__image" src="{{ 'bannerprincipal.png' | asset_url }}" width="1366" height="768" fetchpriority="high" alt="{{ section.settings.hero_alt | escape }}">
-          {%- endif -%}
-          <div class="m3d-hero__content">
-            <p class="m3d-eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
-            <h1>{{ section.settings.hero_heading | newline_to_br }}</h1>
-            <p>{{ section.settings.hero_text | escape }}</p>
-            <a class="m3d-button m3d-button--pink" href="{{ section.settings.hero_link }}">{{ section.settings.hero_button | escape }} <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-        <article class="m3d-hero__slide m3d-hero__slide--image-only" id="M3dHeroSlide-{{ section.id }}-2" data-m3d-hero-slide aria-label="2 de 2" aria-hidden="true">
-          {%- if section.settings.hero_secondary_image != blank -%}
-            {{ section.settings.hero_secondary_image | image_url: width: 2400 | image_tag: class: 'm3d-hero__image', widths: '750, 1100, 1600, 2000, 2400', sizes: '(max-width: 749px) calc(100vw - 40px), 1248px', loading: 'eager', alt: section.settings.hero_secondary_alt }}
-          {%- else -%}
-            <img class="m3d-hero__image" src="{{ 'banner-natal.webp' | asset_url }}" width="2496" height="1404" loading="eager" alt="{{ section.settings.hero_secondary_alt | escape }}">
-          {%- endif -%}
-        </article>
+  <div class="page-width">
+    <div class="m3d-home-hero">
+      <div class="m3d-home-hero__content">
+        <h1>{{ section.settings.hero_heading | escape }}</h1>
+        <p>{{ section.settings.hero_text | escape }}</p>
+        <a class="m3d-button m3d-button--primary" href="{{ routes.all_products_collection_url }}">{{ 'm3d_home.explore_products' | t }}</a>
+        {% if quote_page != blank %}<a class="m3d-home-hero__business" href="#M3dEmpresas-{{ section.id }}">{{ 'm3d_home.business' | t }}</a>{% endif %}
       </div>
-      <div class="m3d-hero__pagination" role="group" aria-label="Selecionar banner">
-        <button type="button" data-m3d-hero-dot data-slide-index="0" aria-label="Mostrar banner 1" aria-controls="M3dHeroSlide-{{ section.id }}-1" aria-current="true"><span aria-hidden="true"></span></button>
-        <button type="button" data-m3d-hero-dot data-slide-index="1" aria-label="Mostrar banner 2" aria-controls="M3dHeroSlide-{{ section.id }}-2" aria-current="false"><span aria-hidden="true"></span></button>
+      <div class="m3d-home-hero__visual">
+        <img class="m3d-home-hero__brush" src="{{ 'pincelada-m.svg' | asset_url }}" width="930" height="600" alt="" aria-hidden="true">
+        {% if hero_product.featured_image != blank %}
+          <a class="m3d-home-hero__product" href="{{ hero_product.url }}">
+            {{ hero_product.featured_image | image_url: width: 1000 | image_tag: widths: '360, 540, 750, 1000', sizes: '(max-width: 749px) 82vw, 42vw', loading: 'eager', fetchpriority: 'high', alt: hero_product.title }}
+            <span class="visually-hidden">{{ hero_product.title | escape }}</span>
+          </a>
+        {% elsif section.settings.hero_image != blank %}
+          {{ section.settings.hero_image | image_url: width: 1000 | image_tag: class: 'm3d-home-hero__photo', widths: '360, 540, 750, 1000', sizes: '(max-width: 749px) 90vw, 42vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
+        {% endif %}
       </div>
     </div>
-    <div class="m3d-campaigns">
-      <article class="m3d-campaign m3d-campaign--purple">
-        {%- if section.settings.vestuario_image != blank -%}
-          {{ section.settings.vestuario_image | image_url: width: 1400 | image_tag: class: 'm3d-campaign__image', widths: '600, 900, 1200, 1400', sizes: '(max-width: 749px) calc(100vw - 40px), 50vw', loading: 'lazy', alt: section.settings.vestuario_alt }}
-        {%- else -%}
-          <img class="m3d-campaign__image" src="{{ 'vestuario-inverno.png' | asset_url }}" width="1919" height="938" loading="lazy" alt="{{ section.settings.vestuario_alt | escape }}">
-        {%- endif -%}
-        <div class="m3d-campaign__content">
-          <p class="m3d-eyebrow">{{ section.settings.vestuario_eyebrow | escape }}</p>
-          <h2>{{ section.settings.vestuario_heading | newline_to_br }}</h2>
-          <a class="m3d-button m3d-button--light" href="{{ section.settings.vestuario_link }}">{{ section.settings.vestuario_button | escape }} <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-
-      <article class="m3d-campaign m3d-campaign--dark">
-        {%- if section.settings.gestos_image != blank -%}
-          {{ section.settings.gestos_image | image_url: width: 1400 | image_tag: class: 'm3d-campaign__image', widths: '600, 900, 1200, 1400', sizes: '(max-width: 749px) calc(100vw - 40px), 50vw', loading: 'lazy', alt: section.settings.gestos_alt }}
-        {%- else -%}
-          <img class="m3d-campaign__image" src="{{ 'pequenosgestos.png' | asset_url }}" width="1366" height="768" loading="lazy" alt="{{ section.settings.gestos_alt | escape }}">
-        {%- endif -%}
-        <div class="m3d-campaign__content">
-          <p class="m3d-eyebrow m3d-eyebrow--pink">{{ section.settings.gestos_eyebrow | escape }}</p>
-          <h2>{{ section.settings.gestos_heading | newline_to_br }}</h2>
-          <a class="m3d-button m3d-button--light" href="{{ section.settings.gestos_link }}">{{ section.settings.gestos_button | escape }} <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
+    {% if valid_categories > 0 %}
+      <section class="m3d-home-categories" aria-labelledby="M3dCategories-{{ section.id }}">
+        <div class="m3d-home-heading"><h2 id="M3dCategories-{{ section.id }}">{{ 'm3d_home.categories_heading' | t }}</h2><a href="{{ routes.collections_url }}">{{ 'm3d_home.all_categories' | t }}</a></div>
+        <ul class="m3d-home-categories__grid" role="list">
+          {% for block in section.blocks %}
+            {% assign category = block.settings.collection %}
+            {% if category != blank and category.products_count > 0 %}
+              {% assign category_image = block.settings.image | default: category.image | default: category.products.first.featured_image %}
+              <li {{ block.shopify_attributes }}><a class="m3d-home-category" href="{{ category.url }}">
+                <div>{% if category_image != blank %}{{ category_image | image_url: width: 600 | image_tag: widths: '240, 360, 480, 600', sizes: '(max-width: 749px) 43vw, 18vw', loading: 'lazy', alt: '' }}{% endif %}</div>
+                <span>{{ block.settings.title | default: category.title | escape }}</span>
+              </a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+    {% if featured_collection.products.size > 0 %}
+      <section class="m3d-home-products" aria-labelledby="M3dProducts-{{ section.id }}">
+        <div class="m3d-home-heading"><h2 id="M3dProducts-{{ section.id }}">{{ section.settings.products_heading | escape }}</h2><a href="{{ featured_collection.url }}">{{ 'm3d_home.see_all' | t }}</a></div>
+        <ul class="m3d-home-products__grid" role="list">
+          {% for product in featured_collection.products limit: section.settings.products_to_show %}<li>{% render 'card-product', card_product: product %}</li>{% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  </div>
+  {% if quote_page != blank %}
+    <aside id="M3dEmpresas-{{ section.id }}" class="m3d-home-business">
+      <div class="page-width m3d-home-business__inner">
+        <div><img src="{{ 'logo-m3d-horizontal-negativo.svg' | asset_url }}" width="209" height="40" alt="{{ shop.name | escape }}" loading="lazy"><h2>{{ 'm3d_home.business' | t }}</h2><p>{{ 'm3d_home.business_text' | t }}</p></div>
+        <a class="m3d-button m3d-button--inverse" href="{{ quote_url }}">{{ 'm3d_pdp.request_quote' | t }}</a>
+      </div>
+    </aside>
+  {% endif %}
+  <div class="page-width">
+    <section class="m3d-home-process" aria-labelledby="M3dProcess-{{ section.id }}">
+      <h2 id="M3dProcess-{{ section.id }}">{{ 'm3d_home.process_heading' | t }}</h2>
+      <ol>
+        <li><h3>{{ 'm3d_home.step_product' | t }}</h3><p>{{ 'm3d_home.step_product_text' | t }}</p></li>
+        <li><h3>{{ 'm3d_home.step_idea' | t }}</h3><p>{{ 'm3d_home.step_idea_text' | t }}</p></li>
+        <li><h3>{{ 'm3d_home.step_request' | t }}</h3><p>{{ 'm3d_home.step_request_text' | t }}</p></li>
+      </ol>
+    </section>
+    {% if wear_collection.products_count > 0 or bags_collection.products_count > 0 %}
+    <div class="m3d-home-selections">
+      {% assign wear_collection = collections['t-shirts'] %}
+      {% assign bags_collection = collections['bags'] %}
+      {% if wear_collection != blank and wear_collection.products_count > 0 %}<article><a href="{{ wear_collection.url }}"><div>{{ wear_collection.products.first.featured_image | image_url: width: 720 | image_tag: widths: '360, 540, 720', sizes: '(max-width: 749px) 90vw, 45vw', loading: 'lazy', alt: '' }}</div><h2>{{ 'm3d_home.wear_heading' | t }}</h2><span>{{ 'm3d_home.explore_wear' | t }}</span></a></article>{% endif %}
+      {% if bags_collection != blank and bags_collection.products_count > 0 %}<article><a href="{{ bags_collection.url }}"><div>{{ bags_collection.products.first.featured_image | image_url: width: 720 | image_tag: widths: '360, 540, 720', sizes: '(max-width: 749px) 90vw, 45vw', loading: 'lazy', alt: '' }}</div><h2>{{ 'm3d_home.bags_heading' | t }}</h2><span>{{ 'm3d_home.explore_bags' | t }}</span></a></article>{% endif %}
     </div>
-
-    <section class="m3d-products" aria-labelledby="M3dProducts-{{ section.id }}">
-      <div class="m3d-section-heading">
-        <h2 id="M3dProducts-{{ section.id }}">{{ section.settings.products_heading | escape }}</h2>
-        {%- if featured_collection != blank -%}
-          <a href="{{ featured_collection.url }}">{{ section.settings.products_link_label | escape }} →</a>
-        {%- endif -%}
-      </div>
-      <ul class="m3d-product-grid" role="list">
-        {%- if featured_collection != blank and featured_collection.products.size > 0 -%}
-          {%- for product in featured_collection.products limit: product_limit -%}
-            <li>{% render 'card-product', card_product: product %}</li>
-          {%- endfor -%}
-        {%- else -%}
-          {%- for index in (1..4) -%}
-            <li class="m3d-product-placeholder">
-              <div>{{ 'product-' | append: index | placeholder_svg_tag }}</div>
-              <p>Produto personalizável</p>
-              <span>Ver opções disponíveis</span>
-            </li>
-          {%- endfor -%}
-        {%- endif -%}
-      </ul>
-    </section>
-
-    <aside class="m3d-cta-band">
-      <div>
-        <p class="m3d-eyebrow">{{ section.settings.custom_eyebrow | escape }}</p>
-        <h2>{{ section.settings.custom_heading | newline_to_br }}</h2>
-      </div>
-      <p>{{ section.settings.custom_text | escape }}</p>
-      <a class="m3d-button m3d-button--light" href="{{ section.settings.custom_link }}">{{ section.settings.custom_button | escape }} <span aria-hidden="true">→</span></a>
-    </aside>
-
-    <article class="m3d-editorial">
-      <div class="m3d-editorial__content">
-        <p class="m3d-eyebrow m3d-eyebrow--purple">{{ section.settings.editorial_eyebrow | escape }}</p>
-        <h2>{{ section.settings.editorial_heading | newline_to_br }}</h2>
-        <p>{{ section.settings.editorial_text | escape }}</p>
-        <a class="m3d-button m3d-button--dark" href="{{ section.settings.editorial_link }}">{{ section.settings.editorial_button | escape }} <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="m3d-editorial__media">
-        {%- if section.settings.editorial_image != blank -%}
-          {{ section.settings.editorial_image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', sizes: '(max-width: 749px) calc(100vw - 40px), 65vw', loading: 'lazy', alt: section.settings.editorial_alt }}
-        {%- else -%}
-          <img src="{{ 'negocioseescritorio.png' | asset_url }}" width="1366" height="768" loading="lazy" alt="{{ section.settings.editorial_alt | escape }}">
-        {%- endif -%}
-      </div>
-    </article>
-
-    <section class="m3d-categories" aria-labelledby="M3dCategories-{{ section.id }}">
-      <div class="m3d-section-heading">
-        <h2 id="M3dCategories-{{ section.id }}">{{ section.settings.categories_heading | escape }}</h2>
-        <a href="{{ section.settings.categories_link }}">{{ section.settings.categories_link_label | escape }} →</a>
-      </div>
-      <div class="m3d-category-track">
-        <a class="m3d-category-card" href="{{ section.settings.business_link }}">
-          {%- if section.settings.business_image != blank -%}
-            {{ section.settings.business_image | image_url: width: 800 | image_tag: widths: '360, 560, 800', sizes: '(max-width: 749px) 72vw, 20vw', loading: 'lazy', alt: section.settings.business_label }}
-          {%- else -%}
-            <img src="{{ 'negocioseescritorio.png' | asset_url }}" width="1366" height="768" loading="lazy" alt="{{ section.settings.business_label | escape }}">
-          {%- endif -%}
-          <span>{{ section.settings.business_label | escape }} →</span>
-        </a>
-        <a class="m3d-category-card m3d-category-card--technology" href="{{ section.settings.technology_link }}">
-          <img src="{{ 'tecnologia.png' | asset_url }}" width="1376" height="768" loading="lazy" alt="{{ section.settings.technology_label | escape }}">
-          <span>{{ section.settings.technology_label | escape }} →</span>
-        </a>
-        <a class="m3d-category-card m3d-category-card--gifts" href="{{ section.settings.gifts_link }}">
-          <img src="{{ 'presentes-sazonais.png' | asset_url }}" width="1376" height="768" loading="lazy" alt="{{ section.settings.gifts_label | escape }}">
-          <span>{{ section.settings.gifts_label | escape }} →</span>
-        </a>
-        <a class="m3d-category-card m3d-category-card--wear" href="{{ section.settings.wear_link }}">
-          <img src="{{ 'vestuario-card.png' | asset_url }}" width="1376" height="768" loading="lazy" alt="{{ section.settings.wear_label | escape }}">
-          <span>{{ section.settings.wear_label | escape }} →</span>
-        </a>
-        <a class="m3d-category-card" href="{{ section.settings.bottles_link }}">
-          {%- if section.settings.bottles_image != blank -%}
-            {{ section.settings.bottles_image | image_url: width: 800 | image_tag: widths: '360, 560, 800', sizes: '(max-width: 749px) 72vw, 20vw', loading: 'lazy', alt: section.settings.bottles_label }}
-          {%- else -%}
-            <img src="{{ 'garrafasecopos.png' | asset_url }}" width="1366" height="768" loading="lazy" alt="{{ section.settings.bottles_label | escape }}">
-          {%- endif -%}
-          <span>{{ section.settings.bottles_label | escape }} →</span>
-        </a>
-      </div>
-    </section>
-
-    <aside class="m3d-contact-band">
-      <div>
-        <h2>{{ section.settings.contact_heading | escape }}</h2>
-        <p>{{ section.settings.contact_text | escape }}</p>
-      </div>
-      <a class="m3d-button m3d-button--pink" href="{{ section.settings.contact_link }}">{{ section.settings.contact_button | escape }} <span aria-hidden="true">→</span></a>
-    </aside>
+    {% endif %}
   </div>
 </section>
-
-{% stylesheet %}
-  .m3d-home { --m3d-pink:#e31c79; --m3d-purple:#4436bc; --m3d-blue:#00b3e7; padding:20px 0 0; color:#000; background:#fff; }
-  .m3d-home__shell { max-width:1288px; }
-  .m3d-hero { position:relative; min-height:0; aspect-ratio:16/9; overflow:hidden; background:#000; }
-  .m3d-hero__track { position:relative; width:100%; height:100%; display:grid; }
-  .m3d-hero__slide { position:relative; grid-area:1/1; min-width:0; height:100%; overflow:hidden; opacity:0; visibility:hidden; pointer-events:none; transform:translate3d(24px,0,0); transition:opacity 520ms cubic-bezier(.22,.61,.36,1),transform 520ms cubic-bezier(.22,.61,.36,1),visibility 0s linear 520ms; will-change:opacity,transform; }
-  .m3d-hero__slide[data-slide-direction="previous"] { transform:translate3d(-24px,0,0); }
-  .m3d-hero__slide.is-entering,.m3d-hero__slide.is-leaving-next,.m3d-hero__slide.is-leaving-previous { visibility:visible; }
-  .m3d-hero__slide.is-active { z-index:1; opacity:1; visibility:visible; pointer-events:auto; transform:translate3d(0,0,0); transition-delay:0s; }
-  .m3d-hero__slide.is-leaving-next { z-index:0; opacity:1; transform:translate3d(0,0,0); transition:none; }
-  .m3d-hero__slide.is-leaving-previous { z-index:0; opacity:1; transform:translate3d(0,0,0); transition:none; }
-  .m3d-hero__image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .m3d-hero__content { position:relative; z-index:1; width:42%; height:100%; padding:clamp(44px,8vw,140px) 48px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:22px; color:#fff; background:rgba(0,0,0,.72); }
-  .m3d-hero__pagination { position:absolute; z-index:4; left:50%; bottom:18px; display:flex; align-items:center; gap:2px; transform:translateX(-50%); }
-  .m3d-hero__pagination button { width:36px; height:36px; display:grid; place-items:center; border:0; border-radius:50%; background:transparent; cursor:pointer; }
-  .m3d-hero__pagination button span { width:10px; height:10px; display:block; border:1px solid rgba(255,255,255,.92); border-radius:50%; background:rgba(0,0,0,.34); box-shadow:0 1px 4px rgba(0,0,0,.24); transition:background-color 180ms ease,transform 180ms cubic-bezier(.22,.61,.36,1); }
-  .m3d-hero__pagination button[aria-current="true"] span { background:#fff; transform:scale(1.25); }
-  .m3d-hero__pagination button:hover span,.m3d-hero__pagination button:focus-visible span { background:#fff; }
-  .m3d-hero__pagination button:focus-visible { outline:2px solid #fff; outline-offset:-3px; }
-  .m3d-eyebrow { color:var(--m3d-blue); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
-  .m3d-eyebrow--pink { color:var(--m3d-pink); }
-  .m3d-eyebrow--purple { color:var(--m3d-purple); }
-  .m3d-hero h1 { max-width:470px; font-size:clamp(36px,4.5vw,64px); line-height:.98; letter-spacing:-.045em; }
-  .m3d-hero__content > p:not(.m3d-eyebrow) { max-width:390px; font-size:17px; line-height:1.55; }
-  .m3d-button { min-height:46px; display:inline-flex; align-items:center; justify-content:center; gap:14px; padding:0 20px; color:#000; font-size:13px; font-weight:700; text-decoration:none; transition:transform .2s ease, opacity .2s ease; }
-  .m3d-button:hover { transform:translateY(-2px); }
-  .m3d-button--pink { background:var(--m3d-pink); color:#000; }
-  .m3d-button--light { background:#fff; color:#000; }
-  .m3d-button--dark { background:#000; color:#fff; }
-  .m3d-campaigns { margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  .m3d-campaign { position:relative; min-height:300px; overflow:hidden; }
-  .m3d-campaign__image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .m3d-campaign__content { position:relative; z-index:1; width:52%; min-width:300px; height:100%; padding:38px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:18px; color:#fff; }
-  .m3d-campaign--purple .m3d-campaign__content { background:rgba(68,54,188,.8); }
-  .m3d-campaign--dark .m3d-campaign__content { background:rgba(0,0,0,.74); }
-  .m3d-campaign h2 { font-size:clamp(30px,3.2vw,46px); line-height:1; letter-spacing:-.035em; }
-  .m3d-products, .m3d-categories { padding:64px 0; }
-  .m3d-section-heading { margin-bottom:28px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; }
-  .m3d-section-heading h2 { font-size:clamp(30px,3.5vw,48px); letter-spacing:-.035em; }
-  .m3d-section-heading a { color:var(--m3d-purple); font-size:13px; font-weight:700; }
-  .m3d-product-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; list-style:none; margin:0; padding:0; }
-  .m3d-home .card-product__media { padding-bottom:100% !important; border-radius:0; background:#f5f5f7; }
-  .m3d-home .card-product__image { object-fit:contain; }
-  .m3d-product-placeholder div { aspect-ratio:1; display:grid; place-items:center; background:#f5f5f7; overflow:hidden; }
-  .m3d-product-placeholder svg { width:80%; height:80%; }
-  .m3d-product-placeholder p { margin-top:16px; font-weight:700; }
-  .m3d-product-placeholder span { display:block; margin-top:8px; color:#666; font-size:12px; }
-  .m3d-cta-band { padding:34px 40px; display:grid; grid-template-columns:1fr 1.5fr auto; align-items:center; gap:44px; background:var(--m3d-purple); color:#fff; }
-  .m3d-cta-band h2 { margin-top:10px; font-size:32px; line-height:1; }
-  .m3d-cta-band > p { line-height:1.55; }
-  .m3d-editorial { margin-top:64px; min-height:420px; display:grid; grid-template-columns:38% 62%; overflow:hidden; background:#f3efe8; }
-  .m3d-editorial__content { padding:52px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:18px; }
-  .m3d-editorial h2 { font-size:clamp(36px,4vw,58px); line-height:1; letter-spacing:-.04em; }
-  .m3d-editorial__content > p:not(.m3d-eyebrow) { max-width:380px; line-height:1.55; }
-  .m3d-editorial__media img { width:100%; height:100%; object-fit:cover; }
-  .m3d-category-track { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
-  .m3d-category-card { position:relative; min-height:280px; overflow:hidden; display:flex; align-items:flex-end; background:linear-gradient(145deg,#4436bc,#00b3e7); color:#000; }
-  .m3d-category-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 360ms ease-out; }
-  @media (hover:hover) and (pointer:fine) {
-    .m3d-category-card:hover img { transform:scale(1.055); }
-  }
-  .m3d-category-card span { position:relative; z-index:1; margin:14px; padding:10px 14px; background:#fff; font-size:12px; font-weight:700; }
-  .m3d-category-card--technology { background:linear-gradient(145deg,#121212,#4436bc 62%,#e31c79); }
-  .m3d-category-card--gifts { background:linear-gradient(145deg,#f8d6e6,#e31c79); }
-  .m3d-category-card--wear { background:linear-gradient(145deg,#e8e4ff,#4436bc); }
-  .m3d-contact-band { margin-bottom:64px; padding:34px 40px; display:flex; align-items:center; justify-content:space-between; gap:36px; background:#f5f5f7; }
-  .m3d-contact-band h2 { font-size:26px; }
-  .m3d-contact-band p { margin-top:8px; color:#555; }
-  @media (max-width:749px) {
-    .m3d-home { padding-top:12px; }
-    .m3d-home__shell { padding:0 20px; }
-    .m3d-hero { aspect-ratio:auto; }
-    .m3d-hero__track { height:auto; }
-    .m3d-hero__slide { height:auto; min-height:0; }
-    .m3d-hero__slide--content { display:flex; flex-direction:column; background:#000; }
-    .m3d-hero__image { position:relative; order:2; aspect-ratio:16/9; object-fit:cover; }
-    .m3d-hero__slide--image-only { display:flex; align-items:center; background:#c90012; }
-    .m3d-hero__slide--image-only .m3d-hero__image { width:100%; height:auto; aspect-ratio:16/9; object-fit:contain; }
-    .m3d-hero__content { width:100%; height:auto; padding:30px 24px; gap:16px; background:#000; }
-    .m3d-hero__pagination { bottom:10px; }
-    .m3d-hero h1 { font-size:38px; }
-    .m3d-hero__content > p:not(.m3d-eyebrow) { font-size:14px; }
-    .m3d-campaigns { grid-template-columns:1fr; gap:12px; margin-top:12px; }
-    .m3d-campaign { min-height:260px; }
-    .m3d-campaign__content { width:64%; min-width:0; padding:24px 20px; gap:14px; }
-    .m3d-campaign h2 { font-size:32px; }
-    .m3d-products, .m3d-categories { padding:44px 0; }
-    .m3d-section-heading { align-items:flex-start; margin-bottom:20px; }
-    .m3d-section-heading h2 { font-size:32px; }
-    .m3d-product-grid { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; }
-    .m3d-product-grid > li { flex:0 0 76%; scroll-snap-align:start; }
-    .m3d-cta-band { padding:28px 24px; grid-template-columns:1fr; gap:20px; }
-    .m3d-editorial { margin-top:44px; grid-template-columns:1fr; }
-    .m3d-editorial__content { padding:32px 24px; }
-    .m3d-editorial__media { min-height:230px; }
-    .m3d-category-track { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; }
-    .m3d-category-card { flex:0 0 72%; min-height:300px; scroll-snap-align:start; }
-    .m3d-contact-band { margin-bottom:44px; padding:28px 24px; align-items:flex-start; flex-direction:column; }
-  }
-  @media (prefers-reduced-motion:reduce) {
-    .m3d-hero__slide,.m3d-hero__pagination button span { transition-duration:.01ms; }
-    .m3d-category-card img { transition-duration:.01ms; }
-  }
-{% endstylesheet %}
-
 {% schema %}
 {
   "name": "Homepage M3D",
   "settings": [
-    { "type": "header", "content": "Banner principal" },
-    { "type": "image_picker", "id": "hero_image", "label": "Imagem" },
-    { "type": "text", "id": "hero_alt", "label": "Texto alternativo", "default": "Guarda-sol personalizado junto ao mar" },
-    { "type": "text", "id": "hero_eyebrow", "label": "Antetítulo", "default": "Brindes que marcam presença" },
-    { "type": "textarea", "id": "hero_heading", "label": "Título", "default": "A sua marca.\nEm todos os momentos." },
-    { "type": "textarea", "id": "hero_text", "label": "Texto", "default": "Do verão ao dia a dia, criamos peças que levam a sua identidade mais longe." },
-    { "type": "text", "id": "hero_button", "label": "Botão", "default": "Descobrir soluções" },
-    { "type": "url", "id": "hero_link", "label": "Link" },
-    { "type": "image_picker", "id": "hero_secondary_image", "label": "Segundo banner" },
-    { "type": "text", "id": "hero_secondary_alt", "label": "Texto alternativo do segundo banner", "default": "Campanha de Natal M3D com produtos selecionados em desconto" },
-    { "type": "header", "content": "Vestuário" },
-    { "type": "image_picker", "id": "vestuario_image", "label": "Imagem" },
-    { "type": "text", "id": "vestuario_alt", "label": "Texto alternativo", "default": "Vestuário de inverno personalizável" },
-    { "type": "text", "id": "vestuario_eyebrow", "label": "Antetítulo", "default": "Vestuário e têxteis" },
-    { "type": "textarea", "id": "vestuario_heading", "label": "Título", "default": "A sua marca.\nVeste o Inverno." },
-    { "type": "text", "id": "vestuario_button", "label": "Botão", "default": "Explorar vestuário" },
-    { "type": "url", "id": "vestuario_link", "label": "Link" },
-    { "type": "header", "content": "Pequenos gestos" },
-    { "type": "image_picker", "id": "gestos_image", "label": "Imagem" },
-    { "type": "text", "id": "gestos_alt", "label": "Texto alternativo", "default": "Embalagens e brindes personalizados" },
-    { "type": "text", "id": "gestos_eyebrow", "label": "Antetítulo", "default": "Brindes com identidade" },
-    { "type": "textarea", "id": "gestos_heading", "label": "Título", "default": "Pequenos gestos.\nGrande impacto." },
-    { "type": "text", "id": "gestos_button", "label": "Botão", "default": "Explorar brindes" },
-    { "type": "url", "id": "gestos_link", "label": "Link" },
-    { "type": "header", "content": "Novidades" },
-    { "type": "text", "id": "products_heading", "label": "Título", "default": "Novidades para a sua marca" },
-    { "type": "collection", "id": "collection", "label": "Coleção" },
-    { "type": "range", "id": "products_to_show", "min": 2, "max": 8, "step": 1, "default": 4, "label": "Produtos apresentados" },
-    { "type": "text", "id": "products_link_label", "label": "Link", "default": "Ver novidades" },
-    { "type": "header", "content": "Personalização" },
-    { "type": "text", "id": "custom_eyebrow", "label": "Antetítulo", "default": "Personalização sem limites" },
-    { "type": "textarea", "id": "custom_heading", "label": "Título", "default": "Imagine.\nNós produzimos." },
-    { "type": "textarea", "id": "custom_text", "label": "Texto", "default": "Escolha o produto, envie a sua ideia e cuidamos da personalização e da produção." },
-    { "type": "text", "id": "custom_button", "label": "Botão", "default": "Começar o meu projeto" },
-    { "type": "url", "id": "custom_link", "label": "Link" },
-    { "type": "header", "content": "Destaque editorial" },
-    { "type": "image_picker", "id": "editorial_image", "label": "Imagem" },
-    { "type": "text", "id": "editorial_alt", "label": "Texto alternativo", "default": "Mochila e garrafa personalizadas num ambiente de trabalho" },
-    { "type": "text", "id": "editorial_eyebrow", "label": "Antetítulo", "default": "Uma seleção com propósito" },
-    { "type": "textarea", "id": "editorial_heading", "label": "Título", "default": "Boas ideias\nvão consigo." },
-    { "type": "textarea", "id": "editorial_text", "label": "Texto", "default": "Para o trabalho, para uma equipa ou para cada momento." },
-    { "type": "text", "id": "editorial_button", "label": "Botão", "default": "Descobrir a seleção" },
-    { "type": "url", "id": "editorial_link", "label": "Link" },
-    { "type": "header", "content": "Categorias" },
-    { "type": "text", "id": "categories_heading", "label": "Título", "default": "Encontre a sua próxima ideia" },
-    { "type": "text", "id": "categories_link_label", "label": "Link", "default": "Todas as categorias" },
-    { "type": "url", "id": "categories_link", "label": "URL das categorias" },
-    { "type": "image_picker", "id": "business_image", "label": "Imagem de negócios e escritório" },
-    { "type": "text", "id": "business_label", "label": "Negócios e escritório", "default": "Negócios e escritório" },
-    { "type": "url", "id": "business_link", "label": "Link de negócios e escritório" },
-    { "type": "text", "id": "technology_label", "label": "Tecnologia", "default": "Tecnologia e estilo de vida" },
-    { "type": "url", "id": "technology_link", "label": "Link de tecnologia" },
-    { "type": "text", "id": "gifts_label", "label": "Presentes", "default": "Presentes sazonais" },
-    { "type": "url", "id": "gifts_link", "label": "Link de presentes" },
-    { "type": "text", "id": "wear_label", "label": "Vestuário", "default": "Vestuário personalizado" },
-    { "type": "url", "id": "wear_link", "label": "Link de vestuário" },
-    { "type": "image_picker", "id": "bottles_image", "label": "Imagem de copos e garrafas" },
-    { "type": "text", "id": "bottles_label", "label": "Copos e garrafas", "default": "Copos e garrafas" },
-    { "type": "url", "id": "bottles_link", "label": "Link de copos e garrafas" },
-    { "type": "header", "content": "Contacto" },
-    { "type": "text", "id": "contact_heading", "label": "Título", "default": "Uma ideia em mente? Vamos dar-lhe forma." },
-    { "type": "textarea", "id": "contact_text", "label": "Texto", "default": "Conte-nos o que precisa. A M3D ajuda a encontrar a solução." },
-    { "type": "text", "id": "contact_button", "label": "Botão", "default": "Pedir orçamento" },
-    { "type": "url", "id": "contact_link", "label": "Link" }
+    {"type":"textarea","id":"hero_heading","label":"Título principal","default":"O seu nome, a sua marca, em objetos do dia a dia."},
+    {"type":"textarea","id":"hero_text","label":"Texto principal","default":"Para oferecer, para usar ou para levar a sua empresa mais longe."},
+    {"type":"product","id":"hero_product","label":"Produto em destaque no hero"},
+    {"type":"image_picker","id":"hero_image","label":"Imagem alternativa do hero"},
+    {"type":"text","id":"hero_alt","label":"Descrição da imagem","default":"Objetos para personalizar"},
+    {"type":"text","id":"products_heading","label":"Título dos produtos","default":"Encontre a sua próxima ideia"},
+    {"type":"collection","id":"collection","label":"Coleção de produtos"},
+    {"type":"range","id":"products_to_show","min":2,"max":8,"step":1,"default":4,"label":"Produtos apresentados"}
   ],
-  "presets": [{ "name": "Homepage M3D" }]
+  "blocks":[{"type":"category","name":"Categoria","settings":[{"type":"collection","id":"collection","label":"Coleção"},{"type":"text","id":"title","label":"Nome apresentado"},{"type":"image_picker","id":"image","label":"Imagem alternativa"}]}],
+  "max_blocks":5,
+  "presets":[{"name":"Homepage M3D"}]
 }
 {% endschema %}

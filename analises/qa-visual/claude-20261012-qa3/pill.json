@@ -1,0 +1,35 @@
+{
+ "tabs": [
+  "Coleções",
+  "Produtos",
+  "Vestuário",
+  "MyShop",
+  "Pedir orçamento"
+ ],
+ "target": "Pedir orçamento",
+ "start": [
+  96,
+  107.9
+ ],
+ "afterHover": [
+  96,
+  107.9
+ ],
+ "afterFocus": [
+  96,
+  107.9
+ ],
+ "targetBox": [
+  657.5,
+  135.4
+ ],
+ "samples": 32,
+ "fromX": 96,
+ "toX": 657.5,
+ "monotonic": true,
+ "withinBounds": true,
+ "endsOnTarget": true,
+ "settledMs": 378,
+ "hoverStable": true,
+ "focusStable": true
+}

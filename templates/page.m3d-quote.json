@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "m3d-quote",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

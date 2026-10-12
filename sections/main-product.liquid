@@ -9,31 +9,26 @@
   elsif product.variants.size == 1 and only_variant.title == 'Default Title'
     assign show_options = false
   endif
+  assign colour_swatches = product.metafields.custom.colour_swatches.value
   assign personalization = product.metafields.custom.personalization_config.value
-  assign printing_techniques = product.metafields.custom.printing_techniques.value
   assign material = product.metafields.custom.material
   assign product_document = product.metafields.custom.product_document.value
   assign quote_request_page = pages['pedir-orcamento']
   if quote_request_page == blank
     assign quote_request_page = pages['contact']
   endif
-  assign quote_request_url = quote_request_page.url | default: routes.root_url
-  assign approved_techniques = 'transfer serigráfico|transfer refletivo|transfer digital|serigrafia|bordado|baixo-relevo|transfer por sublimação' | split: '|'
+  assign quote_request_url = quote_request_page.url | default: routes.root_url | append: '?view=m3d-quote'
   assign has_configured_techniques = false
-  for technique in printing_techniques
-    assign normalized_technique = technique | downcase | strip
-    if approved_techniques contains normalized_technique
-      assign technique_config = personalization.techniques | where: 'name', technique | first
-      if technique_config.positions.size > 0 and technique_config.price_included == true
-        assign has_configured_techniques = true
-        break
-      endif
+  for technique_config in personalization.techniques
+    if technique_config.positions.size > 0 and technique_config.price_included == true
+      assign has_configured_techniques = true
+      break
     endif
   endfor
 -%}
 {{ 'm3d-product.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'm3d-product.js' | asset_url }}" defer="defer"></script>
-<m3d-product class="m3d-pdp page-width" data-m3d-product data-section-id="{{ section.id }}" data-add-url="{{ routes.cart_add_url }}.js" data-cart-url="{{ routes.cart_url }}.js">
+<m3d-product data-product-title="{{ product.title | escape }}" data-product-url="{{ product.url | escape }}" class="m3d-pdp page-width" data-m3d-product data-section-id="{{ section.id }}" data-add-url="{{ routes.cart_add_url }}.js" data-cart-url="{{ routes.cart_url }}.js">
   <nav class="m3d-pdp__breadcrumb" aria-label="{{ 'sections.collection_banner.breadcrumb_label' | t }}">
     <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a><span aria-hidden="true">/</span>
     <a href="{{ routes.all_products_collection_url }}">{{ 'sections.collection_banner.products' | t }}</a><span aria-hidden="true">/</span>
@@ -41,7 +36,7 @@
     <span aria-current="page">{{ product.title | escape }}</span>
   </nav>
   <div class="m3d-pdp__main">
-    {% render 'm3d-product-gallery', product: product, section_id: section.id %}
+    {% render 'm3d-product-gallery', product: product, section_id: section.id, quote_request_url: quote_request_url %}
     <div class="m3d-pdp__info">
       {%- form 'product', product, id: product_form_id, class: 'm3d-pdp__form', enctype: 'multipart/form-data', novalidate: 'novalidate', data-type: 'm3d-product-form' -%}
         <input type="hidden" {% unless show_options %}name="id"{% endunless %} value="{{ current_variant.id }}" data-m3d-variant-id>
@@ -58,7 +53,7 @@
             {%- when 'price' -%}
               <div {{ block.shopify_attributes }}>
                 <div class="m3d-pdp__price" data-m3d-price>
-                  {%- if current_variant.price == 0 -%}<p>{{ 'm3d_pdp.price_on_request' | t }}</p>
+                  {%- if current_variant.price == 0 -%}<p class="price--on-request">{{ 'm3d_pdp.price_on_request' | t }}</p>
                   {%- else -%}{% render 'price', product: product, use_variant: true, show_compare: true %}{%- endif -%}
                 </div>
                 <p class="m3d-pdp__stock" data-m3d-stock>
@@ -75,13 +70,40 @@
                       <div class="m3d-pdp__choices">
                         {%- assign option_index = forloop.index0 -%}
                         {%- for value in option.values -%}
-                          <label class="m3d-pdp__choice{% if value.swatch.image or value.swatch.color %} m3d-pdp__choice--swatch{% endif %}">
-                            <input type="radio" class="visually-hidden" name="m3d-option-{{ option_index }}" value="{{ value | escape }}" data-m3d-option="{{ option_index }}" {% if option.selected_value == value %}checked{% endif %}>
-                            {%- if value.swatch.image -%}
-                              <span class="m3d-pdp__swatch" style="--swatch-image:url('{{ value.swatch.image | image_url: width: 100 }}')" aria-hidden="true"></span><span class="visually-hidden">{{ value | escape }}</span>
-                            {%- elsif value.swatch.color -%}
-                              <span class="m3d-pdp__swatch" style="--swatch-color:{{ value.swatch.color }}" aria-hidden="true"></span><span class="visually-hidden">{{ value | escape }}</span>
-                            {%- else -%}<span>{{ value | escape }}</span>{%- endif -%}
+                          {%- liquid
+                            assign colour_hex = blank
+                            assign option_name = option.name | downcase
+                            assign value_name = value.name | default: value
+                            if option_name == 'cor' or option_name == 'color' or option_name == 'colour'
+                              assign candidate_hex = colour_swatches[value_name] | downcase
+                              assign hex_prefix = candidate_hex | slice: 0, 1
+                              assign hex_digits = candidate_hex | remove_first: '#' | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9' | remove: 'a' | remove: 'b' | remove: 'c' | remove: 'd' | remove: 'e' | remove: 'f'
+                              if candidate_hex.size == 7 and hex_prefix == '#' and hex_digits == blank
+                                assign colour_hex = candidate_hex
+                              endif
+                            endif
+                            assign value_available = false
+                            for candidate_variant in product.variants
+                              assign matches_selection = true
+                              for selected_option in product.options_with_values
+                                assign selected_index = forloop.index0
+                                if selected_index == option_index
+                                  if candidate_variant.options[selected_index] != value_name
+                                    assign matches_selection = false
+                                  endif
+                                elsif candidate_variant.options[selected_index] != selected_option.selected_value
+                                  assign matches_selection = false
+                                endif
+                              endfor
+                              if matches_selection and candidate_variant.available
+                                assign value_available = true
+                                break
+                              endif
+                            endfor
+                          -%}
+                          <label class="m3d-pdp__choice{% if colour_hex != blank %} m3d-pdp__choice--swatch{% endif %}" title="{{ value_name | escape }}">
+                            <input type="radio" class="visually-hidden" name="m3d-option-{{ option_index }}" value="{{ value_name | escape }}" aria-label="{{ value_name | escape }}" aria-disabled="{% if value_available %}false{% else %}true{% endif %}" data-m3d-option="{{ option_index }}" {% if option.selected_value == value %}checked{% endif %}>
+                            {% if colour_hex != blank %}<span class="m3d-pdp__swatch" style="--swatch-color: {{ colour_hex | escape }}" aria-hidden="true"></span><span class="visually-hidden">{{ value_name | escape }}</span>{% else %}<span>{{ value_name | escape }}</span>{% endif %}
                           </label>
                         {%- endfor -%}
                       </div>
@@ -92,13 +114,20 @@
               {%- endif -%}
             {%- when 'quantity' -%}
               <div class="m3d-pdp__group" {{ block.shopify_attributes }}>
-                <h2>{{ 'm3d_pdp.quantity_sizes' | t }}</h2>
-                <button type="button" class="m3d-pdp__control m3d-pdp__quantity-trigger" data-m3d-dialog-open="M3dQuantity-{{ section.id }}" aria-haspopup="dialog" aria-controls="M3dQuantity-{{ section.id }}"><span data-m3d-quantity-summary>{{ 'm3d_pdp.select_quantities' | t }}</span><span aria-hidden="true">+</span></button>
-                <label class="m3d-pdp__native-quantity">{{ 'm3d_pdp.quantity' | t }}<input type="number" name="quantity" min="{{ current_variant.quantity_rule.min | default: 1 }}" step="{{ current_variant.quantity_rule.increment | default: 1 }}" value="{{ current_variant.quantity_rule.min | default: 1 }}"></label>
-                <p class="m3d-pdp__note">{{ 'm3d_pdp.check_stock' | t }}</p>
+                <h2>{{ 'm3d_pdp.quantity' | t }}</h2>
+                {%- if product.variants.size > 1 -%}
+                <button type="button" class="m3d-pdp__control m3d-pdp__quantity-trigger" data-m3d-dialog-open="M3dQuantity-{{ section.id }}" aria-haspopup="dialog" aria-controls="M3dQuantity-{{ section.id }}"><span data-m3d-quantity-summary>{{ 'm3d_pdp.select_quantities' | t }}</span><span class="m3d-pdp__control-icon" aria-hidden="true">{% render 'icon', name: 'm3d-plus' %}</span></button>
+                {%- endif -%}
+                <div class="m3d-pdp__native-quantity m3d-pdp__stepper">
+                  <button type="button" data-m3d-inline-step="-1" aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}">{% render 'icon', name: 'm3d-minus' %}</button>
+                  <input type="number" name="quantity" min="{{ current_variant.quantity_rule.min | default: 1 }}" step="{{ current_variant.quantity_rule.increment | default: 1 }}" value="{{ current_variant.quantity_rule.min | default: 1 }}" {% if current_variant.quantity_rule.max != blank %}max="{{ current_variant.quantity_rule.max }}"{% endif %} data-m3d-inline-quantity inputmode="numeric" aria-label="{{ 'm3d_pdp.quantity' | t }}">
+                  <button type="button" data-m3d-inline-step="1" aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | escape }}">{% render 'icon', name: 'm3d-plus' %}</button>
+                </div>
+                <p class="m3d-pdp__note" data-m3d-purchase-note{% if current_variant.price == 0 %} hidden{% endif %}>{{ 'm3d_pdp.check_stock' | t }}</p>
               </div>
+              {%- if product.variants.size > 1 -%}
               <dialog id="M3dQuantity-{{ section.id }}" class="m3d-motion-dialog" data-m3d-dialog aria-labelledby="M3dQuantityTitle-{{ section.id }}">
-                <div class="m3d-pdp__modal-header"><h2 id="M3dQuantityTitle-{{ section.id }}" tabindex="-1" data-m3d-dialog-focus>{{ 'm3d_pdp.quantity_sizes' | t }}</h2><button type="button" class="m3d-pdp__close" data-m3d-dialog-close aria-label="{{ 'accessibility.close' | t }}">×</button></div>
+                <div class="m3d-pdp__modal-header"><h2 id="M3dQuantityTitle-{{ section.id }}" tabindex="-1" data-m3d-dialog-focus>{{ 'm3d_pdp.quantity_sizes' | t }}</h2><button type="button" class="m3d-pdp__close" data-m3d-dialog-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'm3d-close' %}</button></div>
                 <p class="m3d-pdp__modal-intro">{% if product.price_max == 0 %}{{ 'm3d_pdp.zero_price_block' | t }}{% else %}{{ 'm3d_pdp.quantity_intro' | t }}{% endif %}</p>
                 <div class="m3d-pdp__quantity-table">
                   <div class="m3d-pdp__quantity-row m3d-pdp__quantity-row--head" aria-hidden="true"><span>{{ 'm3d_pdp.option' | t }}</span><span>{{ 'sections.main_collection.stock' | t }}</span><span>{{ 'm3d_pdp.quantity' | t }}</span></div>
@@ -108,9 +137,9 @@
                       <span>{% if show_options %}{{ variant.title | escape }}{% else %}{{ 'm3d_pdp.quantity' | t }}{% endif %}</span>
                       <span>{% if variant.inventory_management != blank %}{{ variant.inventory_quantity | at_least: 0 }}{% else %}{{ 'm3d_pdp.on_request' | t }}{% endif %}</span>
                       <div class="m3d-pdp__stepper">
-                        <button type="button" data-m3d-step="-1" aria-label="{{ 'm3d_pdp.decrease' | t: variant: quantity_variant_label | escape }}" {% unless variant.available %}disabled{% endunless %}>−</button>
+                        <button type="button" data-m3d-step="-1" aria-label="{{ 'm3d_pdp.decrease' | t: variant: quantity_variant_label | escape }}" {% unless variant.available %}disabled{% endunless %}>{% render 'icon', name: 'm3d-minus' %}</button>
                         <input type="number" data-m3d-quantity="{{ variant.id }}" min="0" step="1" data-increment="{{ variant.quantity_rule.increment | default: 1 }}" data-min="{{ variant.quantity_rule.min | default: 1 }}" value="0" {% if variant.quantity_rule.max != blank %}max="{{ variant.quantity_rule.max }}"{% endif %} {% unless variant.available %}disabled{% endunless %} aria-label="{{ 'm3d_pdp.quantity_for' | t: variant: quantity_variant_label | escape }}">
-                        <button type="button" data-m3d-step="1" aria-label="{{ 'm3d_pdp.increase' | t: variant: quantity_variant_label | escape }}" {% unless variant.available %}disabled{% endunless %}>+</button>
+                        <button type="button" data-m3d-step="1" aria-label="{{ 'm3d_pdp.increase' | t: variant: quantity_variant_label | escape }}" {% unless variant.available %}disabled{% endunless %}>{% render 'icon', name: 'm3d-plus' %}</button>
                       </div>
                     </div>
                   {%- endfor -%}
@@ -118,44 +147,41 @@
                 <p class="m3d-pdp__message" data-m3d-quantity-error role="status"></p>
                 <div class="m3d-pdp__modal-footer"><button type="button" class="m3d-motion-button" data-m3d-confirm-quantities>{{ 'm3d_pdp.confirm_quantities' | t }}</button><button type="button" class="m3d-motion-button m3d-motion-button--secondary" data-m3d-dialog-close>{{ 'm3d_pdp.cancel' | t }}</button></div>
               </dialog>
+              {%- endif -%}
             {%- when 'buy_buttons' -%}
-              <div class="m3d-pdp__group">
+              {% if personalization.techniques.size > 0 %}<div class="m3d-pdp__group">
                 <h2>{{ 'm3d_pdp.personalization' | t }}</h2>
-                {% if has_configured_techniques %}<p class="m3d-pdp__note">{{ 'm3d_pdp.choose_technique' | t }}</p>{% endif %}
-                <button type="button" class="m3d-pdp__control" data-m3d-no-personalization aria-pressed="true"><span>{{ 'm3d_pdp.no_personalization' | t }}</span><span aria-hidden="true">✓</span></button>
-                {%- for technique in printing_techniques -%}
-                  {%- assign normalized_technique = technique | downcase | strip -%}
-                  {%- if approved_techniques contains normalized_technique -%}
-                    {%- assign technique_config = personalization.techniques | where: 'name', technique | first -%}
+                {% if has_configured_techniques %}<p class="m3d-pdp__note">{{ 'm3d_pdp.choose_technique' | t }}</p>
+                <button type="button" class="m3d-pdp__control" data-m3d-no-personalization aria-pressed="true"><span>{{ 'm3d_pdp.no_personalization' | t }}</span></button>
+                {%- for technique_config in personalization.techniques -%}
                     {%- if technique_config.positions.size > 0 and technique_config.price_included == true -%}
-                      <button type="button" class="m3d-pdp__control m3d-pdp__technique" data-m3d-technique="{{ technique | escape }}" data-m3d-dialog-open="M3dPersonalization-{{ section.id }}" aria-pressed="false" aria-haspopup="dialog"><span>{{ technique | escape }}</span><span aria-hidden="true">+</span></button>
+                      <button type="button" class="m3d-pdp__control m3d-pdp__technique" data-m3d-technique="{{ technique_config.name | escape }}" data-m3d-dialog-open="M3dPersonalization-{{ section.id }}" aria-pressed="false" aria-haspopup="dialog"><span>{{ technique_config.name | capitalize | escape }}</span><span class="m3d-pdp__control-icon" aria-hidden="true">{% render 'icon', name: 'm3d-plus' %}</span></button>
                     {%- endif -%}
-                  {%- endif -%}
                 {%- endfor -%}
-              </div>
+                {% else %}<p class="m3d-pdp__note">{{ 'm3d_pdp.quote_personalization_hint' | t }}</p>{% endif %}
+              </div>{% endif %}
               <div class="m3d-pdp__actions" {{ block.shopify_attributes }}>
-                <p class="m3d-pdp__note" data-m3d-configuration-summary>{{ 'm3d_pdp.configure_options' | t }}</p>
+                <p class="m3d-pdp__note" data-m3d-quote-context{% unless current_variant.price == 0 %} hidden{% endunless %}>{{ 'm3d_pdp.quote_context_hint' | t }}</p>
+                <p class="m3d-pdp__note" data-m3d-configuration-summary data-m3d-purchase-note{% if current_variant.price == 0 %} hidden{% endif %}>{{ 'm3d_pdp.configure_options' | t }}</p>
                 <button type="submit" name="add" class="m3d-motion-button" data-m3d-add {% if current_variant.price == 0 %}hidden{% elsif current_variant.available == false %}disabled{% endif %}><span data-m3d-add-label>{% if current_variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span></button>
-                <a href="{{ quote_request_url }}" class="m3d-motion-button m3d-pdp__quote" data-m3d-quote{% unless current_variant.price == 0 %} hidden{% endunless %}>{{ 'm3d_pdp.price_on_request' | t }}</a>
-                <button type="button" class="m3d-motion-button m3d-motion-button--secondary m3d-pdp__myshop" data-m3d-dialog-open="M3dShop-{{ section.id }}" aria-haspopup="dialog">＋ {{ 'm3d_pdp.add_to_myshop' | t }}</button>
-                <p class="m3d-pdp__message" role="status" aria-live="polite" data-m3d-add-status></p>
-                {%- if block.settings.show_dynamic_checkout and current_variant.price > 0 and current_variant.available -%}<div data-m3d-dynamic-checkout>{{ form | payment_button }}</div>{%- endif -%}
+                <div class="m3d-pdp__feedback"><p class="m3d-pdp__message" role="status" aria-live="polite" data-m3d-add-status></p><a class="m3d-pdp__view-cart" href="{{ routes.cart_url }}" data-m3d-view-cart hidden>{{ 'm3d_pdp.view_cart' | t }}</a></div>
               </div>
-            {%- when 'share' -%}<div class="m3d-pdp__share" {{ block.shopify_attributes }}>{% render 'share-button', share_link: product.url, share_title: product.title %}</div>
+            {%- when 'share' -%}{%- comment -%}Sharing is rendered below the gallery.{%- endcomment -%}
             {%- when 'custom_liquid' -%}<div {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
           {%- endcase -%}
         {%- endfor -%}
         <dialog id="M3dPersonalization-{{ section.id }}" class="m3d-motion-dialog" data-m3d-dialog aria-labelledby="M3dPersonalizationTitle-{{ section.id }}">
-          <div class="m3d-pdp__modal-header"><h2 id="M3dPersonalizationTitle-{{ section.id }}" tabindex="-1" data-m3d-dialog-focus>{{ 'm3d_pdp.personalize_product' | t }}</h2><button type="button" class="m3d-pdp__close" data-m3d-dialog-close aria-label="{{ 'accessibility.close' | t }}">×</button></div>
+          <div class="m3d-pdp__modal-header"><h2 id="M3dPersonalizationTitle-{{ section.id }}" tabindex="-1" data-m3d-dialog-focus>{{ 'm3d_pdp.personalize_product' | t }}</h2><button type="button" class="m3d-pdp__close" data-m3d-dialog-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'm3d-close' %}</button></div>
           <p class="m3d-pdp__modal-intro" data-m3d-technique-label></p>
           <div class="m3d-pdp__positions" data-m3d-positions></div>
           <div class="m3d-pdp__dimensions">
-            <label>{{ 'm3d_pdp.width_mm' | t }}<input type="number" min="1" step="1" data-m3d-width inputmode="numeric"></label>
-            <label>{{ 'm3d_pdp.height_mm' | t }}<input type="number" min="1" step="1" data-m3d-height inputmode="numeric"></label>
+            <label><span data-m3d-width-label>{{ 'm3d_pdp.width_mm' | t }}</span><input type="number" min="1" step="1" data-m3d-width inputmode="numeric"></label>
+            <label><span data-m3d-height-label>{{ 'm3d_pdp.height_mm' | t }}</span><input type="number" min="1" step="1" data-m3d-height inputmode="numeric"></label>
           </div>
           <p class="m3d-pdp__note" data-m3d-area-limit></p>
-          <div class="m3d-pdp__file"><label class="m3d-motion-button m3d-motion-button--secondary">{{ 'm3d_pdp.upload_logo' | t }}<input type="file" name="properties[Logótipo]" accept=".png,.jpg,.jpeg,.pdf,.svg" data-m3d-logo disabled aria-label="{{ 'm3d_pdp.upload_logo' | t }}"></label><span class="m3d-pdp__file-name" data-m3d-file-name></span></div>
+          <div class="m3d-pdp__file"><label class="m3d-motion-button m3d-motion-button--secondary">{% render 'icon', name: 'm3d-upload' %}{{ 'm3d_pdp.upload_logo' | t }}<input type="file" name="properties[Logótipo]" accept=".png,.jpg,.jpeg,.pdf,.svg" data-m3d-logo disabled aria-label="{{ 'm3d_pdp.upload_logo' | t }}"></label><span class="m3d-pdp__file-name" data-m3d-file-name></span></div>
           <p class="m3d-pdp__message" data-m3d-personalization-error role="status"></p>
+          <p class="m3d-pdp__note">{{ 'm3d_pdp.more_personalization' | t }} {{ 'm3d_pdp.gallery_quote_hint' | t }}</p>
           <div class="m3d-pdp__modal-footer"><button type="button" class="m3d-motion-button" data-m3d-confirm-personalization>{{ 'm3d_pdp.confirm_personalization' | t }}</button><button type="button" class="m3d-motion-button m3d-motion-button--secondary" data-m3d-dialog-close>{{ 'm3d_pdp.cancel' | t }}</button></div>
         </dialog>
         <input type="hidden" name="properties[Técnica]" data-m3d-property="technique" disabled>
@@ -170,30 +196,30 @@
     {%- for block in section.blocks -%}
       {%- if block.type == 'description' and product.description != blank -%}
         <details open data-expanded data-m3d-accordion {{ block.shopify_attributes }}>
-          <summary><span>{{ 'm3d_pdp.description' | t }}</span><span class="m3d-accordion-chevron" aria-hidden="true">⌄</span></summary><div data-m3d-accordion-body><div class="rte">{{ product.description }}</div></div>
+          <summary><span>{{ 'm3d_pdp.description' | t }}</span><span class="m3d-accordion-chevron" aria-hidden="true">{% render 'icon', name: 'm3d-chevron' %}</span></summary><div data-m3d-accordion-body><div class="rte">{{ product.description }}</div></div>
         </details>
       {%- endif -%}
     {%- endfor -%}
     <details data-m3d-accordion>
-      <summary><span>{{ 'm3d_pdp.specifications' | t }}</span><span class="m3d-accordion-chevron" aria-hidden="true">⌄</span></summary>
+      <summary><span>{{ 'm3d_pdp.specifications' | t }}</span><span class="m3d-accordion-chevron" aria-hidden="true">{% render 'icon', name: 'm3d-chevron' %}</span></summary>
       <div data-m3d-accordion-body><div><dl>{% if current_variant.sku != blank %}<dt>{{ 'm3d_pdp.reference' | t }}</dt><dd data-m3d-detail-sku>{{ current_variant.sku | escape }}</dd>{% endif %}{% if material != blank %}<dt>{{ 'sections.main_collection.material' | t }}</dt><dd>{{ material | metafield_text }}</dd>{% endif %}{% if product.vendor != blank %}<dt>{{ 'products.product.vendor' | t }}</dt><dd>{{ product.vendor | escape }}</dd>{% endif %}</dl></div></div>
     </details>
-    {% if printing_techniques != blank %}
-      <details data-m3d-accordion><summary><span>{{ 'm3d_pdp.personalization_areas' | t }}</span><span class="m3d-accordion-chevron" aria-hidden="true">⌄</span></summary><div data-m3d-accordion-body><div>{% for technique in printing_techniques %}{% assign normalized_technique = technique | downcase | strip %}{% if approved_techniques contains normalized_technique %}<p>{{ technique | escape }}</p>{% endif %}{% endfor %}</div></div></details>
+    {% if personalization.techniques.size > 0 %}
+      <details data-m3d-accordion><summary><span>{{ 'm3d_pdp.personalization_areas' | t }}</span><span class="m3d-accordion-chevron" aria-hidden="true">{% render 'icon', name: 'm3d-chevron' %}</span></summary><div data-m3d-accordion-body><div>{% for technique in personalization.techniques %}<p>{{ technique.name | capitalize | escape }}{% unless technique.price_included == true and technique.positions.size > 0 %} · {{ 'm3d_pdp.available_by_quote' | t }}{% endunless %}</p>{% endfor %}</div></div></details>
     {% endif %}
     {% if product_document.url != blank %}
-      <details data-m3d-accordion><summary><span>{{ 'm3d_pdp.documentation' | t }}</span><span class="m3d-accordion-chevron" aria-hidden="true">⌄</span></summary><div data-m3d-accordion-body><div><a class="m3d-motion-link" href="{{ product_document.url }}" target="_blank" rel="noopener">{{ 'm3d_pdp.product_sheet' | t }}</a></div></div></details>
+      <details data-m3d-accordion><summary><span>{{ 'm3d_pdp.documentation' | t }}</span><span class="m3d-accordion-chevron" aria-hidden="true">{% render 'icon', name: 'm3d-chevron' %}</span></summary><div data-m3d-accordion-body><div><a class="m3d-motion-link" href="{{ product_document.url }}" target="_blank" rel="noopener">{{ 'm3d_pdp.product_sheet' | t }}</a></div></div></details>
     {% endif %}
   </section>
   <dialog id="M3dShop-{{ section.id }}" class="m3d-motion-dialog" data-m3d-dialog aria-labelledby="M3dShopTitle-{{ section.id }}">
-    <div class="m3d-pdp__modal-header"><h2 id="M3dShopTitle-{{ section.id }}" tabindex="-1" data-m3d-dialog-focus>{{ 'products.product.add_to_shop' | t }}</h2><button type="button" class="m3d-pdp__close" data-m3d-dialog-close aria-label="{{ 'accessibility.close' | t }}">×</button></div>
+    <div class="m3d-pdp__modal-header"><h2 id="M3dShopTitle-{{ section.id }}" tabindex="-1" data-m3d-dialog-focus>{{ 'products.product.add_to_shop' | t }}</h2><button type="button" class="m3d-pdp__close" data-m3d-dialog-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'm3d-close' %}</button></div>
     <p class="m3d-pdp__modal-intro">{{ 'm3d_pdp.myshop_preview' | t }}</p>
     <div class="m3d-pdp__shop-list"><label><input type="radio" name="M3dShop-{{ section.id }}">Google Summer Event</label><label><input type="radio" name="M3dShop-{{ section.id }}">Employee Welcome Kit</label><label><input type="radio" name="M3dShop-{{ section.id }}">Client Gifts 2027</label></div>
     <div class="m3d-pdp__modal-footer"><button type="button" class="m3d-motion-button m3d-motion-button--secondary" data-m3d-preview-create>＋ {{ 'products.product.create_new_shop' | t }}</button><p class="m3d-pdp__note" data-m3d-myshop-status role="status"></p></div>
   </dialog>
   {% capture m3d_variants_json %}[
     {% for variant in product.variants %}
-      {"id":{{ variant.id | json }},"title":{{ variant.title | json }},"options":{{ variant.options | json }},"sku":{{ variant.sku | json }},"available":{{ variant.available | json }},"price":{{ variant.price | json }},"tracked":{% if variant.inventory_management != blank %}true{% else %}false{% endif %},"inventory_quantity":{{ variant.inventory_quantity | json }},"inventory_policy":{{ variant.inventory_policy | json }},"min":{{ variant.quantity_rule.min | default: 1 | json }},"increment":{{ variant.quantity_rule.increment | default: 1 | json }},"max":{{ variant.quantity_rule.max | json }},"featured_media_id":{{ variant.featured_media.id | json }},"price_html":{% capture variant_price %}{% if variant.price == 0 %}<p>{{ 'm3d_pdp.price_on_request' | t }}</p>{% else %}{% render 'price', product: variant, use_variant: false, show_compare: true %}{% endif %}{% endcapture %}{{ variant_price | strip_newlines | json | replace: '</', '<\/' }}}
+      {"id":{{ variant.id | json }},"title":{{ variant.title | json }},"options":{{ variant.options | json }},"sku":{{ variant.sku | json }},"available":{{ variant.available | json }},"price":{{ variant.price | json }},"tracked":{% if variant.inventory_management != blank %}true{% else %}false{% endif %},"inventory_quantity":{{ variant.inventory_quantity | json }},"inventory_policy":{{ variant.inventory_policy | json }},"min":{{ variant.quantity_rule.min | default: 1 | json }},"increment":{{ variant.quantity_rule.increment | default: 1 | json }},"max":{{ variant.quantity_rule.max | json }},"featured_media_id":{{ variant.featured_media.id | json }},"price_html":{% capture variant_price %}{% if variant.price == 0 %}<p class="price--on-request">{{ 'm3d_pdp.price_on_request' | t }}</p>{% else %}{% render 'price', product: variant, use_variant: false, show_compare: true %}{% endif %}{% endcapture %}{{ variant_price | strip_newlines | json | replace: '</', '<\/' }}}
       {% unless forloop.last %},{% endunless %}
     {% endfor %}
   ]{% endcapture %}
@@ -214,6 +240,8 @@
     "added":{{ 'm3d_pdp.added' | t | json }},
     "add_error":{{ 'm3d_pdp.add_error' | t | json }},
     "area_limit":{{ 'm3d_pdp.area_limit' | t: width: '[width]', height: '[height]' | json }},
+    "width_max":{{ 'm3d_pdp.width_max' | t: max: '[max]' | json }},
+    "height_max":{{ 'm3d_pdp.height_max' | t: max: '[max]' | json }},
     "invalid_dimensions":{{ 'm3d_pdp.invalid_dimensions' | t | json }},
     "upload_multiple":{{ 'm3d_pdp.upload_multiple' | t | json }},
     "myshop_preview":{{ 'm3d_pdp.myshop_preview' | t | json }}
@@ -235,16 +263,7 @@
     {
       "type": "buy_buttons",
       "name": "t:sections.main_product.blocks.buy_buttons.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_dynamic_checkout",
-          "default": true,
-          "label": "t:sections.main_product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-          "info": "t:sections.main_product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
-        }
-      ]
+      "limit": 1
     },
     { "type": "description", "name": "t:sections.main_product.blocks.description.name", "limit": 1 },
     { "type": "share", "name": "t:sections.main_product.blocks.share.name", "limit": 1 },

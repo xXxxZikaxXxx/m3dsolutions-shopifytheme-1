@@ -26,19 +26,34 @@
     a página. Se o JS falhar, o form nativo ainda funciona.
 
   OBSERVAÇÕES:
-  - Os estilos ficam inline no <style> no topo do arquivo, usando
+  - Os estilos ficam inline no
+
+<style> no topo do arquivo, usando
     as variáveis CSS do tema (--color-*, --f*, etc.).
   - Setting show_note controla a exibição do campo de observação.
   - Após alterar quantidade via JS a página é recarregada
     (refresh) — não há atualização parcial do DOM.
 {%- endcomment -%}
+{%- liquid
+  assign cart_has_quote = false
+  for cart_item in cart.items
+    if cart_item.variant.price == 0 and cart_item.original_price == 0
+      assign cart_has_quote = true
+    endif
+  endfor
+  assign cart_quote_page = pages['pedir-orcamento']
+  assign cart_quote_url = cart_quote_page.url
+  if cart_quote_url != blank
+    assign cart_quote_url = cart_quote_url | append: '?view=m3d-quote'
+  endif
+-%}
 <style>
   #shopify-section-{{ section.id }} .cart {
     padding-top: var(--spacing-sections);
     padding-bottom: var(--spacing-sections);
   }
   .cart__title {
-    font-size: var(--f7);
+    font-size: var(--m3d-text-3xl, 1.75rem);
     margin-bottom: 32px;
   }
 
@@ -53,18 +68,18 @@
     gap: 16px;
     text-align: center;
     border-radius: 16px;
-    background: #f7f7f8;
+    background: var(--m3d-color-surface-alt, #f5f5f7);
   }
   .cart__empty-heading {
     margin: 0;
-    color: #000;
+    color: var(--m3d-color-text, #000000);
     font-size: 28px;
     line-height: 1.35;
   }
   .cart__empty-text {
     max-width: 520px;
     margin: 0 0 8px;
-    color: #606060;
+    color: var(--m3d-color-text-muted, #606060);
     font-size: 16px;
     line-height: 1.45;
   }
@@ -92,57 +107,59 @@
   }
   .cart-items th {
     text-align: left;
-    font-size: var(--f1);
-    font-weight: var(--font-body-weight);
-    opacity: 0.7;
+    font-size: var(--m3d-text-sm, 0.875rem);
+    font-weight: var(--m3d-weight-bold, 700);
+    color: var(--m3d-color-text-muted, #606060);
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--m3d-color-border, #d9d9d9);
   }
   .cart-items th.cart-items__heading--right { text-align: right; }
   .cart-item {
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--m3d-color-border, #d9d9d9);
   }
   .cart-item > td { padding: 24px 0; vertical-align: top; }
 
-  .cart-item__media { width: 100px; padding-right: 20px !important; }
+  .cart-item__media { width: 100px; padding-inline-end: 20px; }
   .cart-item__image {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: var(--media-radius);
-    background-color: var(--color-background-contrast);
+    border-radius: var(--m3d-radius-media, 12px);
+    background-color: var(--m3d-color-surface-alt, #f5f5f7);
   }
 
   .cart-item__details { line-height: 1.5; }
   .cart-item__name {
-    font-size: var(--f3);
-    color: var(--color-text);
+    font-size: var(--m3d-text-lg, 1.125rem);
+    color: var(--m3d-color-text, #000000);
     text-decoration: none;
-    font-family: var(--font-heading-family);
+    font-family: var(--m3d-font-family, var(--font-body-family));
   }
   .cart-item__name:hover { text-decoration: underline; }
   .cart-item__options,
   .cart-item__property {
-    font-size: var(--f1);
-    opacity: 0.7;
+    font-size: var(--m3d-text-sm, 0.875rem);
+    color: var(--m3d-color-text-muted, #606060);
     margin-top: 4px;
   }
+  .cart-item__logo { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: underline; }
+  .cart-item__logo img { width: 40px; height: 40px; object-fit: contain; border-radius: var(--m3d-radius-field); }
   .cart-item__discounts {
     list-style: none;
     padding: 0;
     margin: 8px 0 0;
-    font-size: var(--f1);
-    color: var(--color-sale);
+    font-size: var(--m3d-text-sm, 0.875rem);
+    color: var(--m3d-color-text, #000000);
   }
   .cart-item__unit-price {
-    font-size: var(--f0);
-    opacity: 0.7;
+    font-size: var(--m3d-text-sm, 0.875rem);
+    color: var(--m3d-color-text-muted, #606060);
     margin-top: 6px;
   }
 
-  .cart-item__price { text-align: right; white-space: nowrap; }
+  .cart-item__price { min-width: 96px; padding-inline-start: 16px; text-align: end; white-space: nowrap; }
   .cart-item__price s { opacity: 0.6; margin-right: 6px; }
-  .cart-item__price .cart-item__discounted { color: var(--color-sale); }
+  .cart-item__price .cart-item__discounted { color: var(--m3d-color-text, #000000); }
 
   .cart-item__quantity-wrapper {
     display: flex;
@@ -153,21 +170,22 @@
   .cart-items .quantity-selector {
     display: inline-flex;
     align-items: center;
-    border: 1px solid var(--color-border);
-    border-radius: var(--inputs-radius);
+    border: 1px solid var(--m3d-color-border-control, #8a8a8a);
+    border-radius: var(--m3d-radius-field, 8px);
     overflow: hidden;
   }
   .cart-items .quantity__button {
-    width: 40px; height: 40px;
+    width: 44px; height: 44px;
+    display: inline-grid; place-items: center; padding: 0;
     background: none; border: none; cursor: pointer;
-    font-size: var(--f3); color: var(--color-text);
+    font-size: var(--m3d-text-lg, 1.125rem); color: var(--m3d-color-text, #000000);
   }
   .cart-items .quantity__input {
-    width: 48px; height: 40px;
+    width: 48px; height: 44px;
     text-align: center; border: none;
-    background: transparent; color: var(--color-text);
+    background: transparent; color: var(--m3d-color-text, #000000);
     -moz-appearance: textfield;
-    font-size: var(--f2);
+    font-size: var(--m3d-text-md, 1rem);
   }
   .cart-items .quantity__input::-webkit-outer-spin-button,
   .cart-items .quantity__input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
@@ -175,9 +193,9 @@
     background: none;
     border: none;
     padding: 0;
-    font-size: var(--f0);
-    color: var(--color-text);
-    opacity: 0.7;
+    font-size: var(--m3d-text-sm, 0.875rem);
+    color: var(--m3d-color-text, #000000);
+    color: var(--m3d-color-text-muted, #606060);
     text-decoration: underline;
     cursor: pointer;
   }
@@ -186,31 +204,31 @@
   /* Summary */
   .cart__note-label {
     display: block;
-    font-size: var(--f1);
+    font-size: var(--m3d-text-sm, 0.875rem);
     margin-bottom: 8px;
   }
   .cart__note {
     width: 100%;
-    resize: none;
+    resize: vertical;
     margin-bottom: 24px;
   }
   .cart__discounts {
     list-style: none;
     padding: 0;
     margin: 0 0 16px;
-    font-size: var(--f1);
-    color: var(--color-sale);
+    font-size: var(--m3d-text-sm, 0.875rem);
+    color: var(--m3d-color-text, #000000);
   }
   .cart__subtotal {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    font-size: var(--f4);
+    font-size: var(--m3d-text-xl, 1.25rem);
     margin-bottom: 8px;
   }
   .cart__tax-note {
-    font-size: var(--f0);
-    opacity: 0.7;
+    font-size: var(--m3d-text-sm, 0.875rem);
+    color: var(--m3d-color-text-muted, #606060);
     margin-bottom: 20px;
   }
   .cart__tax-note a { color: inherit; }
@@ -228,7 +246,7 @@
   @media screen and (max-width: 1000px) {
     .cart__contents { flex-direction: column; gap: 32px; }
     .cart__summary { position: static; flex-basis: auto; width: 100%; }
-    .cart-item__media { width: 84px; padding-right: 14px !important; }
+    .cart-item__media { width: 84px; padding-inline-end: 14px; }
     .cart-items thead { display: none; }
   }
   @media screen and (max-width: 749px) {
@@ -236,9 +254,54 @@
     .cart__empty-heading { font-size: 24px; }
     .cart__empty-action { width: 100%; min-width: 0; }
   }
+
+  .section-main-cart { color: var(--m3d-color-text, #000000); }
+  .cart__title, .cart__empty-heading, .cart-item__name { font-weight: var(--m3d-weight-bold, 700); }
+  .cart-item__details, .cart-item__price { overflow-wrap: anywhere; }
+  .cart-item__name { font-size: var(--m3d-text-md, 1rem); }
+  .cart-item__price, .cart__subtotal, .quantity__input { font-variant-numeric: var(--m3d-numeric, lining-nums tabular-nums); }
+  .cart-item__price { font-weight: var(--m3d-weight-regular, 400); }
+  .quantity__input { font-family: var(--m3d-font-numeric, ui-sans-serif, system-ui); font-variant-numeric: lining-nums tabular-nums; }
+  .cart-item__consultation { white-space: normal; }
+  .cart-item__remove { display: inline-flex; align-items: center; min-height: 44px; }
+  .cart__note {
+    padding: var(--m3d-space-3, 0.75rem) var(--m3d-space-4, 1rem);
+    border: 1px solid var(--m3d-color-border-control, #8a8a8a);
+    border-radius: var(--m3d-radius-field, 8px);
+    font: inherit; font-size: var(--m3d-text-md, 1rem);
+    color: var(--m3d-color-text, #000000); background: var(--m3d-color-surface, #ffffff);
+  }
+  .cart__checkout, .cart__update, .cart__empty-action, .cart__quote-action {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; padding: var(--m3d-space-3, 0.75rem) var(--m3d-space-6, 1.5rem);
+    border: 1px solid transparent; border-radius: var(--m3d-radius-pill, 999px);
+    font-size: var(--m3d-text-md, 1rem); font-weight: var(--m3d-weight-bold, 700);
+    line-height: 1.4; text-align: center; text-decoration: none;
+    color: var(--m3d-color-action-primary-text, #ffffff); background: var(--m3d-color-action-primary, #4436bc);
+  }
+  .section-main-cart .cart__update { border-color: var(--m3d-color-text, #000000); color: var(--m3d-color-text, #000000); background: var(--m3d-color-surface, #ffffff); }
+  .cart__checkout:disabled { opacity: 1; color: var(--m3d-color-text-muted, #606060); background: var(--m3d-gray-100, #e5e5e5); cursor: not-allowed; }
+  .cart__quote-notice { margin-bottom: var(--m3d-space-6, 1.5rem); padding: var(--m3d-space-4, 1rem); background: var(--m3d-color-surface-alt, #f5f5f7); border-radius: var(--m3d-radius-field, 8px); }
+  .cart__quote-notice p { margin: 0 0 var(--m3d-space-4, 1rem); font-size: var(--m3d-text-md, 1rem); line-height: var(--m3d-leading-body, 1.55); }
+  .cart__partial-note { margin: 0 0 var(--m3d-space-4, 1rem); font-size: var(--m3d-text-sm, 0.875rem); line-height: var(--m3d-leading-body, 1.55); color: var(--m3d-color-text-muted, #606060); }
+  .section-main-cart [hidden] { display: none; }
+  .section-main-cart :focus-visible { outline: 2px solid var(--m3d-focus-color, #4436bc); outline-offset: 3px; }
+  @media screen and (max-width: 749px) {
+    .cart-item { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px 16px; padding-block: 24px; }
+    .cart-item > td { padding: 0; min-width: 0; }
+    .cart-item__media { grid-row: 1 / span 3; width: auto; padding-inline-end: 0; }
+    .cart-item__details, .cart-item__quantity, .cart-item__price { grid-column: 2; }
+    .cart-item__quantity-wrapper { align-items: flex-start; }
+    .cart-item__price { min-width: 0; padding-inline-start: 0; text-align: end; }
+  }
+  @media (forced-colors: active) {
+    .section-main-cart :focus-visible { outline-color: LinkText; }
+    .cart__checkout, .cart__empty-action, .cart__quote-action { border-color: ButtonText; }
+    .cart__checkout:disabled { color: GrayText; }
+  }
 </style>
 
-<div class="cart page-width section-main-cart" id="main-cart-{{ section.id }}">
+<div class="cart page-width section-main-cart" id="main-cart-{{ section.id }}" data-m3d-cart-quote-required="{{ cart_has_quote }}">
   {%- if cart.item_count == 0 -%}
     <div class="cart--empty">
       <h1 class="cart__empty-heading">{{ 'sections.cart.empty' | t }}</h1>
@@ -263,6 +326,12 @@
             </thead>
             <tbody>
               {%- for item in cart.items -%}
+                {%- liquid
+                  assign item_requires_quote = false
+                  if item.variant.price == 0 and item.original_price == 0
+                    assign item_requires_quote = true
+                  endif
+                -%}
                 <tr class="cart-item" data-line="{{ forloop.index }}">
                   <td class="cart-item__media">
                     {%- if item.image -%}
@@ -301,9 +370,14 @@
                         {%- assign first_char = property.first | slice: 0 -%}
                         {%- if property.last != blank and first_char != '_' -%}
                           <p class="cart-item__property">
-                            {{ property.first | escape }}:
-                            {%- if property.last contains '/uploads/' -%}
-                              <a href="{{ property.last }}" target="_blank" rel="noopener">{{ property.last | split: '/' | last | escape }}</a>
+                            {{ property.first | escape }}:&nbsp;
+                            {%- assign upload_origin = property.last | slice: 0, 24 -%}
+                            {%- if property.last contains '/uploads/' and upload_origin == 'https://cdn.shopify.com/' -%}
+                              {%- if property.first contains 'Logótipo' -%}
+                                {%- assign upload_extension = property.last | split: '?' | first | split: '.' | last | downcase -%}
+                                {%- assign preview_extensions = 'png,jpg,jpeg,webp,gif' | split: ',' -%}
+                                <a class="cart-item__logo" href="{{ property.last | escape }}" target="_blank" rel="noopener">{% if preview_extensions contains upload_extension %}<img src="{{ property.last | escape }}" width="40" height="40" loading="lazy" alt="{{ 'm3d_cart.uploaded_logo' | t }}">{% endif %}{{ 'm3d_cart.view_logo' | t }}</a>
+                              {%- else -%}<a href="{{ property.last | escape }}" target="_blank" rel="noopener">{{ property.last | split: '/' | last | escape }}</a>{%- endif -%}
                             {%- else -%}
                               {{ property.last | escape }}
                             {%- endif -%}
@@ -320,7 +394,7 @@
                       </ul>
                     {%- endif -%}
 
-                    {%- if item.unit_price_measurement -%}
+                    {%- if item.unit_price_measurement and item_requires_quote == false -%}
                       <p class="cart-item__unit-price">
                         {{ item.unit_price | money }}
                         {{ 'accessibility.unit_price_separator' | t }}
@@ -343,7 +417,7 @@
                           class="quantity__button"
                           name="minus"
                           aria-label="{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}"
-                        >&minus;</button>
+                        >{% render 'icon', name: 'm3d-minus' %}</button>
                         <input
                           class="quantity__input"
                           type="number"
@@ -360,27 +434,34 @@
                           class="quantity__button"
                           name="plus"
                           aria-label="{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}"
-                        >&plus;</button>
+                        >{% render 'icon', name: 'm3d-plus' %}</button>
                       </div>
                       <a
                         href="{{ item.url_to_remove }}"
                         class="cart-item__remove"
                         aria-label="{{ 'sections.cart.remove_title' | t: title: item.product.title | escape }}"
                       >
-                        {{ 'sections.cart.remove' | t }}
+                        {% render 'icon', name: 'm3d-trash', size: 16 %}{{ 'sections.cart.remove' | t }}
                       </a>
                     </div>
                   </td>
 
                   <td class="cart-item__price">
-                    {%- if item.original_price != item.final_price -%}
-                      <s>{{ item.original_price | money }}</s>
-                      <span class="cart-item__discounted">{{ item.final_price | money }}</span>
+                    {%- if item_requires_quote -%}
+                      <span class="cart-item__consultation">{{ 'm3d_cart.price_on_request' | t }}</span>
                     {%- else -%}
-                      <span>{{ item.final_price | money }}</span>
-                    {%- endif -%}
-                    {%- if item.quantity > 1 -%}
-                      <div class="cart-item__unit-price">{{ item.final_line_price | money }}</div>
+                      <span class="visually-hidden">{{ 'm3d_cart.unit_price' | t }}:</span>
+                      {%- if item.original_price != item.final_price -%}
+                        <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }} {{ item.original_price | money }}.</span>
+                        <s aria-hidden="true">{{ item.original_price | money }}</s>
+                        <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}:</span>
+                        <span class="cart-item__discounted">{{ item.final_price | money }}</span>
+                      {%- else -%}
+                        <span>{{ item.final_price | money }}</span>
+                      {%- endif -%}
+                      {%- if item.quantity > 1 -%}
+                        <div class="cart-item__unit-price"><span class="visually-hidden">{{ 'm3d_cart.line_total' | t }}:</span>{{ item.final_line_price | money }}</div>
+                      {%- endif -%}
                     {%- endif -%}
                   </td>
                 </tr>
@@ -398,7 +479,7 @@
               id="Cart-note"
               rows="3"
               spellcheck="false"
-            >{{ cart.note }}</textarea>
+            >{{ cart.note | escape }}</textarea>
           {%- endif -%}
 
           {%- if cart.cart_level_discount_applications.size > 0 -%}
@@ -409,11 +490,18 @@
             </ul>
           {%- endif -%}
 
+          <div class="cart__quote-notice" id="CartQuoteNotice-{{ section.id }}" role="status" tabindex="-1" data-m3d-cart-quote-notice {% unless cart_has_quote %}hidden{% endunless %}>
+            <p>{{ 'm3d_cart.quote_required' | t }}</p>
+            {%- if cart_quote_url != blank -%}
+              <a class="cart__quote-action" href="{{ cart_quote_url }}">{{ 'm3d_cart.quote_action' | t }}</a>
+            {%- endif -%}
+          </div>
           <div class="cart__subtotal">
             <span>{{ 'sections.cart.subtotal' | t }}</span>
             <span>{{ cart.total_price | money }}</span>
           </div>
 
+          <p class="cart__partial-note" data-m3d-cart-partial-note {% unless cart_has_quote %}hidden{% endunless %}>{{ 'm3d_cart.partial_total' | t }}</p>
           <p class="cart__tax-note">
             {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
               {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
@@ -430,7 +518,7 @@
             {{ 'sections.cart.update' | t }}
           </button>
 
-          <button type="submit" name="checkout" class="button cart__checkout m3d-motion-button">
+          <button type="submit" name="checkout" class="button cart__checkout m3d-motion-button" data-m3d-checkout {% if cart_has_quote %}disabled aria-describedby="CartQuoteNotice-{{ section.id }}" data-m3d-quote-disabled="true"{% endif %}>
             {{ 'sections.cart.checkout' | t }}
           </button>
 
@@ -439,8 +527,8 @@
             <a href="{{ routes.storefront_login_url }}" class="m3d-auth__link cart__login" data-m3d-dialog-open="{{ cart_login_prefix }}-dialog">{{ 'm3d_auth.cart_login_link' | t }}</a>
           {%- endif -%}
 
-          {%- if additional_checkout_buttons -%}
-            <div class="cart__additional-checkout">
+          {%- if additional_checkout_buttons and cart_has_quote == false -%}
+            <div class="cart__additional-checkout" data-m3d-additional-checkout>
               {{ content_for_additional_checkout_buttons }}
             </div>
           {%- endif -%}

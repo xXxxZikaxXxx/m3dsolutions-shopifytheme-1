@@ -1,0 +1,928 @@
+{
+  "pages": [
+    {
+      "label": "search",
+      "width": 1440,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "search-empty",
+      "width": 1440,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "collection",
+      "width": 1440,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "pdp",
+      "width": 1440,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 10,
+        "quoteCount": 1,
+        "relatedTitle": "Também pode gostar",
+        "relatedColumns": "292px 292px 292px 292px"
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "home",
+      "width": 1440,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "iconAria": true
+      }
+    },
+    {
+      "label": "cart",
+      "width": 1440,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "iconAria": true
+      }
+    },
+    {
+      "label": "quote",
+      "width": 1440,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "iconAria": true
+      }
+    },
+    {
+      "label": "search",
+      "width": 1024,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "search-empty",
+      "width": 1024,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "collection",
+      "width": 1024,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "pdp",
+      "width": 1024,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 10,
+        "quoteCount": 1,
+        "relatedTitle": "Também pode gostar",
+        "relatedColumns": "230px 230px 230px 230px"
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "search",
+      "width": 390,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "search-empty",
+      "width": 390,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "collection",
+      "width": 390,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "pdp",
+      "width": 390,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 10,
+        "quoteCount": 1,
+        "relatedTitle": "Também pode gostar",
+        "relatedColumns": "173px 173px"
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "home",
+      "width": 390,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "iconAria": true
+      }
+    },
+    {
+      "label": "cart",
+      "width": 390,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "iconAria": true
+      }
+    },
+    {
+      "label": "quote",
+      "width": 390,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "iconAria": true
+      }
+    },
+    {
+      "label": "search",
+      "width": 360,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "search-empty",
+      "width": 360,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "collection",
+      "width": 360,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 0,
+        "quoteCount": 0,
+        "relatedTitle": null,
+        "relatedColumns": null
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    },
+    {
+      "label": "pdp",
+      "width": 360,
+      "status": 200,
+      "state": {
+        "overflow": 0,
+        "liquidError": false,
+        "searchFields": 1,
+        "missingIconAria": 0,
+        "unnamedIconButtons": 0,
+        "cardNested": 0,
+        "cardSKU": 0,
+        "swatches": 10,
+        "quoteCount": 1,
+        "relatedTitle": "Também pode gostar",
+        "relatedColumns": "158px 158px"
+      },
+      "errors": [
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js",
+        "Failed to fetch dynamically imported module: https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"
+      ]
+    }
+  ],
+  "controls": {
+    "pilots": [
+      {
+        "handle": "m3d-sc001",
+        "swatches": 3,
+        "colors": [
+          {
+            "name": "Preto",
+            "color": "rgb(26, 26, 26)",
+            "width": 44
+          },
+          {
+            "name": "Branco",
+            "color": "rgb(255, 255, 255)",
+            "width": 44
+          },
+          {
+            "name": "Cinza Pedra",
+            "color": "rgb(142, 138, 132)",
+            "width": 44
+          }
+        ],
+        "quoteCount": 1
+      },
+      {
+        "handle": "m3d-sc002",
+        "swatches": 23,
+        "colors": [
+          {
+            "name": "Preto",
+            "color": "rgb(26, 26, 26)",
+            "width": 44
+          },
+          {
+            "name": "Azul",
+            "color": "rgb(31, 95, 191)",
+            "width": 44
+          },
+          {
+            "name": "Vermelho",
+            "color": "rgb(200, 16, 46)",
+            "width": 44
+          },
+          {
+            "name": "Branco",
+            "color": "rgb(255, 255, 255)",
+            "width": 44
+          },
+          {
+            "name": "Cinza",
+            "color": "rgb(140, 140, 140)",
+            "width": 44
+          },
+          {
+            "name": "Amarelo",
+            "color": "rgb(255, 209, 0)",
+            "width": 44
+          },
+          {
+            "name": "Laranja",
+            "color": "rgb(255, 122, 0)",
+            "width": 44
+          },
+          {
+            "name": "Azul Turquesa",
+            "color": "rgb(0, 163, 173)",
+            "width": 44
+          },
+          {
+            "name": "Azul Royal",
+            "color": "rgb(29, 79, 163)",
+            "width": 44
+          },
+          {
+            "name": "Fúcsia",
+            "color": "rgb(214, 38, 123)",
+            "width": 44
+          },
+          {
+            "name": "Lima",
+            "color": "rgb(155, 203, 59)",
+            "width": 44
+          },
+          {
+            "name": "Cinza Pedra",
+            "color": "rgb(142, 138, 132)",
+            "width": 44
+          },
+          {
+            "name": "Verde Escuro",
+            "color": "rgb(31, 77, 43)",
+            "width": 44
+          },
+          {
+            "name": "French Marinho",
+            "color": "rgb(27, 42, 71)",
+            "width": 44
+          },
+          {
+            "name": "Chocolate",
+            "color": "rgb(78, 50, 39)",
+            "width": 44
+          },
+          {
+            "name": "Terra",
+            "color": "rgb(154, 91, 60)",
+            "width": 44
+          },
+          {
+            "name": "Corda",
+            "color": "rgb(205, 187, 154)",
+            "width": 44
+          },
+          {
+            "name": "Violeta",
+            "color": "rgb(107, 63, 160)",
+            "width": 44
+          },
+          {
+            "name": "Rosa Bebé",
+            "color": "rgb(244, 182, 199)",
+            "width": 44
+          },
+          {
+            "name": "Petróleo",
+            "color": "rgb(31, 94, 110)",
+            "width": 44
+          },
+          {
+            "name": "Azul Bebé",
+            "color": "rgb(167, 200, 232)",
+            "width": 44
+          },
+          {
+            "name": "Verde Menta",
+            "color": "rgb(159, 220, 194)",
+            "width": 44
+          },
+          {
+            "name": "Ochre",
+            "color": "rgb(201, 146, 46)",
+            "width": 44
+          }
+        ],
+        "quoteCount": 1
+      },
+      {
+        "handle": "m3d-gr001",
+        "swatches": 1,
+        "colors": [
+          {
+            "name": "Cinza Pedra",
+            "color": "rgb(142, 138, 132)",
+            "width": 44
+          }
+        ],
+        "quoteCount": 1
+      },
+      {
+        "handle": "m3d-cp001",
+        "swatches": 1,
+        "colors": [
+          {
+            "name": "Preto",
+            "color": "rgb(26, 26, 26)",
+            "width": 44
+          }
+        ],
+        "quoteCount": 1
+      },
+      {
+        "handle": "m3d-ts001",
+        "swatches": 16,
+        "colors": [
+          {
+            "name": "Apple Green",
+            "color": "rgb(141, 198, 63)",
+            "width": 44
+          },
+          {
+            "name": "Aqua",
+            "color": "rgb(0, 165, 200)",
+            "width": 44
+          },
+          {
+            "name": "Preto",
+            "color": "rgb(26, 26, 26)",
+            "width": 44
+          },
+          {
+            "name": "Roxo Escuro",
+            "color": "rgb(59, 31, 92)",
+            "width": 44
+          },
+          {
+            "name": "Verde Garrafa",
+            "color": "rgb(15, 77, 51)",
+            "width": 44
+          },
+          {
+            "name": "French Marinho",
+            "color": "rgb(27, 42, 71)",
+            "width": 44
+          },
+          {
+            "name": "Neon Coral",
+            "color": "rgb(255, 95, 90)",
+            "width": 44
+          },
+          {
+            "name": "Amarelo Fluo",
+            "color": "rgb(232, 255, 42)",
+            "width": 44
+          },
+          {
+            "name": "Verde Fluo",
+            "color": "rgb(92, 255, 59)",
+            "width": 44
+          },
+          {
+            "name": "Laranja Neon",
+            "color": "rgb(255, 106, 19)",
+            "width": 44
+          },
+          {
+            "name": "Rosa Néon 2",
+            "color": "rgb(255, 62, 165)",
+            "width": 44
+          },
+          {
+            "name": "Azul Petróleo",
+            "color": "rgb(15, 92, 115)",
+            "width": 44
+          },
+          {
+            "name": "Cinza Puro",
+            "color": "rgb(185, 185, 185)",
+            "width": 44
+          },
+          {
+            "name": "Azul Royal",
+            "color": "rgb(29, 79, 163)",
+            "width": 44
+          },
+          {
+            "name": "Vermelho",
+            "color": "rgb(200, 16, 46)",
+            "width": 44
+          },
+          {
+            "name": "Branco",
+            "color": "rgb(255, 255, 255)",
+            "width": 44
+          }
+        ],
+        "quoteCount": 1
+      },
+      {
+        "handle": "m3d-pl001",
+        "swatches": 10,
+        "colors": [
+          {
+            "name": "Aqua",
+            "color": "rgb(0, 165, 200)",
+            "width": 44
+          },
+          {
+            "name": "Army",
+            "color": "rgb(75, 83, 32)",
+            "width": 44
+          },
+          {
+            "name": "Preto",
+            "color": "rgb(26, 26, 26)",
+            "width": 44
+          },
+          {
+            "name": "French Marinho",
+            "color": "rgb(27, 42, 71)",
+            "width": 44
+          },
+          {
+            "name": "Pool Blue",
+            "color": "rgb(46, 163, 221)",
+            "width": 44
+          },
+          {
+            "name": "Cinza Puro",
+            "color": "rgb(185, 185, 185)",
+            "width": 44
+          },
+          {
+            "name": "Vermelho",
+            "color": "rgb(200, 16, 46)",
+            "width": 44
+          },
+          {
+            "name": "Ribbon Pink",
+            "color": "rgb(242, 123, 169)",
+            "width": 44
+          },
+          {
+            "name": "Azul Royal",
+            "color": "rgb(29, 79, 163)",
+            "width": 44
+          },
+          {
+            "name": "Branco",
+            "color": "rgb(255, 255, 255)",
+            "width": 44
+          }
+        ],
+        "quoteCount": 1
+      }
+    ],
+    "colourKeyboard": {
+      "selected": "Army",
+      "legend": "Army",
+      "quote": {
+        "view": [
+          "m3d-quote"
+        ],
+        "product": [
+          "Polo unissexo"
+        ],
+        "product_url": [
+          "/products/m3d-pl001"
+        ],
+        "variant": [
+          "Army / XS"
+        ],
+        "variant_id": [
+          "50598415859782"
+        ],
+        "quantity": [
+          "7"
+        ]
+      }
+    },
+    "myshop": {
+      "opened": 1,
+      "focusReturned": false
+    },
+    "shareCopy": {
+      "link": "https://uhqyjs-w5.myshopify.com/products/m3d-pl001?variant=50598415859782",
+      "message": "Ligação copiada.",
+      "visible": true
+    },
+    "unavailable": {
+      "aria": "true",
+      "slash": "linear-gradient(135deg, rgba(0, 0, 0, 0) calc(50% - 1px), rgb(96, 96, 96) calc(50% - 1px), rgb(96, 96, 96) calc(50% + 1px), rgba(0, 0, 0, 0) calc(50% + 1px))"
+    },
+    "reducedMotion": {
+      "press": "1",
+      "duration": "0s"
+    },
+    "headerFocus": true,
+    "noJSsort": {
+      "q": [
+        "saco"
+      ],
+      "type": [
+        "product"
+      ],
+      "options[prefix]": [
+        "last"
+      ],
+      "filter.v.availability": [
+        "1"
+      ],
+      "sort_by": [
+        "price-ascending"
+      ]
+    },
+    "pill": {
+      "hoverFocusStable": true,
+      "monotonic": true,
+      "samples": [
+        {
+          "x": 96,
+          "width": 107.890625
+        },
+        {
+          "x": 96,
+          "width": 107.890625
+        },
+        {
+          "x": 191.33912658691406,
+          "width": 112.54685974121094
+        },
+        {
+          "x": 273.9879455566406,
+          "width": 116.59375
+        },
+        {
+          "x": 344.7319641113281,
+          "width": 120.046875
+        },
+        {
+          "x": 405.53997802734375,
+          "width": 123.03125
+        },
+        {
+          "x": 456.7347412109375,
+          "width": 125.53125
+        },
+        {
+          "x": 499.93536376953125,
+          "width": 127.640625
+        },
+        {
+          "x": 535.756591796875,
+          "width": 129.390625
+        },
+        {
+          "x": 564.9327392578125,
+          "width": 130.828125
+        },
+        {
+          "x": 588.6463623046875,
+          "width": 131.984375
+        },
+        {
+          "x": 607.4808349609375,
+          "width": 132.90625
+        },
+        {
+          "x": 622.15625,
+          "width": 133.625
+        },
+        {
+          "x": 633.277587890625,
+          "width": 134.171875
+        },
+        {
+          "x": 641.5810546875,
+          "width": 134.578125
+        },
+        {
+          "x": 647.508056640625,
+          "width": 134.859375
+        },
+        {
+          "x": 651.6181030273438,
+          "width": 135.0625
+        },
+        {
+          "x": 654.3021850585938,
+          "width": 135.203125
+        },
+        {
+          "x": 655.9358520507812,
+          "width": 135.28125
+        },
+        {
+          "x": 656.8335571289062,
+          "width": 135.328125
+        },
+        {
+          "x": 657.2654418945312,
+          "width": 135.34375
+        },
+        {
+          "x": 657.4276733398438,
+          "width": 135.34375
+        },
+        {
+          "x": 657.4659423828125,
+          "width": 135.34375
+        },
+        {
+          "x": 657.46875,
+          "width": 135.359375
+        },
+        {
+          "x": 657.46875,
+          "width": 135.359375
+        },
+        {
+          "x": 657.46875,
+          "width": 135.359375
+        },
+        {
+          "x": 657.46875,
+          "width": 135.359375
+        },
+        {
+          "x": 657.46875,
+          "width": 135.359375
+        },
+        {
+          "x": 657.46875,
+          "width": 135.359375
+        },
+        {
+          "x": 657.46875,
+          "width": 135.359375
+        }
+      ]
+    }
+  },
+  "failures": [
+    "myshop-keyboard"
+  ],
+  "blockedMutations": 384,
+  "failureResolutions": {
+    "myshop-keyboard": "directed.json verifies focus after the 160 ms close animation; initial assertion at 150 ms was premature."
+  },
+  "remainingFailures": [],
+  "externalErrorsNote": "Shopify shop-js CDN dynamic import failed in readonly browser runs; no theme/PDP JavaScript errors observed."
+}

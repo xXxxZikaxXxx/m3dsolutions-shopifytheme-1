@@ -1,0 +1,128 @@
+{
+ "pages": [
+  {
+   "name": "cart-empty",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquid": false,
+   "h1": [
+    "O seu carrinho está vazio"
+   ],
+   "unnamed": []
+  },
+  {
+   "name": "orcamento",
+   "vp": 1440,
+   "status": 200,
+   "overflow": 0,
+   "liquid": false,
+   "h1": [
+    "Pedir orçamento"
+   ],
+   "unnamed": [],
+   "prefill": [
+    "contact[product]=Polo unissexo",
+    "contact[variant]=Aqua / XS",
+    "contact[quantity]=1"
+   ],
+   "jsErrors": []
+  },
+  {
+   "name": "cart-empty",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquid": false,
+   "h1": [
+    "O seu carrinho está vazio"
+   ],
+   "unnamed": []
+  },
+  {
+   "name": "orcamento",
+   "vp": 1024,
+   "status": 200,
+   "overflow": 0,
+   "liquid": false,
+   "h1": [
+    "Pedir orçamento"
+   ],
+   "unnamed": [],
+   "prefill": [
+    "contact[product]=Polo unissexo",
+    "contact[variant]=Aqua / XS",
+    "contact[quantity]=1"
+   ],
+   "jsErrors": []
+  },
+  {
+   "name": "cart-empty",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquid": false,
+   "h1": [
+    "O seu carrinho está vazio"
+   ],
+   "unnamed": []
+  },
+  {
+   "name": "orcamento",
+   "vp": 390,
+   "status": 200,
+   "overflow": 0,
+   "liquid": false,
+   "h1": [
+    "Pedir orçamento"
+   ],
+   "unnamed": [],
+   "prefill": [
+    "contact[product]=Polo unissexo",
+    "contact[variant]=Aqua / XS",
+    "contact[quantity]=1"
+   ],
+   "jsErrors": []
+  },
+  {
+   "name": "cart-empty",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquid": false,
+   "h1": [
+    "O seu carrinho está vazio"
+   ],
+   "unnamed": []
+  },
+  {
+   "name": "orcamento",
+   "vp": 360,
+   "status": 200,
+   "overflow": 0,
+   "liquid": false,
+   "h1": [
+    "Pedir orçamento"
+   ],
+   "unnamed": [],
+   "prefill": [
+    "contact[product]=Polo unissexo",
+    "contact[variant]=Aqua / XS",
+    "contact[quantity]=1"
+   ],
+   "jsErrors": []
+  }
+ ],
+ "reducedMotion": {
+  "cardButton": {
+   "transform": "matrix(1, 0, 0, 1, 0, 0)",
+   "transition": "0.001s, 0.001s, 0.001s",
+   "arrowTransform": "none",
+   "arrowTransition": "0.001s"
+  },
+  "pdpQuote": {
+   "transform": "matrix(1, 0, 0, 1, 0, 0)",
+   "transition": "0s"
+  }
+ }
+}

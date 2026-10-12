@@ -1,0 +1,10 @@
+{
+ "buttons": 1,
+ "label": "Pesquisar produtos",
+ "focused": {
+  "tag": "INPUT",
+  "name": "q",
+  "inHeader": true,
+  "inputsTotal": 1
+ }
+}

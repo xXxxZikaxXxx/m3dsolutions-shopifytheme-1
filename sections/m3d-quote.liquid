@@ -1,0 +1,128 @@
+{%- comment -%}
+  Native contact request. Query context is editable information declared by the requester,
+  never a verified product, variant, price, stock or purchase configuration.
+  Preview with ?view=m3d-quote; assigning template_suffix is a separate store mutation.
+{%- endcomment -%}
+{{ 'm3d-quote.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'm3d-quote.js' | asset_url }}" defer="defer"></script>
+{%- assign quote_form_id = 'M3dQuoteForm-' | append: section.id -%}
+<m3d-quote
+  class="m3d-quote page-width"
+  data-context-limited="{{ 'm3d_quote.context_limited' | t | escape }}"
+  data-client-error="{{ 'm3d_quote.client_error' | t | escape }}"
+  data-quantity-error="{{ 'm3d_quote.quantity_error' | t | escape }}"
+>
+  <div class="m3d-quote__intro">
+    <h1 class="m3d-quote__heading">{{ 'm3d_quote.heading' | t }}</h1>
+    <p class="m3d-quote__lead">{{ 'm3d_quote.intro' | t }}</p>
+    <p class="m3d-quote__description">{{ 'm3d_quote.description' | t }}</p>
+    <p class="m3d-quote__hint">{{ 'm3d_quote.logo_followup' | t }}</p>
+    <div class="m3d-quote__next">
+      <h2 class="m3d-quote__subheading">{{ 'm3d_quote.next_heading' | t }}</h2>
+      <p>{{ 'm3d_quote.next_description' | t }}</p>
+      <p>{{ 'm3d_quote.no_purchase' | t }}</p>
+    </div>
+    <a class="m3d-quote__link" href="{{ routes.all_products_collection_url }}">{{ 'm3d_quote.browse' | t }}</a>
+  </div>
+  <div class="m3d-quote__content">
+    {%- form 'contact', id: quote_form_id, class: 'm3d-quote__form' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="m3d-quote__notice m3d-quote__notice--success" role="status" tabindex="-1" data-quote-result>{% render 'icon', name: 'm3d-check' %}
+          <h2 class="m3d-quote__subheading">{{ 'm3d_quote.success_heading' | t }}</h2>
+          <p>{{ 'm3d_quote.success_description' | t }}</p>
+        </div>
+      {%- else -%}
+        {%- if form.errors -%}
+          <div class="m3d-quote__notice m3d-quote__notice--error" role="alert" tabindex="-1" data-quote-result>{% render 'icon', name: 'm3d-alert' %}
+            <h2 class="m3d-quote__subheading">{{ 'm3d_quote.error_heading' | t }}</h2>
+            <p>{{ 'm3d_quote.error_description' | t }}</p>
+            <ul class="m3d-quote__errors" role="list">
+              {%- for field in form.errors -%}
+                <li>
+                  {%- if field == 'name' or field == 'email' or field == 'body' -%}
+                    <a class="m3d-quote__link" href="#M3dQuote-{{ field }}-{{ section.id }}">
+                      {{ form.errors.translated_fields[field] | escape }} {{ form.errors.messages[field] | escape }}
+                    </a>
+                  {%- else -%}
+                    {{ form.errors.translated_fields[field] | escape }} {{ form.errors.messages[field] | escape }}
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        <p class="m3d-quote__hint">{{ 'm3d_quote.required_hint' | t }}</p>
+        <fieldset class="m3d-quote__group">
+          <legend class="m3d-quote__legend">{{ 'm3d_quote.request_heading' | t }}</legend>
+          <p class="m3d-quote__hint" data-quote-context hidden>{{ 'm3d_quote.context_hint' | t }}</p>
+          <div class="m3d-quote__field">
+            <label class="m3d-quote__label" for="M3dQuote-product-{{ section.id }}">{{ 'm3d_quote.product' | t }}</label>
+            <input class="m3d-quote__input" type="text" id="M3dQuote-product-{{ section.id }}" name="contact[product]" maxlength="160" value="{{ form.product | escape }}" data-quote-field="product">
+            <a class="m3d-quote__link m3d-quote__product-link" data-quote-product-link hidden>{{ 'm3d_quote.view_product' | t }}</a>
+          </div>
+          <div class="m3d-quote__row">
+            <div class="m3d-quote__field">
+              <label class="m3d-quote__label" for="M3dQuote-variant-{{ section.id }}">{{ 'm3d_quote.variant' | t }}</label>
+              <input class="m3d-quote__input" type="text" id="M3dQuote-variant-{{ section.id }}" name="contact[variant]" maxlength="160" value="{{ form.variant | escape }}" data-quote-field="variant">
+            </div>
+            <div class="m3d-quote__field">
+              <label class="m3d-quote__label" for="M3dQuote-quantity-{{ section.id }}">{{ 'm3d_quote.quantity' | t }}</label>
+              <input class="m3d-quote__input m3d-quote__input--numeric" type="number" id="M3dQuote-quantity-{{ section.id }}" name="contact[quantity]" min="1" max="999999" step="1" inputmode="numeric" value="{{ form.quantity | escape }}" data-quote-field="quantity" aria-describedby="M3dQuote-quantity-error-{{ section.id }}">
+              <p class="m3d-quote__field-error" id="M3dQuote-quantity-error-{{ section.id }}" hidden data-quote-error="quantity">{{ 'm3d_quote.quantity_error' | t }}</p>
+            </div>
+          </div>
+          <div class="m3d-quote__field">
+            <label class="m3d-quote__label" for="M3dQuote-lines-{{ section.id }}">{{ 'm3d_quote.lines' | t }}</label>
+            <textarea class="m3d-quote__input m3d-quote__textarea" id="M3dQuote-lines-{{ section.id }}" name="contact[Composição]" rows="3" maxlength="2000" data-quote-field="lines" aria-describedby="M3dQuote-lines-hint-{{ section.id }}">{{ form['Composição'] | escape }}</textarea>
+            <p class="m3d-quote__hint" id="M3dQuote-lines-hint-{{ section.id }}">{{ 'm3d_quote.lines_hint' | t }}</p>
+          </div>
+          <div class="m3d-quote__field">
+            <label class="m3d-quote__label" for="M3dQuote-personalization-{{ section.id }}">{{ 'm3d_quote.personalization' | t }}</label>
+            <textarea class="m3d-quote__input m3d-quote__textarea" id="M3dQuote-personalization-{{ section.id }}" name="contact[personalization]" rows="3" maxlength="500" data-quote-field="personalization" aria-describedby="M3dQuote-personalization-hint-{{ section.id }}">{{ form.personalization | escape }}</textarea>
+            <p class="m3d-quote__hint" id="M3dQuote-personalization-hint-{{ section.id }}">{{ 'm3d_quote.personalization_hint' | t }}</p>
+          </div>
+          <div class="m3d-quote__field">
+            <label class="m3d-quote__label" for="M3dQuote-body-{{ section.id }}">{{ 'm3d_quote.message' | t }} <span aria-hidden="true">*</span></label>
+            <textarea class="m3d-quote__input m3d-quote__textarea" id="M3dQuote-body-{{ section.id }}" name="contact[body]" rows="5" maxlength="3000" required aria-required="true" aria-describedby="M3dQuote-body-hint-{{ section.id }} M3dQuote-body-error-{{ section.id }}" {% if form.errors contains 'body' %}aria-invalid="true"{% endif %}>{{ form.body | escape }}</textarea>
+            <p class="m3d-quote__hint" id="M3dQuote-body-hint-{{ section.id }}">{{ 'm3d_quote.message_hint' | t }}</p>
+            <p class="m3d-quote__field-error" id="M3dQuote-body-error-{{ section.id }}" data-quote-error="body" {% unless form.errors contains 'body' %}hidden{% endunless %}>{% if form.errors contains 'body' %}{{ form.errors.messages.body | escape }}{% else %}{{ 'm3d_quote.field_error' | t }}{% endif %}</p>
+          </div>
+        </fieldset>
+        <fieldset class="m3d-quote__group">
+          <legend class="m3d-quote__legend">{{ 'm3d_quote.contact_heading' | t }}</legend>
+          <div class="m3d-quote__row">
+            <div class="m3d-quote__field">
+              <label class="m3d-quote__label" for="M3dQuote-name-{{ section.id }}">{{ 'm3d_quote.name' | t }} <span aria-hidden="true">*</span></label>
+              <input class="m3d-quote__input" type="text" id="M3dQuote-name-{{ section.id }}" name="contact[name]" autocomplete="name" maxlength="120" value="{{ form.name | default: customer.name | escape }}" required aria-required="true" aria-describedby="M3dQuote-name-error-{{ section.id }}" {% if form.errors contains 'name' %}aria-invalid="true"{% endif %}>
+              <p class="m3d-quote__field-error" id="M3dQuote-name-error-{{ section.id }}" data-quote-error="name" {% unless form.errors contains 'name' %}hidden{% endunless %}>{% if form.errors contains 'name' %}{{ form.errors.messages.name | escape }}{% else %}{{ 'm3d_quote.field_error' | t }}{% endif %}</p>
+            </div>
+            <div class="m3d-quote__field">
+              <label class="m3d-quote__label" for="M3dQuote-email-{{ section.id }}">{{ 'm3d_quote.email' | t }} <span aria-hidden="true">*</span></label>
+              <input class="m3d-quote__input" type="email" id="M3dQuote-email-{{ section.id }}" name="contact[email]" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" value="{{ form.email | default: customer.email | escape }}" required aria-required="true" aria-describedby="M3dQuote-email-error-{{ section.id }}" {% if form.errors contains 'email' %}aria-invalid="true"{% endif %}>
+              <p class="m3d-quote__field-error" id="M3dQuote-email-error-{{ section.id }}" data-quote-error="email" {% unless form.errors contains 'email' %}hidden{% endunless %}>{% if form.errors contains 'email' %}{{ form.errors.messages.email | escape }}{% else %}{{ 'm3d_quote.field_error' | t }}{% endif %}</p>
+            </div>
+          </div>
+          <div class="m3d-quote__field">
+            <label class="m3d-quote__label" for="M3dQuote-company-{{ section.id }}">{{ 'm3d_quote.company' | t }}</label>
+            <input class="m3d-quote__input" type="text" id="M3dQuote-company-{{ section.id }}" name="contact[company]" maxlength="160" autocomplete="organization" value="{{ form.company | escape }}">
+          </div>
+        </fieldset>
+        <input type="hidden" name="contact[product_url]" value="" data-quote-product-url>
+        <input type="hidden" name="contact[variant_id]" value="" data-quote-variant-id>
+        <p class="m3d-quote__hint">{{ 'm3d_quote.privacy_hint' | t }}{% if shop.privacy_policy.url != blank %} <a class="m3d-quote__link" href="{{ shop.privacy_policy.url }}">{{ 'm3d_quote.privacy' | t }}</a>{% endif %}</p>
+        <noscript><p class="m3d-quote__hint">{{ 'm3d_quote.noscript' | t }}</p></noscript>
+        <button class="m3d-quote__submit" type="submit">{% render 'icon', name: 'm3d-quote' %}{{ 'm3d_quote.send' | t }}</button>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</m3d-quote>
+{% schema %}
+{
+  "name": "t:sections.m3d_quote.name",
+  "tag": "section",
+  "class": "section-m3d-quote",
+  "settings": [],
+  "enabled_on": { "templates": ["page"] },
+  "presets": [{ "name": "t:sections.m3d_quote.name" }]
+}
+{% endschema %}

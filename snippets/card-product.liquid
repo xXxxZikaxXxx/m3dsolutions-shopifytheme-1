@@ -22,75 +22,71 @@
 {%- if card_context == 'collection' -%}
   {%- assign dialog_id = 'MyShopDialog-' | append: card_product.id -%}
   <article class="collection-card">
-    <div class="collection-card__media-wrap">
-      <a href="{{ card_product.url }}" class="collection-card__media-link" aria-label="{{ card_product.title | escape }}">
-        <div class="collection-card__media" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
-          {%- if card_product.featured_media -%}
-            {{
-              card_product.featured_media
-              | image_url: width: 900
-              | image_tag:
-                loading: 'lazy',
-                class: 'collection-card__image',
-                widths: '240, 360, 540, 720, 900',
-                sizes: '(min-width: 990px) 28vw, 50vw',
-                alt: card_product.featured_media.alt | default: card_product.title | escape
-            }}
-          {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag: 'collection-card__image placeholder-svg' }}
-          {%- endif -%}
+    <a href="{{ card_product.url }}" class="collection-card__product-link" aria-label="{{ 'products.product.personalize_product' | t: product: card_product.title | escape }}">
+      <div class="collection-card__media-wrap">
+        <div class="collection-card__media-link">
+          <div class="collection-card__media" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
+            {%- if card_product.featured_media -%}
+              {{
+                card_product.featured_media
+                | image_url: width: 900
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'collection-card__image',
+                  widths: '240, 360, 540, 720, 900',
+                  sizes: '(min-width: 990px) 28vw, 50vw',
+                  alt: card_product.featured_media.alt | default: card_product.title | escape
+              }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'collection-card__image placeholder-svg' }}
+            {%- endif -%}
+          </div>
         </div>
-      </a>
 
-      <div class="collection-card__actions">
-        <button type="button" class="collection-card__icon-button collection-card__add" data-open-myshop="{{ dialog_id }}" aria-label="{{ 'products.product.add_to_shop' | t }}" aria-controls="{{ dialog_id }}" aria-haspopup="dialog">
-          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"/></svg>
-        </button>
-        <button type="button" class="collection-card__icon-button collection-card__save" data-card-save aria-label="{{ 'products.product.save' | t }}" aria-pressed="false">
-          <svg class="collection-card__heart-icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3 9.24 3 10.91 3.81 12 5.08 13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5 22 12.27 18.6 15.36 13.45 20.03Z"/></svg>
-        </button>
+        {%- if card_product.price > 0 and card_product.compare_at_price > card_product.price and card_product.available -%}
+          <span class="collection-card__badge">{{ 'products.product.on_sale' | t }}</span>
+        {%- elsif card_product.price > 0 and card_product.available == false -%}
+          <span class="collection-card__badge collection-card__badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
+        {%- endif -%}
       </div>
 
-      {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
-        <span class="collection-card__badge">{{ 'products.product.on_sale' | t }}</span>
-      {%- elsif card_product.available == false -%}
-        <span class="collection-card__badge collection-card__badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
-      {%- endif -%}
-    </div>
+      <div class="collection-card__info">
+        <h3 class="collection-card__title">{{ card_product.title | escape }}</h3>
+        {% render 'price', product: card_product, use_variant: false, show_compare: true, price_class: 'price--card', display_card: true %}
+          <span class="collection-card__personalize" aria-hidden="true">{{ 'products.product.personalize' | t }}{% render 'icon', name: 'm3d-arrow', size: 18 %}</span>
+      </div>
+    </a>
 
-    <div class="collection-card__info">
-      {%- if card_product.selected_or_first_available_variant.sku != blank -%}
-        <span class="collection-card__sku">{{ card_product.selected_or_first_available_variant.sku | escape }}</span>
-      {%- elsif settings.card_show_vendor and card_product.vendor != blank -%}
-        <span class="collection-card__vendor">{{ card_product.vendor | escape }}</span>
-      {%- endif -%}
-      <h3 class="collection-card__title"><a href="{{ card_product.url }}">{{ card_product.title | escape }}</a></h3>
-      {% render 'price', product: card_product, use_variant: false, show_compare: true, price_class: 'price--card' %}
+    <div class="collection-card__actions">
+      <button type="button" class="collection-card__icon-button collection-card__add" data-open-myshop="{{ dialog_id }}" aria-label="{{ 'products.product.preview_myshop' | t }}" aria-describedby="{{ dialog_id }}-preview" aria-controls="{{ dialog_id }}" aria-haspopup="dialog">
+        {% render 'icon', name: 'm3d-bookmark' %}<span>MyShop</span>
+      </button>
     </div>
 
     <dialog class="collection-card__dialog" id="{{ dialog_id }}" aria-labelledby="{{ dialog_id }}-title">
       <div class="collection-card__dialog-inner">
         <div class="collection-card__dialog-header">
           <h2 class="collection-card__dialog-title" id="{{ dialog_id }}-title">{{ 'products.product.add_to_shop' | t }}</h2>
-          <button type="button" class="collection-card__dialog-close" data-close-dialog aria-label="{{ 'accessibility.close' | t }}">×</button>
+          <button type="button" class="collection-card__dialog-close" data-close-dialog aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'm3d-close' %}</button>
         </div>
         <div class="collection-card__dialog-body">
+          <p id="{{ dialog_id }}-preview">{{ 'm3d_pdp.myshop_preview' | t }}</p>
           <fieldset class="collection-card__shop-list">
             <legend class="visually-hidden">{{ 'products.product.add_to_shop' | t }}</legend>
-            <label><input type="radio" name="shop-{{ card_product.id }}" value="google-summer-event"><span class="collection-card__shop-mark" aria-hidden="true">G</span><span>Google Summer Event</span><span class="collection-card__shop-arrow" aria-hidden="true">→</span></label>
-            <label><input type="radio" name="shop-{{ card_product.id }}" value="employee-welcome-kit"><span class="collection-card__shop-mark" aria-hidden="true">E</span><span>Employee Welcome Kit</span><span class="collection-card__shop-arrow" aria-hidden="true">→</span></label>
-            <label><input type="radio" name="shop-{{ card_product.id }}" value="client-gifts-2027"><span class="collection-card__shop-mark" aria-hidden="true">C</span><span>Client Gifts 2027</span><span class="collection-card__shop-arrow" aria-hidden="true">→</span></label>
+            <label><input type="radio" name="shop-{{ card_product.id }}" value="google-summer-event"><span class="collection-card__shop-mark" aria-hidden="true">G</span><span>Google Summer Event</span><span class="collection-card__shop-arrow" aria-hidden="true">{% render 'icon', name: 'm3d-arrow', size: 16 %}</span></label>
+            <label><input type="radio" name="shop-{{ card_product.id }}" value="employee-welcome-kit"><span class="collection-card__shop-mark" aria-hidden="true">E</span><span>Employee Welcome Kit</span><span class="collection-card__shop-arrow" aria-hidden="true">{% render 'icon', name: 'm3d-arrow', size: 16 %}</span></label>
+            <label><input type="radio" name="shop-{{ card_product.id }}" value="client-gifts-2027"><span class="collection-card__shop-mark" aria-hidden="true">C</span><span>Client Gifts 2027</span><span class="collection-card__shop-arrow" aria-hidden="true">{% render 'icon', name: 'm3d-arrow', size: 16 %}</span></label>
           </fieldset>
         </div>
         <div class="collection-card__dialog-footer">
-          <button type="button" class="collection-card__create-shop">+ {{ 'products.product.create_new_shop' | t }}</button>
+          <button type="button" class="collection-card__create-shop">{% render 'icon', name: 'm3d-plus', size: 16 %}{{ 'products.product.create_new_shop' | t }}</button>
         </div>
       </div>
     </dialog>
   </article>
 {%- else -%}
   <div class="card-product">
-    <a href="{{ card_product.url }}" class="card-product__link">
+    <a href="{{ card_product.url }}" class="card-product__link" aria-label="{{ 'products.product.personalize_product' | t: product: card_product.title | escape }}">
       <div class="card-product__media" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
         {%- if card_product.featured_media -%}
           {{
@@ -118,17 +114,33 @@
         {%- else -%}
           {{ 'product-1' | placeholder_svg_tag: 'card-product__image placeholder-svg' }}
         {%- endif -%}
-        {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
+        {%- if card_product.price > 0 and card_product.compare_at_price > card_product.price and card_product.available -%}
           <span class="card-product__badge">{{ 'products.product.on_sale' | t }}</span>
-        {%- elsif card_product.available == false -%}
+        {%- elsif card_product.price > 0 and card_product.available == false -%}
           <span class="card-product__badge card-product__badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
         {%- endif -%}
       </div>
       <div class="card-product__info">
         {%- if settings.card_show_vendor and card_product.vendor != blank -%}<span class="card-product__vendor">{{ card_product.vendor }}</span>{%- endif -%}
         <h3 class="card-product__title">{{ card_product.title | escape }}</h3>
-        {% render 'price', product: card_product, use_variant: false, show_compare: true, price_class: 'price--card' %}
+        {% render 'price', product: card_product, use_variant: false, show_compare: true, price_class: 'price--card', display_card: true %}
+      <span class="collection-card__personalize" aria-hidden="true">{{ 'products.product.personalize' | t }}{% render 'icon', name: 'm3d-arrow', size: 18 %}</span>
       </div>
     </a>
   </div>
 {%- endif -%}
+
+{% stylesheet %}
+  .collection-card__product-link { display: block; color: inherit; text-decoration: none; border-radius: var(--m3d-radius-media); }
+  .collection-card__personalize { display: inline-flex; align-items: center; justify-content: center; gap: var(--m3d-space-2); min-height: var(--m3d-button-height-sm); max-width: 100%; margin-top: var(--m3d-space-3); padding-inline: var(--m3d-space-4); border-radius: var(--m3d-radius-pill); color: var(--m3d-white); background: var(--m3d-color-action-primary); font-size: var(--m3d-text-sm); font-weight: var(--m3d-button-weight); line-height: 1.2; transition: background-color var(--m3d-duration-fast) var(--m3d-ease-out), transform var(--m3d-duration-fast) var(--m3d-ease-out), box-shadow var(--m3d-duration-fast) var(--m3d-ease-out); }
+  .collection-card__personalize .m3d-icon { transition: transform var(--m3d-duration-fast) var(--m3d-ease-out); }
+  :is(.collection-card__product-link,.card-product__link):focus-visible .collection-card__personalize { box-shadow: var(--m3d-focus-ring-action); }
+  :is(.collection-card__product-link,.card-product__link):active .collection-card__personalize { transform: scale(var(--m3d-press-scale)); }
+  :is(.collection-card__product-link,.card-product__link) .price--card { color: var(--m3d-color-price); font-variant-numeric: var(--m3d-numeric); }
+  @media (hover: hover) {
+    :is(.collection-card__product-link,.card-product__link):hover .collection-card__personalize { background: var(--m3d-color-action-primary-hover); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :is(.collection-card__product-link,.card-product__link):is(:hover,:focus-visible) .collection-card__personalize .m3d-icon { transform: translateX(3px); }
+  }
+{% endstylesheet %}

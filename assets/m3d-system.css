@@ -1,0 +1,41 @@
+/* Integração de componentes do Design System M3D; tokens pertencem ao Claude. */
+:root{--buttons-radius:var(--m3d-radius-control);--inputs-radius:var(--m3d-radius-field);--media-radius:var(--m3d-radius-media)}
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100svh;font-size:16px;line-height:var(--m3d-leading-body)}
+.content-for-layout{flex:1 0 auto}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:var(--m3d-focus-width) solid var(--m3d-focus-color);outline-offset:var(--m3d-focus-offset)}
+.price,input[type=number],[data-cart-count],.m3d-pdp__note,[data-m3d-detail-sku]{font-variant-numeric:var(--m3d-numeric)}
+.price{font-weight:var(--m3d-weight-regular)}
+.m3d-motion-button,.button,.btn{border-radius:var(--m3d-radius-control);font-weight:var(--m3d-weight-bold)}
+.m3d-motion-button{background:var(--m3d-color-action-primary);color:var(--m3d-color-action-primary-text);box-shadow:none;min-height:48px}
+.m3d-motion-button--secondary{background:var(--m3d-color-surface);color:var(--m3d-color-text);border-color:var(--m3d-color-text)}
+.m3d-pdp__myshop{display:inline-flex;align-items:center;align-self:flex-start;gap:8px;min-height:44px;padding:8px 0;border:0;background:none;color:var(--m3d-color-link);font:inherit;font-size:14px;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.m3d-pdp__quote-secondary{align-self:flex-start;min-height:44px;display:inline-flex;align-items:center;color:var(--m3d-color-link);text-decoration:underline;text-underline-offset:4px}
+.m3d-pdp__native-quantity{display:flex;align-items:center;gap:16px;font-size:14px}
+.m3d-pdp__native-quantity input{font:inherit;font-size:16px}
+.m3d-home .card-product__inner{border-radius:var(--m3d-radius-media)}
+.m3d-home .card-product__title{font-weight:700}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* D1 §3: fallback numérico, após QA não demonstrar tnum no subset Raleway. */
+.price,.m3d-pdp__price,.m3d-pdp__price>p,input[type="number"],[data-cart-count],[data-m3d-sku],[data-m3d-detail-sku],.m3d-product-gallery__counter,.m3d-home-process li::before,.cart__price,.cart__subtotal-value{font-family:var(--m3d-font-numeric,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif);font-variant-numeric:lining-nums tabular-nums}
+
+.cart-item__price,.cart-item__unit-price,.cart__subtotal>span:last-child{font-family:var(--m3d-font-numeric,ui-sans-serif,system-ui);font-variant-numeric:lining-nums tabular-nums}
+.price--on-request{font-family:var(--m3d-font-family)}
+
+/* M3D icons: approved 24 px geometry scales proportionally at 16/20/24 px. */
+.m3d-icon{display:inline-block;width:var(--m3d-icon-size);height:var(--m3d-icon-size);flex:none;vertical-align:middle}
+.m3d-icon--16{--m3d-icon-size:16px}
+.m3d-icon--20{--m3d-icon-size:20px}
+.m3d-icon--24{--m3d-icon-size:24px}
+.collection__filter-trigger,.share-button__button,.m3d-quote__submit,.collection-card__create-shop{display:inline-flex;align-items:center;justify-content:center;gap:var(--m3d-space-2)}
+.collection__sidebar-close,.collection-card__dialog-close{display:inline-grid;place-items:center}
+.cart-item__remove,.m3d-pdp__quote-secondary{gap:var(--m3d-space-2)}
+@media(prefers-reduced-motion:no-preference){
+  .m3d-icon--m3d-arrow{transition:transform var(--m3d-duration-fast) var(--m3d-ease-out)}
+  :is(.button,.m3d-motion-button,.collection-card__personalize):is(:hover,:focus-visible) .m3d-icon--m3d-arrow{transform:translateX(3px)}
+  :is(.m3d-header__cart,.collection-card__icon-button,.share-button__button):active .m3d-icon{transform:scale(var(--m3d-press-scale-icon))}
+}
+
+/* R2 action-arrow size required by the approved card specification. */
+.m3d-icon--18{--m3d-icon-size:18px}

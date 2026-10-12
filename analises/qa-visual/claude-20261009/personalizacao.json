@@ -1,0 +1,122 @@
+{
+  "1440": {
+    "techniqueButtons": 3,
+    "overMaxError": "Indique dimensões válidas dentro da área selecionada.",
+    "areaLimit": "Área máx. 200 × 250 mm",
+    "widthLabel": "Largura (máx. 200 mm)",
+    "logoDisabledBefore": false,
+    "fileName": "logo-teste-m3d.png",
+    "afterConfirmError": "Indique dimensões válidas dentro da área selecionada.",
+    "pressed": [
+      "Sem personalização:false",
+      "Serigrafia+:true",
+      "Bordado+:false",
+      "Transfer digital+:false"
+    ],
+    "logoStillAttached": "logo-teste-m3d.png",
+    "pressedAfterSecond": [
+      "Sem personalização:false",
+      "Serigrafia+:false",
+      "Bordado+:true",
+      "Transfer digital+:false"
+    ],
+    "summary": "Bordado · Frente · 80 × 80 mm",
+    "addStatus": "Adicionado ao carrinho",
+    "newLine": [
+      {
+        "title": "SACO NATALÍCIO BONECO DE NEVE COM CORDÃO",
+        "qty": 1,
+        "properties": {
+          "Técnica": "Bordado",
+          "Posição": "Frente",
+          "Largura (mm)": "80",
+          "Altura (mm)": "80",
+          "Logótipo": "https://cdn.shopify.com/s/files/1/0752/8703/5974/uploads/a1a53f4f7b451a4cc910c8448aa6927b.png"
+        }
+      }
+    ],
+    "cleanedUp": 1,
+    "jsErrors": []
+  },
+  "390": {
+    "techniqueButtons": 3,
+    "overMaxError": "Indique dimensões válidas dentro da área selecionada.",
+    "areaLimit": "Área máx. 200 × 250 mm",
+    "widthLabel": "Largura (máx. 200 mm)",
+    "logoDisabledBefore": false,
+    "fileName": "logo-teste-m3d.png",
+    "afterConfirmError": "Indique dimensões válidas dentro da área selecionada.",
+    "pressed": [
+      "Sem personalização:false",
+      "Serigrafia+:true",
+      "Bordado+:false",
+      "Transfer digital+:false"
+    ],
+    "logoStillAttached": "logo-teste-m3d.png",
+    "pressedAfterSecond": [
+      "Sem personalização:false",
+      "Serigrafia+:false",
+      "Bordado+:true",
+      "Transfer digital+:false"
+    ],
+    "summary": "Bordado · Frente · 80 × 80 mm",
+    "jsErrors": []
+  },
+  "filters": {
+    "groups": [
+      {
+        "g": "material",
+        "empty": true,
+        "inputs": 0
+      },
+      {
+        "g": "printing",
+        "empty": true,
+        "inputs": 0
+      },
+      {
+        "g": "color",
+        "empty": true,
+        "inputs": 0
+      },
+      {
+        "g": "stock",
+        "empty": false,
+        "inputs": 2
+      },
+      {
+        "g": "labeling",
+        "empty": true,
+        "inputs": 0
+      }
+    ],
+    "total": "23 produtos",
+    "inStock": "18 produtos",
+    "inStockTitles": [
+      "Amazon",
+      "Adicionar a uma loja",
+      "Audi",
+      "Bacardi",
+      "Bear & Bull",
+      "Bridgestone",
+      "Budweiser",
+      "Carlsberg",
+      "Hummer",
+      "I-Phone"
+    ]
+  },
+  "quote": {
+    "fileInputs": 0,
+    "fields": [
+      "contact[product]",
+      "contact[variant]",
+      "contact[quantity]",
+      "contact[Composição]",
+      "contact[personalization]",
+      "contact[body]",
+      "contact[name]",
+      "contact[email]",
+      "contact[company]"
+    ]
+  }
+}

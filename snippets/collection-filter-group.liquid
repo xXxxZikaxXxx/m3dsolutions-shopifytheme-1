@@ -9,7 +9,7 @@
 
 {%- liquid
   assign matching_filter = blank
-  assign approved_printing_values = 'transfer serigráfico|transfer refletivo|transfer digital|serigrafia|bordado|baixo-relevo|transfer por sublimação' | split: '|'
+  assign has_filter_values = false
 
   for candidate_filter in filters
     assign normalized_label = candidate_filter.label | downcase
@@ -43,14 +43,30 @@
       break
     endif
   endfor
+  if matching_filter != blank
+    if matching_filter.type == 'price_range'
+      if matching_filter.range_max > 0
+        assign has_filter_values = true
+      endif
+    else
+      for filter_value in matching_filter.values
+        if filter_value.count > 0
+          assign has_filter_values = true
+          break
+        endif
+      endfor
+      if matching_filter.true_value.count > 0 or matching_filter.false_value.count > 0
+        assign has_filter_values = true
+      endif
+    endif
+  endif
 -%}
 
+{%- if has_filter_values -%}
 <details class="collection__filter" data-filter-group="{{ group }}">
   <summary class="collection__filter-summary">
     <span>{{ label }}</span>
-    <svg class="collection__filter-chevron" aria-hidden="true" viewBox="0 0 16 16">
-      <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-    </svg>
+    {% render 'icon', name: 'm3d-chevron', size: 16, class: 'collection__filter-chevron' %}
   </summary>
 
   <div class="collection__filter-content">
@@ -61,12 +77,6 @@
             {%- for value in matching_filter.values -%}
               {%- liquid
                 assign show_value = true
-                if group == 'printing'
-                  assign normalized_value = value.label | downcase | strip
-                  unless approved_printing_values contains normalized_value
-                    assign show_value = false
-                  endunless
-                endif
               -%}
               {%- if show_value -%}
                 {%- capture input_id -%}Filter-{{ section_id }}-{{ group }}-{{ forloop.index }}{%- endcapture -%}
@@ -81,7 +91,7 @@
                     {% if value.count == 0 and value.active == false %}disabled{% endif %}
                   >
                   <label for="{{ input_id }}">
-                    <span>{{ value.label | escape }}</span>
+                    <span>{% if value.param_name == 'filter.v.availability' and value.value == '1' %}{{ 'sections.main_collection.in_stock' | t }}{% elsif value.param_name == 'filter.v.availability' and value.value == '0' %}{{ 'sections.main_collection.out_of_stock' | t }}{% else %}{{ value.label | escape }}{% endif %}</span>
                     <span class="collection__filter-count">{{ value.count }}</span>
                   </label>
                 </li>
@@ -104,7 +114,7 @@
                   {% if value.count == 0 and value.active == false %}disabled{% endif %}
                 >
                 <label for="Filter-{{ section_id }}-{{ group }}-true">
-                  <span>{{ value.label | escape }}</span>
+                  <span>{% if value.param_name == 'filter.v.availability' and value.value == '1' %}{{ 'sections.main_collection.in_stock' | t }}{% elsif value.param_name == 'filter.v.availability' and value.value == '0' %}{{ 'sections.main_collection.out_of_stock' | t }}{% else %}{{ value.label | escape }}{% endif %}</span>
                   <span class="collection__filter-count">{{ value.count }}</span>
                 </label>
               </li>
@@ -122,7 +132,7 @@
                   {% if value.count == 0 and value.active == false %}disabled{% endif %}
                 >
                 <label for="Filter-{{ section_id }}-{{ group }}-false">
-                  <span>{{ value.label | escape }}</span>
+                  <span>{% if value.param_name == 'filter.v.availability' and value.value == '1' %}{{ 'sections.main_collection.in_stock' | t }}{% elsif value.param_name == 'filter.v.availability' and value.value == '0' %}{{ 'sections.main_collection.out_of_stock' | t }}{% else %}{{ value.label | escape }}{% endif %}</span>
                   <span class="collection__filter-count">{{ value.count }}</span>
                 </label>
               </li>
@@ -134,3 +144,9 @@
     {%- endif -%}
   </div>
 </details>
+{%- else -%}
+  {%- comment -%}Keep hidden active values when a group has no available choices.{%- endcomment -%}
+  {%- for value in matching_filter.active_values -%}
+    <input type="hidden" name="{{ value.param_name | escape }}" value="{{ value.value | escape }}">
+  {%- endfor -%}
+{%- endif -%}

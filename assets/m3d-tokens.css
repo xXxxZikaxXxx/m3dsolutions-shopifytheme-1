@@ -1,0 +1,166 @@
+/*
+  M3D Design System — tokens
+  Proprietário: Claude (D-09). Especificação: design/design-system-m3d.md e design/d1-marca-tokens.md.
+  Só declarações de custom properties: nenhum seletor de componente neste ficheiro.
+  A família tipográfica vem de snippets/css-variables.liquid (font_picker → Raleway, aplicado pelo Codex).
+*/
+
+:root {
+  /* Marca — Manual p. 10–11 */
+  --m3d-black: #000000;
+  --m3d-white: #ffffff;
+  --m3d-pink: #e31c79;
+  --m3d-purple: #4436bc;
+  --m3d-blue: #00b3e7;
+  --m3d-gradient: linear-gradient(90deg, #e31c79 0%, #4436bc 50%, #00b3e7 100%);
+  --m3d-logo-gray: #666666;
+
+  /* Extensões de superfície da marca */
+  --m3d-purple-50: #f0edff;
+  --m3d-pink-50: #f8d6e6;
+
+  /* Neutros (extensão; cinzentos frios, sem bege) */
+  --m3d-gray-50: #f5f5f7;
+  --m3d-gray-100: #e5e5e5;
+  --m3d-gray-200: #d9d9d9;
+  --m3d-gray-400: #8a8a8a;
+  --m3d-gray-600: #606060;
+
+  /* Semântica */
+  --m3d-color-text: var(--m3d-black);
+  --m3d-color-text-muted: var(--m3d-gray-600);
+  --m3d-color-text-inverse: var(--m3d-white);
+  --m3d-color-surface: var(--m3d-white);
+  --m3d-color-surface-alt: var(--m3d-gray-50);
+  --m3d-color-surface-inverse: var(--m3d-black);
+  --m3d-color-border: var(--m3d-gray-200);
+  --m3d-color-border-control: var(--m3d-gray-400);
+  --m3d-color-action-primary: var(--m3d-purple);
+  --m3d-color-action-primary-text: var(--m3d-white);
+  --m3d-color-action-primary-hover: #362b96;
+  --m3d-color-action-secondary: var(--m3d-black);
+  --m3d-color-accent: var(--m3d-pink);
+  --m3d-color-accent-text: var(--m3d-black);
+  --m3d-color-link: var(--m3d-purple);
+  --m3d-color-price: var(--m3d-black);
+  --m3d-color-error: #c90012;
+  --m3d-color-success: #1a7f37;
+  --m3d-overlay: rgba(0, 0, 0, 0.28);
+  --m3d-scrim: rgba(0, 0, 0, 0.48);
+  --m3d-surface-glass: rgba(255, 255, 255, 0.94);
+
+  /* Foco */
+  --m3d-focus-color: var(--m3d-purple);
+  --m3d-focus-color-inverse: var(--m3d-white);
+  --m3d-focus-width: 2px;
+  --m3d-focus-offset: 2px;
+  --m3d-focus-ring-media: 0 0 0 2px var(--m3d-white), 0 0 0 4px var(--m3d-black);
+  --m3d-ring-selected: 0 0 0 1px var(--m3d-purple);
+
+  /* Tipografia — Manual p. 12: só Raleway */
+  --m3d-font-family: var(--font-body-family);
+  --m3d-numeric: lining-nums tabular-nums;
+  /* Exceção medida (C3, 08/10/2026): a Raleway da Shopify ignora lnum/tnum.
+     Só para preços, quantidades, SKU, contadores e passos; corpo e títulos continuam em Raleway. */
+  --m3d-font-numeric: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --m3d-weight-light: 300;
+  --m3d-weight-regular: 400;
+  --m3d-weight-bold: 700;
+  --m3d-weight-black: 900;
+  --m3d-text-xs: 0.75rem;
+  --m3d-text-sm: 0.875rem;
+  --m3d-text-md: 1rem;
+  --m3d-text-lg: 1.125rem;
+  --m3d-text-xl: 1.25rem;
+  --m3d-text-2xl: 1.5rem;
+  --m3d-text-3xl: 1.75rem;
+  --m3d-text-4xl: 2rem;
+  --m3d-display-sm: clamp(1.875rem, 1.2rem + 2.2vw, 3rem);
+  --m3d-display-lg: clamp(2.25rem, 1.2rem + 3.6vw, 4rem);
+  --m3d-leading-display: 1;
+  --m3d-leading-tight: 1.1;
+  --m3d-leading-snug: 1.3;
+  --m3d-leading-body: 1.55;
+  --m3d-tracking-display: -0.02em;
+  --m3d-measure: 66ch;
+
+  /* Espaçamento: --m3d-space-N = N × 4 px */
+  --m3d-space-1: 0.25rem;
+  --m3d-space-2: 0.5rem;
+  --m3d-space-3: 0.75rem;
+  --m3d-space-4: 1rem;
+  --m3d-space-5: 1.25rem;
+  --m3d-space-6: 1.5rem;
+  --m3d-space-8: 2rem;
+  --m3d-space-10: 2.5rem;
+  --m3d-space-12: 3rem;
+  --m3d-space-16: 4rem;
+  --m3d-space-24: 6rem;
+  --m3d-space-32: 8rem;
+  --m3d-gutter: var(--m3d-space-4);
+  --m3d-page-width: 1240px;
+
+  /* Raios por hierarquia */
+  --m3d-radius-none: 0;
+  --m3d-radius-sm: 4px;
+  --m3d-radius-field: 8px;
+  --m3d-radius-media: 12px;
+  --m3d-radius-panel: 16px;
+  --m3d-radius-pill: 999px;
+  --m3d-radius-round: 50%;
+  --m3d-radius-control: var(--m3d-radius-pill);
+
+  /* Elevação: só camadas flutuantes; nunca em cards nem no logótipo */
+  --m3d-shadow-control: 0 1px 4px rgba(0, 0, 0, 0.16);
+  --m3d-shadow-float: 0 24px 48px rgba(0, 0, 0, 0.16);
+  --m3d-shadow-modal: 0 24px 80px rgba(0, 0, 0, 0.22);
+
+  /* Movimento: curvas monotónicas, sem ultrapassagem */
+  --m3d-ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --m3d-ease-emphasis: cubic-bezier(0.22, 1, 0.36, 1);
+  --m3d-duration-fast: 180ms;
+  --m3d-duration-base: 320ms;
+  --m3d-duration-slow: 440ms;
+  --m3d-duration-signature: 700ms;
+
+  /* Logótipo — Manual p. 8–9 */
+  --m3d-logo-h-height: 40px;
+  --m3d-logo-h-height-mobile: 32px;
+  --m3d-logo-stacked-h-min: 110px;
+  --m3d-logo-clearspace-ratio: 0.38;
+  --m3d-logo-h-clearspace-ratio: 0.4;
+
+  /* Buttons v2 (revisão visual 09/10/2026, design/revisao-visual-20261009.md).
+     One filled action per view; tinted for secondary; icon circles for tertiary. */
+  --m3d-button-height: 48px;
+  --m3d-button-height-sm: 40px;
+  --m3d-button-padding-x: var(--m3d-space-6);
+  --m3d-button-weight: 600;
+  --m3d-color-action-tinted: rgba(68, 54, 188, 0.1);
+  --m3d-color-action-tinted-hover: rgba(68, 54, 188, 0.16);
+  --m3d-color-action-tinted-text: var(--m3d-purple);
+  --m3d-icon-button-size: 44px;
+  --m3d-icon-button-bg: var(--m3d-gray-50);
+  --m3d-icon-button-bg-hover: var(--m3d-gray-100);
+  --m3d-icon-size: 20px;
+  --m3d-press-scale: 0.98;
+  --m3d-press-scale-icon: 0.94;
+  --m3d-focus-ring-action: 0 0 0 2px var(--m3d-white), 0 0 0 4px var(--m3d-purple);
+
+  /* Colour swatches (PDP): 32px circle inside a 44px hit area. */
+  --m3d-swatch-size: 32px;
+  --m3d-swatch-hit: 44px;
+  --m3d-swatch-border: rgba(0, 0, 0, 0.14);
+  --m3d-swatch-ring: 0 0 0 2px var(--m3d-white), 0 0 0 4px var(--m3d-purple);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --m3d-press-scale: 1;
+    --m3d-press-scale-icon: 1;
+    --m3d-duration-fast: 1ms;
+    --m3d-duration-base: 1ms;
+    --m3d-duration-slow: 1ms;
+    --m3d-duration-signature: 1ms;
+  }
+}

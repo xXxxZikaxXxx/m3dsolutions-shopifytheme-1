@@ -93,7 +93,7 @@
 
       {%- form 'new_comment', article, id: comment_form_id, class: 'comment-form' -%}
         {%- if form.posted_successfully? -%}
-          <div class="contact__notice contact__notice--success" role="status" tabindex="-1">
+          <div class="contact__notice contact__notice--success" role="status" tabindex="-1">{% render 'icon', name: 'm3d-check' %}
             {%- if blog.moderated? -%}
               {{ 'blogs.article.success_moderated' | t }}
             {%- else -%}
@@ -101,7 +101,7 @@
             {%- endif -%}
           </div>
         {%- elsif form.errors -%}
-          <div class="contact__notice contact__notice--error" role="alert" tabindex="-1">
+          <div class="contact__notice contact__notice--error" role="alert" tabindex="-1">{% render 'icon', name: 'm3d-alert' %}
             <h3 class="contact__notice-title">{{ 'templates.contact.form.error_heading' | t }}</h3>
             <ul class="contact__errors" role="list">
               {%- for field in form.errors -%}

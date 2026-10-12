@@ -40,11 +40,11 @@
     </button>
   </div>
   {%- if form.errors -%}
-    <small class="newsletter-form__message form__message" role="alert">
+    <small class="newsletter-form__message form__message" role="alert">{% render 'icon', name: 'm3d-alert', size: 16 %}
       {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
     </small>
   {%- elsif form.posted_successfully? -%}
-    <p class="newsletter-form__message form__message" role="status">
+    <p class="newsletter-form__message form__message" role="status">{% render 'icon', name: 'm3d-check', size: 16 %}
       {{ 'general.newsletter_form.confirmation' | t }}
     </p>
   {%- endif -%}

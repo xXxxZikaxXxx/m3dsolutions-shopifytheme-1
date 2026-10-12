@@ -322,3 +322,261 @@ QA na prévia local `http://127.0.0.1:9292/`: desktop 1440 × 1000 e mobile 390 
 Após aprovação explícita do utilizador, as alterações de tema foram consolidadas no commit local `e5bf695` (`feat: finalize M3D storefront experience`), com 35 arquivos. Em 21/09/2026, o utilizador autorizou também o envio ao GitHub; os commits foram enviados para `origin/master` após esta atualização do registo.
 
 O tema ativo `m3dsolutions-shopifytheme-1/master` (`gid/ID 152494637126`) foi atualizado diretamente pela Shopify CLI usando `theme push --live --allow-live --strict`. Para preservar a separação entre código da vitrine e contexto interno, a execução excluiu `agente.md`, `referencia.md` e `referencias/**`. O upload terminou com sucesso, com os dois avisos históricos `OrphanedSnippet` e sem erros. A vitrine ativa `https://uhqyjs-w5.myshopify.com/` respondeu HTTP 200 após o deploy e contém a marca M3D.
+
+## Planeamento da arquitetura do MVP — 22/09/2026
+
+Proposta de arquitetura e calendário até 17/10/2026 registados em `arquitetura-mvp-2026.md`, ainda sujeitos a revisão comercial e técnica. O MVP foi delimitado pelo utilizador: Portugal e Espanha; Shopify como referência de preços publicados, estoque vendável e pedidos; Vendus para faturação e baixas; integração dos fornecedores Mid Ocean e Payper; MyShop V1 com listas privadas partilhadas entre colegas da mesma empresa, guardando apenas produto, variante e quantidade; orçamentos individuais com resposta manual; login Google; gateway de pagamento e logística por selecionar. Mini-lojas públicas e expansão a outros países são fases posteriores.
+
+Fontes verificadas: API Mid Ocean `https://www.midocean.com/export/us/eur/content/customer-api` (acesso depende de aprovação), B2B Companies `https://help.shopify.com/en/manual/b2b/getting-started/plan-features`, área de cliente `https://shopify.dev/docs/apps/build/customer-accounts`, MB WAY `https://help.shopify.com/en/manual/payments/shopify-payments/local-payment-methods/mb-way`, Vendus `https://www.vendus.pt/ajuda/como-ativar-a-integracao-com-a-shopify/` e rastreio `https://help.shopify.com/en/manual/fulfillment/setup/order-status-page/order-tracking`. Não foi localizada documentação pública da API Payper; confirmar diretamente com o fornecedor.
+
+Pendências críticas antes de fechar a execução: receber documentação e acesso de teste das duas APIs, definir SKUs/margens/regras reais de personalização, selecionar gateway para Portugal e Espanha, escolher operador logístico, validar Shopify B2B Companies com a configuração da loja e testar a integração Vendus para faturação, baixa e reconciliação. Nesta etapa foram alterados somente documentos locais; nenhum código do tema, catálogo, GitHub ou Shopify foi alterado.
+
+## Duas análises independentes — 07/10/2026
+
+O utilizador solicitou duas análises separadas, sem cruzar o diagnóstico atual da M3D com a pesquisa geral B2C. Foram registadas em `analises/2026-10-07/01-analise-visual-m3d.md` e `analises/2026-10-07/02-pesquisa-b2c-estrutura-conversao.md`. Recomendações são consultivas; não autorizam implementação ou alteração da arquitetura do MVP.
+
+A primeira inclui inspeção real da vitrine protegida em Edge, desktop 1440 × 1000 e mobile 390 × 844, com acesso fornecido pelo proprietário. Homepage completa e ambos os banners, fichas Carlsberg/Jeep, modal de quantidades, coleção Wrist Watches e destino Pedir orçamento observados. Capturas ficam em `analises/2026-10-07/evidencias/`; a palavra-passe e cookies não foram guardados nos documentos. A ferramenta de navegação habitual falhou ao iniciar; a inspeção foi realizada com Playwright local.
+
+Achados: orientação visual/textual para merchandising empresarial; os 12 links do conteúdo principal da homepage observados resolvem para a raiz da loja; novidades continuam ilustrativas; segundo banner é uma imagem promocional sem link; página Pedir orçamento contém apenas título/rodapé; primeira página da coleção mostra €0,00, enquanto as fichas apresentam preço sob consulta. A ficha Carlsberg mostra um relógio com Jeep no mostrador, também usado na ficha Jeep. As categorias com imagens carregaram corretamente após rolagem. Não confundir carregamento tardio das capturas iniciais com ausência de assets ou nova ocorrência do flash do carrossel.
+
+A opinião registada distingue base visual organizada de inadequação da mensagem/percurso ao comprador individual. Os produtos sob consulta são amostra limitada; não generalizar para um catálogo futuro completo. Não houve teste com consumidores nem medição da conversão da M3D.
+
+A segunda análise reúne referências oficiais Amazon, Etsy e Decathlon, dados de usabilidade Baymard/NN/g, investigação Medill e meta-análise de escolhas, documentação Google e caso A/B Vodafone. Inclui limites metodológicos, métricas comerciais não comparáveis, proposta genérica de ordem dos blocos, H1, palavras-chave sem volumes inventados, mecanismos psicológicos e medição. Não é um redesenho da M3D nem um ranking por conversão. Fontes e links estão junto dos dados no documento.
+
+Foram criados somente documentos e capturas locais e atualizado este registo. Nenhum código do tema, catálogo, pedido, orçamento, GitHub ou publicação Shopify foi alterado. Pendência: discutir cada análise separadamente e receber orientação sobre próximos passos.
+
+## Verificação de skills — 08/10/2026
+
+A pedido do utilizador, foi verificada a instalação de skills no projeto. Nenhum `SKILL.md` foi encontrado na árvore local, excluindo `.git`, `node_modules` e `.shopify`; as pastas `.agents`, `.codex` e `skills` não existem na raiz. `AGENTS.md` contém instruções persistentes do projeto, mas não constitui uma skill instalada.
+
+O ambiente geral do Codex disponibiliza skills externas ao repositório; foi confirmada a existência de `C:/Users/Administrator/.codex/skills/m3d-social-media-strategist/SKILL.md` e da skill Shopify Liquid do plugin Shopify 4.1.1. Nenhuma skill foi instalada ou alterada. Somente este registo foi atualizado; nenhum código do tema, GitHub ou Shopify foi alterado. Sem pendências nesta verificação.
+
+## Instalação de skills do projeto — 08/10/2026
+
+A pedido do utilizador, foi criada a pasta `.claude/skills/` com seis skills lidas na íntegra antes da instalação: `shopify-liquid-themes`, `liquid-theme-standards` e `liquid-theme-a11y` (Shopify/liquid-skills `ae3e4cc`); `frontend-design` (anthropics/skills `683bc88`, direção visual não genérica); `web-design-guidelines` (vercel-labs, com as regras guardadas localmente em `references/guidelines.md` e notas do projeto: Liquid, português de Portugal e pílula); e `web-perf` (cloudflare/skills). Origens, commits e adaptações estão em `.claude/skills/README.md`. `AGENTS.md` recebeu a secção “Skills do projeto” com a ordem de uso e a precedência das regras do projeto.
+
+Não instaladas: a skill `shopify` do Shopify AI Toolkit, que envia à Shopify telemetria com pesquisas, código validado e prompt, e `webapp-testing`, porque Python e Playwright não estão instalados. As skills não fazem parte do tema; manter `.claude/**` fora de qualquer `theme push`, tal como `agente.md` e `referencia.md`. Nenhum código do tema, GitHub ou Shopify foi alterado. Pendência: decidir se a telemetria do AI Toolkit é aceitável e se deve ser feito commit da pasta `.claude/skills/`.
+
+Complemento no mesmo dia, com autorização explícita do utilizador: instaladas também as skills `shopify` (Shopify AI Toolkit `26d0623`, v1.17.1, com dependências npm em `.claude/skills/shopify/node_modules`, ignoradas pelo Git) e `webapp-testing` (anthropics/skills `683bc88`). O utilizador aceitou a telemetria do AI Toolkit para `shopify.dev/mcp/usage`. Para isso foram instalados o Python 3.13.15 (winget, âmbito utilizador), o pacote `playwright` e o Chromium do Playwright. Testes de fumo aprovados: `with_server.py --help`, abertura de página no Chromium headless e `validate.mjs --help`. `AGENTS.md` e `.claude/skills/README.md` foram atualizados. Nenhum código do tema, GitHub ou Shopify foi alterado. Pendência: decidir o commit de `.claude/skills/`.
+
+## Skills disponibilizadas ao Codex — 08/10/2026
+
+Após o utilizador informar a instalação feita pelo Claude, foram relidos `agente.md`, `AGENTS.md` e `.claude/skills/README.md`. Confirmadas oito skills em `.claude/skills/`: `shopify-liquid-themes`, `liquid-theme-standards`, `liquid-theme-a11y`, `frontend-design`, `web-design-guidelines`, `web-perf`, `shopify` e `webapp-testing`.
+
+As oito foram instaladas no âmbito deste projeto em `.agents/skills/`, usando os pacotes já descarregados pelo Claude e preservando as versões e adaptações locais; não foi necessário um novo download. Os 172 ficheiros, incluindo scripts, assets e referências, foram comparados byte a byte com as fontes; os oito metadados de skill foram conferidos. As dependências Shopify existentes são reutilizadas por uma junction de `.agents/skills/shopify/node_modules` para `.claude/skills/shopify/node_modules`, ignorada pelo Git.
+
+Detalhes e origens em [.agents/skills/README.md](.agents/skills/README.md). `AGENTS.md` aponta agora para ambas as instalações e exclui `.agents/**` e `.claude/**` de `theme push`. A descoberta automática das novas skills pelo Codex é esperada no próximo turno; os ficheiros já estão disponíveis para leitura direta. O hook exclusivo do Claude não é executado automaticamente pelo Codex. Nenhum código do tema, commit, push ou publicação Shopify foi realizado. Sem pendências na instalação local; a decisão de commit das skills continua por autorizar.
+
+## Preparação da operação Codex + Claude — 08/10/2026
+
+O utilizador designou Codex como chefe da operação e Claude como chefe do Design System, com uso de sub-agents de ambos. Pediu evolução visual orientada a B2C conservando B2B, revisão de PDP, conclusão visual do orçamento e complementos do tema. MyShop e integração MidOcean ficam para uma fase posterior. A ordem atual é revisar o contexto, criar `codexclaude.md` e aguardar o utilizador enviar ao Claude para análise antes de iniciar a implementação. Proibidos commit, push e deploy para toda a equipe.
+
+Foram relidos contexto, instruções, referências, as duas análises de 07/10 e arquitetura MVP. A síntese futura das pesquisas está autorizada por este pedido; os documentos originais foram preservados. Criado [codexclaude.md](codexclaude.md), com papéis dos dois líderes, oito funções de sub-agents, ondas, propriedade de arquivos, decisões conjuntas, critérios de QA, limites de dados comerciais e instruções da primeira revisão do Claude. As funções estão planeadas, não são agentes já ativados. Nenhuma mensagem foi enviada ao Claude.
+
+O manual foi localizado após esclarecimento do utilizador em `C:/Users/Administrator/Desktop/logos/LO_M3D_Institucional_ManualdeMarca_251023 (1).pdf`; cópia integral em `referencias/marca/`. Foram extraídas as 18 páginas e inspecionadas visualmente as regras e aplicações. Paleta confirmada; Raleway é a tipografia oficial (p. 12), enquanto o contexto anterior do Figma registrava Inter. Registados gradiente, versões/usos do logotipo, redução, proteção e elementos gráficos em `codexclaude.md` e `referencia.md`.
+
+Aplicadas as skills orchestration, orca-cli e pdf para preparação. Binário Orca identificado e guias da versão instalada lidos. A primeira consulta de runtime falhou por APPDATA ausente; nova consulta pelo mesmo binário com o diretório ApplicationData resolvido indicou runtime local não iniciado. Não foi aberto Run nem iniciada equipe no Orca; verificar a sessão real do utilizador quando liberar a execução. Foi instalado temporariamente PyMuPDF apenas para leitura/renderização local do manual, sem envio do PDF a terceiros.
+
+`AGENTS.md` recebeu referência ao acordo e à proibição de commit/deploy. Nenhum arquivo Liquid, CSS, JavaScript, catálogo, conta Shopify ou Figma foi alterado. Pendências: revisão preparatória do Claude, discussão real dos líderes e ordem explícita do utilizador para começar a implementação.
+
+Complemento da preparação: dois sub-agents nativos do Codex (`review_coordination` e `review_scope`) fizeram revisão independente, somente leitura, do acordo e das fontes pertinentes; não identificaram problemas relevantes. Não eram trabalhadores geridos pelo Orca, não contactaram Claude e não implementaram o tema. O leitor de PDF temporário e as renderizações foram removidos após a inspeção; manual original e cópia de referência preservados. Aguarda-se revisão do Claude e ordem do utilizador.
+
+## Parecer do Codex sobre a revisão do Claude — 08/10/2026
+
+O utilizador solicitou rever as propostas em `colaboracao/claude-review.md`. Lido o parecer completo e incorporadas as respostas do utilizador no §8: preços fictícios autorizados somente para testes dos artigos MidOcean; logo em gradiente oficial, com escolha visual delegada ao Claude. Essas respostas não liberam execução nem definem preços comerciais; não foi pedido reconfirmá-las.
+
+Criado [colaboracao/codex-review.md](colaboracao/codex-review.md), com parecer D-01 a D-10 e fontes oficiais junto às verificações. Aceites do Codex às propostas do Claude: hero estável, CTA principal roxo/branco, hierarquia B2C/B2B sem seletor e correção antecipada de links/consulta após ordem de início. Contrapropostas D-04/D-05/D-06/D-07/D-09 aguardam resposta real do Claude: corpo Raleway Regular, quantidade inline com modal só quando a composição de várias linhas ajudar, orçamento contact nativo com contexto informativo, preço compartilhado preservando descontos/totais reais e tokens em arquivo próprio do Claude com configurações/integracao global escritas pelo Codex.
+
+Dois sub-agents nativos (`review_coordination`, `review_scope`) conferiram governança e código somente em leitura. Confirmados Assistant nas configurações locais (Inter pertence ao Figma anterior), tokens globais/locais duplicados e CSS do card em coleção/pesquisa. O logo PNG integral é fallback; a branch com settings.logo é responsiva. A afirmação de catálogo inteiro sem produto B2C comprável excede a amostra e foi limitada. Guardas de preço zero da PDP/JS não demonstram bloqueio de servidor; fixtures locais terão dados/endpoints simulados e mutações reais bloqueadas. Nenhum preço/catalogo foi alterado.
+
+Aplicadas liquid-theme-standards e liquid-theme-a11y. Contrastes calculados confirmam roxo/branco 8,4013, rosa/branco 4,4601 e preto/rosa 4,7084. Limiares W3C de texto grande são 18 pt regular/14 pt bold (24 px/18,67 px), e não os valores em px escritos na tabela genérica da skill. Documentação oficial Shopify confirmou contact e receção no sender email da loja; contexto cliente não é autenticado e sucesso do formulário não prova entrega no email.
+
+Atualizados `codexclaude.md` e `AGENTS.md` para as propostas e o gate vigente. Fonte dos pacotes locais: `.claude/skills/`; `.agents/skills/` espelho Codex. Política registrada no acordo, no parecer e no README da fonte. A atualização do README do espelho encontrou EPERM na pasta protegida de skills; o arquivo foi preservado e nenhuma atualização de pacote foi feita. Preservada integralmente a revisão original do Claude.
+
+Somente documentos atualizados; nenhum tema, Figma, catálogo, preço, configuração Shopify/email ou runtime alterado. Sem commit/push/deploy ou envio real. Pendências: confirmação/contrapropostas do Claude para os cinco ajustes e ordem de início do utilizador. Dados operacionais/assets restantes serão tratados quando afetarem uma entrega concreta.
+
+## Início da implementação visual — 08/10/2026
+
+Ordem de início explícita recebida do utilizador; Claude confirmou aceitação de D-04/05/06/07/09 e iniciou D1/D2 em design/. Codex ativou três sub-agents nativos para preços, orçamento e baseline local. Responsabilidades em colaboracao/tarefas.md, decisões em colaboracao/decisoes.md e ponto de integração de tokens em colaboracao/codex-status.md. Claude é escritor exclusivo de assets/m3d-tokens.css; Codex integra após css-variables no layout e gere settings/locales.
+
+AGENTS.md e codexclaude.md atualizados para execução autorizada. Fixtures de preço primeiro; sem alterações remotas de catálogo até agora. Nenhum commit, push ou publicação. Pendências da etapa: especificação visual Claude, integração e QA desktop/mobile.
+
+## Implementação e revisão conjunta — 08/10/2026
+
+Design System v1 do Claude aplicado: assets/m3d-tokens.css após css-variables, Raleway400/700/900 sem duplicar700, ações roxas/pílulas, foco roxo, logos horizontais oficiais e slogan. Home estável com produto real, pincelada estática/prato circular, produtos reais e faixa B2B antes do processo; sem placeholders ou promoções não verificadas. As cinco coleções de categoria existem mas a prévia GET200 mostra0artigos disponíveis; a secção fica oculta quando nenhuma coleção é válida. Não publiquei artigos para preencher a home.
+
+Cards usam consulta e não desde€0; coração sem persistência retirado. PDP quantidade inline, composições por modal apenas para múltiplas variantes e contexto editável para /pages/pedir-orcamento?view=m3d-quote. Form contact nativo, sem upload, sem envio de teste. Nav mobile sete itens na ordem e pílula preservada; header/footer revistos pelo C4. C5 trata carrinho preservando descontos reais.
+
+Orca agora ativo: terminal Claude term_19a236d5-4845-4425-a716-30e27c9cd41d verificado; mensagens diretas com aceitação e turn_started. Prévia localhost9292 em tema development166780993606; tema ativo152494637126 preservado. Theme Check primeira ronda:0erros,2avisos históricos OrphanedSnippet. QA Claude1440/1024/390/360 passou fontes/overflow/orçamento; achados visuais H1–H6 corrigidos, ver colaboracao/claude-status.md e codex-status.md.
+
+Consulta Admin somente leitura confirmou shop.contactEmail e email m3dsolutionsshopify@gmail.com. Destino solicitado m3dbrindes@gmail.com depende de configuração operacional antes da publicação; nada alterado em notificações/caixa de correio, nenhum envio real. Sem commit/push/deploy, sem mutações de catálogo. Preços fictícios ficam em fixtures locais. Pendências: revisão final após correções, fixtures positivas/mistas e check final integrado. MyShop/MidOcean continuam fase posterior.
+
+## Entrega visual B2C/B2B e Design System — 08/10/2026
+
+Etapa implementada em Liquid, CSS e JavaScript nativo e revista na prévia local [127.0.0.1:9292](http://127.0.0.1:9292/), tema de desenvolvimento 166780993606. Codex liderou C1–C6 com três sub-agents nativos reutilizados; Claude liderou Design System/D1/D2 e aceitou a fidelidade visual da home, orçamento, PDP e coleção na ronda4. Comunicação real pelo terminal Claude no Orca e pelos ficheiros. [Entrega detalhada](colaboracao/entrega-visual.md), [Design System](design/design-system-m3d.md), [QA C3](colaboracao/c3-qa-final.md), [revisões Claude](colaboracao/claude-status.md).
+
+Aplicados manual oficial, Raleway, paleta, logos e pincelada SVG; hero B2C com percurso empresarial B2B, categorias condicionais ao catálogo público; PDP, preços sob consulta, orçamento completo, coleção/pesquisa, navegação/rodapé e carrinho uniformizados. Sete itens da navegação e MyShop independente preservados. Pílula comprovadamente imóvel no hover/foco e movimento monotónico/limitado por clique e teclado. Fonte numérica de sistema documentada por Claude porque a Raleway carregada não mostrou dígitos tabulares.
+
+QA: home/PDP/orçamento em1440/1024/390/360, todos200 e overflow0; contexto de orçamento seguro e quantidade 7; cards/galeria multiply, MyShop teclado, filtros48px/fechar44px. Theme Check64ficheiros, zeroerros, dois avisos históricos OrphanedSnippet; parseJavaScript e git diff --check aprovados. Fixtures locais9casos/19verificações de produto e7grupos VM de carrinho; nenhum preço/ID fictício guardado no catálogo remoto. Root corrigiu bloco de cálculo cart_has_quote inadvertidamente inserido dentro de comentário Liquid; movido após endcomment e validado pelo ThemeCheck. Cart cheio real e bloqueio backend não foram demonstrados: proteção de consulta é da interface.
+
+Sem submissão real de formulário/carrinho/checkout nos testes. Conta e páginas de apoio não tiveram revisão visual do Claude; pesquisa e carrinho vazio tiveram QA técnico. Os dados reais de catálogo em inglês e nomes/imagens de fornecedor permanecem para a fase de catálogo/MidOcean.
+
+Pendência operacional antes de publicar: Admin consultado somente em leitura retorna contactEmail/email m3dsolutionsshopify@gmail.com, diferente do solicitado m3dbrindes@gmail.com; configurar destinatário e testar receção/retorno do formulário com view=m3d-quote. Não foi alterado template_suffix da página remota. MyShop funcional e API MidOcean ficam para a próxima discussão. Nenhum commit, push ou publicação; tema publicado152494637126 preservado.
+
+## Retomada do contexto — 09/10/2026
+
+A pedido do utilizador, relidos o contexto persistente, as referências, o acordo Codex/Claude, o quadro de tarefas, a entrega visual, o QA final C3 e o encerramento do Claude. Confirmada a conclusão da etapa visual de 08/10 e o aceite do Claude para home, orçamento, PDP e coleção. Alterações locais continuam presentes no diretório de trabalho. [Entrega consolidada](colaboracao/entrega-visual.md).
+
+Nesta retomada não foram alterados componentes do tema, iniciados agentes, executados novos testes nem reaberta a prévia. O utilizador ficou de analisar o resultado. Pendências preservadas: destinatário e teste real de envio/retorno do orçamento, revisão dos dados do catálogo e discussão própria de MyShop funcional/API MidOcean. Proibição de commit, push e publicação permanece vigente.
+
+## Revisão visual Claude e decisões — 09/10/2026
+
+Decisão do utilizador: o destinatário do orçamento mantém-se m3dsolutionsshopify@gmail.com (pendência m3dbrindes fechada). A configuração dos produtos fica a cargo de um funcionário. A MidOcean avança hoje: o Codex escreve `colaboracao/midocean-arquitetura.md` (app M3D no servidor → Admin API → tema, sem segredos no tema) e o Claude revê o mapeamento para PDP e personalização. O Codex removeu o “Buy it now”, o que foi confirmado na PDP do saco natalício com stock.
+
+O Claude reviu carrinho, conta, pesquisa, páginas de apoio, 404, política e PDP com stock: achados V1–V13 em `colaboracao/claude-status.md`, capturas em `analises/qa-visual/claude-20261009/`. Altas: pesquisa devolve 22 relógios para qualquer termo (indexação do catálogo), 404 em inglês, páginas do menu Coleções vazias. O Codex é o escritor das correções. A prévia local corre em http://127.0.0.1:9292 (tema 166780993606). Sem commit, push ou deploy.
+
+## Revisão complementar e arquitetura MidOcean — 09/10/2026
+
+Ordem atual abre MidOcean hoje e mantém o destinatário m3dsolutionsshopify@gmail.com; fechada a troca anteriormente pedida para m3dbrindes@gmail.com. Codex escreve tema/arquitetura e coordena C7–C10; Claude lidera Design System, revisão visual e parecer de personalização. Orca: terminal Claude term_ec8aff99-3741-46e7-b838-84c04eac984e verificado, mensagens aceites na entrada; confirmação de início de turno não observada no último envio. Coordenação também em codex-status.md/tarefas.md. Sem commit, push ou deploy.
+
+Retirado Buy it now da PDP, schema/template e JavaScript, preservando compra normal e orçamento. Corrigidos 404 PT, páginas vazias de categorias com introdução/saídas e produtos de coleção real quando associada, pesquisa inicial/nomes acessíveis, cores por texto, quantidade por stepper, feedback com Ver carrinho, hierarquia/espaço do carrinho, leitura de políticas/contacto, ícones SVG e rodapé em páginas curtas. A revisão independente de código não encontrou bloqueantes. QA C7 aprovado; C10 confirmou páginas móveis sem overflow, título700, rótulos14px e PDP real sem bloco vazio de personalização. Rechecks finais registados no relatório C10. [Entrega 09/10](colaboracao/entrega-20261009.md).
+
+[Arquitetura MidOcean](colaboracao/midocean-arquitetura.md) aceite pelo Claude, M1–M7 incorporados no §9: servidor → validação/simulação → Admin → tema; custos e chaves privados; imagens de posição para Shopify Files; técnicas comerciais adicionais dependem de decisão do utilizador; impressão variável/múltiplas posições/escalões por orçamento. PDP local com limites por posição e contexto no modal, oculta personalização sem dados e encaminha técnica variável para orçamento mesmo com preço positivo. Nenhuma ligação autenticada, definição remota, importação ou preço/stock remoto alterado. Contrato/amostras dos cinco feeds, SKUs do piloto e política comercial/stock são a próxima etapa.
+
+[Diagnóstico C9](colaboracao/c9-pesquisa-diagnostico.md): V1 reproduz nos endpoints nativos, não se identificou causa no tema nem campo literal responsável nos17 relógios consultados; os22 resultados incluem17 relógios e5 artigos natalícios reais. Causa de matching ainda sem confirmação, comparação pública limitada pela proteção da loja; nenhuma filtragem artificial/reindexação ou alteração de catálogo. V12 não reproduz atualmente, pesquisa/PDP/price_html mostram€1,80. Contas alojadas Shopify e tradução do conteúdo legal dependem de Admin; entrega real do e-mail/retorno ainda não testados. MyShop funcional continua fase própria.
+
+Theme Check final63 ficheiros sem erros/avisos; parse JavaScript e diff --check aprovados. Os dois snippets órfãos antigos desapareceram por alteração concorrente no diretório partilhado, não removidos pelo Codex nesta tarefa; respeitada essa alteração. Testes de adição usam respostas locais simuladas, sem POST real, checkout ou formulário. Prévia autorizada localhost9292 e tema ativo preservados. Skills aplicadas: Liquid/standards/a11y/guidelines/testing, Orca CLI, api-connector-builder e Shopify custom-data para contrato/definições; nenhuma chave no tema.
+
+Atualização 09/10/2026 (tarde): snippets órfãos apagados por Claude a pedido do utilizador (Theme Check 64 ficheiros, 0 ofensas). Decisões do utilizador: todas as técnicas e várias personalizações por artigo; líquido = (fornecedor + impressão) × fator (1–199: 1,60; 200–499: 1,50; 500–1999: 1,40; 2000+: 1,35), bruto = líquido × (1 + taxa IVA), apresentado com IVA incluído quando aplicável; SKU opaco M3D (opção A); seleção manual de produtos; servidor Railway (Amsterdam) + PostgreSQL + R2, conta e pagamento a cargo do utilizador, ainda sem criação confirmada. Loja em plano Grow, sem Plus. Spec de UX `design/p-a-personalizacoes.md`. Testes de personalização e upload em `analises/qa-visual/claude-20261009/personalizacao.*`. Sem commit, push ou deploy.
+
+## Retomada de execução e base MidOcean — 09/10/2026
+
+Utilizador repôs o uso e autorizou continuidade/passagem ao Claude se Codex atingir limite. Recomendação de modelo: GPT-6.1 Sol High para API/preços/IVA/stock/checkout; Medium para CSS/textos delimitados. Não houve troca automática de modelo.
+
+Relidos contexto, referência, acordo e novas decisões. Admin só leitura validado confirma `taxesIncluded=true`, EUR, loja uhqyjs-w5.myshopify.com; configurações fiscais não alteradas. [IVA](colaboracao/midocean-iva.md) distingue taxa normal, localização da operação, registos/Markets e prevenção de IVA duplicado. [Viabilidade](colaboracao/midocean-precos-viabilidade.md) delimita descontos fixos e oferta/draft para preço variável no Grow. [Contas](colaboracao/midocean-contas.md) tem passos curtos Railway/R2 em nome do utilizador; nada provisionado.
+
+Claude recebeu parecer no terminal Orca verificado com turn_started e entregou P-A revisão2, aceitando cinco ajustes; spec relida e direção aceite. A referência continental na copy é condicional ao mercado/operação reais. Sem implementação ainda de múltiplas artes/cotação dinâmica. [Parecer P-A](colaboracao/codex-p-a-review.md).
+
+QA C10/C13 concluído: 23 capturas, testes de limites/modal/contexto e feedback simulado aprovados. Theme Check final64 ficheiros0 ofensas; JavaScript/diff aprovados. Miniatura nova no carrinho conferida em código, não visualmente em carrinho cheio. Falta confirmar a causa da relevância da pesquisa nativa; contas alojadas/conteúdo legal/filtros dependem de configuração/dados Admin. Nenhum envio de formulário/checkout real pelo Codex.
+
+Iniciado núcleo puro de simulação em integracoes/midocean/, excluído do tema por .shopifyignore. Subagente review_scope escreve pricing.mjs/pricing.test.mjs; líder README/documentação. Sem rede, segredos, fornecedor autenticado ou escrita Shopify. Próxima etapa: contrato/amostras reais expurgadas e simulação do piloto manual, antes de importação. Estado/passagem em [codex-status](colaboracao/codex-status.md); escritores em [tarefas](colaboracao/tarefas.md). Nenhum commit, push ou deploy.
+
+Conclusão do núcleo: review_scope entregou e libertou os ficheiros; líder reviu e repetiu20 testes, todos aprovados, sintaxe aprovada. BigInt, IVA explícito, custos unitários declarados, saída privada serializável; limites/IVA único/múltiplas impressões/inválidos/precisão cobertos. Frações de cêntimo de custos reais exigem ampliar contrato, não arredondar o fornecedor. Arredondamento/agrupamento são propostas de simulação. [README](integracoes/midocean/README.md) e [contrato v2](colaboracao/midocean-contrato-v2.md). Sem escritores Codex ativos sobre estes módulos. Claude informado do resultado e ponto de continuidade; ainda sem fornecedor autenticado ou compra variável implementada.
+
+P-A revisão3 do Claude relida e aceite: mercado/destino vindos do servidor, referência ausente sem mercado conhecido. Conferência do exemplo sintético€1,00+€0,25+€0,40 com IVA23% nos seis limites resulta em€3,25/€3,04/€2,84/€2,74, igual à revisão independente do Claude. Registo em [parecer P-A](colaboracao/codex-p-a-review.md). Sem alteração de código, preço remoto, commit/push/deploy; contratos reais e normalização continuam próxima etapa.
+
+## Contas prontas e preparação de acessos — 09/10/2026
+
+Utilizador confirmou Railway/Cloudflare R2 prontos em seu nome; não repetir criação de contas. Piloto alargado para saco, garrafa, caneca e duas peças de vestuário, sem referências escolhidas. MO9846 é candidato público do Claude, não selecionado/importado. Aceite shortlist de produtos PT cruzada com printdata em leitura inicial; leitura ainda não executada.
+
+Criado [midocean-acessos.md](colaboracao/midocean-acessos.md) com passos Railway Variables/New Variable/Seal, persistência Alt sem redeploy segundo documentação oficial, Shopify Dev Dashboard app API-only/read_products/versão/install pelo utilizador e Client ID/secret no servidor. Mesma organização é condição para client credentials, token24h; alternativa OAuth para organizações diferentes. Acesso Shopify não é necessário para shortlist MidOcean. Não houve configuração remota por agentes nem leitura de segredos.
+
+Repositório privado separado m3dsolutions-backend recomendado, não obrigatório; nenhum repo criado/ligado, ficheiro migrado, commit/push/deploy. Criação remota e execução do backend aguardam ordens explícitas. Conta pronta/chave selada não implica runner em execução; sealed não se exporta ao Codex local. revisão independente do fluxo por review_coordination em leitura; root escreve documentos, Claude mantém design/relatórios. Próxima etapa permanece contrato e execução de consulta autorizada.
+
+## Retomada com Railway MCP — 09/10/2026
+
+Claude reiniciado para ligar o MCP do Railway; contexto relido (agente, referência, tarefas, estados Claude/Codex, acessos MidOcean). Consulta só de leitura: um projeto `adaptable-reprieve` (ambiente `production`), sem serviços. Logo, a variável `MIDOCEAN_API_KEY` ainda não tem serviço onde ficar (passo 1 de midocean-acessos.md). Nada foi criado, configurado ou lido em variáveis. Sem commit, push ou deploy.
+
+## Skill do Railway — 09/10/2026
+
+O endereço `railway.com/skills.sh` pedido pelo utilizador devolve 404. O instalador completo (`agents.railway.com`, CLI + `railway setup agent`) foi lido mas bloqueado pelo modo automático. A seguir, o utilizador pediu só as skills, porque o MCP já estava ligado. Instalada `use-railway` (railwayapp/railway-skills `dab1c2a`, v1.6.1, MIT) em `.claude/skills/` e espelhada em `.agents/skills/`, com 27 ficheiros idênticos. Adaptação local: retirada a aprovação automática `allowed-tools` e acrescentadas notas M3D (nada de `railway up`/deploy a partir do tema, mutações só com ordem explícita, segredos nunca lidos). Plugin com hook de aprovação automática e CLI não instalados. READMEs e `AGENTS.md` atualizados (nove pacotes). Sem commit, push ou deploy.
+
+## Verificação Cloudflare/R2 — 09/10/2026
+
+A pedido do utilizador, confirmado plugin Cloudflare instalado no cache e ferramentas MCP whoami/search/execute/docs disponíveis. Skill Cloudflare do plugin lida e aplicada. Autenticação, listagem de contas e GET de buckets R2 aprovados (HTTP 200); uma conta acessível. A listagem da jurisdição default retornou buckets=[], sem demonstrar ausência noutras jurisdições. Nomes previstos m3d-artes/m3d-snapshots não confirmados. Não se leu conteúdo de objetos nem testou upload/escrita; nenhuma chave extra foi necessária ao conector autenticado.
+
+API pesquisada também expõe operações de objetos, mas leitura/escrita de ficheiros não foram demonstradas neste teste. Acesso do plugin não configura automaticamente credenciais S3 do futuro backend Railway. Nenhuma alteração Cloudflare, bucket criado, secret consultado, commit/push/deploy. Próximo passo eventual: confirmar buckets e jurisdição efetivos antes de ligar armazenamento à app.
+
+## Autorização Railway — 09/10/2026
+
+O utilizador concedeu ao Claude permissão total para alterar e trabalhar no Railway (projeto `adaptable-reprieve`) e pediu a instalação do hook de aprovação automática do plugin. O modo automático do Claude Code bloqueou tanto a alteração das configurações como a cópia do hook (autoalteração). Nada foi instalado; fica pendente a ação do utilizador. Notas: o hook só aprova comandos `railway` no Bash e precisa de `jq`, e nenhum dos dois está instalado; as ferramentas MCP aprovam-se com a regra `mcp__railway`. Tema Shopify e GitHub continuam sem push nem publicação sem pedido.
+
+## Shopify Dev MCP — 09/10/2026
+
+A pedido do utilizador: `claude mcp add --transport stdio shopify-dev-mcp -- npx -y @shopify/dev-mcp@latest`, no âmbito local (`~/.claude.json`, só este projeto). A primeira ligação falhou por timeout de 30 s enquanto o npx descarregava o pacote (~1 min); com a cache preenchida, o estado passou a Connected. Fica disponível após reiniciar o Claude Code. Versão `@latest` não fixada; o MCP partilha com a skill `shopify` a telemetria para a Shopify já aceite pelo utilizador. Sem alterações ao tema, commit, push ou deploy.
+
+## Configuração Railway e app Shopify — 09/10/2026
+
+O utilizador autorizou a configuração do Railway e do Dev Dashboard. Testes e implementação do backend exigem nova autorização, pedida pelo Claude e pelo Codex. O Codex fica com o Cloudflare. Feito: serviço vazio `midocean-connector` em Amesterdão, com as variáveis MIDOCEAN_API_KEY, SHOPIFY_SHOP e SHOPIFY_CLIENT_ID (ainda não seladas), sem deployment. App `M3D MidOcean Connector` criada na organização da loja, só com `read_products`, API-only, sem extensões; projeto local em `C:\Users\Administrator\m3-d-mid-ocean-connector`. Pendente do utilizador: lançar a versão (`shopify app deploy`), instalar, gravar e selar o Client secret no Railway, selar a chave MidOcean. Detalhes e IDs em `colaboracao/claude-status.md`. Sem commit/push/deploy.
+Atualização: versão `config-read-products-1` da app lançada e `SHOPIFY_CLIENT_SECRET` gravado no Railway pelo Claude, depois de o utilizador ter acrescentado as regras de permissão. Serviço continua sem deployment. Pendente do utilizador: instalar a app na loja, selar as duas variáveis secretas e rodar o secret e a chave antes da produção.
+
+## Configuração confirmada e passagem acordada — 09/10/2026
+
+Atualização posterior do Claude/utilizador: app instalada e MIDOCEAN_API_KEY/SHOPIFY_CLIENT_SECRET selados, encerrando essas pendências de preparação. Serviço midocean-connector no projeto adaptable-reprieve continua vazio em Amesterdão, sem deployment. App/loja na organização M3D Solutions segundo Claude, versão config-read-products-1/read_products/API-only; pasta local C:/Users/Administrator/m3-d-mid-ocean-connector fora do tema e sem commits. Não gerar token/testar feed/implementar antes de nova autorização. IDs e fonte em [codex-status](colaboracao/codex-status.md).
+
+Codex conferiu R2 em leitura: HTTP 200 e listagem default vazia; buckets UE não verificáveis por esse teste. API pede header de jurisdição, não exposto pelo execute atual; sem browser disponível no CUA. Logo, plugin autenticado, mas R2 não confirmado pronto para backend. Nenhuma chave/bucket criado, upload ou mudança de permissões feita.
+
+Proposta de passagem Claude aceite:85–90% quando indicador existir, avisos reais quando não houver percentagem; checkpoint por subtarefa, nota completa, libertação explícita de ficheiros, PASSAGEM via Orca e confirmação antes da escrita. Sem transferência ativa agora ou autorização ampliada. Terminal novo Claude term_21bb9f79-cc7b-4ffc-94b3-d04270adc3c5 verificado no workspace; resposta enviada via skill orca-cli. Apenas documentação/leituras neste turno, sem testes de backend, commit/push/deploy do tema/servidor.
+
+## Autorização da implementação MidOcean — 09/10/2026
+
+O utilizador autorizou o Claude e o Codex a fazer testes de leitura (Shopify por client credentials e MidOcean PT/printdata), a implementar o backend no serviço Railway `midocean-connector` com deploy desse serviço, e a criar buckets e chaves R2 (Codex). Continuam fora: push GitHub, publicação do tema e escrita no catálogo. Divisão de trabalho e passagem por contexto (gatilho 85–90%) em `colaboracao/claude-status.md` e `codex-status.md`.
+
+Checkpoint implementação: app externa C:/Users/Administrator/m3-d-mid-ocean-connector/backend, dois subagentes nativos Shopify/runner e MidOcean/testes, líder bootstrap/Docker/R2. Login CLI Railway concluído; READ_AUDIT_ENABLED=true configurado por Claude.44 testes intermediários aprovados; nenhuma leitura autenticada ou upload/deploy ainda. Parecer Claude em revisão do backend incorporado antes do envio (quarentena por registo, critério shortlist). R2 ainda pendente por limites técnicos do conector, passos em [preparação R2](colaboracao/r2-preparacao-backend.md). Estado operacional atualizado em [codex-status](colaboracao/codex-status.md), sem passagem ativa ou mudança no tema.
+
+Checkpoint posterior:73/73 testes completos, npm audit produção0; Claude reexecutou/aprovou revisão dirigida. Módulos entregues/libertados ao líder. Utilizador/Claude completaram R2 variáveis live sem staged; bucket/âmbito ainda não comprovados. Upload backend autorizado realizado no serviço existente, ID42921edd-4dbd-4dc7-a031-35dc65ca0cbf em BUILDING (não concluído); Docker/Amesterdão/health/restart confirmados. Aguardar SUCCESS e logs de providers/snapshot; sem commit/push/publicação do tema/escrita no catálogo. Detalhes e link no codex-status.
+
+Conclusão leituras autenticadas: deployment65a93b37-8f73-41a9-be7f-4377a3153db8 SUCCESS e auditoriaOK. Shopify5produtos/5variantes; MidOceanPT2573produtos/2510printdata/2477vínculos,10sugestões, printdata23registos rejeitados. R2EU/m3d-snapshots comprovado porPut/Get+SHA256, projeções dos dois fornecedores privadas sem custos/chaves. Redirect oficialProducts303paraS3tratado comhostexato/1salto/semAPIkeyexterna/limites.76testes locais aprovados. Claude prepara shortlist manual5artigos; nenhuma seleção/importação/preço/stock remoto alterado. Ainda sem uploadsartes/múltiplasconfigurações/cotação/checkout/Postgres; m3d-artes não testado. [Checkpoint e métricas](colaboracao/codex-status.md). Semcommit/push/deploydotema; backenddeployautorizado apenas.
+
+Passagem por ordem do utilizador (contexto10%): cincorefsMO6660/MO6800/MO6971/S01159/S04442 aprovadas para piloto, **sem importação**. Scope interrompido/recolhido, todoswritersCodexinativos; inspector/test e integração server novos locais,86/86 testes aprovados, ainda não deployados. READ_AUDIT_ENABLED=false e SNAPSHOT_REVIEW_ENABLED=true configurados porClaude semstaged. Escrita exclusiva backend/appbootstrap/documentosexecução libertada paraClaude após confirmação; Codex não fará novos uploads/deploys. [Passagem completa](colaboracao/codex-status.md), [autoria](colaboracao/tarefas.md). Claude conclui inspeção snapshotexistente/UX e comunica, preservando noGitHub/noTema/noCatálogo. Nenhuma passagem de tema para trabalho novo.
+
+## Backend MidOcean em produção, só leitura — 09/10/2026
+
+Autorização total do utilizador para os dois agentes (testes, backend com deploy do serviço Railway, R2). O Codex escreveu o backend em `C:\Users\Administrator\m3-d-mid-ocean-connector\backend` (Docker, fora do tema), com 76 testes. O Claude reviu-o, operou o Railway pelo MCP e acompanhou três deployments. O terceiro (`65a93b37`) ficou SUCCESS, com auditoria ok: token Shopify por client credentials e 5 produtos; MidOcean PT com 2573 produtos e 2510 printdata (o feed redireciona com 303 para S3 da MidOcean, seguido só para esse host exato e sem a chave); snapshot verificado no R2 `m3d-snapshots` EU. Shortlist de 10 candidatos em `colaboracao/midocean-shortlist.md`; escolha do utilizador pendente. Sem endpoint público, sem escrita no catálogo, sem GitHub nem tema.
+Piloto MidOcean aprovado pelo utilizador: MO6660 NATA, MO6800 THAI, MO6971 AIRA, S01159 SPORTY WOMEN, S04442 PITCHER (sem importação). Releitura automática desligada; inspeção do snapshot ligada. O utilizador informou que o Codex tem 10% de contexto: pedida a PASSAGEM ao Claude.
+Passagem Codex → Claude ativa (contexto do Codex a 10%). O Claude corrigiu o inspector (IDs com espaços e pontos), chegou a 88 testes e fez o deployment `13577bf9` (SUCCESS). Inspecionou o snapshot sem novas leituras: 5 posições é o máximo do feed; PITCHER é polo com bordado; SPORTY WOMEN tem bordado; **MO6971 AIRA é um copo térmico, não uma caneca**; os tamanhos têxteis não estão no campo lido. `SNAPSHOT_REVIEW_ENABLED=false`. Detalhes em `colaboracao/midocean-shortlist.md`.
+Piloto final, por decisão do utilizador: 6 referências — MO6660 NATA, MO9846 COTTONEL COLOUR++, MO6800 THAI, MO6971 AIRA (mantido como copo térmico), S01159 SPORTY WOMEN, S04442 PITCHER. Sem importação.
+Tamanhos corrigidos: o feed MidOcean guarda-os em `variant.size_textile`. SPORTY WOMEN XS–XXL; PITCHER XS–3XL. Snapshot novo com tamanhos (deployment `c543e31d`); 92 testes. Leitura e inspeção desligadas depois.
+
+## Guia API, simulação de preços e importação preparada — 09/10/2026
+
+O utilizador pediu um guia da API MidOcean e autorizou a importação e a simulação das 6 referências. Guia: `colaboracao/midocean-api-guia.md`. Simulação (deployment `731cc806`): 189/189 SKUs com preço; tabela de preços de venda em `colaboracao/midocean-piloto-precos.md`; custos só no R2 privado. Importador pronto e testado (109 testes): rascunhos, SKU opaco, títulos PT. Falta o utilizador lançar a versão da app com `write_products` (bloqueado ao Claude) e aprovar a atualização de permissões na loja. Docker Hub deu 429; a imagem base passou para o espelho ECR público. Sem GitHub nem tema.
+Importação feita (deployment `0dad41f2`): 6 rascunhos `m3d-sc001…m3d-pl001`, 189 variantes, 0 erros. App `config-pilot-3` lançada (publicação, descontos, inventário), à espera de aprovação na loja. Contexto completo para o Codex: `colaboracao/passagem-claude-codex.md`.
+Publicação do piloto feita: 6 produtos ativos na Loja online e nas coleções `bags`, `drinkware` e `t-shirts`. Os planos de stock e de impressão paga, e a decisão entre importar todo o catálogo ou por seleção, ficam para discussão posterior com o utilizador.
+Descontos por escalão criados: 3 automáticos (200+ −6,25%, 500+ −12,5%, 2000+ −15,625%) nos 6 produtos do piloto. Stock, impressão paga e catálogo em espera.
+
+## Revisão visual aprovada — 09/10/2026
+
+O utilizador aprovou a revisão da pesquisa (uma única pesquisa, ordenação compacta, só filtros com valores), do card (sem SKU, preço PT "desde X €/un.", botão "Personalizar" com seta M3D não genérica; o MyShop do card fica como está) e da PDP (cores em círculo, ações por baixo da galeria com botões filled/tinted/ícone inspirados na Apple, recomendações em PT). **O Codex implementa** segundo `design/revisao-visual-20261009.md`. O Claude acrescentou os tokens Buttons v2 e swatches em `m3d-tokens.css` e é dono do novo sistema de ícones (`design/icones-m3d.md`), a pesquisar no MCP do 21st quando este estiver instalado. Backend: importador com tamanhos ordenados, cores reais por variante e descrição limpa; os 6 produtos foram reimportados.
+MCP do 21st adicionado ao Claude (âmbito local, `~/.claude.json`, chave no header, não guardada em ficheiros do projeto). A primeira verificação expirou porque o servidor demora ~11 s a responder; a segunda ficou Connected. Ferramentas disponíveis após reiniciar o Claude Code. O Codex instala o seu separadamente.
+Sistema de ícones M3D v1 desenhado pelo Claude: 18 ícones originais (pincelada afinada nos de ação, traço neutro nos utilitários) em `design/icones/`. O 21st serviu de inspiração de interação (seta que desliza, traço que se desenha, micro-pressão), sem copiar geometria. À espera da validação do utilizador; depois o Codex implementa em `snippets/icon.liquid`.
+
+## Estado geral consolidado — 09/10/2026
+
+Ícones v1 aprovados pelo utilizador. A pedido dele, antes de o Codex começar, foi criado `colaboracao/estado-geral.md`: ponto de entrada único com o que está feito, a ordem do próximo trabalho (1. ícones → 2. revisão visual, ambos do Codex; 3. QA do Claude), o que espera decisão (stock, impressão paga, catálogo) e o mapa dos documentos. `AGENTS.md` passou a mandar ler esse ficheiro primeiro.
+
+## Ícones #1 implementados; revisão #2 em execução — 09/10/2026
+
+Ordem atual do utilizador: ícones aprovados → R1 pesquisa/R2 cards/R3 PDP → QA final Claude. #1 implementado por /root/icons, ficheiros libertados: 18 geometrias M3D e sociais oficiais centralizados, SVGs utilitários/setas/fechar migrados e tamanhos proporcionais. [Relatório](colaboracao/icons-implementacao-20261009.md). Capturas locais antes de R1–R3 em analises/qa-visual/codex-20261009-icons-r123 (14 casos 1440/390 HTTP 200 sem overflow). Testes integrados e Theme Check ainda por fazer. Backend continua com Claude; sem commit, push, theme push ou publicação. Autoria #2 em colaboracao/tarefas.md.
+
+## Ícones e R1–R3 entregues para QA Claude — 09/10/2026
+
+[Entrega completa](colaboracao/entrega-icons-r123-20261009.md): ícones centralizados, pesquisa única/GET compacto/filtros com dados, cards semSKU com preçoPT/Personalizar e MyShop preservado, PDP com hex por valor e ações sobgaleria, recomendaçõesPT4/2. Link único do card inclui cápsula visual, sem interação aninhada; MyShop independente. Specs/tokens doClaude não alterados. Escritores Codex todos concluídos/libertados em tarefas.md.
+
+Theme Check final71ficheiroszeroocorrências; sintaxeJS/diffaprovados.22 casos layout semoverflow1440/1024/390/360; seisPDP swatchesreais; foco/modal/share/orçamento/movimentoreduzido/pílula monotónica testados; fallback hex temporário restaurado. Evidências em analises/qa-visual/codex-20261009-icons-r123/. Primeiro teste foco aos 150 ms precedia fecho160ms; dirigido confirma retorno, resultado bruto preservado. Falhas externas shop-jsCDN separadas de JS tema.
+
+Seis carrinhosreais de 2000 unidades em sessõesisoladas limpos (semcheckout/encomendas/formulários). round(price_min×0.84375) da spec divergia1c nosdoissacos/garrafa; ceil apenas cardpiloto coincide com seisfinal_price reais e evita anúncio abaixo do cobrado. Exceção técnica documentada paraClaude; PDP/carrinho/descontosremotos inalterados. QAfinal/leitorrealClaude pendentes. Orca runtime_unavailable/metadata indisponível: mensagem não entregue, passagemreviewável nosdocs. Nenhumcommit/push/themepush/publicação; backendcontinuaClaude.
+
+
+## Retomada e plano de 12/10/2026
+
+Utilizador autorizou expressamente commits e push a partir de hoje, substituindo a proibição anterior. Publicação do tema/theme push e encomendas reais MidOcean continuam fora do âmbito. Permissões não mudam a autoria: backend/bootstrap continuam Claude (passagem ativa); tema e registos desta etapa Codex.
+
+Contexto atual relido por Node REPL: piloto6 já importado/publicado, tamanhos corrigidos, descontos existentes, backend121 testes históricos, ícones/R1–R3 implementados e QAClaude pendente. O resumo inicial por conversa estava desatualizado; não repetir essas etapas. [Plano do dia](colaboracao/plano-20261012.md) prioriza QA/correções, depois discussão dos planos stock/impressão paga; catálogo completo continua decisão do utilizador.
+
+[Mensagem inicial ao Claude](colaboracao/mensagem-codex-claude-20261012.md), canal de ficheiros, confirmação pendente. Orca runtime indisponível e tentativa open expirou; nenhum recibo de terminal. Shellsetuprefresh falha; documentos gravados porNode. Esta sessão tem.git somente leitura e appbackend fora da raiz gravável; nenhum commit/push/deploy efetuado nesta retomada.
+
+Revisão independente /root/review_today concluída: plano coerente. Confirmado no histórico que push master c8604eb em10/09 publicou a vitrine por integração GitHub; antes de push, verificar ligação atual e usar branch não vinculada ao tema ativo, preservando publicação dependente de ordem própria. Adendo de autorização atual em codexclaude.md; atualização da passagem-claude-codex.md solicitada ao seu escritor Claude pela mensagem. Revisão é somente leitura; nenhuma operação Git/publicação feita.
+
+
+## Fecho QA3 e confirmação do Claude — 12/10/2026
+
+Claude confirmou leitura do plano/mensagem e a divisão de trabalho: Codex tema e registos; Claude design/tokens, QA e backend (passagem ativa). Codex leu [QA3](colaboracao/qa3-claude-20261012.md), conferiu o resumo do Claude e a presença das evidências em analises/qa-visual/claude-20261012-qa3/. **#1 ícones, #2 R1–R3 e #3 QA concluídos e aprovados, sem bloqueantes.** Não há correção de tema exigida por esta ronda.
+
+QA Claude: 60 páginas HTTP200 nas quatro larguras, sem overflow/erros do tema, teclado/foco/reduced-motion e pílula monotónica aprovados. ceil no card do piloto aceite; spec R2 atualizada pelo Claude. Limites preservados: sem leitor de ecrã real (NVDA ausente), sem novo carrinho com artigos nesta ronda (evidência Codex de09/10), recomendações com um card insuficientes para validar grelha4/2. Nenhum teste reexecutado pelo Codex neste fecho.
+
+Ordenação compacta nas coleções aprovada pelo utilizador **para mais tarde**, no backlog. Descrição da t-shirt na próxima reimportação pertinente; pesquisa nativa C9 continua pendente. Próximo passo: parecer conjunto de stock e impressão paga, antes da execução.
+
+Autorização direta recebida pelo Codex permanece: “Commit a partir de hoje passa a ser autorizado, Push também !” (utilizador,12/10). A confirmação direta aguardada pelo Claude é registo da sua sessão; não invalida a autorização já recebida aqui. passagem-claude-codex.md permanece de autoria Claude e não foi alterado pelo Codex. Publicação do tema é autorização separada; verificar ligação GitHub–Shopify antes de push.
+
+Receção comprovada pela mensagem nesta conversa e pelos registos, sem afirmar restabelecimento do acesso CLI Codex ao Orca. Nenhum commit/push/deploy ou alteração no tema/catálogo neste fecho documental.

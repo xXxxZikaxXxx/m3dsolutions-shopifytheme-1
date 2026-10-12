@@ -9,8 +9,7 @@
         "variant_picker": { "type": "variant_picker" },
         "quantity": { "type": "quantity" },
         "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": { "show_dynamic_checkout": true }
+          "type": "buy_buttons"
         },
         "description": { "type": "description" },
         "share": { "type": "share" }

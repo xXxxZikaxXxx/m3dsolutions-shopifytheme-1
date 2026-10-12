@@ -1,0 +1,260 @@
+[
+  {
+    "handle": "m3d-sc001",
+    "variant_id": 50598409928774,
+    "variant_price": 159,
+    "quantity_requested": 2000,
+    "formula_round": 134,
+    "formula_discount_floor": 135,
+    "add": {
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    "cart": {
+      "quantity": 2000,
+      "total_price": 270000,
+      "total_discount": 48000,
+      "items": [
+        {
+          "variant_id": 50598409928774,
+          "quantity": 2000,
+          "original_price": 159,
+          "final_price": 135,
+          "original_line_price": 318000,
+          "final_line_price": 270000,
+          "line_discount_allocations": [
+            {
+              "amount": 48000,
+              "title": "M3D escalão 2000+ (−15,625%)",
+              "value": "15.63",
+              "value_type": "percentage"
+            }
+          ]
+        }
+      ]
+    },
+    "round_matches": false,
+    "discount_floor_matches": true,
+    "clear": {
+      "status": 200,
+      "item_count_after": 0,
+      "total_price_after": 0
+    }
+  },
+  {
+    "handle": "m3d-sc002",
+    "variant_id": 50598410256454,
+    "variant_price": 114,
+    "quantity_requested": 2000,
+    "formula_round": 96,
+    "formula_discount_floor": 97,
+    "add": {
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    "cart": {
+      "quantity": 2000,
+      "total_price": 194000,
+      "total_discount": 34000,
+      "items": [
+        {
+          "variant_id": 50598410256454,
+          "quantity": 2000,
+          "original_price": 114,
+          "final_price": 97,
+          "original_line_price": 228000,
+          "final_line_price": 194000,
+          "line_discount_allocations": [
+            {
+              "amount": 34000,
+              "title": "M3D escalão 2000+ (−15,625%)",
+              "value": "15.63",
+              "value_type": "percentage"
+            }
+          ]
+        }
+      ]
+    },
+    "round_matches": false,
+    "discount_floor_matches": true,
+    "clear": {
+      "status": 200,
+      "item_count_after": 0,
+      "total_price_after": 0
+    }
+  },
+  {
+    "handle": "m3d-gr001",
+    "variant_id": 50598411403334,
+    "variant_price": 421,
+    "quantity_requested": 2000,
+    "formula_round": 355,
+    "formula_discount_floor": 356,
+    "add": {
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    "cart": {
+      "quantity": 2000,
+      "total_price": 712000,
+      "total_discount": 130000,
+      "items": [
+        {
+          "variant_id": 50598411403334,
+          "quantity": 2000,
+          "original_price": 421,
+          "final_price": 356,
+          "original_line_price": 842000,
+          "final_line_price": 712000,
+          "line_discount_allocations": [
+            {
+              "amount": 130000,
+              "title": "M3D escalão 2000+ (−15,625%)",
+              "value": "15.63",
+              "value_type": "percentage"
+            }
+          ]
+        }
+      ]
+    },
+    "round_matches": false,
+    "discount_floor_matches": true,
+    "clear": {
+      "status": 200,
+      "item_count_after": 0,
+      "total_price_after": 0
+    }
+  },
+  {
+    "handle": "m3d-cp001",
+    "variant_id": 50598411599942,
+    "variant_price": 1582,
+    "quantity_requested": 2000,
+    "formula_round": 1335,
+    "formula_discount_floor": 1335,
+    "add": {
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    "cart": {
+      "quantity": 2000,
+      "total_price": 2670000,
+      "total_discount": 494000,
+      "items": [
+        {
+          "variant_id": 50598411599942,
+          "quantity": 2000,
+          "original_price": 1582,
+          "final_price": 1335,
+          "original_line_price": 3164000,
+          "final_line_price": 2670000,
+          "line_discount_allocations": [
+            {
+              "amount": 494000,
+              "title": "M3D escalão 2000+ (−15,625%)",
+              "value": "15.63",
+              "value_type": "percentage"
+            }
+          ]
+        }
+      ]
+    },
+    "round_matches": true,
+    "discount_floor_matches": true,
+    "clear": {
+      "status": 200,
+      "item_count_after": 0,
+      "total_price_after": 0
+    }
+  },
+  {
+    "handle": "m3d-ts001",
+    "variant_id": 50598415040582,
+    "variant_price": 327,
+    "quantity_requested": 2000,
+    "formula_round": 276,
+    "formula_discount_floor": 276,
+    "add": {
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    "cart": {
+      "quantity": 2000,
+      "total_price": 552000,
+      "total_discount": 102000,
+      "items": [
+        {
+          "variant_id": 50598415040582,
+          "quantity": 2000,
+          "original_price": 327,
+          "final_price": 276,
+          "original_line_price": 654000,
+          "final_line_price": 552000,
+          "line_discount_allocations": [
+            {
+              "amount": 102000,
+              "title": "M3D escalão 2000+ (−15,625%)",
+              "value": "15.63",
+              "value_type": "percentage"
+            }
+          ]
+        }
+      ]
+    },
+    "round_matches": true,
+    "discount_floor_matches": true,
+    "clear": {
+      "status": 200,
+      "item_count_after": 0,
+      "total_price_after": 0
+    }
+  },
+  {
+    "handle": "m3d-pl001",
+    "variant_id": 50598417596486,
+    "variant_price": 506,
+    "quantity_requested": 2000,
+    "formula_round": 427,
+    "formula_discount_floor": 427,
+    "add": {
+      "status": 200,
+      "ok": true,
+      "error": null
+    },
+    "cart": {
+      "quantity": 2000,
+      "total_price": 854000,
+      "total_discount": 158000,
+      "items": [
+        {
+          "variant_id": 50598417596486,
+          "quantity": 2000,
+          "original_price": 506,
+          "final_price": 427,
+          "original_line_price": 1012000,
+          "final_line_price": 854000,
+          "line_discount_allocations": [
+            {
+              "amount": 158000,
+              "title": "M3D escalão 2000+ (−15,625%)",
+              "value": "15.63",
+              "value_type": "percentage"
+            }
+          ]
+        }
+      ]
+    },
+    "round_matches": true,
+    "discount_floor_matches": true,
+    "clear": {
+      "status": 200,
+      "item_count_after": 0,
+      "total_price_after": 0
+    }
+  }
+]

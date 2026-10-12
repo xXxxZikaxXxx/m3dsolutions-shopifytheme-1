@@ -1,24 +1,34 @@
 {%- comment -%}
-  ============================================================
-  MAIN PAGE — página institucional padrão
-  ============================================================
-
-  O QUE FAZ:
-  Renderiza uma página estática do Shopify: título centralizado
-  (page.title) e o conteúdo rich text (page.content) num container
-  de largura confortável para leitura.
-
-  ONDE É USADA:
-  Template page (páginas como "Sobre", "Trocas", etc.).
-
-  PRINCIPAIS PARTES:
-  - page.title: cabeçalho da página
-  - page.content dentro de .rte: conteúdo editado no admin
-  - Sem settings no schema (conteúdo vem do objeto page)
-
-  OBSERVAÇÕES:
-  Conteúdo com max-width de 760px para boa legibilidade.
+  Preserve merchant page content. Empty navigation categories get a neutral
+  introduction, real collection products when available, and useful exits.
+  The collection picker is template-level; use a dedicated page template
+  to assign different collections to different pages. No guessed mapping.
+  Styles: assets/m3d-content.css, loaded globally by the layout.
 {%- endcomment -%}
+
+{%- liquid
+  assign navigation_page_handles = '|campanhas-sazonais|casa-e-bem-estar|copos-e-garrafas|escritorio-e-escrita|eventos-e-feiras|ideias-para-o-dia-a-dia|kits-de-boas-vindas|malas-e-viagens|presentes-para-equipas|tecnologia|vesturio-e-acessrios|'
+  assign current_page_handle = page.handle | prepend: '|' | append: '|'
+  assign show_empty_category = false
+  if navigation_page_handles contains current_page_handle
+    assign show_empty_category = true
+  endif
+  assign page_collection = section.settings.collection
+  if page_collection == blank
+    assign page_collection = collections[page.handle]
+  endif
+  if page_collection != blank and page_collection.handle != blank
+    assign show_empty_category = true
+  endif
+  assign has_collection_products = false
+  if page_collection != blank and page_collection.handle != blank and page_collection.products.size > 0
+    assign has_collection_products = true
+  endif
+  assign page_quote_url = pages['pedir-orcamento'].url
+  if page_quote_url != blank
+    assign page_quote_url = page_quote_url | append: '?view=m3d-quote'
+  endif
+-%}
 
 <section class="main-page page-width" data-section-id="{{ section.id }}">
   <header class="main-page__header">
@@ -26,47 +36,45 @@
   </header>
 
   {%- if page.content != blank -%}
-    <div class="main-page__content rte">
-      {{ page.content }}
+    <div class="main-page__content rte">{{ page.content }}</div>
+  {%- elsif show_empty_category -%}
+    <div class="main-page__empty">
+      <p class="main-page__intro">{{ 'm3d_content.empty_intro' | t }}</p>
+      <div class="main-page__actions">
+        {%- if page_quote_url != blank -%}
+          <a class="button main-page__quote" href="{{ page_quote_url }}">{{ 'm3d_content.quote_action' | t }}</a>
+        {%- endif -%}
+        <a class="button main-page__explore" href="{{ routes.all_products_collection_url }}">{{ 'm3d_content.explore_products' | t }}</a>
+      </div>
     </div>
+    {%- if has_collection_products -%}
+      <div class="main-page__collection">
+        <div class="main-page__collection-header">
+          <h2 class="main-page__collection-title">{{ page_collection.title | escape }}</h2>
+          <a class="main-page__collection-link" href="{{ page_collection.url }}">{{ 'm3d_content.view_collection' | t }}</a>
+        </div>
+        <ul class="main-page__grid" role="list">
+          {%- for collection_product in page_collection.products limit: 8 -%}
+            <li>{% render 'card-product', card_product: collection_product %}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
   {%- endif -%}
 </section>
-
-<style>
-  .main-page {
-    padding-top: var(--spacing-sections, 40px);
-    padding-bottom: var(--spacing-sections, 40px);
-  }
-
-  .main-page__header {
-    margin-bottom: 32px;
-    text-align: center;
-  }
-
-  .main-page__title {
-    font-size: var(--f7);
-    line-height: 1.1;
-  }
-
-  .main-page__content {
-    max-width: 760px;
-    margin: 0 auto;
-    font-size: var(--f2);
-    line-height: 1.7;
-  }
-
-  @media screen and (max-width: 1000px) {
-    .main-page__title {
-      font-size: var(--f6);
-    }
-  }
-</style>
 
 {% schema %}
 {
   "name": "t:sections.main_page.name",
   "tag": "section",
   "class": "section-main-page",
-  "settings": []
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.main_page.settings.collection.label",
+      "info": "t:sections.main_page.settings.collection.info"
+    }
+  ]
 }
 {% endschema %}

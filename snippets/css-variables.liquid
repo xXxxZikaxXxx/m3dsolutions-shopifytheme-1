@@ -23,19 +23,20 @@
 {%- liquid
   assign header_font = settings.type_header_font
   assign body_font = settings.type_body_font
-  assign header_font_bold = header_font | font_modify: 'weight', 'bold'
-  assign body_font_bold = body_font | font_modify: 'weight', 'bold'
+  assign header_font_bold = header_font | font_modify: 'weight', '700'
+  assign body_font_bold = body_font | font_modify: 'weight', '700'
 -%}
 <style>
   {{ header_font | font_face: font_display: 'swap' }}
-  {{ header_font_bold | font_face: font_display: 'swap' }}
+  {% if header_font_bold != blank and header_font_bold != header_font and header_font_bold != body_font_bold %}{{ header_font_bold | font_face: font_display: 'swap' }}{% endif %}
   {{ body_font | font_face: font_display: 'swap' }}
-  {{ body_font_bold | font_face: font_display: 'swap' }}
+  {% if body_font_bold != blank and body_font_bold != header_font %}{{ body_font_bold | font_face: font_display: 'swap' }}{% endif %}
 
   :root {
     /* Colors */
-    --cor-branco: #ffffff;
-    --cor-preto: #000000;
+    --cor-branco: var(--m3d-white);
+    --cor-preto: var(--m3d-black);
+    --cor-escuro-1: var(--m3d-black);
     --color-background: {{ settings.color_background }};
     --color-text: {{ settings.color_text }};
     --color-background-contrast: {{ settings.color_background_contrast }};
@@ -44,11 +45,8 @@
     --color-accent-text: {{ settings.color_accent_text }};
     --color-sale: {{ settings.color_sale }};
     --color-border: {{ settings.color_border }};
-    --m3d-pink: #e31c79;
-    --m3d-purple: #4436bc;
-    --m3d-blue: #00b3e7;
-
-    /* Backwards-compatible aliases used by existing sections */
+--m3d-purple: #4436bc;
+/* Backwards-compatible aliases used by existing sections */
     --cor-gelo: {{ settings.color_background_contrast }};
     --cor-cinza: {{ settings.color_border }};
     --cor-marca: {{ settings.color_accent }};

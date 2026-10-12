@@ -1,0 +1,278 @@
+[
+  {
+    "width": 1440,
+    "label": "bags",
+    "overflow": 0,
+    "cards": [
+      {
+        "handle": "m3d-sc002",
+        "price": "desde €0,97 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-sc001",
+        "price": "desde €1,35 /un.\npor unidade",
+        "arrow": 18
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "label": "drinkware",
+    "overflow": 0,
+    "cards": [
+      {
+        "handle": "m3d-cp001",
+        "price": "desde €13,35 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-gr001",
+        "price": "desde €3,56 /un.\npor unidade",
+        "arrow": 18
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "label": "t-shirts",
+    "overflow": 0,
+    "cards": [
+      {
+        "handle": "m3d-pl001",
+        "price": "desde €4,27 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-ts001",
+        "price": "desde €2,76 /un.\npor unidade",
+        "arrow": 18
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "label": "search",
+    "overflow": 0,
+    "cards": [
+      {
+        "handle": "saco-natalicio-boneco-de-neve-com-cordao?_pos=1&_sid=f44bef878&_ss=r",
+        "price": "Preço\n€1,80 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-sc002?_pos=2&_sid=f44bef878&_ss=r",
+        "price": "desde €0,97 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-sc001?_pos=3&_sid=f44bef878&_ss=r",
+        "price": "desde €1,35 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-145-amazon?_pos=4&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-160-jeep?_pos=5&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-153-jaguar?_pos=6&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-161-carlsberg?_pos=7&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-156-jcb?_pos=8&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-148-pepsi?_pos=9&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-154-i-phone?_pos=10&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-147-bear-bull?_pos=11&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-151-hummer?_pos=12&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-149-audi?_pos=13&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-158-royal-enfield?_pos=14&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-150-m-s?_pos=15&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-159-bridgestone?_pos=16&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "label": "bags",
+    "overflow": 0,
+    "cards": [
+      {
+        "handle": "m3d-sc002",
+        "price": "desde €0,97 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-sc001",
+        "price": "desde €1,35 /un.\npor unidade",
+        "arrow": 18
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "label": "drinkware",
+    "overflow": 0,
+    "cards": [
+      {
+        "handle": "m3d-cp001",
+        "price": "desde €13,35 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-gr001",
+        "price": "desde €3,56 /un.\npor unidade",
+        "arrow": 18
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "label": "t-shirts",
+    "overflow": 0,
+    "cards": [
+      {
+        "handle": "m3d-pl001",
+        "price": "desde €4,27 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-ts001",
+        "price": "desde €2,76 /un.\npor unidade",
+        "arrow": 18
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "label": "search",
+    "overflow": 0,
+    "cards": [
+      {
+        "handle": "saco-natalicio-boneco-de-neve-com-cordao?_pos=1&_sid=f44bef878&_ss=r",
+        "price": "Preço\n€1,80 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-sc002?_pos=2&_sid=f44bef878&_ss=r",
+        "price": "desde €0,97 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "m3d-sc001?_pos=3&_sid=f44bef878&_ss=r",
+        "price": "desde €1,35 /un.\npor unidade",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-145-amazon?_pos=4&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-160-jeep?_pos=5&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-153-jaguar?_pos=6&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-161-carlsberg?_pos=7&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-156-jcb?_pos=8&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-148-pepsi?_pos=9&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-154-i-phone?_pos=10&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-147-bear-bull?_pos=11&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-151-hummer?_pos=12&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-149-audi?_pos=13&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-158-royal-enfield?_pos=14&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-150-m-s?_pos=15&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      },
+      {
+        "handle": "3s-159-bridgestone?_pos=16&_sid=f44bef878&_ss=r",
+        "price": "Sob consulta",
+        "arrow": 18
+      }
+    ]
+  }
+]

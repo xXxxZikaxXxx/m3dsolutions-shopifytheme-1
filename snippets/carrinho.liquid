@@ -1,24 +1,23 @@
-{%- comment -%}
-  ============================================================
-  carrinho — ponto de montagem do carrinho
-  ============================================================
-
-  O QUE FAZ:
-  Renderiza apenas o elemento raiz (<div id="carrinho">) onde o carrinho
-  (drawer/mini-cart) é montado. A lógica e o conteúdo são injetados por
-  JavaScript externo que procura por #carrinho.
-
-  COMO USAR:
+{% doc %}
+  Initial cart consultation policy from Shopify Liquid plus accessible AJAX status.
+  This is an anchor for the shared helper, not a product drawer or backend checkout guard.
+  @example
   {% render 'carrinho' %}
-  Normalmente incluído uma vez no layout (theme.liquid).
-
-  PARÂMETROS:
-  Nenhum — renderizado diretamente.
-
-  OBSERVAÇÕES:
-  Placeholder proposital: o bloco <style> está vazio e o HTML/JS do
-  carrinho vem de fora. Serve de âncora para o script.
-{%- endcomment -%}
-<div id="carrinho"></div>
-
-<style></style>
+{% enddoc %}
+{%- liquid
+  assign m3d_cart_has_quote = false
+  for cart_item in cart.items
+    if cart_item.variant.price == 0 and cart_item.original_price == 0
+      assign m3d_cart_has_quote = true
+    endif
+  endfor
+-%}
+<div id="carrinho"
+  data-m3d-cart-policy
+  data-quote-required="{{ m3d_cart_has_quote }}"
+  data-quote-message="{{ 'm3d_cart.quote_required' | t | escape }}"
+  data-added-message="{{ 'm3d_pdp.added' | t | escape }}"
+  data-add-error="{{ 'm3d_cart.add_error' | t | escape }}"
+>
+  <p class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-m3d-cart-status></p>
+</div>

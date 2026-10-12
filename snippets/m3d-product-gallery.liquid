@@ -2,6 +2,7 @@
   Renders the product's real media in an accessible gallery.
   @param {product} product - The product to display.
   @param {string} section_id - The section identifier.
+  @param {string} quote_request_url - The quote page URL.
   @example
   {% render 'm3d-product-gallery', product: product, section_id: section.id %}
 {% enddoc %}
@@ -108,13 +109,18 @@
       <div class="m3d-product-gallery__controls">
         <span class="m3d-product-gallery__counter" aria-hidden="true"><span data-gallery-count>{{ active_number }}</span> / {{ media_count }}</span>
         <button type="button" class="m3d-product-gallery__arrow" data-gallery-direction="-1" aria-label="{{ 'accessibility.previous_slide' | t | escape }}" aria-controls="{{ gallery_id }}">
-          <span aria-hidden="true">←</span>
+          {% render 'icon', name: 'm3d-arrow-left' %}
         </button>
         <button type="button" class="m3d-product-gallery__arrow" data-gallery-direction="1" aria-label="{{ 'accessibility.next_slide' | t | escape }}" aria-controls="{{ gallery_id }}">
-          <span aria-hidden="true">→</span>
+          {% render 'icon', name: 'm3d-arrow' %}
         </button>
       </div>
     </div>
   {%- endif -%}
+  <div class="m3d-product-gallery__actions">
+    <a class="m3d-product-gallery__quote" href="{{ quote_request_url }}&amp;product={{ product.title | url_encode }}&amp;variant={{ product.selected_or_first_available_variant.title | url_encode }}&amp;quantity={{ product.selected_or_first_available_variant.quantity_rule.min | default: 1 }}&amp;product_url={{ product.url | url_encode }}&amp;variant_id={{ product.selected_or_first_available_variant.id }}" data-quote-base="{{ quote_request_url }}">{% render 'icon', name: 'm3d-quote' %}{{ 'm3d_pdp.request_quote' | t }}</a>
+    <button type="button" class="m3d-product-gallery__icon-button m3d-pdp__myshop" data-m3d-dialog-open="M3dShop-{{ section_id }}" aria-haspopup="dialog" aria-controls="M3dShop-{{ section_id }}" aria-label="{{ 'm3d_pdp.add_to_myshop' | t | escape }}" title="{{ 'm3d_pdp.add_to_myshop' | t | escape }}">{% render 'icon', name: 'm3d-bookmark' %}</button>
+    {% render 'share-button', share_link: product.url, share_title: product.title, icon_only: true %}
+  </div>
   <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-gallery-announcement></p>
 </m3d-product-gallery>

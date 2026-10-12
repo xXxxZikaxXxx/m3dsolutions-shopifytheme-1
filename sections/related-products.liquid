@@ -27,10 +27,10 @@
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}"
   >
     {%- if recommendations.performed and recommendations.products_count > 0 -%}
-      <h2 class="related-products__title">{{ section.settings.heading | escape }}</h2>
+      <h2 class="related-products__title">{% if section.settings.heading == blank or section.settings.heading == 'You may also like' %}{{ 'sections.related_products.heading' | t }}{% else %}{{ section.settings.heading | escape }}{% endif %}</h2>
       <ul class="product-grid" role="list">
         {%- for product in recommendations.products -%}
-          <li>{% render 'card-product', card_product: product %}</li>
+          <li>{% render 'card-product', card_product: product, card_context: 'collection' %}</li>
         {%- endfor -%}
       </ul>
     {%- endif -%}
@@ -40,17 +40,31 @@
     if (!customElements.get('product-recommendations')) {
       customElements.define('product-recommendations', class extends HTMLElement {
         connectedCallback() {
-          var el = this;
-          if (el.querySelector('.product-grid')) return;
-          fetch(el.dataset.url)
-            .then(function (r) { return r.text(); })
-            .then(function (text) {
-              var html = document.createElement('div');
-              html.innerHTML = text;
-              var recos = html.querySelector('product-recommendations');
-              if (recos && recos.innerHTML.trim().length) { el.innerHTML = recos.innerHTML; }
-            })
-            .catch(function (e) { console.error(e); });
+          if (this.controller) return;
+          this.controller = new AbortController();
+          const opts = { signal: this.controller.signal };
+          this.addEventListener('click', event => {
+            const trigger = event.target.closest('[data-open-myshop]');
+            if (trigger) {
+              const dialog = this.querySelector('#' + CSS.escape(trigger.dataset.openMyshop));
+              if (dialog) { dialog.returnFocus = trigger; dialog.showModal(); }
+            }
+            const close = event.target.closest('[data-close-dialog]');
+            if (close) close.closest('dialog')?.close();
+            if (event.target.matches('dialog')) event.target.close();
+          }, opts);
+          this.addEventListener('close', event => { event.target.returnFocus?.focus(); }, { ...opts, capture: true });
+          if (!this.querySelector('.product-grid')) this.load();
+        }
+        disconnectedCallback() { this.controller?.abort(); this.controller = null; }
+        async load() {
+          try {
+            const response = await fetch(this.dataset.url, { signal: this.controller.signal });
+            if (!response.ok) return;
+            const html = new DOMParser().parseFromString(await response.text(), 'text/html');
+            const recommendations = html.querySelector('product-recommendations');
+            if (recommendations?.querySelector('.product-grid')) this.innerHTML = recommendations.innerHTML;
+          } catch (error) { if (error.name !== 'AbortError') console.error('Recommendations unavailable'); }
         }
       });
     }
@@ -72,7 +86,7 @@
     {
       "type": "text",
       "id": "heading",
-      "default": "You may also like",
+      "default": "Também pode gostar",
       "label": "t:sections.related_products.settings.heading.label"
     },
     {
@@ -87,3 +101,30 @@
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+.related-products{display:block;width:100%;max-width:calc(var(--m3d-page-width) + 2 * var(--m3d-gutter));margin-inline:auto;padding:var(--m3d-space-8) var(--m3d-gutter) var(--m3d-space-16)}
+.related-products:empty{display:none}
+.related-products__title{margin:0 0 var(--m3d-space-6);font-size:var(--m3d-text-2xl);font-weight:var(--m3d-weight-bold)}
+.related-products .product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--m3d-space-6);margin:0;padding:0;list-style:none}
+.related-products .product-grid>li{min-width:0}
+@media(max-width:749px){.related-products .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--m3d-space-3)}}
+
+.related-products .collection-card{position:relative;min-width:0}
+.related-products .collection-card__media-wrap{position:relative;overflow:hidden;border-radius:var(--m3d-radius-media);background:var(--m3d-color-surface-alt)}
+.related-products .collection-card__media{position:relative;overflow:hidden}
+.related-products .collection-card__image{position:absolute;inset:0;width:100%;height:100%;padding:8%;object-fit:contain;mix-blend-mode:multiply}
+.related-products .collection-card__info{padding-top:var(--m3d-space-4)}
+.related-products .collection-card__title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:0 0 var(--m3d-space-2);font-size:var(--m3d-text-md);font-weight:var(--m3d-weight-bold);line-height:var(--m3d-leading-snug)}
+.related-products .collection-card__actions{position:absolute;inset-block-start:var(--m3d-space-3);inset-inline-start:var(--m3d-space-3)}
+.related-products .collection-card__icon-button{display:inline-flex;align-items:center;justify-content:center;gap:var(--m3d-space-2);min-width:44px;min-height:44px;padding:var(--m3d-space-2) var(--m3d-space-3);border:1px solid var(--m3d-swatch-border);border-radius:var(--m3d-radius-control);background:var(--m3d-surface-glass);color:var(--m3d-color-text);font-size:var(--m3d-text-xs);font-weight:var(--m3d-weight-bold);cursor:pointer}
+.related-products .collection-card__badge{position:absolute;inset-block-start:var(--m3d-space-3);inset-inline-end:var(--m3d-space-3);padding:var(--m3d-space-2);border-radius:var(--m3d-radius-control);background:var(--m3d-color-accent);color:var(--m3d-color-accent-text);font-size:var(--m3d-text-xs)}
+.related-products .collection-card__dialog{width:min(400px,calc(100vw - 32px));max-height:calc(100dvh - 32px);margin:auto;padding:var(--m3d-space-5);overflow:auto;overscroll-behavior:contain;border:1px solid var(--m3d-color-border);border-radius:var(--m3d-radius-panel);background:var(--m3d-color-surface);color:var(--m3d-color-text);box-shadow:var(--m3d-shadow-modal)}
+.related-products .collection-card__dialog::backdrop{background:var(--m3d-scrim)}
+.related-products .collection-card__dialog-header{display:flex;align-items:center;justify-content:space-between;gap:var(--m3d-space-3)}
+.related-products .collection-card__dialog-title{margin:0;font-size:var(--m3d-text-lg)}
+.related-products .collection-card__dialog-close{display:grid;place-items:center;flex:none;width:44px;height:44px;border:0;border-radius:var(--m3d-radius-round);background:var(--m3d-color-surface-alt);cursor:pointer}
+.related-products .collection-card__shop-list{display:grid;gap:var(--m3d-space-2);margin:0;padding:0;border:0}
+.related-products .collection-card__shop-list label{display:flex;align-items:center;gap:var(--m3d-space-2);min-height:48px;padding:var(--m3d-space-2);border:1px solid var(--m3d-color-border);border-radius:var(--m3d-radius-field)}
+.related-products .collection-card__create-shop{min-height:44px;margin-top:var(--m3d-space-4);padding-inline:var(--m3d-space-3);border:1px solid var(--m3d-color-border-control);border-radius:var(--m3d-radius-control);background:var(--m3d-color-surface);color:var(--m3d-color-link)}
+{% endstylesheet %}
